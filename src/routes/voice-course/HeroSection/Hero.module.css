@@ -1,0 +1,177 @@
+.heroSection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 6rem 8% 4rem 10%;
+  background-color: #ffffff;
+  min-height: 85vh;
+  gap: 2rem;
+}
+
+.heroContentWrapper {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+}
+
+.heroSubTitle {
+  color: #6C757D;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+.heroMainTitle {
+  font-weight: 800;
+  font-size: 110px;
+  line-height: 95px;
+  letter-spacing: -4px;
+  color: #1a1a1a;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.heroMainTitle span {
+  font-size: 35px;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+.heroTagline {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.heroDescription {
+  color: #6C757D;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  max-width: 550px;
+}
+
+.heroButtonGroup {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.heroPrimaryBtn {
+  background-color: #437a63;
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.heroSecondaryBtn {
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 16px 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.heroGuaranteeText {
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 2.5rem;
+}
+
+.heroStatsBar {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6C757D;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+.heroRightContainer {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  padding-top: 8rem;
+  /* Image ko neeche karne ke liye padding barha di */
+}
+
+.heroImageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroImage {
+  max-width: 420px;
+  height: auto;
+  display: block;
+}
+
+.authorBio {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.authorName {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.authorTitle {
+  font-size: 14px;
+  color: #4b5563;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+@media (max-width: 1024px) {
+  .heroRightContainer {
+    padding-top: 2rem;
+  }
+
+  .heroSection {
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 5%;
+  }
+
+  .heroContentWrapper,
+  .heroRightContainer {
+    width: 100%;
+  }
+
+  .heroMainTitle {
+    font-size: 70px;
+    line-height: 70px;
+  }
+
+  .heroButtonGroup {
+    justify-content: center;
+  }
+
+  .heroStatsBar {
+    justify-content: center;
+  }
+}

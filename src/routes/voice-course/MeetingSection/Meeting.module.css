@@ -1,0 +1,159 @@
+.meetingSection {
+  padding: 100px 0;
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  width: 100%;
+  max-width: 1440px;
+  gap: 60px;
+}
+
+.videoWrapper {
+  flex: 1;
+  width: 100%;
+}
+
+.videoContainer {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  width: 100%;
+  display: flex;
+}
+
+.thumbnailWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.playButton {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: #D0C6C5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.playIcon {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 25px solid #000000;
+  margin-left: 6px;
+}
+
+.thumbnailWrapper:hover .playButton {
+  transform: translate(-50%, -50%) scale(1.05);
+  background-color: #c4b9b8;
+}
+
+.videoElement {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 20px;
+}
+
+.contentWrapper {
+  flex: 1.2;
+  max-width: 600px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.1;
+  color: #1a1a1a;
+  margin-bottom: 25px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.listIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.bioText p {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.quote {
+  display: block;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 19px;
+  border-left: 4px solid #2e775c;
+  padding-left: 15px;
+}
+
+@media (max-width: 1100px) {
+  .container {
+    padding: 0 5%;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .videoWrapper {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .contentWrapper {
+    max-width: 100%;
+  }
+
+  .list,
+  .quote {
+    text-align: left;
+    display: inline-block;
+  }
+}

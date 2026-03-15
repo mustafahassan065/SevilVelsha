@@ -1,0 +1,158 @@
+.main {
+  min-height: 100vh;
+  background-color: #F0FAF5;
+  margin: 0 auto;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.availableSection {
+  padding: 80px 24px;
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1216px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mainHeading {
+  font-size: 48px;
+  margin-bottom: 12px;
+  color: #0A0A0A;
+  font-weight: 700;
+}
+
+.subheading {
+  color: #4A5568;
+  font-size: 20px;
+  margin-bottom: 56px;
+}
+
+.retailersGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  justify-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.retailerCard {
+  display: flex;
+  width: 100%;
+  max-width: 161px;
+  height: 100px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.retailerLogo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.retailerName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.testimonialsSection {
+  padding: 48px 0 80px 0;
+}
+
+.worldwide {
+  color: #7fe7a4;
+}
+
+.scrollContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.scrollTrack {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+}
+
+.testimonialCard {
+  width: 320px;
+  height: auto;
+  min-height: 180px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 15px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.testimonialHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonialName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.star img {
+  width: 70px;
+}
+
+.testimonialText {
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .mainHeading {
+    font-size: 42px;
+  }
+
+  .retailersGrid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mainHeading {
+    font-size: 32px;
+  }
+
+  .retailersGrid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 340px;
+  }
+
+  .retailerCard {
+    height: 90px;
+  }
+}

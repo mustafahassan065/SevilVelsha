@@ -1,0 +1,142 @@
+.bonusSection {
+  width: 100%;
+  padding: 100px 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 10%; /* Meeting section se aligned */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+.giftEmoji {
+  font-size: 44px;
+}
+
+.mainTitle {
+  font-size: 54px; /* Meeting section title se match karta hua */
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+.cardItem {
+  background-color: #f6fdf6; 
+  border: 1.5px solid #d4f2d4;
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cardItem:hover {
+  transform: translateY(-5px);
+  border-color: #78E378;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  background: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.textWrapper {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 24px; /* Font bada kiya */
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.cardDescription {
+  font-size: 18px; /* Font bada kiya */
+  line-height: 1.5;
+  color: #444;
+  margin: 0;
+}
+
+/* --- Clean Footer Text --- */
+.footerText {
+  margin-top: 60px;
+  font-size: 20px;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.footerText p {
+  margin: 0;
+}
+
+/* --- Media Queries --- */
+
+@media (max-width: 1100px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+  }
+  
+  .mainTitle {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 5%;
+  }
+
+  .cardItem {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .mainTitle {
+    font-size: 32px;
+  }
+
+  .footerText {
+    font-size: 17px;
+    padding: 0 20px;
+  }
+}

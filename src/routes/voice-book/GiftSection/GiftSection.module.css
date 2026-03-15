@@ -1,0 +1,107 @@
+.section {
+  background-color: #fdfaf5;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+}
+
+.container {
+  max-width: 750px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageWrapper {
+  margin-bottom: 40px;
+}
+
+.bookImage {
+  width: 520px;
+  /* Kept your exact width */
+  height: 680px;
+  /* Kept your exact height */
+  object-fit: cover;
+  border-radius: 40px;
+}
+
+.content {
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 70px;
+  /* Kept your exact margin */
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #101828;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #475467;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+  width: 100%;
+  text-align: left;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #344054;
+  margin-bottom: 6px;
+}
+
+.checkIcon {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  margin: 12px 0;
+}
+
+.footerText {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+}
+
+/* ONLY Mobile Fixes Below - No changes to Desktop */
+@media (max-width: 768px) {
+  .bookImage {
+    width: 100%;
+    /* Becomes fluid on mobile */
+    max-width: 520px;
+    height: auto;
+    /* Fixes stretching on mobile */
+  }
+
+  .content {
+    margin-left: 0;
+    /* Removes the 70px shift so it stays centered on mobile */
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}

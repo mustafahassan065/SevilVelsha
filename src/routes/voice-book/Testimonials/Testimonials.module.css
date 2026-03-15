@@ -1,0 +1,106 @@
+.section {
+  background-color: #F5F1E8;
+  padding: 80px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.sliderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
+  /* Width adjust karein apne design ke hisab se */
+  margin: 0 auto;
+  position: relative;
+  padding: 0 60px;
+  /* Arrows ke liye side par jagah */
+}
+
+.viewPort {
+  width: 100%;
+  overflow: hidden;
+  /* Ye zaroori hai extra cards chhupane ke liye */
+}
+
+.sliderTrack {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Smooth movement */
+  width: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  /* Ek waqt mein ek hi card poori width lega */
+  display: flex;
+  justify-content: center;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: #D4AF37;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navButton:hover {
+  background: #D4AF37;
+  color: white;
+  border-color: #D4AF37;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.activeDot {
+  background: #D4AF37;
+  width: 24px;
+  /* Pill shape for active dot */
+  border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sliderWrapper {
+    padding: 0 40px;
+  }
+
+  .navButton {
+    width: 35px;
+    height: 35px;
+  }
+}

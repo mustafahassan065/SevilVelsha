@@ -1,0 +1,175 @@
+.section {
+  background: linear-gradient(135deg, #fce8ec 0%, #f5f1e8 40%, #f5f1e8 100%);
+  padding: 80px 40px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.title {
+  font-family: var(--font-playfair), 'Times New Roman', Times, serif;
+  font-size: 48px;
+  font-weight: 500;
+  color: #101828;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #4a5565;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.imageGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin-bottom: 60px;
+  overflow-x: auto;
+}
+
+.imageBox {
+  flex: 0 0 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columnHeader {
+  font-family: var(--font-playfair), 'Times New Roman', Times, serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #101828;
+  padding-bottom: 20px;
+  margin-bottom: 12px;
+}
+
+.columnHeader.before {
+  border-bottom: 2px solid #FFC9C9;
+}
+
+.columnHeader.after {
+  border-bottom: 2px solid #b08d57;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.footerText {
+  font-family: var(--font-playfair), 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color: #6A7282;
+  font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 60px 32px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .comparison {
+    gap: 40px;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 24px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .imageGrid {
+    gap: 20px;
+  }
+
+  .imageBox {
+    flex: 0 0 140px;
+  }
+
+  .comparison {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 16px;
+  }
+
+  .footer {
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .imageBox {
+    flex: 0 0 120px;
+  }
+
+  .imageGrid {
+    justify-content: flex-start;
+    padding-bottom: 10px;
+  }
+
+  .columnHeader {
+    padding-bottom: 16px;
+  }
+}

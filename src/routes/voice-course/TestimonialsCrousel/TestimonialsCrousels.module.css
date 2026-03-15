@@ -1,0 +1,113 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  margin: 100px auto;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #141414;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  /* Filter ko balance kiya: brightness thodi zyada, sepia kam */
+  filter: brightness(0.9) contrast(1.05) sepia(0.12) saturate(1.15);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  /* Overlay ko thoda transparent kiya taaki faces visible rahein */
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.55));
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 60px 80px 100px;
+  color: #ffffff;
+  /* Pure white text */
+}
+
+.testimonialContent {
+  max-width: 900px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.quote {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+}
+
+.authorName {
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.authorRole {
+  font-size: 12px;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+}
+
+.activeDot {
+  background: #ffffff;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: 500px;
+    margin: 40px auto;
+  }
+
+  .content {
+    padding: 40px 24px;
+    justify-content: center;
+  }
+
+  .quote {
+    font-size: 20px;
+  }
+}

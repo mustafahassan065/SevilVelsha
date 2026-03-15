@@ -1,0 +1,170 @@
+.courseSection {
+  width: 100%;
+  padding: 100px 0;
+  background-color: #f1f7f5;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  max-width: 950px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.headerEmoji {
+  font-size: 60px;
+  line-height: 1;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 72.43px;
+  line-height: 72.43px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 24.14px;
+  line-height: 36.21px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #444;
+  margin-top: 15px;
+  max-width: 850px;
+}
+
+.accordionContainer {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.accordionItem {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid #78E378;
+  border-radius: 12px;
+  padding: 24px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.activeItem {
+  background-color: #1a1a1a !important;
+  border-color: #78E378 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.moduleContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.moduleTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1a1a1a;
+  text-transform: none;
+  transition: color 0.3s ease;
+}
+
+.activeItem .moduleTitle {
+  color: #ffffff;
+}
+
+.arrowIcon {
+  color: #78E378;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.activeItem .arrowIcon {
+  color: #ffffff;
+  transform: rotate(180deg);
+}
+
+.descriptionWrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
+}
+
+.descriptionWrapper.show {
+  max-height: 200px;
+  margin-top: 15px;
+  opacity: 1;
+}
+
+.descriptionText {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #ffffff;
+  padding-top: 15px;
+  border-top: 1px solid rgba(120, 227, 120, 0.3);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 50px;
+    line-height: 55px;
+  }
+
+  .titleWrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .accordionItem {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 38px;
+    line-height: 42px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .moduleTitle {
+    font-size: 18px;
+  }
+}

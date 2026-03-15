@@ -1,0 +1,126 @@
+.faqSection {
+  padding: 100px 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+/* ❓ Frequently Asked Questions Styles */
+.mainTitle {
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 48px;
+  letter-spacing: 0%;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.questionIcon {
+  font-size: 40px;
+  /* Adjusting emoji size to match 48px text */
+}
+
+.accordion {
+  width: 100%;
+}
+
+.faqItem {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 24px 0;
+  cursor: pointer;
+}
+
+.questionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Question Styles - Default Font Family */
+.questionText {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  color: #000000;
+  margin: 0;
+  text-align: left;
+  /* Text alignment to left for readability in accordion */
+}
+
+.arrowIcon {
+  transition: transform 0.3s ease;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.active .arrowIcon {
+  transform: rotate(180deg);
+}
+
+.answerWrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.active .answerWrapper {
+  max-height: 200px;
+  /* Sufficient for your text */
+}
+
+.answerContent {
+  padding-top: 16px;
+}
+
+.answerText {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  color: #444;
+  margin: 0;
+}
+
+/* --- Responsive Fixes --- */
+
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .questionText {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .answerText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+}

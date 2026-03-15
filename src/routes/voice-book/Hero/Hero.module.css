@@ -1,0 +1,25 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  padding: 60px 48px 100px;
+  background-color: #f5f1e8;
+  min-height: calc(100vh - 100px);
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    gap: 48px;
+    padding: 40px 24px 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    gap: 32px;
+    padding: 24px 16px 48px;
+    min-height: auto;
+  }
+}

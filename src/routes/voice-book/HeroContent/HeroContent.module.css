@@ -1,0 +1,191 @@
+.content {
+  max-width: 560px;
+  position: relative;
+  /* Sirf is line ko change kiya hai takay right wala content left ki taraf move ho */
+  margin-left: -80px;
+}
+
+.tagline {
+  font-size: 16px;
+  color: #555555;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.mainTitle {
+  font-family: 'Georgia', serif;
+  font-size: 84px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 0.95;
+  margin-bottom: 24px;
+  letter-spacing: -2px;
+}
+
+.trademark {
+  font-size: 48px;
+  vertical-align: super;
+}
+
+.subtitle {
+  font-family: 'Georgia', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.highlightText {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: #b08d57;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 16px;
+  color: #555555;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 480px;
+}
+
+.secondaryTitle {
+  font-size: 15px;
+  color: #555555;
+  margin-bottom: 28px;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.buyButton {
+  background-color: #b08d57;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.buyButton:hover {
+  background-color: #9a7a4a;
+}
+
+.samplesButton {
+  background-color: transparent;
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 32px;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.samplesButton:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.guarantee {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: #b08d57;
+  margin-bottom: 24px;
+}
+
+.features {
+  display: flex;
+  gap: 24px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555555;
+}
+
+.featureIcon {
+  width: 18px;
+  height: 18px;
+  color: #555555;
+}
+
+@media (max-width: 1200px) {
+  .content {
+    margin-left: -40px;
+  }
+
+  .mainTitle {
+    font-size: 64px;
+  }
+
+  .subtitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    text-align: center;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .mainTitle {
+    font-size: 48px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buyButton,
+  .samplesButton {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .features {
+    justify-content: center;
+  }
+
+  .description {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 0 8px;
+    margin-left: 0;
+  }
+
+  .mainTitle {
+    font-size: 36px;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .trademark {
+    font-size: 24px;
+  }
+}
