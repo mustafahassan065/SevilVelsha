@@ -1,5 +1,5 @@
 .giftSection {
-  background-color: #f0faf5;
+  background-color: #F4EFE6; /* Changed from #f0faf5 (light green) to warm neutral */
   padding: 80px 0;
   width: 100%;
   min-height: 100vh;
@@ -80,7 +80,7 @@
 }
 
 .giftButton {
-  background-color: #78E378;
+  background-color: #B68A4C; /* Changed from #78E378 (green) to gold */
   color: #000000;
   border: none;
   padding: 16px 40px;
@@ -92,6 +92,10 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   width: fit-content;
   align-self: flex-start;
+}
+
+.giftButton:hover {
+  background-color: #9a7a4a; /* Darker gold on hover */
 }
 
 @media (max-width: 1055px) {

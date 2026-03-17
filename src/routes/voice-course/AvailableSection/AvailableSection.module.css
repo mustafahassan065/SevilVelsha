@@ -1,6 +1,6 @@
 .main {
   min-height: 100vh;
-  background-color: #F0FAF5;
+  background-color: #F4EFE6; /* Changed from #F0FAF5 to warm neutral */
   margin: 0 auto;
   width: 100%;
   overflow-x: hidden;
@@ -21,7 +21,7 @@
 .mainHeading {
   font-size: 48px;
   margin-bottom: 12px;
-  color: #0A0A0A;
+  color: #1E1B18; /* Changed to dark text */
   font-weight: 700;
 }
 
@@ -64,7 +64,7 @@
 .retailerName {
   font-size: 14px;
   font-weight: 600;
-  color: #1f2937;
+  color: #1E1B18; /* Changed to dark text */
 }
 
 .testimonialsSection {
@@ -72,7 +72,8 @@
 }
 
 .worldwide {
-  color: #7fe7a4;
+  color: #B68A4C; /* Changed from #7fe7a4 to gold */
+  font-weight: 600;
 }
 
 .scrollContainer {
@@ -118,7 +119,7 @@
 .testimonialName {
   font-size: 16px;
   font-weight: 600;
-  color: #1F2937;
+  color: #1E1B18; /* Changed to dark text */
 }
 
 .star img {

@@ -1,10 +1,22 @@
 
-
 import React from 'react';
 import styles from './Meeting.module.css';
+import { FaGraduationCap, FaTheaterMasks, FaMicrophone, FaPenNib } from 'react-icons/fa';
+// Ya phir Lucide icons: import { GraduationCap, Smile, Mic, PenTool } from 'lucide-react';
 
 const Meeting = () => {
-  const driveLink = "https://drive.google.com/file/d/1kEG8qrTpTThTGxQnxBFJ0Z12BY8gha-C/view?usp=sharing";
+  const driveLink = "https://drive.google.com/file/d/1kEG8qrTpTThTGxQnxBFJ0Z12BY8gha-C/view?usp=sharing ";
+
+  // Gold color define karo
+  const iconColor = "#B68A4C";
+  const iconSize = 24;
+
+  const listItems = [
+    { icon: <FaGraduationCap size={iconSize} color={iconColor} />, text: "Researcher in intonation & speech science" },
+    { icon: <FaTheaterMasks size={iconSize} color={iconColor} />, text: "Actor-based vocal techniques" },
+    { icon: <FaMicrophone size={iconSize} color={iconColor} />, text: "Used by speakers, educators & leaders" },
+    { icon: <FaPenNib size={iconSize} color={iconColor} />, text: "Author of Voice Control" },
+  ];
 
   return (
     <section className={styles.meetingSection}>
@@ -36,22 +48,12 @@ const Meeting = () => {
         <div className={styles.contentWrapper}>
           <h2 className={styles.title}>Meet the Voice Behind the Method</h2>
           <ul className={styles.list}>
-            <li className={styles.listItem}>
-              <img src="/images/degree.png" alt="Education" className={styles.listIcon} />
-              <span>Researcher in intonation & speech science</span>
-            </li>
-            <li className={styles.listItem}>
-              <img src="/images/face.png" alt="Vocal" className={styles.listIcon} />
-              <span>Actor-based vocal techniques</span>
-            </li>
-            <li className={styles.listItem}>
-              <img src="/images/mic (2).png" alt="Microphone" className={styles.listIcon} />
-              <span>Used by speakers, educators & leaders</span>
-            </li>
-            <li className={styles.listItem}>
-              <img src="/images/pen (2).png" alt="Author" className={styles.listIcon} />
-              <span>Author of Voice Control</span>
-            </li>
+            {listItems.map((item, index) => (
+              <li key={index} className={styles.listItem}>
+                <span className={styles.iconWrapper}>{item.icon}</span>
+                <span>{item.text}</span>
+              </li>
+            ))}
           </ul>
 
           <div className={styles.bioText}>

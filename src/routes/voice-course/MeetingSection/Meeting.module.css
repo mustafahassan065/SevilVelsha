@@ -75,7 +75,7 @@
 
 .thumbnailWrapper:hover .playButton {
   transform: translate(-50%, -50%) scale(1.05);
-  background-color: #c4b9b8;
+  background-color: #B68A4C; /* Changed hover to gold */
 }
 
 .videoElement {
@@ -116,6 +116,7 @@
 .listIcon {
   width: 24px;
   height: 24px;
+  color: #B68A4C; /* Added gold color for icons */
 }
 
 .bioText p {
@@ -131,7 +132,7 @@
   font-weight: 500;
   font-style: italic;
   font-size: 19px;
-  border-left: 4px solid #2e775c;
+  border-left: 4px solid #B68A4C; /* Changed from #2e775c (green) to gold */
   padding-left: 15px;
 }
 

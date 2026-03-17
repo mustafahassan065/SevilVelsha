@@ -1,9 +1,11 @@
 import React from "react";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import Home from "./routes/Home";
 import Contact from "./routes/Contact";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import VoiceNav from "./components/VoiceNav";
+import VoiceFooter from "./components/VoiceFooter";
 import SeoManager from "./components/SeoManager";
 import Blog from "./routes/Blog";
 import BlogDetail from "./routes/BlogDetail";
@@ -12,11 +14,27 @@ import VoiceCoursePage from "./routes/VoiceCoursePage";
 import VoiceBookPage from "./routes/VoiceBookPage";
 import VoiceCoachingPage from "./routes/VoiceCoachingPage";
 
-function App() {
+// Voice control pages ke paths
+const VOICE_CONTROL_PATHS = [
+  "/voice-control-course",
+  "/voice-control-book", 
+  "/voice-control-coaching"
+];
+
+function AppContent() {
+  const location = useLocation();
+  
+  // Check karo ke current path voice control page hai ya nahi
+  const isVoiceControlPage = VOICE_CONTROL_PATHS.includes(location.pathname);
+  
+  // Conditional components select karo
+  const Header = isVoiceControlPage ? VoiceNav : Nav;
+  const FooterComponent = isVoiceControlPage ? VoiceFooter : Footer;
+
   return (
     <main>
       <SeoManager />
-      <Nav />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
@@ -27,9 +45,14 @@ function App() {
         <Route path="/voice-control-book" element={<VoiceBookPage />} />
         <Route path="/voice-control-coaching" element={<VoiceCoachingPage />} />
       </Routes>
-      <Footer />
+      <FooterComponent />
     </main>
   );
+}
+
+// Wrapper component jo Router provide kare
+function App() {
+  return <AppContent />;
 }
 
 export default App;

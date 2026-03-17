@@ -1,7 +1,7 @@
 .courseSection {
   width: 100%;
   padding: 100px 0;
-  background-color: #f1f7f5;
+  background-color: #f5f1e8; /* Changed from #f1f7f5 (light green tint) to warm beige */
   display: flex;
   justify-content: center;
 }
@@ -70,7 +70,7 @@
 .accordionItem {
   width: 100%;
   background: #ffffff;
-  border: 1.5px solid #78E378;
+  border: 1.5px solid #B68A4C; /* Changed from #78E378 to gold */
   border-radius: 12px;
   padding: 24px 30px;
   cursor: pointer;
@@ -80,7 +80,7 @@
 
 .activeItem {
   background-color: #1a1a1a !important;
-  border-color: #78E378 !important;
+  border-color: #B68A4C !important; /* Changed from #78E378 to gold */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -105,7 +105,7 @@
 }
 
 .arrowIcon {
-  color: #78E378;
+  color: #B68A4C; /* Changed from #78E378 to gold */
   display: flex;
   align-items: center;
   transition: transform 0.3s ease;
@@ -134,7 +134,7 @@
   line-height: 1.5;
   color: #ffffff;
   padding-top: 15px;
-  border-top: 1px solid rgba(120, 227, 120, 0.3);
+  border-top: 1px solid rgba(182, 138, 76, 0.3); /* Changed from rgba(120, 227, 120, 0.3) to gold */
 }
 
 @media (max-width: 768px) {

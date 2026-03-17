@@ -59,7 +59,7 @@
 }
 
 .heroPrimaryBtn {
-  background-color: #437a63;
+  background-color: #B68A4C; /* Changed from #437a63 (green) to gold */
   color: white;
   border: none;
   padding: 16px 24px;
@@ -67,6 +67,11 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.heroPrimaryBtn:hover {
+  background-color: #9a7a4a; /* Darker gold */
 }
 
 .heroSecondaryBtn {

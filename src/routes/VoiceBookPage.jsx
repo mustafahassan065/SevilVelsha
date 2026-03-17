@@ -3,7 +3,7 @@ import Card from "./voice-book/CardSection/Card";
 import { ChapterSection } from "./voice-book/ChapterSection/ChapterSection";
 
 import { GiftSection } from "./voice-book/GiftSection/GiftSection";
-import Header from "./voice-book/Header/Header";
+import Header from "./voice-book/Header/Header";  // Correct path
 import Hero from "./voice-book/Hero/Hero";
 import { Meet } from "./voice-book/Meet/MeetSection";
 import Testimonials from "./voice-book/Testimonials/Testimonials";
