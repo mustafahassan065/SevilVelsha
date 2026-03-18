@@ -9,20 +9,22 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // NAYA FIX: Ek fix base path bana diya hai taake kisi bhi page se click karne par URL kharab na ho
+  const basePath = "/voice-control-coaching";
+
   const sectionIds = ["approach", "about", "program", "apply-now"];
 
-  // Update 1: '/' ko hata kar ab hum inko current module ke routes pe rakh rahe hain
-  // Empty string ("") ka matlab hai ke wo current route (yani /voice-control-coaching) par hi rahega
+  // Update: Ab hum directly absolute path de rahe hain
   const navItems = [
-    { name: "Approach", href: "", section: "approach" },
-    { name: "Program", href: "", section: "program" },
-    { name: "About", href: "", section: "about" },
-    { name: "Contact", href: "contact", section: null }, // contact ke aage se '/' hata diya
+    { name: "Approach", href: basePath, section: "approach" },
+    { name: "Program", href: basePath, section: "program" },
+    { name: "About", href: basePath, section: "about" },
+    { name: "Contact", href: `${basePath}/contact`, section: null },
   ];
 
   useEffect(() => {
-    // Update 2: Ab home page check karne ke liye base path (empty string ya endsWith /) use karenge
-    if (location.pathname !== "/voice-control-coaching" && !location.pathname.endsWith("/")) {
+    // Check if we are on the main coaching home page
+    if (location.pathname !== basePath && location.pathname !== `${basePath}/`) {
       setActiveSection("");
       return;
     }
@@ -53,18 +55,18 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const isActive = (item) => {
-    if (item.href === "contact") {
-      return location.pathname.includes("contact");
+    if (item.name === "Contact") {
+      return location.pathname.includes("/contact");
     }
-    // Agar hum main coaching page par hain aur scroll wala section active hai
-    if ((location.pathname === "/voice-control-coaching" || location.pathname.endsWith("/")) && item.section) {
+    const isHomePage = location.pathname === basePath || location.pathname === `${basePath}/`;
+    if (isHomePage && item.section) {
       return activeSection === item.section;
     }
     return false;
   };
 
   const handleNavClick = (e, item) => {
-    const isHomePage = location.pathname === "/voice-control-coaching" || location.pathname.endsWith("/");
+    const isHomePage = location.pathname === basePath || location.pathname === `${basePath}/`;
 
     if (item.section && isHomePage) {
       e.preventDefault();
@@ -74,7 +76,8 @@ export default function Navbar() {
       }
     } else if (item.section && !isHomePage) {
       e.preventDefault();
-      navigate(""); // Naya fix: Ab ye relative path par wapis home page bhejega
+      // Naya fix: Absolute path par navigate karega
+      navigate(basePath); 
       setTimeout(() => {
         const el = document.getElementById(item.section);
         if (el) {
@@ -86,14 +89,16 @@ export default function Navbar() {
   };
 
   const handleApplyClick = () => {
-    navigate("apply"); // apply ke aage se bhi '/' hata diya
+    // Apply button bhi hamesha absolute path par jayega
+    navigate(`${basePath}/apply`); 
+    setMenuOpen(false);
   };
 
   return (
     <nav className="absolute top-[70px] md:top-[130px] left-0 w-full bg-white border-b border-gray-200 z-40">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo click par usay usi page par rakhna hai, main home par nahi bhejna */}
-        <Link to="" className="flex items-center gap-2 font-semibold text-gray-900">
+        {/* Naya fix: Logo click karne par bhi main coaching page par wapis jayega */}
+        <Link to={basePath} className="flex items-center gap-2 font-semibold text-gray-900">
           <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
           <span className="tracking-wide">SEVIL VELSHA</span>
         </Link>
@@ -159,10 +164,7 @@ export default function Navbar() {
               ))}
 
               <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  handleApplyClick();
-                }}
+                onClick={handleApplyClick}
                 className="w-fit px-5 py-2 text-black text-sm border border-gray-300 rounded-full"
               >
                 Apply Now
