@@ -28,10 +28,13 @@ const Contact = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
+          fullName: formData.name,            // 'name' ko 'fullName' bana kar bheja
           email: formData.email,
-          question: formData.question,
+          currentRole: 'General Inquiry',     // Backend ki zid poori karne ke liye
+          highStakes: 'General Inquiry',      // Backend ki zid poori karne ke liye
+          whyNow: formData.question || 'No question provided', // 'question' ko 'whyNow' ki jagah bheja
         }),
+      
       });
 
       const data = await response.json();

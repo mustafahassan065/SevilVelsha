@@ -81,7 +81,7 @@ export default function Apply() {
     try {
       // Honeypot check — bots fill this field, humans don't
       if (formData.website) {
-        navigate('/book');
+        navigate('/voice-control-coaching/book');
         return;
       }
 
