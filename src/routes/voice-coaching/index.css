@@ -1,0 +1,138 @@
+
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #eeeeee;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden !important;
+}
+.inter {
+  font-family: "Inter", sans-serif;
+}
+
+@font-face {
+  font-family: "Garamond";
+  src: url("./assets/fonts/EBGaramond-Bold.ttf") format("truetype");
+   font-weight: 700;
+}
+
+@font-face {
+  font-family: "Garamond";
+  src: url("./assets/fonts/EBGaramond-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+
+}
+@font-face {
+  font-family: "Garamond";
+  src: url("./assets/fonts/EBGaramond-Regular.ttf") format("truetype");
+ font-weight: 400;
+}
+@font-face {
+  font-family: "Garamond";
+  src: url("./assets/fonts/EBGaramond-Medium.ttf") format("truetype");
+ font-weight: 500;
+}
+
+.font-garamond {
+  font-family: "Garamond", serif;
+}
+
+
+
+
+.testimonialSwiper .swiper-slide {
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.3s ease-out;
+}
+@keyframes pageFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pageFade {
+  animation: pageFade 0.5s ease-in-out;
+}
+@keyframes bubbleDown {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes bubbleUp {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.animate-bubbleDown {
+  animation: bubbleDown linear infinite;
+}
+
+.animate-bubbleUp {
+  animation: bubbleUp linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.2s ease-in-out forwards;
+}

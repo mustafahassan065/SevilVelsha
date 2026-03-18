@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./routes/Home";
 import Contact from "./routes/Contact";
 import Nav from "./components/Nav";
@@ -14,27 +14,28 @@ import VoiceCoursePage from "./routes/VoiceCoursePage";
 import VoiceBookPage from "./routes/VoiceBookPage";
 import VoiceCoachingPage from "./routes/VoiceCoachingPage";
 
-// Voice control pages ke paths
-const VOICE_CONTROL_PATHS = [
-  "/voice-control-course",
-  "/voice-control-book", 
-  "/voice-control-coaching"
-];
-
 function AppContent() {
   const location = useLocation();
   
-  // Check karo ke current path voice control page hai ya nahi
-  const isVoiceControlPage = VOICE_CONTROL_PATHS.includes(location.pathname);
+  // Routes ko detect kar rahe hain
+  const isVoiceControlPage = location.pathname.startsWith("/voice-control-");
+  const isCoachingPage = location.pathname.startsWith("/voice-control-coaching");
+  const isCoursePage = location.pathname.startsWith("/voice-control-course"); // Course page detect kiya
   
-  // Conditional components select karo
-  const Header = isVoiceControlPage ? VoiceNav : Nav;
-  const FooterComponent = isVoiceControlPage ? VoiceFooter : Footer;
+  // Agar Coaching ya Course page hai, toh global header ko hide kar do (null)
+  const hideGlobalHeader = isCoachingPage || isCoursePage;
+  
+  // Header ki nayi logic
+  const Header = hideGlobalHeader ? null : (isVoiceControlPage ? VoiceNav : Nav);
+  
+  // Footer ki purani logic wesi hi rakhi hai 
+  const FooterComponent = isVoiceControlPage && !isCoachingPage ? VoiceFooter : (!isCoachingPage ? Footer : null);
 
   return (
     <main>
       <SeoManager />
-      <Header />
+      {/* Agar Header null nahi hai tabhi show hoga */}
+      {Header && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
@@ -43,14 +44,15 @@ function AppContent() {
         <Route path="/booking" element={<BookSession />} />
         <Route path="/voice-control-course" element={<VoiceCoursePage />} />
         <Route path="/voice-control-book" element={<VoiceBookPage />} />
-        <Route path="/voice-control-coaching" element={<VoiceCoachingPage />} />
+        
+        {/* Yahan /* lagana zaroori hai nested routing ke liye */}
+        <Route path="/voice-control-coaching/*" element={<VoiceCoachingPage />} />
       </Routes>
-      <FooterComponent />
+      {FooterComponent && <FooterComponent />}
     </main>
   );
 }
 
-// Wrapper component jo Router provide kare
 function App() {
   return <AppContent />;
 }

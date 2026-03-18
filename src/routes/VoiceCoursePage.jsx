@@ -1,5 +1,6 @@
 import React from "react";
 
+import VoiceNavUpdate from "../components/VoiceNavUpdate.jsx";
 import AvailableSection from "./voice-course/AvailableSection/AvailableSection";
 
 import GainSection from "./voice-course/GainSection/GainSection";
@@ -15,6 +16,7 @@ import FAQ from "./voice-course/FAQSection/FAQ";
 function VoiceCoursePage() {
   return (
     <div>
+      <VoiceNavUpdate/>
       <Hero />
       <Meeting />
       <AvailableSection />

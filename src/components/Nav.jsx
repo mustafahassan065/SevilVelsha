@@ -5,10 +5,10 @@ import { HiOutlineMenu, HiOutlineX, HiChevronDown } from "react-icons/hi";
 import { NavLink, useLocation, useNavigate } from "react-router";
 
 const MENU_ITEMS = [
-  { label: "About me", sectionId: "about" },
-  { label: "My Story", sectionId: "story" },
-  { label: "What I Do", sectionId: "services" },
-  { label: "Testimonial", sectionId: "testimonial" },
+  { label: "About me", sectionId: "about", path: "/#about" },
+  { label: "My Story", sectionId: "story", path: "/#story" },
+  { label: "What I Do", sectionId: "services", path: "/#services" },
+  { label: "Testimonial", sectionId: "testimonial", path: "/#testimonial" },
   { label: "Contact", path: "/contact" },
   { label: "Blogs", path: "/blogs" },
 ];
@@ -30,22 +30,34 @@ function Nav() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const fixedThreshold = window.innerWidth >= 768 ? 57 : 0;
-      setIsFixed(window.scrollY >= fixedThreshold);
-      setHasScrolled(window.scrollY > 0);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
+  const isHomePage = location.pathname === "/";
 
+  // Handle scroll to section when coming from other pages with hash
   useEffect(() => {
+    // If we're on home page and there's a hash in URL, scroll to that section
+    if (isHomePage && location.hash) {
+      const sectionId = location.hash.replace("#", "");
+      const section = document.getElementById(sectionId);
+      
+      if (section) {
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          const fixedNavOffset = window.innerWidth >= 1024 ? 88 : 72;
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ 
+            top: sectionTop - fixedNavOffset, 
+            behavior: "smooth" 
+          });
+          setActiveSection(sectionId);
+        }, 100);
+      }
+    }
+  }, [isHomePage, location.hash]);
+
+  // Handle scroll spy for active section (only on home page)
+  useEffect(() => {
+    if (!isHomePage) return;
+    
     const handleActiveSection = () => {
       const scrollAnchor = 140;
       let currentSection = "";
@@ -62,8 +74,26 @@ function Nav() {
       });
       setActiveSection(currentSection);
     };
+    
     window.addEventListener("scroll", handleActiveSection);
+    handleActiveSection(); // Check initial state
     return () => window.removeEventListener("scroll", handleActiveSection);
+  }, [isHomePage]);
+
+  // Other scroll and resize effects
+  useEffect(() => {
+    const handleScroll = () => {
+      const fixedThreshold = window.innerWidth >= 768 ? 57 : 0;
+      setIsFixed(window.scrollY >= fixedThreshold);
+      setHasScrolled(window.scrollY > 0);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -85,30 +115,44 @@ function Nav() {
   }, []);
 
   const handleMenuClick = (item) => {
-    if (item.path) {
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+
+    // If it's a path-based item without section (Contact, Blogs)
+    if (item.path && !item.sectionId) {
       navigate(item.path);
-      setIsMenuOpen(false);
       return;
     }
+
+    // If section item (About me, My Story, What I Do, Testimonial)
     if (item.sectionId) {
-      const section = document.getElementById(item.sectionId);
-      if (!section) return;
-      const fixedNavOffset = window.innerWidth >= 1024 ? 88 : 72;
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: sectionTop - fixedNavOffset, behavior: "smooth" });
-      setActiveSection(item.sectionId);
-      setIsMenuOpen(false);
+      if (isHomePage) {
+        // On home page - scroll directly
+        const section = document.getElementById(item.sectionId);
+        if (section) {
+          const fixedNavOffset = window.innerWidth >= 1024 ? 88 : 72;
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ 
+            top: sectionTop - fixedNavOffset, 
+            behavior: "smooth" 
+          });
+          setActiveSection(item.sectionId);
+        }
+      } else {
+        // Not on home page - navigate to home with hash
+        navigate(`/#${item.sectionId}`);
+      }
     }
   };
 
-  const liStyle =
-    "cursor-pointer font-semibold transition-all duration-150 hover:text-green-600";
+  const liStyle = "cursor-pointer font-semibold transition-all duration-150 hover:text-green-600";
 
   const isItemActive = (item) => {
     if (item.path === "/blogs") return location.pathname.startsWith("/blogs");
     if (item.path === "/book-session") return location.pathname === "/book-session";
     if (item.path) return location.pathname === item.path;
-    return activeSection === item.sectionId;
+    // For section items, only show active if on home page and section is active
+    return isHomePage && activeSection === item.sectionId;
   };
 
   const isVoiceActive = VOICE_CONTROL_ITEMS.some(
