@@ -21,7 +21,7 @@ const VOICE_CONTROL_ITEMS = [
 
 // Coaching Page wali theme (White aur Blue)
 const THEME = {
-  bg: "#FFFFFF",
+  bg: "#f8f7f4",
   text: "#1E1B18",
   accent: "#B68A4C", // Blue ki jagah Gold color
   hoverBg: "#F9F9F9",

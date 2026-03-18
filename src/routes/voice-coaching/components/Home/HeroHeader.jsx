@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function HeroHeader() {
     const navigate = useNavigate();
   const handleApplyClick = () => {
-     navigate("/apply");
+     navigate("/voice-control-coaching/apply");
   };
   
   return (

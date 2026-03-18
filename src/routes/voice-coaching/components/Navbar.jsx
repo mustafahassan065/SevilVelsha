@@ -95,7 +95,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="absolute top-[70px] md:top-[130px] left-0 w-full bg-white border-b border-gray-200 z-40">
+    <nav className="absolute top-[70px] md:top-[130px] left-0 w-full bg-[#f8f7f4] border-b border-gray-200 z-40">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Naya fix: Logo click karne par bhi main coaching page par wapis jayega */}
         <Link to={basePath} className="flex items-center gap-2 font-semibold text-gray-900">

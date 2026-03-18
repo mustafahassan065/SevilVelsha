@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // NAYA: Link import kiya hai
 
 const AuthorityParadox = () => {
   return (
@@ -46,7 +47,11 @@ const AuthorityParadox = () => {
         <div className="flex gap-6 uppercase font-bold text-[#6B6B6B] text-xs">
           <span className="cursor-pointer hover:text-gray-700">Legal</span>
           <span className="cursor-pointer hover:text-gray-700">Privacy</span>
-          <span className="cursor-pointer hover:text-gray-700">Contact</span>
+          
+          {/* UPDATE: Yahan span ki jagah Link laga diya aur poora rasta (path) de diya */}
+          <Link to="/voice-control-coaching/contact" className="cursor-pointer hover:text-gray-700">
+            Contact
+          </Link>
         </div>
 
         {/* Right */}

@@ -58,7 +58,7 @@ export default function ApplyNowSection() {
           className="mt-10 flex justify-center"
         >
           <button
-            onClick={() => navigate("/contact")}
+            onClick={() => navigate("/voice-control-coaching/contact")}
             className="group inline-flex items-center gap-3 border-b border-gray-400 pb-2 uppercase tracking-[0.2em] text-[#1A1A1B] font-semibold text-[10px] md:text-xs hover:border-[#5B7C99] transition-colors duration-300 cursor-pointer"
           >
             Apply for Voice Authority Intensive
