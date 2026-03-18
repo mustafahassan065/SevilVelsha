@@ -1,20 +1,15 @@
 import { motion } from "framer-motion";
 
 export default function IntensiveStructure() {
-  const handleScroll = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-      el.focus();
-    }
-  };
+  // handleScroll function ab zaroorat nahi kyunke hum stripe par bhej rahe hain
+  // lekin agar aap kahin aur use kar rahe hain toh isko rakh sakte hain
 
   const offers = [
     {
       tag: null,
       level: "Option 1 — Entry Level",
       title: "Voice Authority Audit",
-      price: "$197",
+      price: "$199",
       priceLabel: "USD / Single Session",
       description: "20-minute private voice analysis.",
       includes: [
@@ -27,12 +22,14 @@ export default function IntensiveStructure() {
       footer: "3 specific improvements you can apply immediately.",
       buttonText: "Book Voice Audit",
       highlight: false,
+      // NAYA: 199$ wali Stripe Link add ki hai
+      stripeLink: "https://buy.stripe.com/dRm3cwb3m4h4fDM5QF1440c"
     },
     {
       tag: "⭐ Most Popular",
       level: "Option 2",
       title: "Voice Control Intensive",
-      price: "$997",
+      price: "$999",
       priceLabel: "USD / Full Intensive Access",
       description: "4 private coaching sessions. Ideal for professionals preparing for presentations, interviews & important meetings.",
       includes: [
@@ -45,6 +42,8 @@ export default function IntensiveStructure() {
       footer: null,
       buttonText: "Start Intensive Training",
       highlight: true,
+      // NAYA: 999$ wali Stripe Link add ki hai
+      stripeLink: "https://buy.stripe.com/00w7sM3AUcNA63c4MB1440b"
     },
     {
       tag: "Premium Transformation",
@@ -64,6 +63,8 @@ export default function IntensiveStructure() {
       footer: null,
       buttonText: "Apply for Private Coaching",
       highlight: false,
+      // NAYA: 5000$ wali Stripe Link add ki hai
+      stripeLink: "https://buy.stripe.com/3cIfZi0oI3d077g5QF1440d"
     },
   ];
 
@@ -200,7 +201,8 @@ export default function IntensiveStructure() {
 
                 {/* Button */}
                 <button
-                  onClick={() => handleScroll("contact-form")}
+                  // NAYA FIX: Button click karne par user us offer ke stripe link par jayega
+                  onClick={() => window.location.href = offer.stripeLink}
                   className={`mt-8 w-full py-4 px-6 text-xs tracking-widest uppercase rounded-md font-semibold transition hover:opacity-90 shadow-lg
                     ${offer.highlight
                       ? "bg-white text-[#1A1A1B]"
