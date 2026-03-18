@@ -108,7 +108,7 @@ export default function Apply() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Submission failed');
 
-      navigate('/book');
+      navigate('/voice-control-coaching/book');
     } catch (err) {
       setSubmitError(err.message || 'Something went wrong. Please try again.');
       setIsSubmitting(false);
