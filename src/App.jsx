@@ -13,6 +13,7 @@ import BookSession from "./routes/BookSession";
 import VoiceCoursePage from "./routes/VoiceCoursePage";
 import VoiceBookPage from "./routes/VoiceBookPage";
 import VoiceCoachingPage from "./routes/VoiceCoachingPage";
+import ThankYouBook from "./routes/ThankYouBook"; // Path apne hisab se set kar lijiyega
 
 function AppContent() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function AppContent() {
         
         {/* Yahan /* lagana zaroori hai nested routing ke liye */}
         <Route path="/voice-control-coaching/*" element={<VoiceCoachingPage />} />
+        <Route path="/thank-you-book" element={<ThankYouBook />} />
       </Routes>
       {FooterComponent && <FooterComponent />}
     </main>

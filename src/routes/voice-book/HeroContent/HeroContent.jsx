@@ -29,7 +29,7 @@ export default function HeroContent() {
 
       <div className={styles.buttons}>
         <a
-          href="https://buy.stripe.com/8x24gA8Ve14SfDMenb14405"
+          href="https://buy.stripe.com/test_cNi9AS5T16jD1jo8MUgIo00"
           className={styles.buyButton}
           target="_blank"
           rel="noopener noreferrer"
