@@ -90,7 +90,7 @@ export default function Apply() {
           ? `Other: ${formData.highStakesOther}`
           : HIGH_STAKES_OPTIONS.find((o) => o.value === formData.highStakes)?.label || formData.highStakes;
 
-     const response = await fetch('sevil-velsha-backend-main.vercel.app/api/contact', {
+     const response = await fetch('https://sevil-velsha-backend-main.vercel.app/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
