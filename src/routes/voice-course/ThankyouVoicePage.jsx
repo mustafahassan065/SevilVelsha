@@ -4,7 +4,7 @@
 
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './ThankYouVoicePage.module.css';
+import styles from './ThankyouVoicePage.module.css';
 
 const DASHBOARD_URL = '/voice-control-dashboard';
 const UPSELL_URL    = '/voice-control-coaching-offer';
