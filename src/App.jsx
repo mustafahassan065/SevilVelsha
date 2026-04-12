@@ -1,3 +1,7 @@
+// src/App.jsx
+// Updated with Voice Course funnel routes:
+// /voice-control-checkout → /voice-control-success → /voice-control-coaching-offer → /voice-control-dashboard
+
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./routes/Home";
@@ -13,42 +17,62 @@ import BookSession from "./routes/BookSession";
 import VoiceCoursePage from "./routes/VoiceCoursePage";
 import VoiceBookPage from "./routes/VoiceBookPage";
 import VoiceCoachingPage from "./routes/VoiceCoachingPage";
-import ThankYouBook from "./routes/ThankYouBook"; // Path apne hisab se set kar lijiyega
+import ThankYouBook from "./routes/ThankYouBook";
+
+// ── Voice Course Funnel Pages ─────────────────────────────────────
+import VoiceCheckoutPage from "./routes/voice-course/VoiceCheckoutPage";
+import ThankYouVoicePage from "./routes/voice-course/ThankYouVoicePage";
+import UpsellPage        from "./routes/voice-course/UpsellPage";
+import CourseDashboard   from "./routes/voice-course/CourseDashboard";
+// ─────────────────────────────────────────────────────────────────
 
 function AppContent() {
   const location = useLocation();
-  
-  // Routes ko detect kar rahe hain
+
   const isVoiceControlPage = location.pathname.startsWith("/voice-control-");
-  const isCoachingPage = location.pathname.startsWith("/voice-control-coaching");
-  const isCoursePage = location.pathname.startsWith("/voice-control-course"); // Course page detect kiya
-  
-  // Agar Coaching ya Course page hai, toh global header ko hide kar do (null)
-  const hideGlobalHeader = isCoachingPage || isCoursePage;
-  
-  // Header ki nayi logic
-  const Header = hideGlobalHeader ? null : (isVoiceControlPage ? VoiceNav : Nav);
-  
-  // Footer ki purani logic wesi hi rakhi hai 
-  const FooterComponent = isVoiceControlPage && !isCoachingPage ? VoiceFooter : (!isCoachingPage ? Footer : null);
+  const isCoachingPage     = location.pathname.startsWith("/voice-control-coaching");
+  const isCoursePage       = location.pathname.startsWith("/voice-control-course");
+
+  // These funnel pages have their own nav — hide global header/footer
+  const isFunnelPage = [
+    '/voice-control-checkout',
+    '/voice-control-success',
+    '/voice-control-coaching-offer',
+    '/voice-control-dashboard',
+  ].includes(location.pathname);
+
+  const hideGlobalHeader = isCoachingPage || isCoursePage || isFunnelPage;
+  const Header = hideGlobalHeader
+    ? null
+    : (isVoiceControlPage ? VoiceNav : Nav);
+
+  const FooterComponent = isFunnelPage
+    ? null
+    : (isVoiceControlPage && !isCoachingPage
+        ? VoiceFooter
+        : (!isCoachingPage ? Footer : null));
 
   return (
     <main>
       <SeoManager />
-      {/* Agar Header null nahi hai tabhi show hoga */}
       {Header && <Header />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/blogs" element={<Blog />} />
-        <Route path="/blogs/:slug" element={<BlogDetail />} />
-        <Route path="/booking" element={<BookSession />} />
-        <Route path="/voice-control-course" element={<VoiceCoursePage />} />
-        <Route path="/voice-control-book" element={<VoiceBookPage />} />
-        
-        {/* Yahan /* lagana zaroori hai nested routing ke liye */}
+        {/* ── Existing routes ── */}
+        <Route path="/"                         element={<Home />} />
+        <Route path="/contact"                  element={<Contact />} />
+        <Route path="/blogs"                    element={<Blog />} />
+        <Route path="/blogs/:slug"              element={<BlogDetail />} />
+        <Route path="/booking"                  element={<BookSession />} />
+        <Route path="/voice-control-course"     element={<VoiceCoursePage />} />
+        <Route path="/voice-control-book"       element={<VoiceBookPage />} />
         <Route path="/voice-control-coaching/*" element={<VoiceCoachingPage />} />
-        <Route path="/thank-you-book" element={<ThankYouBook />} />
+        <Route path="/thank-you-book"           element={<ThankYouBook />} />
+
+        {/* ── Voice Course Funnel ── */}
+        <Route path="/voice-control-checkout"        element={<VoiceCheckoutPage />} />
+        <Route path="/voice-control-success"         element={<ThankYouVoicePage />} />
+        <Route path="/voice-control-coaching-offer"  element={<UpsellPage />} />
+        <Route path="/voice-control-dashboard"       element={<CourseDashboard />} />
       </Routes>
       {FooterComponent && <FooterComponent />}
     </main>

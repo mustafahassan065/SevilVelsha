@@ -1,0 +1,207 @@
+/* ThankYouVoicePage.module.css */
+
+.page {
+  min-height: 100vh;
+  background: #f5f4f0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.nav {
+  background: #1a1a1a;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 28px;
+  object-fit: contain;
+  cursor: pointer;
+  filter: brightness(10);
+}
+
+.container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: clamp(40px, 8vw, 80px) 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.checkCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #c9a96e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 16px;
+}
+
+.heading {
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+.subheading {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #555;
+  margin: 0 0 16px;
+  line-height: 1.6;
+}
+
+.body {
+  font-size: 15px;
+  color: #777;
+  margin: 0 0 40px;
+  line-height: 1.7;
+  max-width: 460px;
+}
+
+.divider {
+  width: 48px;
+  height: 2px;
+  background: #c9a96e;
+  margin-bottom: 40px;
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, #c9a96e, #e8d5a3);
+  color: #1a1a1a;
+  border: none;
+  padding: 18px 52px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: opacity 0.2s;
+  width: 100%;
+  max-width: 320px;
+}
+
+.primaryBtn:hover {
+  opacity: 0.9;
+}
+
+.small {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0 0 52px;
+}
+
+.nextSteps {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: left;
+  margin-bottom: 32px;
+  border: 1px solid #e8e4dc;
+}
+
+.nextStepsLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 20px;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.stepNum {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c9a96e;
+  letter-spacing: 0.1em;
+  min-width: 24px;
+  padding-top: 2px;
+}
+
+.stepText {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.upsellTeaser {
+  width: 100%;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.upsellLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 10px;
+}
+
+.upsellText {
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.upsellBtn {
+  background: linear-gradient(135deg, #c9a96e, #e8d5a3);
+  color: #1a1a1a;
+  border: none;
+  padding: 14px 36px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.upsellBtn:hover {
+  opacity: 0.9;
+}
+
+.footer {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.link {
+  color: #c9a96e;
+  text-decoration: none;
+}

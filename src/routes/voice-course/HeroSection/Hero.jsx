@@ -1,16 +1,11 @@
-
-
 import React from 'react';
 import styles from './Hero.module.css';
 
-const Hero = () => {
-  const scrollToPricing = () => {
-    const pricingSection = document.getElementById('Pricing-section');
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+// ── Direct $99 Stripe link — success redirects to /voice-control-success
 
+const STRIPE_99   = `https://buy.stripe.com/test_7sYbJ00yHdM59PUaV2gIo01`;
+
+const Hero = () => {
   const trailerLink = "https://drive.google.com/file/d/1kEG8qrTpTThTGxQnxBFJ0Z12BY8gha-C/view?usp=sharing";
 
   return (
@@ -33,10 +28,21 @@ const Hero = () => {
         </p>
 
         <div className={styles.heroButtonGroup}>
-          <button className={styles.heroPrimaryBtn} onClick={scrollToPricing}>
-            Start My Voice Transformation — <span className={styles.btnSmallText}>Holiday Edition</span>
-          </button>
-          <button className={styles.heroSecondaryBtn} onClick={() => window.open(trailerLink, '_blank')}>
+
+          {/* Primary CTA — seedha $99 Stripe checkout */}
+          <a
+            href={STRIPE_99}
+            className={styles.heroPrimaryBtn}
+            style={{ textDecoration:'none', display:'inline-block', textAlign:'center' }}
+          >
+            Start My Voice Transformation —{' '}
+            <span className={styles.btnSmallText}>Holiday Edition</span>
+          </a>
+
+          <button
+            className={styles.heroSecondaryBtn}
+            onClick={() => window.open(trailerLink, '_blank')}
+          >
             Watch Trailer
           </button>
         </div>
