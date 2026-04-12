@@ -23,7 +23,7 @@ import ThankYouBook from "./routes/ThankYouBook";
 
 import ThankYouVoicePage from "./routes/voice-course/ThankyouVoicePage";
 import UpsellPage        from "./routes/voice-course/UpsellPage";
-import CourseDashboard   from "./routes/voice-course/CourseDashboardjsx";
+import CourseDashboard   from "./routes/voice-course/CourseDashboard.jsx";
 // ─────────────────────────────────────────────────────────────────
 
 function AppContent() {
