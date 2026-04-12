@@ -18,12 +18,20 @@ export default function UpsellPage() {
 
       {/* NAV */}
       <nav className={styles.nav}>
-        <h1
+      <span
   onClick={() => navigate('/')}
-  className="font-sans font-bold text-2xl cursor-pointer"
+  style={{
+    fontFamily: "'Segoe UI', Arial, sans-serif",
+    fontSize: '18px',
+    fontWeight: '600',
+    letterSpacing: '0.08em',
+    color: '#f5f4f0',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+  }}
 >
   Sevil Velsha
-</h1>
+</span>
 
       </nav>
 

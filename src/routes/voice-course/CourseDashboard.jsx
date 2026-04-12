@@ -1,106 +1,99 @@
 // src/routes/voice-course/CourseDashboard.jsx
 // Route: /voice-control-dashboard
-// Native HTML5 video player — videos from /public/videos/
-// PDF download button — PDFs from /public/pdfs/
+// Layout per lesson: Topic → About → Video (Google Drive embed) → PDF download
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CourseDashboard.module.css';
 
-// ══════════════════════════════════════════════════════════════════
-// SETUP INSTRUCTIONS:
-//
-// Step 1 — Download videos from Google Drive, rename them:
-//   lesson-01.mp4, lesson-02.mp4 ... lesson-08.mp4
-//   Put in: public/videos/
-//
-// Step 2 — Download PDFs from Google Drive, rename them:
-//   lesson-01.pdf, lesson-02.pdf ... lesson-08.pdf
-//   Put in: public/pdfs/
-//
-// That's it — videos will play and PDFs will download automatically.
-// ══════════════════════════════════════════════════════════════════
-
 const LESSONS = [
   {
     num: '01',
+    topic: 'Breathing & Vocal Foundation',
     title: 'The One Breathing Technique That Calms & Empowers',
     duration: '4–5 min',
-    description: 'Discover diaphragmatic breathing — the foundation used by TED speakers and actors worldwide. Learn belly breathing and voiced exhales to instantly sound calmer and more grounded.',
-    videoUrl: '/videos/lesson-01.mp4',
-    pdfUrl:   '/pdfs/lesson-01.pdf',
-    pdfName:  'Lesson-1-Breathing-Workbook.pdf',
-    outcome:  'A simple daily breathing practice that fuels confidence, vocal clarity, and authentic power.',
+    about: 'Discover diaphragmatic breathing — the single most powerful technique used by TED speakers, actors, and confident communicators worldwide. Learn why shallow chest breathing weakens your voice and how belly breathing instantly makes you sound calmer, stronger, and more grounded. Includes two guided exercises and a 7-day morning practice.',
+    outcome: 'A simple daily breathing practice that fuels confidence, vocal clarity, and authentic power — anytime, anywhere.',
+    videoUrl: 'https://drive.google.com/file/d/1rs8qVhVz23WQlZQ7NFfsq93tB0pDBYbE/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=1LDGTUt9LijOtN7XipfrnToIaGghIFME7',
+    pdfName: 'Lesson-1-Breathing-Workbook.pdf',
   },
   {
     num: '02',
-    title: 'Diaphragmatic Breathing — Deep Dive',
+    topic: 'Diaphragmatic Breathing — Deep Dive',
+    title: 'The One Breathing Technique That Calms & Empowers',
     duration: '5–7 min',
-    description: 'Go deeper into belly breathing vs chest breathing. Guided exercises to strengthen breath support and vocal control. Includes a 7-day morning practice to rewire your voice.',
-    videoUrl: '/videos/lesson-02.mp4',
-    pdfUrl:   '/pdfs/lesson-02.pdf',
-    pdfName:  'Lesson-2-Deep-Dive-Workbook.pdf',
-    outcome:  'A daily breathing routine that fuels vocal clarity, confidence, and authentic power.',
+    about: 'Go deeper into the difference between shallow chest breathing and deep belly breathing, and why the latter creates a stronger, steadier, and more grounded voice. Through guided exercises, practice belly breathing to calm your nervous system and voiced exhales to strengthen breath support. Includes a practical tip for high-stakes moments and a 7-day morning routine.',
+    outcome: 'A daily breathing routine that fuels vocal clarity, confidence, and authentic power in any situation.',
+    videoUrl: 'https://drive.google.com/file/d/1QPzt_S9Tbmo2ra3djjyvJ13HxT2MUGht/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=1iIlcIdFTClexktoMoyAZTzObxklkcnI9',
+    pdfName: 'Lesson-2-Deep-Dive-Workbook.pdf',
   },
   {
     num: '03',
+    topic: 'Daily Warm-Up Routine',
     title: 'Daily Voice Warm-Up: 5 Minutes to Power, Clarity & Confidence',
     duration: '5 min',
-    description: 'A quick daily warm-up used by professional actors and speakers. Humming, resonance exercises, and tongue twisters to prepare your voice for clear, confident speaking.',
-    videoUrl: '/videos/lesson-03.mp4',
-    pdfUrl:   '/pdfs/lesson-03.pdf',
-    pdfName:  'Lesson-3-Warmup-Workbook.pdf',
-    outcome:  'Use this warm-up every morning or before any big speaking moment.',
+    about: 'Learn how to prepare your voice for clear, confident speaking — just like professional actors and speakers do. This daily 5-minute routine helps you breathe deeply, wake up your voice with humming and resonance exercises, improve clarity with tongue twisters, and speak with energy and presence. Use it every morning or before any big speaking moment.',
+    outcome: 'A ready-to-use warm-up routine for presentations, meetings, videos, or interviews.',
+    videoUrl: 'https://drive.google.com/file/d/1T0oZC9UdtPocCX8eNzZHYawfOMWGN/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=1U9rRdx1zUcYkvDdaFS601zXipVJ0SOLK',
+    pdfName: 'Lesson-3-Warmup-Workbook.pdf',
   },
   {
     num: '04',
+    topic: 'Pitch, Pause & Pace',
     title: 'Pitch, Pause & Pace — The 3 Tools of Vocal Expression',
     duration: '6–8 min',
-    description: 'Master the three essential tools that shape how your words are heard AND felt. Learn to avoid monotone delivery, use silence as a power tool, and control your speaking speed.',
-    videoUrl: '/videos/lesson-04.mp4',
-    pdfUrl:   '/pdfs/lesson-04.pdf',
-    pdfName:  'Lesson-4-Pitch-Pause-Pace-Workbook.pdf',
-    outcome:  'Speak with clarity, confidence, and persuasive energy in any situation.',
+    about: 'Master the three essential tools that shape not just how your words are heard — but how they are felt. Pitch gives your speech melody and avoids monotone delivery. Pause is your secret weapon for adding impact and confidence. Pace controls how you are perceived — too fast sounds nervous, too slow loses attention. Finish with a guided practice integrating all three.',
+    outcome: 'The ability to speak with clarity, confidence, and persuasive energy in any situation.',
+    videoUrl: 'https://drive.google.com/file/d/1VG7YlxV0VBjv1J3Un-2KTcWECWsIyRcD/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=1s9FxAlP_N9tzeob4T2qTG_evjLFA2rEU',
+    pdfName: 'Lesson-4-Pitch-Pause-Pace-Workbook.pdf',
   },
   {
     num: '05',
+    topic: 'Clarity & Articulation',
     title: 'Stop Mumbling — Speak With Clarity and Precision',
     duration: '6–7 min',
-    description: 'Eliminate mumbling forever. Daily exercises to activate your lips, tongue, and jaw. Clarity sentences and tongue twisters that sharpen your speech instantly.',
-    videoUrl: '/videos/lesson-05.mp4',
-    pdfUrl:   '/pdfs/lesson-05.pdf',
-    pdfName:  'Lesson-5-Clarity-Workbook.pdf',
-    outcome:  'Sound crisp, confident, and easy to understand — no matter who you are talking to.',
+    about: 'Eliminate mumbling and speak with precision in any situation. Discover why we mumble and how to fix it with simple daily exercises that activate your lips, tongue, and jaw. Practice clarity sentences and tongue twisters that sharpen your speech and make you sound crisp, confident, and easy to understand — no matter who you are talking to.',
+    outcome: 'Greater control, presence, and impact in every conversation.',
+    videoUrl: 'https://drive.google.com/file/d/1grCVs-kE_qa67ujNy2cwFTAQ2th48eme/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=13kxip93a3hPmdXM6gPLxtXIBya90L5Xu',
+    pdfName: 'Lesson-5-Clarity-Workbook.pdf',
   },
   {
     num: '06',
+    topic: 'Vocal Emotion & Authenticity',
     title: 'Vocal Emotion — Speak With Feeling and Authenticity',
     duration: '6–8 min',
-    description: 'Bring your words to life using tone, breath, and emphasis. The Emotion Line Game — one sentence, multiple feelings. Control your vocal emotion and sound more engaging.',
-    videoUrl: '/videos/lesson-06.mp4',
-    pdfUrl:   '/pdfs/lesson-06.pdf',
-    pdfName:  'Lesson-6-Vocal-Emotion-Workbook.pdf',
-    outcome:  'Deliver any line with confidence, warmth, or excitement — on command.',
+    about: 'Learn how to bring your words to life using tone, breath, and emphasis to express real emotion. Explore why emotional expression builds trust and connection, the 3 vocal elements that shape how people feel your message, and the Emotion Line Game — one sentence delivered with multiple different feelings. Practice using the phrase "Your voice matters."',
+    outcome: 'The ability to deliver any line with confidence, warmth, or excitement — on command.',
+    videoUrl: 'https://drive.google.com/file/d/1wmvDMMRY2jIShwZ-Ynr-Rs4h7HtBNbmd/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=115h7qVhEdsJo8UYSJj7u9vJ61JMdf_-T',
+    pdfName: 'Lesson-6-Vocal-Emotion-Workbook.pdf',
   },
   {
     num: '07',
+    topic: 'Performance & Presence',
     title: 'Performance & Presence — Think Like an Actor',
     duration: '7–9 min',
-    description: 'Step into the world of performance. Learn how actors and public speakers use breath, pacing, silence, and emphasis to create charisma. Become magnetic, calm, and unforgettable.',
-    videoUrl: '/videos/lesson-07.mp4',
-    pdfUrl:   '/pdfs/lesson-07.pdf',
-    pdfName:  'Lesson-7-Performance-Workbook.pdf',
-    outcome:  'Speak with presence and charisma that people feel instantly.',
+    about: 'Step into the world of performance and presence. Discover how actors and public speakers use their voices to captivate audiences — and how you can train the same vocal tools. Learn how breath, pacing, silence, and emphasis create charisma that people feel instantly. Whether preparing for a big moment or wanting to speak with more impact, this lesson gives you the techniques to become magnetic, calm, and unforgettable.',
+    outcome: 'The presence and charisma to captivate any audience.',
+    videoUrl: 'https://drive.google.com/file/d/1ZGKftrvVEA2xPJ08_C0M_ORFNFdN4qSs/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=115h7qVhEdsJo8UYSJj7u9vJ61JMdf_-T',
+    pdfName: 'Lesson-7-Performance-Workbook.pdf',
   },
   {
     num: '08',
+    topic: 'Final Challenge & Certification',
     title: 'Final Challenge — Your Voice, Then & Now',
     duration: '8–10 min',
-    description: 'Your moment to reflect, celebrate, and commit. Record your voice and hear how far you have come. Receive your 30-Day Voice Power Plan and complete your transformation.',
-    videoUrl: '/videos/lesson-08.mp4',
-    pdfUrl:   '/pdfs/lesson-08.pdf',
-    pdfName:  'Lesson-8-Final-Challenge-Workbook.pdf',
-    outcome:  'Celebrate your growth and launch into a new chapter with your voice.',
+    about: 'Your moment to reflect, celebrate, and commit. You will be guided through a powerful before vs after voice challenge — re-record your voice and hear just how far you have come in confidence, clarity, and presence. Receive your 30-Day Voice Power Plan to continue building your vocal strength beyond this course. Complete the process and receive your credential.',
+    outcome: 'A celebration of your personal growth and the launch of a new chapter with your voice.',
+    videoUrl: 'https://drive.google.com/file/d/150CwynaPYLn-nEYS9xWI-70urmd54A42/preview',
+    pdfUrl: 'https://drive.google.com/uc?export=download&id=1LW8-McmYoxe_znD1SaJ67n_iKJIEQDW7',
+    pdfName: 'Lesson-8-Final-Challenge-Workbook.pdf',
   },
 ];
 
@@ -131,14 +124,21 @@ export default function CourseDashboard() {
 
       {/* ── NAV ── */}
       <nav className={styles.nav}>
-        <h1
+       <span
   onClick={() => navigate('/')}
-  className="font-sans font-bold text-2xl cursor-pointer"
+  style={{
+    fontFamily: "'Segoe UI', Arial, sans-serif",
+    fontSize: '18px',
+    fontWeight: '600',
+    letterSpacing: '0.08em',
+    color: '#f5f4f0',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+  }}
 >
   Sevil Velsha
-</h1>
-
-        <p className={styles.navTitle}>Voice Control Course</p>
+</span>
+        <p className={styles.navTitle}>Voice Control™ Course</p>
         <p className={styles.navProgress}>{completed.size}/{LESSONS.length} complete</p>
       </nav>
 
@@ -159,21 +159,21 @@ export default function CourseDashboard() {
                 className={[
                   styles.lessonItem,
                   activeLesson === i ? styles.lessonItemActive : '',
-                  completed.has(i)   ? styles.lessonItemDone  : '',
+                  completed.has(i) ? styles.lessonItemDone : '',
                 ].filter(Boolean).join(' ')}
-                onClick={() => setActiveLesson(i)}
+                onClick={() => { setActiveLesson(i); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               >
                 <div className={styles.lessonCheck}>
                   {completed.has(i) ? (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12l5 5 9-10" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"/>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12l5 5 9-10" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
                     </svg>
                   ) : (
                     <span className={styles.lessonNum}>{l.num}</span>
                   )}
                 </div>
                 <div className={styles.lessonInfo}>
-                  <p className={styles.lessonTitle}>{l.title}</p>
+                  <p className={styles.lessonTopic}>{l.topic}</p>
                   <p className={styles.lessonDuration}>{l.duration}</p>
                 </div>
               </button>
@@ -189,85 +189,86 @@ export default function CourseDashboard() {
           )}
         </aside>
 
-        {/* ── MAIN ── */}
+        {/* ── MAIN CONTENT ── */}
         <main className={styles.main}>
 
-          {/* Header */}
-          <div className={styles.lessonHeader}>
-            <span className={styles.lessonNumBig}>{lesson.num}</span>
-            <div>
-              <h1 className={styles.lessonHeading}>{lesson.title}</h1>
-              <p className={styles.lessonDurationBig}>⏱ {lesson.duration}</p>
+          {/* ── 1. TOPIC ── */}
+          <div className={styles.topicBadge}>
+            <span className={styles.lessonNumBig}>Lesson {lesson.num}</span>
+            <span className={styles.topicText}>{lesson.topic}</span>
+          </div>
+
+          {/* ── 2. TITLE ── */}
+          <h1 className={styles.lessonHeading}>{lesson.title}</h1>
+
+          {/* ── 3. ABOUT ── */}
+          <div className={styles.aboutBox}>
+            <p className={styles.aboutLabel}>About This Lesson</p>
+            <p className={styles.aboutText}>{lesson.about}</p>
+            <div className={styles.outcomeRow}>
+              <span className={styles.outcomeIcon}>🎯</span>
+              <p className={styles.outcomeText}><strong>Outcome:</strong> {lesson.outcome}</p>
             </div>
           </div>
 
-          {/* ── VIDEO — native HTML5, plays from /public/videos/ ── */}
-          <div className={styles.videoWrapper}>
-            <video
-              key={lesson.videoUrl}
-              controls
-              className={styles.videoFrame}
-              preload="metadata"
-              controlsList="nodownload"
+          {/* ── 4. VIDEO — Google Drive embed, click opens in Drive ── */}
+          <div className={styles.videoSection}>
+            <p className={styles.videoLabel}>Lesson Video</p>
+            <div className={styles.videoWrapper}>
+              <iframe
+                src={lesson.videoUrl}
+                title={lesson.title}
+                className={styles.videoFrame}
+                allow="autoplay"
+                allowFullScreen
+              />
+            </div>
+            <p className={styles.videoNote}>
+              💡 Click the video to play. Opens in Google Drive for best quality.
+            </p>
+          </div>
+
+          {/* ── 5. PDF DOWNLOAD ── */}
+          <div className={styles.downloadSection}>
+            <p className={styles.downloadLabel}>Downloadable Material</p>
+            <a
+              href={lesson.pdfUrl}
+              download={lesson.pdfName}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.pdfBtn}
             >
-              <source src={lesson.videoUrl} type="video/mp4"/>
-              Your browser does not support video playback.
-            </video>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/>
+                <path d="M4 18h16v2H4v-2z" fill="currentColor"/>
+              </svg>
+              Download Lesson Workbook (PDF)
+            </a>
           </div>
 
-          {/* Body */}
-          <div className={styles.lessonBody}>
+          {/* ── ACTIONS ── */}
+          <div className={styles.actions}>
+            <button
+              className={[styles.completeBtn, completed.has(activeLesson) ? styles.completeBtnDone : ''].filter(Boolean).join(' ')}
+              onClick={() => toggleComplete(activeLesson)}
+            >
+              {completed.has(activeLesson) ? '✓ Lesson Complete' : 'Mark as Complete'}
+            </button>
 
-            <p className={styles.description}>{lesson.description}</p>
-
-            <div className={styles.outcomeBox}>
-              <p className={styles.outcomeLabel}>🎯 Outcome</p>
-              <p className={styles.outcomeText}>{lesson.outcome}</p>
-            </div>
-
-            {/* Actions */}
-            <div className={styles.actions}>
-
-              {/* ── PDF DOWNLOAD — triggers browser download directly ── */}
-              <a
-                href={lesson.pdfUrl}
-                download={lesson.pdfName}
-                className={styles.pdfBtn}
-              >
-                📄 Download Lesson Workbook (PDF)
-              </a>
-
-              {/* Mark complete */}
-              <button
-                className={[
-                  styles.completeBtn,
-                  completed.has(activeLesson) ? styles.completeBtnDone : '',
-                ].filter(Boolean).join(' ')}
-                onClick={() => toggleComplete(activeLesson)}
-              >
-                {completed.has(activeLesson) ? '✓ Marked as Complete' : 'Mark as Complete'}
-              </button>
-
-            </div>
-
-            {/* Next lesson */}
             {activeLesson < LESSONS.length - 1 && (
-              <div className={styles.nextLesson}>
-                <p className={styles.nextLabel}>Next Lesson</p>
-                <button
-                  className={styles.nextBtn}
-                  onClick={() => {
-                    toggleComplete(activeLesson);
-                    setActiveLesson(activeLesson + 1);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  {LESSONS[activeLesson + 1].num} · {LESSONS[activeLesson + 1].title} →
-                </button>
-              </div>
+              <button
+                className={styles.nextBtn}
+                onClick={() => {
+                  toggleComplete(activeLesson);
+                  setActiveLesson(activeLesson + 1);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                Next Lesson →
+              </button>
             )}
-
           </div>
+
         </main>
       </div>
     </div>
