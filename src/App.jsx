@@ -20,10 +20,10 @@ import VoiceCoachingPage from "./routes/VoiceCoachingPage";
 import ThankYouBook from "./routes/ThankYouBook";
 
 // ── Voice Course Funnel Pages ─────────────────────────────────────
-import VoiceCheckoutPage from "./routes/voice-course/VoiceCheckoutPage";
-import ThankYouVoicePage from "./routes/voice-course/ThankYouVoicePage";
+
+import ThankYouVoicePage from "./routes/voice-course/ThankyouVoicePage";
 import UpsellPage        from "./routes/voice-course/UpsellPage";
-import CourseDashboard   from "./routes/voice-course/CourseDashboard";
+import CourseDashboard   from "./routes/voice-course/CourseDashboardjsx";
 // ─────────────────────────────────────────────────────────────────
 
 function AppContent() {
@@ -69,7 +69,7 @@ function AppContent() {
         <Route path="/thank-you-book"           element={<ThankYouBook />} />
 
         {/* ── Voice Course Funnel ── */}
-        <Route path="/voice-control-checkout"        element={<VoiceCheckoutPage />} />
+        
         <Route path="/voice-control-success"         element={<ThankYouVoicePage />} />
         <Route path="/voice-control-coaching-offer"  element={<UpsellPage />} />
         <Route path="/voice-control-dashboard"       element={<CourseDashboard />} />
