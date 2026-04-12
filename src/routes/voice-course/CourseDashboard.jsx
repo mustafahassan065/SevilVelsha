@@ -131,12 +131,13 @@ export default function CourseDashboard() {
 
       {/* ── NAV ── */}
       <nav className={styles.nav}>
-        <img
-          src="/images/logo.png"
-          alt="Sevil Velsha"
-          className={styles.logo}
-          onClick={() => navigate('/')}
-        />
+        <h1
+  onClick={() => navigate('/')}
+  className="font-sans font-bold text-2xl cursor-pointer"
+>
+  Sevil Velsha
+</h1>
+
         <p className={styles.navTitle}>Voice Control Course</p>
         <p className={styles.navProgress}>{completed.size}/{LESSONS.length} complete</p>
       </nav>

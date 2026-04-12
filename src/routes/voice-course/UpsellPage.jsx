@@ -18,12 +18,13 @@ export default function UpsellPage() {
 
       {/* NAV */}
       <nav className={styles.nav}>
-        <img
-          src="/images/logo.png"
-          alt="Sevil Velsha"
-          className={styles.logo}
-          onClick={() => navigate('/')}
-        />
+        <h1
+  onClick={() => navigate('/')}
+  className="font-sans font-bold text-2xl cursor-pointer"
+>
+  Sevil Velsha
+</h1>
+
       </nav>
 
       <div className={styles.container}>
