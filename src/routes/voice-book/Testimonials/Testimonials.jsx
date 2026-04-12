@@ -5,28 +5,28 @@ import TestimonialCard from "./TestimonialCard";
 
 const testimonials = [
   {
-    quote: '"This book is a game-changer. I always felt my ideas were overlooked..."',
+    quote: '"This book is a game-changer. I always felt my ideas were overlooked in meetings — after applying the Voice Control method, my team actually listens now."',
     name: "Mark Chen",
     role: "Senior Project Manager",
-    image: "/images/testimonial.jpg",
+    image: "https://i.pravatar.cc/150?img=11",
   },
   {
-    quote: '"The techniques in Voice Control are truly transformational. Highly recommended!"',
+    quote: '"The techniques in Voice Control are truly transformational. My presentation confidence went from a 3 to a 10. Highly recommended for any professional."',
     name: "Sarah Jenkins",
     role: "Creative Director",
-    image: "/images/testimonial.jpg",
+    image: "https://i.pravatar.cc/150?img=5",
   },
   {
-    quote: '"I finally have the confidence to speak up in executive meetings. Game changer!"',
+    quote: '"I finally have the confidence to speak up in executive meetings. The breathing techniques alone were worth every penny. Game changer!"',
     name: "James Wilson",
     role: "VP of Operations",
-    image: "/images/testimonial.jpg",
+    image: "https://i.pravatar.cc/150?img=15",
   },
   {
-    quote: '"Simple, actionable, and effective. This is the best professional investment I\'ve made."',
+    quote: '"Simple, actionable, and effective. Within two weeks I noticed a real difference in how colleagues respond to me. Best professional investment I\'ve made."',
     name: "Priya Sharma",
     role: "Software Lead",
-    image: "/images/testimonial.jpg",
+    image: "https://i.pravatar.cc/150?img=47",
   },
 ];
 
