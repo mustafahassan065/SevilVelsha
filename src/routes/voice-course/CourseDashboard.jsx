@@ -184,7 +184,14 @@ export default function CourseDashboard() {
             <div className={styles.certBlock}>
               <p className={styles.certLabel}>🏆 Congratulations!</p>
               <p className={styles.certText}>You have completed the Voice Control Course.</p>
-              <button className={styles.certBtn}>Download Certificate</button>
+              <a
+                href="/pdfs/voice-control-certificate.pdf"
+                download="Voice-Control-Certificate.pdf"
+                className={styles.certBtn}
+                style={{ textDecoration: 'none', display: 'block', textAlign: 'center' }}
+              >
+                Download Certificate
+              </a>
             </div>
           )}
         </aside>
@@ -268,6 +275,47 @@ export default function CourseDashboard() {
               </button>
             )}
           </div>
+
+          {/* ── CERTIFICATION SECTION — shown on last lesson ── */}
+          {activeLesson === LESSONS.length - 1 && (
+            <div style={{
+              marginTop: 52, background: 'linear-gradient(135deg,#1a1a1a,#2d2d2d)',
+              padding: 'clamp(32px,5vw,48px)', textAlign: 'center',
+            }}>
+              <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:'#c9a96e', margin:'0 0 12px' }}>
+                🎓 Certification
+              </p>
+              <h2 style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.3rem,3vw,1.8rem)', fontWeight:700, color:'#fff', margin:'0 0 16px', lineHeight:1.3 }}>
+                Earn a Professional Voice Control Certification
+              </h2>
+              <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.65)', margin:'0 0 24px', lineHeight:1.7, maxWidth:420, marginLeft:'auto', marginRight:'auto' }}>
+                Upon completion, you will receive a <strong style={{ color:'#c9a96e' }}>Certified Voice Control Practitioner</strong> credential.
+              </p>
+              <div style={{ display:'flex', justifyContent:'center', gap:24, flexWrap:'wrap', marginBottom:28 }}>
+                {['✔ Downloadable certificate', '✔ Share on LinkedIn', '✔ Demonstrate communication authority'].map((item,i) => (
+                  <span key={i} style={{ fontSize:'13px', color:'rgba(255,255,255,0.75)', fontWeight:500 }}>{item}</span>
+                ))}
+              </div>
+              {progressPercent === 100 ? (
+                <a
+                  href="/pdfs/voice-control-certificate.pdf"
+                  download="Voice-Control-Certificate.pdf"
+                  style={{
+                    display:'inline-block', background:'linear-gradient(135deg,#c9a96e,#e8d5a3)',
+                    color:'#1a1a1a', fontFamily:'inherit', fontSize:'12px', fontWeight:700,
+                    letterSpacing:'0.18em', textTransform:'uppercase',
+                    padding:'16px 40px', textDecoration:'none',
+                  }}
+                >
+                  Download Your Certificate
+                </a>
+              ) : (
+                <p style={{ fontSize:'13px', color:'rgba(255,255,255,0.45)' }}>
+                  Complete all {LESSONS.length} lessons to unlock your certificate.
+                </p>
+              )}
+            </div>
+          )}
 
         </main>
       </div>
