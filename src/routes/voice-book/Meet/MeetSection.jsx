@@ -1,28 +1,23 @@
 import styles from "./Meet.module.css"
 
 export const Meet = () => {
-  const driveVideoLink = "https://drive.google.com/file/d/1kEG8qrTpTThTGxQnxBFJ0Z12BY8gha-C/view";
+  // Updated — embedded video instead of image link
+  const embedUrl = "https://drive.google.com/file/d/1EB8zdVKi9PB758TbJGwlBl_Hue26fbcI/preview";
 
   return (
     <section className={styles.section}>
       <div className={styles.container}>
 
         <div className={styles.videoWrapper}>
-          <a
-            href={driveVideoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.videoLink}
-          >
-            <img
-              src="/images/VideoImage.png"
-              alt="Author Introduction"
-              className={styles.videoImage}
-            />
-            <div className={styles.playButton}>
-              <div className={styles.playIcon}></div>
-            </div>
-          </a>
+          <iframe
+            src={embedUrl}
+            title="Meet Sevil Velsha"
+            className={styles.videoImage}
+            style={{ border: 'none', width: '100%', aspectRatio: '16/9', display: 'block' }}
+            allow="autoplay"
+            allowFullScreen
+            loading="lazy"
+          />
         </div>
 
         <div className={styles.contentGrid}>
