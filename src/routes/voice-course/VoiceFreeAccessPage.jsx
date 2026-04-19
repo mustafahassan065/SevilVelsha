@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FREE_VIDEO = 'https://drive.google.com/file/d/1rs8qVhVz23WQlZQ7NFfsq93tB0pDBYbE/preview';
 const FREE_PDF   = 'https://drive.google.com/uc?export=download&id=1LDGTUt9LijOtN7XipfrnToIaGghIFME7';
-const STRIPE_URL = 'https://buy.stripe.com/test_7sYbJ00yHdM59PUaV2gIo01';
+const STRIPE_URL = 'https://buy.stripe.com/test_8x228q4OXbDX5zE6EMgIo02';
 
 const DARK  = '#1a1a1a';
 const GOLD  = '#c9a96e';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Hero.module.css';
 import FreeAccessModal from '../FreeAccessModal/FreeAccessModal';
 
-const STRIPE_99 = `https://buy.stripe.com/test_7sYbJ00yHdM59PUaV2gIo01`;
+const STRIPE_99 = `https://buy.stripe.com/test_8x228q4OXbDX5zE6EMgIo02`;
 
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);
