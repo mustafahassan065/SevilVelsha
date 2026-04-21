@@ -28,7 +28,7 @@ const LESSONS = [
     title: 'Daily Voice Warm-Up: 5 Minutes to Power, Clarity & Confidence', duration: '5 min',
     about: 'Learn how to prepare your voice for clear, confident speaking just like professional actors and speakers do. This daily 5-minute routine helps you breathe deeply, wake up your voice with humming and resonance exercises, and improve clarity with tongue twisters.',
     outcome: 'A ready-to-use warm-up routine for presentations, meetings, videos, or interviews.',
-    videoUrl: 'https://drive.google.com/file/d/1T0oZC9UdtPocCX8eNzZHYawfOMWGN0/preview',
+    videoUrl: 'https://drive.google.com/file/d/1T0oZC9UdtPocCX8eNzZHYawfOMWGN/preview',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=1U9rRdx1zUcYkvDdaFS601zXipVJ0SOLK',
     pdfName: 'Lesson-3-Warmup-Workbook.pdf',
   },
@@ -328,6 +328,125 @@ function QuizSection({ lessonIndex }) {
 }
 
 // ── CERTIFICATE — with name input ──
+// ── CERTIFICATE GENERATOR — uses jsPDF loaded from CDN ──
+function generateCertificate(name, setIssued) {
+  const script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+  script.onload = () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    const w = 297; const h = 210;
+    const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+
+    // Background
+    doc.setFillColor(250, 250, 247);
+    doc.rect(0, 0, w, h, 'F');
+
+    // Outer border
+    doc.setDrawColor(26, 26, 26);
+    doc.setLineWidth(1.5);
+    doc.rect(8, 8, w-16, h-16);
+
+    // Gold inner border
+    doc.setDrawColor(201, 169, 110);
+    doc.setLineWidth(0.5);
+    doc.rect(13, 13, w-26, h-26);
+
+    // Gold top line
+    doc.setLineWidth(0.8);
+    doc.line(25, 28, w-25, 28);
+
+    // Header
+    doc.setFontSize(10);
+    doc.setTextColor(201, 169, 110);
+    doc.setFont('helvetica', 'bold');
+    doc.text('S E V I L   V E L S H A', w/2, 24, { align:'center' });
+
+    // Title
+    doc.setFontSize(28);
+    doc.setTextColor(26, 26, 26);
+    doc.text('Certificate of Completion', w/2, 45, { align:'center' });
+
+    // Course name
+    doc.setFontSize(14);
+    doc.setTextColor(201, 169, 110);
+    doc.text('Voice Control: Speak with Confidence and Authority', w/2, 57, { align:'center' });
+
+    // Gold line
+    doc.setDrawColor(201, 169, 110);
+    doc.setLineWidth(0.5);
+    doc.line(w/2-55, 62, w/2+55, 62);
+
+    // Awarded to
+    doc.setFontSize(12);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('This certificate is proudly awarded to', w/2, 72, { align:'center' });
+
+    // NAME — large, prominent
+    doc.setFontSize(34);
+    doc.setTextColor(26, 26, 26);
+    doc.setFont('helvetica', 'bolditalic');
+    doc.text(name, w/2, 92, { align:'center' });
+
+    // Line under name
+    const nameWidth = doc.getTextWidth(name);
+    doc.setDrawColor(26, 26, 26);
+    doc.setLineWidth(0.4);
+    doc.line(w/2 - nameWidth/2 - 5, 97, w/2 + nameWidth/2 + 5, 97);
+
+    // For completing
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('for successfully completing the Voice Control program and demonstrating dedication to', w/2, 107, { align:'center' });
+    doc.text('developing a clear, confident, and powerful voice.', w/2, 114, { align:'center' });
+
+    // Skills
+    doc.setFontSize(10);
+    doc.setTextColor(26, 26, 26);
+    const skills = ['Breath control and vocal support', 'Clear articulation and speech precision', 'Pitch, pause, and pacing for impact', 'Emotional expression and vocal presence'];
+    skills.forEach((skill, i) => {
+      const col = i < 2 ? w/2 - 70 : w/2 + 5;
+      const row = i % 2 === 0 ? 125 : 132;
+      doc.text('• ' + skill, col, row);
+    });
+
+    // Gold divider
+    doc.setDrawColor(201, 169, 110);
+    doc.setLineWidth(0.5);
+    doc.line(25, 142, w-25, 142);
+
+    // Quote
+    doc.setFontSize(11);
+    doc.setTextColor(201, 169, 110);
+    doc.setFont('helvetica', 'italic');
+    doc.text('"My voice used to feel small. Now it feels strong."', w/2, 152, { align:'center' });
+
+    // Footer
+    doc.setFontSize(11);
+    doc.setTextColor(26, 26, 26);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Sevil Velsha', w/2, 165, { align:'center' });
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(120, 120, 120);
+    doc.text('Executive Voice Authority Coach  |  Creator of the Voice Control Method', w/2, 172, { align:'center' });
+    doc.text('Date: ' + today, w/2, 180, { align:'center' });
+
+    // Save
+    doc.save(`Voice-Control-Certificate-${name.replace(/\s+/g,'-')}.pdf`);
+    setIssued(true);
+  };
+  if (!document.querySelector('script[src*="jspdf"]')) {
+    document.head.appendChild(script);
+  } else if (window.jspdf) {
+    script.onload();
+  } else {
+    document.head.appendChild(script);
+  }
+}
+
 function CertificateSection({ progressPercent, totalLessons }) {
   const [nameInput, setNameInput] = useState('');
   const [certReady, setCertReady] = useState(false);
@@ -388,14 +507,12 @@ function CertificateSection({ progressPercent, totalLessons }) {
             Certificate prepared for: <strong style={{ color:'#c9a96e' }}>{userName}</strong>
           </p>
           <div style={{ display:'flex', gap:20, justifyContent:'center', flexWrap:'wrap', marginBottom:20 }}>
-            <a
-              href="/pdfs/voice-control-certificate.pdf"
-              download={`Voice-Control-Certificate-${userName.replace(/\s+/g,'-')}.pdf`}
-              onClick={() => setIssued(true)}
-              style={{ display:'inline-block', background:'linear-gradient(135deg,#c9a96e,#e8d5a3)', color:'#1a1a1a', fontFamily:'inherit', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', padding:'15px 40px', textDecoration:'none', borderRadius:2 }}
+            <button
+              onClick={() => generateCertificate(userName, setIssued)}
+              style={{ display:'inline-block', background:'linear-gradient(135deg,#c9a96e,#e8d5a3)', color:'#1a1a1a', fontFamily:'inherit', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', padding:'15px 40px', border:'none', cursor:'pointer', borderRadius:2 }}
             >
               Download Certificate
-            </a>
+            </button>
             <a
               href={`https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Voice+Control+Practitioner&organizationId=&issueYear=${new Date().getFullYear()}&issueMonth=${new Date().getMonth()+1}&certUrl=https://sevilvelsha.com`}
               target="_blank" rel="noreferrer"
