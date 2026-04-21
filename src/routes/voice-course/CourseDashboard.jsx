@@ -675,8 +675,10 @@ export default function CourseDashboard() {
             )}
           </div>
 
-          {/* CERTIFICATE */}
-          <CertificateSection progressPercent={progressPercent} totalLessons={LESSONS.length} />
+          {/* CERTIFICATE — only on last lesson */}
+          {activeLesson === LESSONS.length - 1 && (
+            <CertificateSection progressPercent={progressPercent} totalLessons={LESSONS.length} />
+          )}
 
           {/* SUPPORT */}
           <div style={{ marginTop:68, borderTop:'1px solid #e8e4dc', paddingTop:56 }}>
