@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FREE_VIDEO = 'https://drive.google.com/file/d/1rs8qVhVz23WQlZQ7NFfsq93tB0pDBYbE/preview';
 const FREE_PDF   = 'https://drive.google.com/uc?export=download&id=1LDGTUt9LijOtN7XipfrnToIaGghIFME7';
-const STRIPE_URL = 'https://buy.stripe.com/test_8x228q4OXbDX5zE6EMgIo02';
+const STRIPE_URL = 'https://buy.stripe.com/test_7sYbJ00yHdM59PUaV2gIo01';
 
 const DARK  = '#1a1a1a';
 const GOLD  = '#c9a96e';
@@ -159,6 +159,29 @@ export default function VoiceFreeAccessPage() {
             Based on real acoustic analysis (Praat) &nbsp;·&nbsp; Used in professional voice training
           </p>
         </div>
+
+        {/* Support */}
+        <div style={{ marginTop:52, borderTop:'1px solid #e8e4dc', paddingTop:48 }}>
+          <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:GOLD, marginBottom:16 }}>
+            Need Support?
+          </p>
+          <p style={{ fontSize:'14px', color:MUTED, marginBottom:32, lineHeight:1.8, maxWidth:480 }}>
+            If something feels unclear or you want to improve faster, you can reach out directly.
+            Messages are personally reviewed.
+          </p>
+          <div style={{ display:'flex', gap:20, flexWrap:'wrap', marginBottom:16 }}>
+            <a href="https://wa.me/17786366633" target="_blank" rel="noreferrer"
+              style={{ display:'inline-block', background:'#25D366', color:'#fff', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'14px 32px', textDecoration:'none', borderRadius:2 }}>
+              Message on WhatsApp
+            </a>
+            <a href="mailto:info@sevilvelsha.com"
+              style={{ display:'inline-block', background:'#fff', color:DARK, border:`1.5px solid ${DARK}`, fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'14px 32px', textDecoration:'none', borderRadius:2 }}>
+              info@sevilvelsha.com
+            </a>
+          </div>
+          <p style={{ fontSize:'12px', color:'#aaa', margin:0 }}>I reply within 24 hours.</p>
+        </div>
+
 
       </div>
     </div>

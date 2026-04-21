@@ -22,7 +22,7 @@ const VOICE_CONTROL_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61582826969455", icon: FaFacebookF },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61588183386397", icon: FaFacebookF },
   { label: "Youtube", href: "https://www.youtube.com/@VoiceStudio-t7j", icon: Youtube },
   { label: "Instagram", href: "https://www.instagram.com/sevilvelsha/?igsh=MXVoN29zNWIza2NzdQ%3D%3Ds", icon: LuInstagram },
   { label: "Tik Tok", href: "https://www.tiktok.com/@sevilvelsha?lang=en", icon: FaTiktok },

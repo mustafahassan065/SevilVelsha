@@ -28,7 +28,7 @@ const LESSONS = [
     title: 'Daily Voice Warm-Up: 5 Minutes to Power, Clarity & Confidence', duration: '5 min',
     about: 'Learn how to prepare your voice for clear, confident speaking just like professional actors and speakers do. This daily 5-minute routine helps you breathe deeply, wake up your voice with humming and resonance exercises, and improve clarity with tongue twisters.',
     outcome: 'A ready-to-use warm-up routine for presentations, meetings, videos, or interviews.',
-    videoUrl: 'https://drive.google.com/file/d/1T0oZC9UdtPocCX8eNzZHYawfOMWGN/preview',
+    videoUrl: 'https://drive.google.com/file/d/1T0oZC9UdtPocCX8eNzZHOmYYawfOMWGN/preview',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=1U9rRdx1zUcYkvDdaFS601zXipVJ0SOLK',
     pdfName: 'Lesson-3-Warmup-Workbook.pdf',
   },
