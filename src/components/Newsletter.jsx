@@ -1,6 +1,8 @@
 import React from "react";
 import { IoIosLink } from "react-icons/io";
 import { MdCall, MdMailOutline } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
 
 function Newsletter() {
   return (
@@ -74,6 +76,41 @@ function Newsletter() {
             </button>
           </div>
         </form>
+
+        {/* ══════════════════════════════════════════
+            CONTACT BUTTONS — WhatsApp + Email
+        ══════════════════════════════════════════ */}
+        <div className="mt-8 border-t border-gray-200 pt-8">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-gray-400">
+            Need Support?
+          </p>
+          
+          <div className="flex flex-wrap gap-4">
+            {/* WhatsApp Button */}
+            <a
+              href="https://wa.me/17786366633"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-xl bg-[#25D366] px-6 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-white no-underline transition-all hover:bg-[#20bd5a] hover:shadow-lg active:scale-[0.98]"
+            >
+              <FaWhatsapp className="text-lg" />
+              Message on WhatsApp
+            </a>
+
+            {/* Email Button — Gmail Direct Compose */}
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com"
+              className="inline-flex items-center gap-2.5 rounded-xl border-2 border-gray-800 bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-[0.16em] text-gray-800 no-underline transition-all hover:bg-gray-50 hover:shadow-lg active:scale-[0.98]"
+            >
+              <HiOutlineMail className="text-lg" />
+              info@sevilvelsha.com
+            </a>
+          </div>
+
+          <p className="mt-4 text-xs text-gray-400">
+            I reply within 24 hours.
+          </p>
+        </div>
       </div>
     </section>
   );
