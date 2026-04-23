@@ -697,10 +697,11 @@ export default function CourseDashboard() {
                 style={{ display:'inline-block', background:'#25D366', color:'#fff', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'15px 36px', textDecoration:'none', borderRadius:2 }}>
                 Message me on WhatsApp
               </a>
-              <a href="mailto:info@sevilvelsha.com"
-                style={{ display:'inline-block', background:'#fff', color:'#1a1a1a', border:'1.5px solid #1a1a1a', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'15px 36px', textDecoration:'none', borderRadius:2 }}>
-                info@sevilvelsha.com
-              </a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com"
+  target="_blank"
+  style={{ display:'inline-block', background:'#fff', color:'#1a1a1a', border:'1.5px solid #1a1a1a', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'15px 36px', textDecoration:'none', borderRadius:2 }}>
+  info@sevilvelsha.com
+</a>
             </div>
             <p style={{ fontSize:'12px', color:'#aaa', margin:0 }}>I reply within 24 hours.</p>
           </div>

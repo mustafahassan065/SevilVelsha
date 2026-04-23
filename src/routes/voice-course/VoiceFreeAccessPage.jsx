@@ -174,10 +174,10 @@ export default function VoiceFreeAccessPage() {
               style={{ display:'inline-block', background:'#25D366', color:'#fff', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'14px 32px', textDecoration:'none', borderRadius:2 }}>
               Message on WhatsApp
             </a>
-            <a href="mailto:info@sevilvelsha.com"
-              style={{ display:'inline-block', background:'#fff', color:DARK, border:`1.5px solid ${DARK}`, fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'14px 32px', textDecoration:'none', borderRadius:2 }}>
-              info@sevilvelsha.com
-            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com"
+  style={{ display:'inline-block', background:'#fff', color:DARK, border:`1.5px solid ${DARK}`, fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'14px 32px', textDecoration:'none', borderRadius:2 }}>
+  info@sevilvelsha.com
+</a>
           </div>
           <p style={{ fontSize:'12px', color:'#aaa', margin:0 }}>I reply within 24 hours.</p>
         </div>

@@ -1,3 +1,6 @@
+// src/routes/voice-course/pricing-section.jsx
+// Updated: First card now shows $49 promotional price with urgency
+
 import styles from "./pricing-section.module.css"
 
 export default function PricingSection() {
@@ -6,10 +9,21 @@ export default function PricingSection() {
       <h1 className={styles.heading}>Pricing & Tiers</h1>
 
       <div className={styles.tiersContainer}>
-        {/* Updated First Card */}
+        {/* Updated First Card — $49 promotional price */}
         <div className={styles.card}>
-          <div className={styles.price}>$99</div>
+          <div className={styles.price}>$49</div>
           <p className={styles.description}>Perfect for independent learners.</p>
+          
+          {/* Urgency message matching free access page */}
+          <p style={{ 
+            fontSize: '13px', 
+            color: '#c9a96e', 
+            fontWeight: 600, 
+            margin: '0 0 16px',
+            lineHeight: 1.5 
+          }}>
+            First 20 students · Price increases soon
+          </p>
 
           <ul className={styles.featureList}>
             <li className={styles.feature}>
@@ -39,11 +53,11 @@ export default function PricingSection() {
           </ul>
 
           <a
-            href="https://buy.stripe.com/14AdRagnGdREbnw1Ap14407"
+            href="https://buy.stripe.com/test_8x228q4OXbDX5zE6EMgIo02"
             className={styles.button}
             style={{ textDecoration: 'none', display: 'block', textAlign: 'center' }}
           >
-            Choose Plan
+            Unlock Full Course — $49
           </a>
         </div>
 
