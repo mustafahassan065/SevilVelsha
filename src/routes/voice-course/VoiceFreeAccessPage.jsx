@@ -1,11 +1,12 @@
 // src/routes/voice-course/VoiceFreeAccessPage.jsx
 // Route: /voice-free-access
 // Updated with all conversion blocks per client brief
+// VIDEO: Migrated to Vimeo
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const FREE_VIDEO = 'https://drive.google.com/file/d/1rs8qVhVz23WQlZQ7NFfsq93tB0pDBYbE/preview';
+const FREE_VIDEO = 'https://player.vimeo.com/video/1186485385?badge=0&autopause=0&player_id=0&app_id=58479';
 const FREE_PDF   = 'https://drive.google.com/uc?export=download&id=1LDGTUt9LijOtN7XipfrnToIaGghIFME7';
 const STRIPE_URL = 'https://buy.stripe.com/test_8x228q4OXbDX5zE6EMgIo02';
 
@@ -49,15 +50,22 @@ export default function VoiceFreeAccessPage() {
           Your first Voice Control training is ready. Watch the video below and download your free PDF guide.
         </p>
 
-        {/* VIDEO */}
+        {/* VIDEO — Vimeo */}
         <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:GOLD, margin:'0 0 14px' }}>Lesson 1 — Free Training Video</p>
         <p style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.1rem,2.5vw,1.4rem)', fontWeight:700, color:DARK, margin:'0 0 16px' }}>
           The One Breathing Technique That Calms & Empowers
         </p>
         <div style={{ width:'100%', aspectRatio:'16/9', background:DARK, borderRadius:4, overflow:'hidden', boxShadow:'0 4px 24px rgba(0,0,0,0.12)', marginBottom:12 }}>
-          <iframe src={FREE_VIDEO} title="Free Lesson 1" style={{ width:'100%', height:'100%', border:'none' }} allow="autoplay" allowFullScreen loading="lazy"/>
+          <iframe 
+            src={FREE_VIDEO} 
+            title="Free Lesson 1" 
+            style={{ width:'100%', height:'100%', border:'none' }} 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            allowFullScreen 
+            loading="lazy"
+          />
         </div>
-        <p style={{ fontSize:'12px', color:'#aaa', margin:'0 0 40px' }}>💡 Click to play. Opens in Google Drive for full quality.</p>
+        <p style={{ fontSize:'12px', color:'#aaa', margin:'0 0 40px' }}>💡 Click to play. Hosted securely on Vimeo.</p>
 
         {/* 1. Text block under video */}
         <div style={{ textAlign:'center', margin:'0 0 40px', padding:'0 8px' }}>
@@ -175,9 +183,9 @@ export default function VoiceFreeAccessPage() {
               Message on WhatsApp
             </a>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com"
-  style={{ display:'inline-block', background:'#fff', color:DARK, border:`1.5px solid ${DARK}`, fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'14px 32px', textDecoration:'none', borderRadius:2 }}>
-  info@sevilvelsha.com
-</a>
+              style={{ display:'inline-block', background:'#fff', color:DARK, border:`1.5px solid ${DARK}`, fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'14px 32px', textDecoration:'none', borderRadius:2 }}>
+              info@sevilvelsha.com
+            </a>
           </div>
           <p style={{ fontSize:'12px', color:'#aaa', margin:0 }}>I reply within 24 hours.</p>
         </div>
