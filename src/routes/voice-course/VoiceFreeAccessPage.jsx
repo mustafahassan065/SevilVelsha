@@ -1,12 +1,12 @@
 // src/routes/voice-course/VoiceFreeAccessPage.jsx
 // Route: /voice-free-access
 // Updated with all conversion blocks per client brief
-// VIDEO: Migrated to Vimeo
+// VIDEO: Google Drive with download protection
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const FREE_VIDEO = 'https://player.vimeo.com/video/1186485385?badge=0&autopause=0&player_id=0&app_id=58479';
+const FREE_VIDEO = 'https://drive.google.com/file/d/1rs8qVhVz23WQlZQ7NFfsq93tB0pDBYbE/preview';
 const FREE_PDF   = 'https://drive.google.com/uc?export=download&id=1LDGTUt9LijOtN7XipfrnToIaGghIFME7';
 const STRIPE_URL = 'https://buy.stripe.com/test_8x228q4OXbDX5zE6EMgIo02';
 
@@ -50,22 +50,52 @@ export default function VoiceFreeAccessPage() {
           Your first Voice Control training is ready. Watch the video below and download your free PDF guide.
         </p>
 
-        {/* VIDEO — Vimeo */}
+        {/* VIDEO — Google Drive with download protection */}
         <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:GOLD, margin:'0 0 14px' }}>Lesson 1 — Free Training Video</p>
         <p style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.1rem,2.5vw,1.4rem)', fontWeight:700, color:DARK, margin:'0 0 16px' }}>
           The One Breathing Technique That Calms & Empowers
         </p>
-        <div style={{ width:'100%', aspectRatio:'16/9', background:DARK, borderRadius:4, overflow:'hidden', boxShadow:'0 4px 24px rgba(0,0,0,0.12)', marginBottom:12 }}>
+        <div 
+          style={{ 
+            width:'100%', 
+            aspectRatio:'16/9', 
+            background:DARK, 
+            borderRadius:4, 
+            overflow:'hidden', 
+            boxShadow:'0 4px 24px rgba(0,0,0,0.12)', 
+            marginBottom:12,
+            position:'relative',
+            pointerEvents:'auto'
+          }}
+          onContextMenu={(e) => e.preventDefault()}
+        >
+          {/* Transparent overlay to block right-click save */}
+          <div style={{
+            position:'absolute',
+            inset:0,
+            zIndex:1,
+            background:'transparent'
+          }}
+          onContextMenu={(e) => e.preventDefault()}
+        />
           <iframe 
             src={FREE_VIDEO} 
             title="Free Lesson 1" 
-            style={{ width:'100%', height:'100%', border:'none' }} 
-            allow="autoplay; fullscreen; picture-in-picture" 
+            style={{ 
+              width:'100%', 
+              height:'100%', 
+              border:'none',
+              position:'relative',
+              zIndex:0
+            }} 
+            allow="autoplay" 
             allowFullScreen 
             loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-presentation"
+            controlsList="nodownload"
           />
         </div>
-        <p style={{ fontSize:'12px', color:'#aaa', margin:'0 0 40px' }}>💡 Click to play. Hosted securely on Vimeo.</p>
+        <p style={{ fontSize:'12px', color:'#aaa', margin:'0 0 40px' }}>💡 Click to play. Opens in Google Drive for full quality.</p>
 
         {/* 1. Text block under video */}
         <div style={{ textAlign:'center', margin:'0 0 40px', padding:'0 8px' }}>
@@ -114,7 +144,7 @@ export default function VoiceFreeAccessPage() {
 
         <div style={{ width:40, height:2, background:GOLD, margin:'0 auto 48px' }}/>
 
-        {/* 4. Transformation section BEFORE sales */}
+        {/* 4. Transformation section */}
         <div style={{ marginBottom:48 }}>
           <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:GOLD, margin:'0 0 20px', textAlign:'center' }}>After This Course, You Will</p>
           <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
@@ -127,7 +157,7 @@ export default function VoiceFreeAccessPage() {
           </div>
         </div>
 
-        {/* 5+6+7. Updated sales block */}
+        {/* 5+6+7. Sales block */}
         <div style={{ background:DARK, padding:'clamp(32px,5vw,52px)', textAlign:'center', marginBottom:32 }}>
           <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:GOLD, margin:'0 0 12px' }}>Ready to fix it?</p>
           <h2 style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.4rem,3vw,2rem)', fontWeight:700, color:'#fff', margin:'0 0 12px', lineHeight:1.3 }}>

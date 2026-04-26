@@ -79,6 +79,7 @@ const LESSONS = [
   },
 ];
 
+// ── QUIZZES (unchanged, same as before) ──
 const QUIZZES = [
   {
     lessonNum:'01',
@@ -194,7 +195,7 @@ const QUIZZES = [
   },
 ];
 
-// ── QUIZ — fixed: shows correct/wrong per answer, reflection always appears ──
+// ── QUIZ ──
 function QuizSection({ lessonIndex }) {
   const quiz = QUIZZES[lessonIndex];
   const [answers, setAnswers]       = React.useState({});
@@ -247,8 +248,6 @@ function QuizSection({ lessonIndex }) {
       <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:'#c9a96e', marginBottom:28 }}>
         Lesson {quiz.lessonNum} Quiz
       </p>
-
-      {/* MC */}
       {quiz.questions.map((q,qi) => (
         <div key={qi} style={{ marginBottom:36 }}>
           <p style={{ fontSize:'14px', fontWeight:600, color:'#1a1a1a', marginBottom:14, lineHeight:1.6 }}>{qi+1}. {q.q}</p>
@@ -262,8 +261,6 @@ function QuizSection({ lessonIndex }) {
           ))}
         </div>
       ))}
-
-      {/* T/F */}
       <p style={{ fontSize:'13px', fontWeight:700, color:'#777', marginBottom:18, letterSpacing:'0.05em' }}>True / False</p>
       {quiz.truefalse.map((q,ti) => (
         <div key={ti} style={{ marginBottom:28 }}>
@@ -280,30 +277,18 @@ function QuizSection({ lessonIndex }) {
           </div>
         </div>
       ))}
-
-      {/* Submit */}
       {!submitted ? (
         <button onClick={handleSubmit} style={{ background:'#1a1a1a', color:'#fff', border:'none', padding:'16px 44px', fontSize:'11px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', cursor:'pointer', marginTop:20 }}>
           Submit Quiz
         </button>
       ) : (
         <div style={{ marginTop:28, padding:'32px', background:'#f9f7f3', border:'1px solid #e8e4dc', textAlign:'center' }}>
-          <p style={{ fontFamily:'Georgia,serif', fontSize:'1.6rem', fontWeight:700, color:'#1a1a1a', margin:'0 0 10px' }}>
-            {score}/{total} Correct
-          </p>
-          <p style={{ fontSize:'14px', color:'#777', margin:'0 0 28px' }}>
-            {score===total ? '🎯 Perfect score!' : score>=total*0.7 ? '✅ Well done!' : '📚 Review the lesson and try again.'}
-          </p>
-          <button
-            onClick={() => { setSubmitted(false); setAnswers({}); setTfAnswers({}); setReflection(null); setScore(0); }}
-            style={{ background:'none', border:'1.5px solid #1a1a1a', color:'#1a1a1a', padding:'13px 32px', fontSize:'11px', fontWeight:600, letterSpacing:'0.14em', textTransform:'uppercase', cursor:'pointer' }}
-          >
-            Retake Quiz
-          </button>
+          <p style={{ fontFamily:'Georgia,serif', fontSize:'1.6rem', fontWeight:700, color:'#1a1a1a', margin:'0 0 10px' }}>{score}/{total} Correct</p>
+          <p style={{ fontSize:'14px', color:'#777', margin:'0 0 28px' }}>{score===total ? '🎯 Perfect score!' : score>=total*0.7 ? '✅ Well done!' : '📚 Review the lesson and try again.'}</p>
+          <button onClick={() => { setSubmitted(false); setAnswers({}); setTfAnswers({}); setReflection(null); setScore(0); }}
+            style={{ background:'none', border:'1.5px solid #1a1a1a', color:'#1a1a1a', padding:'13px 32px', fontSize:'11px', fontWeight:600, letterSpacing:'0.14em', textTransform:'uppercase', cursor:'pointer' }}>Retake Quiz</button>
         </div>
       )}
-
-      {/* Reflection — always shows after submit ── */}
       {submitted && (
         <div style={{ marginTop:36 }}>
           {reflection === null ? (
@@ -316,9 +301,7 @@ function QuizSection({ lessonIndex }) {
             </div>
           ) : (
             <div style={{ padding:'28px', background:reflection==='yes'?'rgba(74,124,118,0.08)':'#fdf8f0', border:`1.5px solid ${reflection==='yes'?'#4a7c76':'#c9a96e'}`, borderRadius:4 }}>
-              <p style={{ fontSize:'14px', color:'#1a1a1a', lineHeight:1.8, margin:0 }}>
-                {reflection==='yes' ? quiz.reflection.yes : quiz.reflection.no}
-              </p>
+              <p style={{ fontSize:'14px', color:'#1a1a1a', lineHeight:1.8, margin:0 }}>{reflection==='yes' ? quiz.reflection.yes : quiz.reflection.no}</p>
             </div>
           )}
         </div>
@@ -327,8 +310,7 @@ function QuizSection({ lessonIndex }) {
   );
 }
 
-// ── CERTIFICATE — with name input ──
-// ── CERTIFICATE GENERATOR — uses jsPDF loaded from CDN ──
+// ── CERTIFICATE GENERATOR ──
 function generateCertificate(name, setIssued) {
   const script = document.createElement('script');
   script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
@@ -337,114 +319,31 @@ function generateCertificate(name, setIssued) {
     const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
     const w = 297; const h = 210;
     const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-
-    // Background
-    doc.setFillColor(250, 250, 247);
-    doc.rect(0, 0, w, h, 'F');
-
-    // Outer border
-    doc.setDrawColor(26, 26, 26);
-    doc.setLineWidth(1.5);
-    doc.rect(8, 8, w-16, h-16);
-
-    // Gold inner border
-    doc.setDrawColor(201, 169, 110);
-    doc.setLineWidth(0.5);
-    doc.rect(13, 13, w-26, h-26);
-
-    // Gold top line
-    doc.setLineWidth(0.8);
-    doc.line(25, 28, w-25, 28);
-
-    // Header
-    doc.setFontSize(10);
-    doc.setTextColor(201, 169, 110);
-    doc.setFont('helvetica', 'bold');
-    doc.text('S E V I L   V E L S H A', w/2, 24, { align:'center' });
-
-    // Title
-    doc.setFontSize(28);
-    doc.setTextColor(26, 26, 26);
-    doc.text('Certificate of Completion', w/2, 45, { align:'center' });
-
-    // Course name
-    doc.setFontSize(14);
-    doc.setTextColor(201, 169, 110);
-    doc.text('Voice Control: Speak with Confidence and Authority', w/2, 57, { align:'center' });
-
-    // Gold line
-    doc.setDrawColor(201, 169, 110);
-    doc.setLineWidth(0.5);
-    doc.line(w/2-55, 62, w/2+55, 62);
-
-    // Awarded to
-    doc.setFontSize(12);
-    doc.setTextColor(100, 100, 100);
-    doc.setFont('helvetica', 'normal');
-    doc.text('This certificate is proudly awarded to', w/2, 72, { align:'center' });
-
-    // NAME — large, prominent
-    doc.setFontSize(34);
-    doc.setTextColor(26, 26, 26);
-    doc.setFont('helvetica', 'bolditalic');
-    doc.text(name, w/2, 92, { align:'center' });
-
-    // Line under name
-    const nameWidth = doc.getTextWidth(name);
-    doc.setDrawColor(26, 26, 26);
-    doc.setLineWidth(0.4);
-    doc.line(w/2 - nameWidth/2 - 5, 97, w/2 + nameWidth/2 + 5, 97);
-
-    // For completing
-    doc.setFontSize(11);
-    doc.setTextColor(100, 100, 100);
-    doc.setFont('helvetica', 'normal');
-    doc.text('for successfully completing the Voice Control program and demonstrating dedication to', w/2, 107, { align:'center' });
-    doc.text('developing a clear, confident, and powerful voice.', w/2, 114, { align:'center' });
-
-    // Skills
-    doc.setFontSize(10);
-    doc.setTextColor(26, 26, 26);
+    doc.setFillColor(250, 250, 247); doc.rect(0, 0, w, h, 'F');
+    doc.setDrawColor(26, 26, 26); doc.setLineWidth(1.5); doc.rect(8, 8, w-16, h-16);
+    doc.setDrawColor(201, 169, 110); doc.setLineWidth(0.5); doc.rect(13, 13, w-26, h-26);
+    doc.setLineWidth(0.8); doc.line(25, 28, w-25, 28);
+    doc.setFontSize(10); doc.setTextColor(201, 169, 110); doc.setFont('helvetica', 'bold'); doc.text('S E V I L   V E L S H A', w/2, 24, { align:'center' });
+    doc.setFontSize(28); doc.setTextColor(26, 26, 26); doc.text('Certificate of Completion', w/2, 45, { align:'center' });
+    doc.setFontSize(14); doc.setTextColor(201, 169, 110); doc.text('Voice Control: Speak with Confidence and Authority', w/2, 57, { align:'center' });
+    doc.setDrawColor(201, 169, 110); doc.setLineWidth(0.5); doc.line(w/2-55, 62, w/2+55, 62);
+    doc.setFontSize(12); doc.setTextColor(100, 100, 100); doc.setFont('helvetica', 'normal'); doc.text('This certificate is proudly awarded to', w/2, 72, { align:'center' });
+    doc.setFontSize(34); doc.setTextColor(26, 26, 26); doc.setFont('helvetica', 'bolditalic'); doc.text(name, w/2, 92, { align:'center' });
+    const nameWidth = doc.getTextWidth(name); doc.setDrawColor(26, 26, 26); doc.setLineWidth(0.4); doc.line(w/2 - nameWidth/2 - 5, 97, w/2 + nameWidth/2 + 5, 97);
+    doc.setFontSize(11); doc.setTextColor(100, 100, 100); doc.setFont('helvetica', 'normal'); doc.text('for successfully completing the Voice Control program', w/2, 107, { align:'center' });
     const skills = ['Breath control and vocal support', 'Clear articulation and speech precision', 'Pitch, pause, and pacing for impact', 'Emotional expression and vocal presence'];
-    skills.forEach((skill, i) => {
-      const col = i < 2 ? w/2 - 70 : w/2 + 5;
-      const row = i % 2 === 0 ? 125 : 132;
-      doc.text('• ' + skill, col, row);
-    });
-
-    // Gold divider
-    doc.setDrawColor(201, 169, 110);
-    doc.setLineWidth(0.5);
-    doc.line(25, 142, w-25, 142);
-
-    // Quote
-    doc.setFontSize(11);
-    doc.setTextColor(201, 169, 110);
-    doc.setFont('helvetica', 'italic');
-    doc.text('"My voice used to feel small. Now it feels strong."', w/2, 152, { align:'center' });
-
-    // Footer
-    doc.setFontSize(11);
-    doc.setTextColor(26, 26, 26);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Sevil Velsha', w/2, 165, { align:'center' });
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10);
-    doc.setTextColor(120, 120, 120);
-    doc.text('Executive Voice Authority Coach  |  Creator of the Voice Control Method', w/2, 172, { align:'center' });
+    skills.forEach((skill, i) => { const col = i < 2 ? w/2 - 70 : w/2 + 5; const row = i % 2 === 0 ? 125 : 132; doc.setFontSize(10); doc.setTextColor(26, 26, 26); doc.text('• ' + skill, col, row); });
+    doc.setDrawColor(201, 169, 110); doc.setLineWidth(0.5); doc.line(25, 142, w-25, 142);
+    doc.setFontSize(11); doc.setTextColor(201, 169, 110); doc.setFont('helvetica', 'italic'); doc.text('"My voice used to feel small. Now it feels strong."', w/2, 152, { align:'center' });
+    doc.setFontSize(11); doc.setTextColor(26, 26, 26); doc.setFont('helvetica', 'bold'); doc.text('Sevil Velsha', w/2, 165, { align:'center' });
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(120, 120, 120); doc.text('Executive Voice Authority Coach | Creator of the Voice Control Method', w/2, 172, { align:'center' });
     doc.text('Date: ' + today, w/2, 180, { align:'center' });
-
-    // Save
     doc.save(`Voice-Control-Certificate-${name.replace(/\s+/g,'-')}.pdf`);
     setIssued(true);
   };
-  if (!document.querySelector('script[src*="jspdf"]')) {
-    document.head.appendChild(script);
-  } else if (window.jspdf) {
-    script.onload();
-  } else {
-    document.head.appendChild(script);
-  }
+  if (!document.querySelector('script[src*="jspdf"]')) { document.head.appendChild(script); }
+  else if (window.jspdf) { script.onload(); }
+  else { document.head.appendChild(script); }
 }
 
 function CertificateSection({ progressPercent, totalLessons }) {
@@ -452,79 +351,32 @@ function CertificateSection({ progressPercent, totalLessons }) {
   const [certReady, setCertReady] = useState(false);
   const [userName, setUserName]   = useState('');
   const [issued, setIssued]       = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('vc_free_name') || localStorage.getItem('vc_buyer_name') || '';
-    if (saved) setNameInput(saved);
-  }, []);
-
+  useEffect(() => { const saved = localStorage.getItem('vc_free_name') || localStorage.getItem('vc_buyer_name') || ''; if (saved) setNameInput(saved); }, []);
   const darkBox = { background:'linear-gradient(135deg,#1a1a1a,#2d2d2d)', padding:'clamp(32px,5vw,52px)', textAlign:'center', marginTop:64 };
-
   if (progressPercent < 100) return (
     <div style={darkBox}>
       <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:'#c9a96e', margin:'0 0 12px' }}>🎓 Certification</p>
       <h2 style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.3rem,3vw,1.8rem)', fontWeight:700, color:'#fff', margin:'0 0 16px', lineHeight:1.3 }}>Earn a Professional Voice Control Certification</h2>
-      <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.65)', margin:'0 0 20px', lineHeight:1.7, maxWidth:420, marginLeft:'auto', marginRight:'auto' }}>
-        Upon completion, you will receive a <strong style={{ color:'#c9a96e' }}>Certified Voice Control Practitioner</strong> credential.
-      </p>
-      <div style={{ display:'flex', justifyContent:'center', gap:24, flexWrap:'wrap', marginBottom:8 }}>
-        {['✔ Downloadable certificate','✔ Share on LinkedIn','✔ Demonstrate communication authority'].map((item,i) => (
-          <span key={i} style={{ fontSize:'13px', color:'rgba(255,255,255,0.75)', fontWeight:500 }}>{item}</span>
-        ))}
-      </div>
+      <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.65)', margin:'0 0 20px', lineHeight:1.7, maxWidth:420, marginLeft:'auto', marginRight:'auto' }}>Upon completion, you will receive a <strong style={{ color:'#c9a96e' }}>Certified Voice Control Practitioner</strong> credential.</p>
       <p style={{ fontSize:'13px', color:'rgba(255,255,255,0.4)', marginTop:20 }}>Complete all {totalLessons} lessons to unlock your certificate.</p>
     </div>
   );
-
   return (
     <div style={darkBox}>
       <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:'#c9a96e', margin:'0 0 12px' }}>🏆 Course Complete</p>
       <h2 style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.3rem,3vw,1.8rem)', fontWeight:700, color:'#fff', margin:'0 0 24px', lineHeight:1.3 }}>Download Your Certificate</h2>
-
       {!certReady ? (
         <div style={{ maxWidth:400, margin:'0 auto' }}>
-          <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.65)', margin:'0 0 20px', lineHeight:1.7 }}>
-            Enter your full name as it should appear on the certificate:
-          </p>
-          <input
-            type="text"
-            value={nameInput}
-            onChange={e => setNameInput(e.target.value)}
-            onKeyDown={e => e.key==='Enter' && nameInput.trim() && (setUserName(nameInput.trim()), setCertReady(true), localStorage.setItem('vc_buyer_name', nameInput.trim()))}
-            placeholder="Your Full Name"
-            style={{ width:'100%', padding:'15px 16px', fontSize:'15px', border:'none', background:'rgba(255,255,255,0.1)', color:'#fff', marginBottom:20, boxSizing:'border-box', textAlign:'center', outline:'none', borderRadius:2 }}
-          />
-          <button
-            onClick={() => { if (nameInput.trim()) { setUserName(nameInput.trim()); setCertReady(true); localStorage.setItem('vc_buyer_name', nameInput.trim()); } }}
-            style={{ background:'linear-gradient(135deg,#c9a96e,#e8d5a3)', color:'#1a1a1a', border:'none', padding:'15px 40px', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', cursor:'pointer', width:'100%', borderRadius:2 }}
-          >
-            Generate Certificate
-          </button>
+          <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.65)', margin:'0 0 20px', lineHeight:1.7 }}>Enter your full name as it should appear on the certificate:</p>
+          <input type="text" value={nameInput} onChange={e => setNameInput(e.target.value)} onKeyDown={e => e.key==='Enter' && nameInput.trim() && (setUserName(nameInput.trim()), setCertReady(true), localStorage.setItem('vc_buyer_name', nameInput.trim()))} placeholder="Your Full Name" style={{ width:'100%', padding:'15px 16px', fontSize:'15px', border:'none', background:'rgba(255,255,255,0.1)', color:'#fff', marginBottom:20, boxSizing:'border-box', textAlign:'center', outline:'none', borderRadius:2 }} />
+          <button onClick={() => { if (nameInput.trim()) { setUserName(nameInput.trim()); setCertReady(true); localStorage.setItem('vc_buyer_name', nameInput.trim()); } }} style={{ background:'linear-gradient(135deg,#c9a96e,#e8d5a3)', color:'#1a1a1a', border:'none', padding:'15px 40px', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', cursor:'pointer', width:'100%', borderRadius:2 }}>Generate Certificate</button>
         </div>
       ) : (
         <div>
-          <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.65)', margin:'0 0 28px' }}>
-            Certificate prepared for: <strong style={{ color:'#c9a96e' }}>{userName}</strong>
-          </p>
-          <div style={{ display:'flex', gap:20, justifyContent:'center', flexWrap:'wrap', marginBottom:20 }}>
-            <button
-              onClick={() => generateCertificate(userName, setIssued)}
-              style={{ display:'inline-block', background:'linear-gradient(135deg,#c9a96e,#e8d5a3)', color:'#1a1a1a', fontFamily:'inherit', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', padding:'15px 40px', border:'none', cursor:'pointer', borderRadius:2 }}
-            >
-              Download Certificate
-            </button>
-            <a
-              href={`https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Voice+Control+Practitioner&organizationId=&issueYear=${new Date().getFullYear()}&issueMonth=${new Date().getMonth()+1}&certUrl=https://sevilvelsha.com`}
-              target="_blank" rel="noreferrer"
-              style={{ display:'inline-block', background:'#0077b5', color:'#fff', fontFamily:'inherit', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', padding:'15px 40px', textDecoration:'none', borderRadius:2 }}
-            >
-              Share on LinkedIn
-            </a>
-          </div>
-          {issued && <p style={{ fontSize:'13px', color:'#c9a96e', margin:'0 0 12px' }}>✓ Your certificate has been issued.</p>}
-          <button onClick={() => { setCertReady(false); setIssued(false); }} style={{ background:'none', border:'none', color:'rgba(255,255,255,0.4)', fontSize:'12px', cursor:'pointer', marginTop:4 }}>
-            Change name
-          </button>
+          <p style={{ fontSize:'14px', color:'rgba(255,255,255,0.65)', margin:'0 0 28px' }}>Certificate prepared for: <strong style={{ color:'#c9a96e' }}>{userName}</strong></p>
+          <button onClick={() => generateCertificate(userName, setIssued)} style={{ display:'inline-block', background:'linear-gradient(135deg,#c9a96e,#e8d5a3)', color:'#1a1a1a', fontFamily:'inherit', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', padding:'15px 40px', border:'none', cursor:'pointer', borderRadius:2 }}>Download Certificate</button>
+          {issued && <p style={{ fontSize:'13px', color:'#c9a96e', margin:'0 0 12px', marginTop:16 }}>✓ Your certificate has been issued.</p>}
+          <button onClick={() => { setCertReady(false); setIssued(false); }} style={{ background:'none', border:'none', color:'rgba(255,255,255,0.4)', fontSize:'12px', cursor:'pointer', marginTop:4 }}>Change name</button>
         </div>
       )}
     </div>
@@ -534,178 +386,66 @@ function CertificateSection({ progressPercent, totalLessons }) {
 export default function CourseDashboard() {
   const navigate = useNavigate();
   const [activeLesson, setActiveLesson] = useState(0);
-  const [completed, setCompleted] = useState(() => {
-    try {
-      const saved = localStorage.getItem('vc_progress');
-      return saved ? new Set(JSON.parse(saved)) : new Set();
-    } catch { return new Set(); }
-  });
-
-  const toggleComplete = (index) => {
-    setCompleted(prev => {
-      const next = new Set(prev);
-      next.has(index) ? next.delete(index) : next.add(index);
-      localStorage.setItem('vc_progress', JSON.stringify([...next]));
-      return next;
-    });
-  };
-
+  const [completed, setCompleted] = useState(() => { try { const saved = localStorage.getItem('vc_progress'); return saved ? new Set(JSON.parse(saved)) : new Set(); } catch { return new Set(); } });
+  const toggleComplete = (index) => { setCompleted(prev => { const next = new Set(prev); next.has(index) ? next.delete(index) : next.add(index); localStorage.setItem('vc_progress', JSON.stringify([...next])); return next; }); };
   const progressPercent = Math.round((completed.size / LESSONS.length) * 100);
   const lesson = LESSONS[activeLesson];
 
   return (
     <div className={styles.page}>
-
-      {/* NAV */}
       <nav className={styles.nav}>
-        <span onClick={() => navigate('/')} style={{ fontFamily:"'Segoe UI',Arial,sans-serif", fontSize:'18px', fontWeight:'600', letterSpacing:'0.08em', color:'#f5f4f0', cursor:'pointer', whiteSpace:'nowrap' }}>
-          Sevil Velsha
-        </span>
+        <span onClick={() => navigate('/')} style={{ fontFamily:"'Segoe UI',Arial,sans-serif", fontSize:'18px', fontWeight:'600', letterSpacing:'0.08em', color:'#f5f4f0', cursor:'pointer', whiteSpace:'nowrap' }}>Sevil Velsha</span>
         <p className={styles.navTitle}>Voice Control™ Course</p>
         <p className={styles.navProgress}>{completed.size}/{LESSONS.length} complete</p>
       </nav>
-
-      {/* PROGRESS BAR */}
-      <div className={styles.progressBarOuter}>
-        <div className={styles.progressBarInner} style={{ width:`${progressPercent}%` }}/>
-      </div>
-
+      <div className={styles.progressBarOuter}><div className={styles.progressBarInner} style={{ width:`${progressPercent}%` }}/></div>
       <div className={styles.layout}>
-
-        {/* SIDEBAR */}
         <aside className={styles.sidebar}>
           <p className={styles.sidebarLabel}>Course Lessons</p>
           <div className={styles.lessonList}>
             {LESSONS.map((l,i) => (
-              <button key={i}
-                className={[styles.lessonItem, activeLesson===i ? styles.lessonItemActive:'', completed.has(i)?styles.lessonItemDone:''].filter(Boolean).join(' ')}
-                onClick={() => { setActiveLesson(i); window.scrollTo({top:0,behavior:'smooth'}); }}
-              >
-                <div className={styles.lessonCheck}>
-                  {completed.has(i) ? (
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="#fff" strokeWidth="3" strokeLinecap="round"/></svg>
-                  ) : (
-                    <span className={styles.lessonNum}>{l.num}</span>
-                  )}
-                </div>
-                <div className={styles.lessonInfo}>
-                  <p className={styles.lessonTopic}>{l.topic}</p>
-                  <p className={styles.lessonDuration}>{l.duration}</p>
-                </div>
+              <button key={i} className={[styles.lessonItem, activeLesson===i ? styles.lessonItemActive:'', completed.has(i)?styles.lessonItemDone:''].filter(Boolean).join(' ')} onClick={() => { setActiveLesson(i); window.scrollTo({top:0,behavior:'smooth'}); }}>
+                <div className={styles.lessonCheck}>{completed.has(i) ? (<svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-10" stroke="#fff" strokeWidth="3" strokeLinecap="round"/></svg>) : (<span className={styles.lessonNum}>{l.num}</span>)}</div>
+                <div className={styles.lessonInfo}><p className={styles.lessonTopic}>{l.topic}</p><p className={styles.lessonDuration}>{l.duration}</p></div>
               </button>
             ))}
           </div>
-          {progressPercent === 100 && (
-            <div className={styles.certBlock}>
-              <p className={styles.certLabel}>🏆 Congratulations!</p>
-              <p className={styles.certText}>You have completed the Voice Control Course.</p>
-              <p className={styles.certText} style={{ marginTop:8, fontSize:'11px', opacity:0.7 }}>Scroll down to download your certificate.</p>
-            </div>
-          )}
+          {progressPercent === 100 && (<div className={styles.certBlock}><p className={styles.certLabel}>🏆 Congratulations!</p><p className={styles.certText}>You have completed the Voice Control Course.</p><p className={styles.certText} style={{ marginTop:8, fontSize:'11px', opacity:0.7 }}>Scroll down to download your certificate.</p></div>)}
         </aside>
-
-        {/* MAIN */}
         <main className={styles.main}>
-
-          {/* TOPIC */}
-          <div className={styles.topicBadge}>
-            <span className={styles.lessonNumBig}>Lesson {lesson.num}</span>
-            <span className={styles.topicText}>{lesson.topic}</span>
-          </div>
-
-          {/* TITLE */}
+          <div className={styles.topicBadge}><span className={styles.lessonNumBig}>Lesson {lesson.num}</span><span className={styles.topicText}>{lesson.topic}</span></div>
           <h1 className={styles.lessonHeading}>{lesson.title}</h1>
-
-          {/* ABOUT */}
-          <div className={styles.aboutBox}>
-            <p className={styles.aboutLabel}>About This Lesson</p>
-            <p className={styles.aboutText}>{lesson.about}</p>
-            <div className={styles.outcomeRow}>
-              <span className={styles.outcomeIcon}>🎯</span>
-              <p className={styles.outcomeText}><strong>Outcome:</strong> {lesson.outcome}</p>
-            </div>
-          </div>
-
-          {/* VIDEO — key forces re-mount on lesson change */}
+          <div className={styles.aboutBox}><p className={styles.aboutLabel}>About This Lesson</p><p className={styles.aboutText}>{lesson.about}</p><div className={styles.outcomeRow}><span className={styles.outcomeIcon}>🎯</span><p className={styles.outcomeText}><strong>Outcome:</strong> {lesson.outcome}</p></div></div>
+          
+          {/* VIDEO — with download protection */}
           <div className={styles.videoSection}>
             <p className={styles.videoLabel}>Lesson Video</p>
-            <div className={styles.videoWrapper}>
-              <iframe
-                key={activeLesson}
-                src={lesson.videoUrl}
-                title={lesson.title}
-                className={styles.videoFrame}
-                allow="autoplay"
-                allowFullScreen
-              />
+            <div className={styles.videoWrapper} style={{ position:'relative' }} onContextMenu={(e) => e.preventDefault()}>
+              <div style={{ position:'absolute', inset:0, zIndex:1, background:'transparent' }} onContextMenu={(e) => e.preventDefault()} />
+              <iframe key={activeLesson} src={lesson.videoUrl} title={lesson.title} className={styles.videoFrame} allow="autoplay" allowFullScreen sandbox="allow-scripts allow-same-origin allow-presentation" controlsList="nodownload" style={{ position:'relative', zIndex:0 }} />
             </div>
             <p className={styles.videoNote}>💡 Click the video to play. Opens in Google Drive for best quality.</p>
           </div>
 
-          {/* PDF */}
-          <div className={styles.downloadSection}>
-            <p className={styles.downloadLabel}>Downloadable Material</p>
-            <a href={lesson.pdfUrl} download={lesson.pdfName} target="_blank" rel="noreferrer" className={styles.pdfBtn}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/>
-                <path d="M4 18h16v2H4v-2z" fill="currentColor"/>
-              </svg>
-              Download Lesson Workbook (PDF)
-            </a>
-          </div>
-
-          {/* QUIZ */}
+          <div className={styles.downloadSection}><p className={styles.downloadLabel}>Downloadable Material</p><a href={lesson.pdfUrl} download={lesson.pdfName} target="_blank" rel="noreferrer" className={styles.pdfBtn}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M4 18h16v2H4v-2z" fill="currentColor"/></svg>Download Lesson Workbook (PDF)</a></div>
           <QuizSection lessonIndex={activeLesson} />
-
-          {/* ACTIONS */}
           <div className={styles.actions} style={{ marginTop:52 }}>
-            <button
-              className={[styles.completeBtn, completed.has(activeLesson)?styles.completeBtnDone:''].filter(Boolean).join(' ')}
-              onClick={() => toggleComplete(activeLesson)}
-            >
-              {completed.has(activeLesson) ? '✓ Lesson Complete' : 'Mark as Complete'}
-            </button>
-            {activeLesson < LESSONS.length - 1 && (
-              <button
-                className={styles.nextBtn}
-                onClick={() => { toggleComplete(activeLesson); setActiveLesson(activeLesson+1); window.scrollTo({top:0,behavior:'smooth'}); }}
-              >
-                Next Lesson →
-              </button>
-            )}
+            <button className={[styles.completeBtn, completed.has(activeLesson)?styles.completeBtnDone:''].filter(Boolean).join(' ')} onClick={() => toggleComplete(activeLesson)}>{completed.has(activeLesson) ? '✓ Lesson Complete' : 'Mark as Complete'}</button>
+            {activeLesson < LESSONS.length - 1 && (<button className={styles.nextBtn} onClick={() => { toggleComplete(activeLesson); setActiveLesson(activeLesson+1); window.scrollTo({top:0,behavior:'smooth'}); }}>Next Lesson →</button>)}
           </div>
-
-          {/* CERTIFICATE — only on last lesson */}
-          {activeLesson === LESSONS.length - 1 && (
-            <CertificateSection progressPercent={progressPercent} totalLessons={LESSONS.length} />
-          )}
-
+          {activeLesson === LESSONS.length - 1 && (<CertificateSection progressPercent={progressPercent} totalLessons={LESSONS.length} />)}
+          
           {/* SUPPORT */}
           <div style={{ marginTop:68, borderTop:'1px solid #e8e4dc', paddingTop:56 }}>
-            <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:'#c9a96e', marginBottom:16 }}>
-              Need Support With Your Voice?
-            </p>
-            <p style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.1rem,2.2vw,1.4rem)', fontWeight:400, color:'#1a1a1a', marginBottom:16, lineHeight:1.4 }}>
-              Need Support With Your Voice?
-            </p>
-            <p style={{ fontSize:'14px', color:'#777', marginBottom:36, lineHeight:1.9, maxWidth:520 }}>
-              If something feels unclear or you want to improve faster, you can reach out to me directly.
-              I personally review messages and guide students who are serious about improving their voice.
-            </p>
+            <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:'#c9a96e', marginBottom:16 }}>Need Support With Your Voice?</p>
+            <p style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.1rem,2.2vw,1.4rem)', fontWeight:400, color:'#1a1a1a', marginBottom:16, lineHeight:1.4 }}>Need Support With Your Voice?</p>
+            <p style={{ fontSize:'14px', color:'#777', marginBottom:36, lineHeight:1.9, maxWidth:520 }}>If something feels unclear or you want to improve faster, you can reach out to me directly. I personally review messages and guide students who are serious about improving their voice.</p>
             <div style={{ display:'flex', gap:24, flexWrap:'wrap', marginBottom:20 }}>
-              <a href="https://wa.me/17786366633" target="_blank" rel="noreferrer"
-                style={{ display:'inline-block', background:'#25D366', color:'#fff', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'15px 36px', textDecoration:'none', borderRadius:2 }}>
-                Message me on WhatsApp
-              </a>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com"
-  target="_blank"
-  style={{ display:'inline-block', background:'#fff', color:'#1a1a1a', border:'1.5px solid #1a1a1a', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'15px 36px', textDecoration:'none', borderRadius:2 }}>
-  info@sevilvelsha.com
-</a>
+              <a href="https://wa.me/17786366633" target="_blank" rel="noreferrer" style={{ display:'inline-block', background:'#25D366', color:'#fff', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'15px 36px', textDecoration:'none', borderRadius:2 }}>Message me on WhatsApp</a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com" target="_blank" style={{ display:'inline-block', background:'#fff', color:'#1a1a1a', border:'1.5px solid #1a1a1a', fontFamily:'inherit', fontSize:'11px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', padding:'15px 36px', textDecoration:'none', borderRadius:2 }}>info@sevilvelsha.com</a>
             </div>
             <p style={{ fontSize:'12px', color:'#aaa', margin:0 }}>I reply within 24 hours.</p>
           </div>
-
         </main>
       </div>
     </div>
