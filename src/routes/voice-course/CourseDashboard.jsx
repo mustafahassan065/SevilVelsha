@@ -418,14 +418,22 @@ export default function CourseDashboard() {
           <div className={styles.aboutBox}><p className={styles.aboutLabel}>About This Lesson</p><p className={styles.aboutText}>{lesson.about}</p><div className={styles.outcomeRow}><span className={styles.outcomeIcon}>🎯</span><p className={styles.outcomeText}><strong>Outcome:</strong> {lesson.outcome}</p></div></div>
           
           {/* VIDEO — with download protection */}
-          <div className={styles.videoSection}>
-            <p className={styles.videoLabel}>Lesson Video</p>
-            <div className={styles.videoWrapper} style={{ position:'relative' }} onContextMenu={(e) => e.preventDefault()}>
-              <div style={{ position:'absolute', inset:0, zIndex:1, background:'transparent' }} onContextMenu={(e) => e.preventDefault()} />
-              <iframe key={activeLesson} src={lesson.videoUrl} title={lesson.title} className={styles.videoFrame} allow="autoplay" allowFullScreen sandbox="allow-scripts allow-same-origin allow-presentation" controlsList="nodownload" style={{ position:'relative', zIndex:0 }} />
-            </div>
-            <p className={styles.videoNote}>💡 Click the video to play. Opens in Google Drive for best quality.</p>
-          </div>
+          {/* VIDEO — with sandbox protection (no overlay) */}
+<div className={styles.videoSection}>
+  <p className={styles.videoLabel}>Lesson Video</p>
+  <div className={styles.videoWrapper}>
+    <iframe
+      key={activeLesson}
+      src={lesson.videoUrl}
+      title={lesson.title}
+      className={styles.videoFrame}
+      allow="autoplay"
+      allowFullScreen
+      sandbox="allow-scripts allow-same-origin allow-presentation"
+    />
+  </div>
+  <p className={styles.videoNote}>💡 Click the video to play. Opens in Google Drive for best quality.</p>
+</div>
 
           <div className={styles.downloadSection}><p className={styles.downloadLabel}>Downloadable Material</p><a href={lesson.pdfUrl} download={lesson.pdfName} target="_blank" rel="noreferrer" className={styles.pdfBtn}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M4 18h16v2H4v-2z" fill="currentColor"/></svg>Download Lesson Workbook (PDF)</a></div>
           <QuizSection lessonIndex={activeLesson} />

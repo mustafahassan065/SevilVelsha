@@ -1,7 +1,6 @@
 // src/routes/voice-course/VoiceFreeAccessPage.jsx
 // Route: /voice-free-access
 // Updated with all conversion blocks per client brief
-// VIDEO: Google Drive with download protection
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -50,7 +49,7 @@ export default function VoiceFreeAccessPage() {
           Your first Voice Control training is ready. Watch the video below and download your free PDF guide.
         </p>
 
-        {/* VIDEO — Google Drive with download protection */}
+        {/* VIDEO — Google Drive with sandbox protection */}
         <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:GOLD, margin:'0 0 14px' }}>Lesson 1 — Free Training Video</p>
         <p style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.1rem,2.5vw,1.4rem)', fontWeight:700, color:DARK, margin:'0 0 16px' }}>
           The One Breathing Technique That Calms & Empowers
@@ -63,36 +62,17 @@ export default function VoiceFreeAccessPage() {
             borderRadius:4, 
             overflow:'hidden', 
             boxShadow:'0 4px 24px rgba(0,0,0,0.12)', 
-            marginBottom:12,
-            position:'relative',
-            pointerEvents:'auto'
+            marginBottom:12 
           }}
-          onContextMenu={(e) => e.preventDefault()}
         >
-          {/* Transparent overlay to block right-click save */}
-          <div style={{
-            position:'absolute',
-            inset:0,
-            zIndex:1,
-            background:'transparent'
-          }}
-          onContextMenu={(e) => e.preventDefault()}
-        />
           <iframe 
             src={FREE_VIDEO} 
             title="Free Lesson 1" 
-            style={{ 
-              width:'100%', 
-              height:'100%', 
-              border:'none',
-              position:'relative',
-              zIndex:0
-            }} 
+            style={{ width:'100%', height:'100%', border:'none' }} 
             allow="autoplay" 
             allowFullScreen 
             loading="lazy"
             sandbox="allow-scripts allow-same-origin allow-presentation"
-            controlsList="nodownload"
           />
         </div>
         <p style={{ fontSize:'12px', color:'#aaa', margin:'0 0 40px' }}>💡 Click to play. Opens in Google Drive for full quality.</p>
