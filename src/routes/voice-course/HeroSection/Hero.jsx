@@ -52,6 +52,24 @@ const Hero = () => {
             </button>
           </div>
 
+          {/* PDF Download CTA */}
+          <a
+            href="/voice-control-pdf"
+            style={{
+              display: 'inline-block',
+              marginTop: '12px',
+              background: 'transparent',
+              color: 'rgba(255,255,255,0.75)',
+              fontSize: '12px',
+              fontWeight: 600,
+              letterSpacing: '0.12em',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+            }}
+          >
+            ↓ Download Free Voice Control PDF
+          </a>
+
           <p className={styles.heroGuaranteeText}>30-Day Voice Transformation Guarantee</p>
 
           <div className={styles.heroStatsBar}>
