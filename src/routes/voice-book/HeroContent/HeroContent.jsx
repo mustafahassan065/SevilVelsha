@@ -38,8 +38,8 @@ export default function HeroContent() {
         </a>
         <a
                       href="/voice-control-pdf"
-                      className={styles.heroSecondaryBtn}
-                      style={{ textDecoration: 'none', display: 'inline-block', textAlign: 'center' }}
+                      className={styles.buyButton}
+                     
                     >
                       ↓ Download Free PDF Guide
                     </a>
