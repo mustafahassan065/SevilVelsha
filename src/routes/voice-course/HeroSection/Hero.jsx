@@ -52,13 +52,7 @@ const Hero = () => {
             </button>
 
             {/* Button 3 — PDF page */}
-            <a
-              href="/voice-control-pdf"
-              className={styles.heroSecondaryBtn}
-              style={{ textDecoration: 'none', display: 'inline-block', textAlign: 'center' }}
-            >
-              ↓ Download Free PDF Guide
-            </a>
+            
           </div>
 
           <p className={styles.heroGuaranteeText}>30-Day Voice Transformation Guarantee</p>

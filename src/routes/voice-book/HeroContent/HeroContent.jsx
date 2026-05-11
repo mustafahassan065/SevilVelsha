@@ -36,6 +36,13 @@ export default function HeroContent() {
         >
           Buy Now— 97$
         </a>
+        <a
+                      href="/voice-control-pdf"
+                      className={styles.heroSecondaryBtn}
+                      style={{ textDecoration: 'none', display: 'inline-block', textAlign: 'center' }}
+                    >
+                      ↓ Download Free PDF Guide
+                    </a>
         <button className={styles.samplesButton}>Read Samples</button>
       </div>
 
