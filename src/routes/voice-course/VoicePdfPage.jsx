@@ -73,7 +73,7 @@ export default function VoicePdfPage() {
           </p>
 
           {/* PDF Embed */}
-          <div style={{ width:'100%', height:'520px', border:'1px solid #e8e4dc', marginBottom:24, borderRadius:4, overflow:'hidden' }}>
+          <div style={{ width:'100%', height:'clamp(600px, 85vh, 1000px)', border:'1px solid #e8e4dc', marginBottom:24, borderRadius:4, overflow:'hidden', boxShadow:'0 4px 24px rgba(0,0,0,0.08)' }}>
             <iframe src={PDF_EMBED} title="Voice Control PDF" style={{ width:'100%', height:'100%', border:'none' }} allowFullScreen/>
           </div>
           <a
@@ -133,6 +133,24 @@ export default function VoicePdfPage() {
       </div>
 
       <div style={{ maxWidth: 1000, margin: '0 auto', padding: 'clamp(48px,6vw,72px) 24px' }}>
+
+        {/* ── LARGE PDF PREVIEW — main value, full width ── */}
+        <div style={{ marginBottom: 56 }}>
+          <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:GOLD, margin:'0 0 16px' }}>
+            Preview — 5 Voice Mistakes That Make People Ignore You
+          </p>
+          <div style={{ width:'100%', height:'clamp(500px, 80vh, 900px)', border:'1px solid #e8e4dc', borderRadius:4, overflow:'hidden', boxShadow:'0 4px 24px rgba(0,0,0,0.08)' }}>
+            <iframe
+              src={PDF_EMBED}
+              title="Voice Control PDF Preview"
+              style={{ width:'100%', height:'100%', border:'none' }}
+              allowFullScreen
+            />
+          </div>
+          <p style={{ fontSize:'12px', color:'#aaa', marginTop:10 }}>
+            💡 Scroll to read the full guide. Enter your email below to download.
+          </p>
+        </div>
 
         {/* MAIN GRID — Form left, Info right */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: 40, marginBottom: 72, alignItems: 'start' }}>
