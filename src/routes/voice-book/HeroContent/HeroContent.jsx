@@ -36,13 +36,7 @@ export default function HeroContent() {
         >
           Buy Now— 97$
         </a>
-        <a
-                      href="/voice-control-pdf"
-                      className={styles.buyButton}
-                     
-                    >
-                      ↓ Download Free PDF Guide
-                    </a>
+       
         <button className={styles.samplesButton}>Read Samples</button>
       </div>
 
