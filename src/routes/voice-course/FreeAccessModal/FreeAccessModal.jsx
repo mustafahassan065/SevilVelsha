@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const LEAD_API = '/api/voice-free-lead';
+const LEAD_API = 'https://sevil-velsha-backend-main.vercel.app/api/voice-free-lead';
 
 export default function FreeAccessModal({ onClose }) {
   const navigate = useNavigate();

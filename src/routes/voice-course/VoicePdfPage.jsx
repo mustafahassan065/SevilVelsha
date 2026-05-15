@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const PDF_EMBED    = 'https://drive.google.com/file/d/1UNZw12zVLbOyymp5KE-v5_-Qy5RHI1Hr/preview';
 const PDF_DOWNLOAD = 'https://drive.google.com/uc?export=download&id=1UNZw12zVLbOyymp5KE-v5_-Qy5RHI1Hr';
-const LEAD_API    = '/api/voice-free-lead';
+const LEAD_API = 'https://sevil-velsha-backend-main.vercel.app/api/voice-free-lead';
 const COURSE_URL  = '/voice-control-course';
 
 const DARK  = '#1a1a1a';
