@@ -11,6 +11,7 @@ const LESSONS = [
     about: 'Discover diaphragmatic breathing — the single most powerful technique used by TED speakers, actors, and confident communicators worldwide. Learn why shallow chest breathing weakens your voice and how belly breathing instantly makes you sound calmer, stronger, and more grounded. Includes two guided exercises and a 7-day morning practice.',
     outcome: 'A simple daily breathing practice that fuels confidence, vocal clarity, and authentic power — anytime, anywhere.',
     videoUrl: 'https://drive.google.com/file/d/1rs8qVhVz23WQlZQ7NFfsq93tB0pDBYbE/preview',
+    thumbnailUrl: '/thumbnails/lesson-01.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=1LDGTUt9LijOtN7XipfrnToIaGghIFME7',
     pdfName: 'Lesson-1-Breathing-Workbook.pdf',
   },
@@ -20,6 +21,7 @@ const LESSONS = [
     about: 'Go deeper into the difference between shallow chest breathing and deep belly breathing. Through guided exercises, practice belly breathing to calm your nervous system and voiced exhales to strengthen breath support.',
     outcome: 'A daily breathing routine that fuels vocal clarity, confidence, and authentic power in any situation.',
     videoUrl: 'https://drive.google.com/file/d/1QPzt_S9Tbmo2ra3djjyvJ13HxT2MUGht/preview',
+    thumbnailUrl: '/thumbnails/lesson-02.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=1iIlcIdFTClexktoMoyAZTzObxklkcnI9',
     pdfName: 'Lesson-2-Deep-Dive-Workbook.pdf',
   },
@@ -29,6 +31,7 @@ const LESSONS = [
     about: 'Learn how to prepare your voice for clear, confident speaking just like professional actors and speakers do. This daily 5-minute routine helps you breathe deeply, wake up your voice with humming and resonance exercises, and improve clarity with tongue twisters.',
     outcome: 'A ready-to-use warm-up routine for presentations, meetings, videos, or interviews.',
     videoUrl: 'https://drive.google.com/file/d/1T0oZC9UdtPocCX8eNzZHOmYYawfOMWGN/preview',
+    thumbnailUrl: '/thumbnails/lesson-03.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=1U9rRdx1zUcYkvDdaFS601zXipVJ0SOLK',
     pdfName: 'Lesson-3-Warmup-Workbook.pdf',
   },
@@ -38,6 +41,7 @@ const LESSONS = [
     about: 'Master the three essential tools that shape not just how your words are heard — but how they are felt. Pitch gives your speech melody. Pause is your secret weapon. Pace controls how you are perceived.',
     outcome: 'The ability to speak with clarity, confidence, and persuasive energy in any situation.',
     videoUrl: 'https://drive.google.com/file/d/1VG7YlxV0VBjv1J3Un-2KTcWECWsIyRcD/preview',
+    thumbnailUrl: '/thumbnails/lesson-04.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=1s9FxAlP_N9tzeob4T2qTG_evjLFA2rEU',
     pdfName: 'Lesson-4-Pitch-Pause-Pace-Workbook.pdf',
   },
@@ -47,6 +51,7 @@ const LESSONS = [
     about: 'Eliminate mumbling and speak with precision in any situation. Discover why we mumble and how to fix it with simple daily exercises that activate your lips, tongue, and jaw.',
     outcome: 'Greater control, presence, and impact in every conversation.',
     videoUrl: 'https://drive.google.com/file/d/1grCVs-kE_qa67ujNy2cwFTAQ2th48eme/preview',
+    thumbnailUrl: '/thumbnails/lesson-05.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=13kxip93a3hPmdXM6gPLxtXIBya90L5Xu',
     pdfName: 'Lesson-5-Clarity-Workbook.pdf',
   },
@@ -56,6 +61,7 @@ const LESSONS = [
     about: 'Learn how to bring your words to life using tone, breath, and emphasis to express real emotion. The Emotion Line Game — one sentence delivered with multiple different feelings.',
     outcome: 'The ability to deliver any line with confidence, warmth, or excitement — on command.',
     videoUrl: 'https://drive.google.com/file/d/1wmvDMMRY2jIShwZ-Ynr-Rs4h7HtBNbmd/preview',
+    thumbnailUrl: '/thumbnails/lesson-06.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=115h7qVhEdsJo8UYSJj7u9vJ61JMdf_-T',
     pdfName: 'Lesson-6-Vocal-Emotion-Workbook.pdf',
   },
@@ -65,6 +71,7 @@ const LESSONS = [
     about: 'Step into the world of performance and presence. Learn how breath, pacing, silence, and emphasis create charisma that people feel instantly.',
     outcome: 'The presence and charisma to captivate any audience.',
     videoUrl: 'https://drive.google.com/file/d/1ZGKftrvVEA2xPJ08_C0M_ORFNFdN4qSs/preview',
+    thumbnailUrl: '/thumbnails/lesson-07.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=115h7qVhEdsJo8UYSJj7u9vJ61JMdf_-T',
     pdfName: 'Lesson-7-Performance-Workbook.pdf',
   },
@@ -74,6 +81,7 @@ const LESSONS = [
     about: 'Your moment to reflect, celebrate, and commit. Re-record your voice and hear just how far you have come. Receive your 30-Day Voice Power Plan and complete the process to receive your credential.',
     outcome: 'A celebration of your personal growth and the launch of a new chapter with your voice.',
     videoUrl: 'https://drive.google.com/file/d/150CwynaPYLn-nEYS9xWI-70urmd54A42/preview',
+    thumbnailUrl: '/thumbnails/lesson-08.png',
     pdfUrl: 'https://drive.google.com/uc?export=download&id=1LW8-McmYoxe_znD1SaJ67n_iKJIEQDW7',
     pdfName: 'Lesson-8-Final-Challenge-Workbook.pdf',
   },
@@ -391,6 +399,14 @@ export default function CourseDashboard() {
   const progressPercent = Math.round((completed.size / LESSONS.length) * 100);
   const lesson = LESSONS[activeLesson];
 
+  // Handler for thumbnail click — opens video in a new tab
+  const handleThumbnailClick = () => {
+    const videoId = lesson.videoUrl.split('/d/')[1]?.split('/')[0];
+    if (videoId) {
+      window.open(`https://drive.google.com/file/d/${videoId}/view`, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div className={styles.page}>
       <nav className={styles.nav}>
@@ -417,23 +433,34 @@ export default function CourseDashboard() {
           <h1 className={styles.lessonHeading}>{lesson.title}</h1>
           <div className={styles.aboutBox}><p className={styles.aboutLabel}>About This Lesson</p><p className={styles.aboutText}>{lesson.about}</p><div className={styles.outcomeRow}><span className={styles.outcomeIcon}>🎯</span><p className={styles.outcomeText}><strong>Outcome:</strong> {lesson.outcome}</p></div></div>
           
-          {/* VIDEO — with download protection */}
-          {/* VIDEO — with sandbox protection (no overlay) */}
-<div className={styles.videoSection}>
-  <p className={styles.videoLabel}>Lesson Video</p>
-  <div className={styles.videoWrapper}>
-    <iframe
-      key={activeLesson}
-      src={lesson.videoUrl}
-      title={lesson.title}
-      className={styles.videoFrame}
-      allow="autoplay"
-      allowFullScreen
-      sandbox="allow-scripts allow-same-origin allow-presentation"
-    />
-  </div>
-  <p className={styles.videoNote}>💡 Click the video to play. Opens in Google Drive for best quality.</p>
-</div>
+          {/* VIDEO — Thumbnail on click opens Google Drive in new tab */}
+          <div className={styles.videoSection}>
+            <p className={styles.videoLabel}>Lesson Video</p>
+            <div className={styles.videoWrapper} onClick={handleThumbnailClick} style={{ cursor: 'pointer', position: 'relative' }}>
+              <img
+                key={activeLesson}
+                src={lesson.thumbnailUrl}
+                alt={`${lesson.title} - Click to watch`}
+                style={{ width: '100%', display: 'block', borderRadius: '4px' }}
+              />
+              {/* Play button overlay */}
+              <div style={{
+                position: 'absolute',
+                top: 0, left: 0, right: 0, bottom: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(0,0,0,0.15)',
+                transition: 'background 0.3s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.3)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.15)'}
+              >
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="white" style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))' }}>
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+            <p className={styles.videoNote}>💡 Click the thumbnail to watch the video. Opens in Google Drive for best quality.</p>
+          </div>
 
           <div className={styles.downloadSection}><p className={styles.downloadLabel}>Downloadable Material</p><a href={lesson.pdfUrl} download={lesson.pdfName} target="_blank" rel="noreferrer" className={styles.pdfBtn}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M4 18h16v2H4v-2z" fill="currentColor"/></svg>Download Lesson Workbook (PDF)</a></div>
           <QuizSection lessonIndex={activeLesson} />
