@@ -49,7 +49,7 @@ export default function VoicePdfPage() {
     }
   };
 
-  // ── THANK YOU STATE ───────────────────────────────────────────
+  // ── THANK YOU STATE (UNCHANGED) ───────────────────────────────
   if (done) {
     return (
       <div style={{ ...J, background: LIGHT, minHeight: '100vh' }}>
@@ -72,7 +72,7 @@ export default function VoicePdfPage() {
             Thank you for downloading the Voice Control guide. Your PDF is ready below.
           </p>
 
-          {/* PDF Embed */}
+          {/* PDF Embed — Full PDF after form submit (UNCHANGED) */}
           <div style={{ width:'100%', height:'clamp(600px, 85vh, 1000px)', border:'1px solid #e8e4dc', marginBottom:24, borderRadius:4, overflow:'hidden', boxShadow:'0 4px 24px rgba(0,0,0,0.08)' }}>
             <iframe src={PDF_EMBED} title="Voice Control PDF" style={{ width:'100%', height:'100%', border:'none' }} allowFullScreen/>
           </div>
@@ -134,21 +134,35 @@ export default function VoicePdfPage() {
 
       <div style={{ maxWidth: 1000, margin: '0 auto', padding: 'clamp(48px,6vw,72px) 24px' }}>
 
-        {/* ── LARGE PDF PREVIEW — main value, full width ── */}
+        {/* ── PDF PREVIEW — CHANGED: Sirf pehla page, fixed height, no scroll ── */}
         <div style={{ marginBottom: 56 }}>
           <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.22em', textTransform:'uppercase', color:GOLD, margin:'0 0 16px' }}>
             Preview — 5 Voice Mistakes That Make People Ignore You
           </p>
-          <div style={{ width:'100%', height:'clamp(500px, 80vh, 900px)', border:'1px solid #e8e4dc', borderRadius:4, overflow:'hidden', boxShadow:'0 4px 24px rgba(0,0,0,0.08)' }}>
+          <div style={{ 
+            width: '100%', 
+            height: '650px', 
+            border: '1px solid #e8e4dc', 
+            borderRadius: 4, 
+            overflow: 'hidden',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+            position: 'relative',
+          }}>
             <iframe
-              src={PDF_EMBED}
+              src={`${PDF_EMBED}#view=FitH&scrollbar=0`}
               title="Voice Control PDF Preview"
-              style={{ width:'100%', height:'100%', border:'none' }}
-              allowFullScreen
+              style={{ 
+                width: '100%', 
+                height: '650px', 
+                border: 'none',
+                pointerEvents: 'none',
+              }}
+              allowFullScreen={false}
+              scrolling="no"
             />
           </div>
           <p style={{ fontSize:'12px', color:'#aaa', marginTop:10 }}>
-            💡 Scroll to read the full guide. Enter your email below to download.
+            💡 First page preview. Enter your email below to access the full PDF.
           </p>
         </div>
 
