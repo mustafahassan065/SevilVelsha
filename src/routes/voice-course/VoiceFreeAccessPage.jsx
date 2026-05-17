@@ -6,8 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const FREE_VIDEO = 'https://drive.google.com/file/d/1rs8qVhVz23WQlZQ7NFfsq93tB0pDBYbE/preview';
+const FREE_THUMBNAIL = '/thumbnails/free-lesson-01.png';
 const FREE_PDF   = 'https://drive.google.com/uc?export=download&id=1LDGTUt9LijOtN7XipfrnToIaGghIFME7';
-const STRIPE_URL = 'https://buy.stripe.com/8x228q4OXbDX5zE6EMgIo02';
+const STRIPE_URL = 'https://buy.stripe.com/8x228q4OXbDX5zE7EMgIo02';
 
 const DARK  = '#1a1a1a';
 const GOLD  = '#c9a96e';
@@ -17,6 +18,7 @@ const MUTED = '#777777';
 export default function VoiceFreeAccessPage() {
   const navigate = useNavigate();
   const [name, setName] = useState('');
+  const [videoPlaying, setVideoPlaying] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('vc_free_name');
@@ -49,33 +51,78 @@ export default function VoiceFreeAccessPage() {
           Your first Voice Control training is ready. Watch the video below and download your free PDF guide.
         </p>
 
-        {/* VIDEO — Google Drive with sandbox protection */}
+        {/* VIDEO — Thumbnail shows first, click loads iframe on page */}
         <p style={{ fontSize:'11px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:GOLD, margin:'0 0 14px' }}>Lesson 1 — Free Training Video</p>
         <p style={{ fontFamily:'Georgia,serif', fontSize:'clamp(1.1rem,2.5vw,1.4rem)', fontWeight:700, color:DARK, margin:'0 0 16px' }}>
           The One Breathing Technique That Calms & Empowers
         </p>
-        <div 
-          style={{ 
-            width:'100%', 
-            aspectRatio:'16/9', 
-            background:DARK, 
-            borderRadius:4, 
-            overflow:'hidden', 
-            boxShadow:'0 4px 24px rgba(0,0,0,0.12)', 
-            marginBottom:12 
-          }}
-        >
-          <iframe 
-            src={FREE_VIDEO} 
-            title="Free Lesson 1" 
-            style={{ width:'100%', height:'100%', border:'none' }} 
-            allow="autoplay" 
-            allowFullScreen 
-            loading="lazy"
-            sandbox="allow-scripts allow-same-origin allow-presentation"
-          />
-        </div>
-        <p style={{ fontSize:'12px', color:'#aaa', margin:'0 0 40px' }}>💡 Click to play. Opens in Google Drive for full quality.</p>
+
+        {!videoPlaying ? (
+          // THUMBNAIL VIEW
+          <div 
+            style={{ 
+              width:'100%', 
+              aspectRatio:'16/9', 
+              borderRadius:4, 
+              overflow:'hidden', 
+              boxShadow:'0 4px 24px rgba(0,0,0,0.12)', 
+              marginBottom:12,
+              cursor:'pointer',
+              position:'relative',
+            }}
+            onClick={() => setVideoPlaying(true)}
+          >
+            <img
+              src={FREE_THUMBNAIL}
+              alt="Free Lesson 1 - Click to play"
+              style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}
+            />
+            {/* Play button overlay */}
+            <div style={{
+              position: 'absolute',
+              top: 0, left: 0, right: 0, bottom: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: 'rgba(0,0,0,0.15)',
+              transition: 'background 0.3s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.3)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.15)'}
+            >
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="white" style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))' }}>
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        ) : (
+          // IFRAME VIEW — plays on page
+          <div 
+            style={{ 
+              width:'100%', 
+              aspectRatio:'16/9', 
+              background:DARK, 
+              borderRadius:4, 
+              overflow:'hidden', 
+              boxShadow:'0 4px 24px rgba(0,0,0,0.12)', 
+              marginBottom:12 
+            }}
+          >
+            <iframe 
+              src={FREE_VIDEO} 
+              title="Free Lesson 1" 
+              style={{ width:'100%', height:'100%', border:'none' }} 
+              allow="autoplay" 
+              allowFullScreen 
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-presentation"
+            />
+          </div>
+        )}
+
+        <p style={{ fontSize:'12px', color:'#aaa', margin:'0 0 40px' }}>
+          {!videoPlaying 
+            ? '💡 Click the thumbnail above to play the video on this page.' 
+            : '🎬 Video is playing on this page.'}
+        </p>
 
         {/* 1. Text block under video */}
         <div style={{ textAlign:'center', margin:'0 0 40px', padding:'0 8px' }}>
