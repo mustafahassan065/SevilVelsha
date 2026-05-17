@@ -394,18 +394,16 @@ function CertificateSection({ progressPercent, totalLessons }) {
 export default function CourseDashboard() {
   const navigate = useNavigate();
   const [activeLesson, setActiveLesson] = useState(0);
+  const [videoPlaying, setVideoPlaying] = useState(false);
   const [completed, setCompleted] = useState(() => { try { const saved = localStorage.getItem('vc_progress'); return saved ? new Set(JSON.parse(saved)) : new Set(); } catch { return new Set(); } });
   const toggleComplete = (index) => { setCompleted(prev => { const next = new Set(prev); next.has(index) ? next.delete(index) : next.add(index); localStorage.setItem('vc_progress', JSON.stringify([...next])); return next; }); };
   const progressPercent = Math.round((completed.size / LESSONS.length) * 100);
   const lesson = LESSONS[activeLesson];
 
-  // Handler for thumbnail click — opens video in a new tab
-  const handleThumbnailClick = () => {
-    const videoId = lesson.videoUrl.split('/d/')[1]?.split('/')[0];
-    if (videoId) {
-      window.open(`https://drive.google.com/file/d/${videoId}/view`, '_blank', 'noopener,noreferrer');
-    }
-  };
+  // Reset video state when lesson changes
+  useEffect(() => {
+    setVideoPlaying(false);
+  }, [activeLesson]);
 
   return (
     <div className={styles.page}>
@@ -433,33 +431,59 @@ export default function CourseDashboard() {
           <h1 className={styles.lessonHeading}>{lesson.title}</h1>
           <div className={styles.aboutBox}><p className={styles.aboutLabel}>About This Lesson</p><p className={styles.aboutText}>{lesson.about}</p><div className={styles.outcomeRow}><span className={styles.outcomeIcon}>🎯</span><p className={styles.outcomeText}><strong>Outcome:</strong> {lesson.outcome}</p></div></div>
           
-          {/* VIDEO — Thumbnail on click opens Google Drive in new tab */}
+          {/* VIDEO — Thumbnail shows first, click loads iframe on page */}
           <div className={styles.videoSection}>
             <p className={styles.videoLabel}>Lesson Video</p>
-            <div className={styles.videoWrapper} onClick={handleThumbnailClick} style={{ cursor: 'pointer', position: 'relative' }}>
-              <img
-                key={activeLesson}
-                src={lesson.thumbnailUrl}
-                alt={`${lesson.title} - Click to watch`}
-                style={{ width: '100%', display: 'block', borderRadius: '4px' }}
-              />
-              {/* Play button overlay */}
-              <div style={{
-                position: 'absolute',
-                top: 0, left: 0, right: 0, bottom: 0,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(0,0,0,0.15)',
-                transition: 'background 0.3s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.3)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.15)'}
+            
+            {!videoPlaying ? (
+              // THUMBNAIL VIEW
+              <div 
+                className={styles.videoWrapper} 
+                onClick={() => setVideoPlaying(true)} 
+                style={{ cursor: 'pointer', position: 'relative' }}
               >
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="white" style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))' }}>
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
+                <img
+                  src={lesson.thumbnailUrl}
+                  alt={`${lesson.title} - Click to play`}
+                  style={{ width: '100%', display: 'block', borderRadius: '4px' }}
+                />
+                {/* Play button overlay */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0, left: 0, right: 0, bottom: 0,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'rgba(0,0,0,0.15)',
+                  transition: 'background 0.3s',
+                  borderRadius: '4px',
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.3)'}
+                onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.15)'}
+                >
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="white" style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))' }}>
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
               </div>
-            </div>
-            <p className={styles.videoNote}>💡 Click the thumbnail to watch the video. Opens in Google Drive for best quality.</p>
+            ) : (
+              // IFRAME VIEW — plays on page
+              <div className={styles.videoWrapper}>
+                <iframe
+                  src={lesson.videoUrl}
+                  title={lesson.title}
+                  className={styles.videoFrame}
+                  allow="autoplay"
+                  allowFullScreen
+                  sandbox="allow-scripts allow-same-origin allow-presentation"
+                  style={{ width: '100%', aspectRatio: '16/9', border: 'none', borderRadius: '4px' }}
+                />
+              </div>
+            )}
+            
+            <p className={styles.videoNote}>
+              {!videoPlaying 
+                ? '💡 Click the thumbnail above to play the video on this page.' 
+                : '🎬 Video is playing. Switch lessons to see thumbnails again.'}
+            </p>
           </div>
 
           <div className={styles.downloadSection}><p className={styles.downloadLabel}>Downloadable Material</p><a href={lesson.pdfUrl} download={lesson.pdfName} target="_blank" rel="noreferrer" className={styles.pdfBtn}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M4 18h16v2H4v-2z" fill="currentColor"/></svg>Download Lesson Workbook (PDF)</a></div>
