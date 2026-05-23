@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
+// ✅ CORRECT for react-pdf v7+:
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 
 // ✅ FIXED: Local worker — no CDN, no build errors
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
