@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Document, Page, pdfjs } from 'react-pdf';
-// ✅ CORRECT for react-pdf v7+:
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-// ✅ FIXED: Local worker — no CDN, no build errors
+// PDF.js worker setup
 pdfjs.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
 
 export default function ThankYouBook() {
@@ -15,8 +14,10 @@ export default function ThankYouBook() {
   const [showReader, setShowReader] = useState(false);
   const [showWarning, setShowWarning] = useState(true);
 
-  // Google Drive / OneDrive PDF Direct Download Link
-  const PDF_URL = "https://onedrive.live.com/download?resid=B50E8C0124805CA3%21s21a92ce04e464ae684e247c1296fbc21&authkey=!AKeE4kjq3QjR5V8&em=2";
+  // ✅ Google Drive PDF Links
+  const PDF_FILE_ID = '12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm';
+  const PDF_DOWNLOAD = `https://drive.google.com/uc?export=download&id=${PDF_FILE_ID}`;
+  const PDF_PREVIEW = `https://drive.google.com/file/d/${PDF_FILE_ID}/preview`;
 
   // Page load hote hi top par scroll karne ke liye
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function ThankYouBook() {
             className="bg-white rounded-2xl p-8 max-w-md w-full text-center shadow-2xl border-2 border-red-200"
           >
             <div className="text-5xl mb-4">⚠️</div>
-            <h2 className="text-2xl font-bold text-red-600 mb-3 font-garamond">
+            <h2 className="text-2xl font-bold text-red-600 mb-3" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
               ⚡ IMPORTANT COPYRIGHT WARNING ⚡
             </h2>
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-left">
@@ -87,7 +88,7 @@ export default function ThankYouBook() {
           <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
             ✓
           </div>
-          <h1 className="text-3xl md:text-4xl font-garamond font-bold text-[#1A1A1B] mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#1A1A1B] mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             Payment Successful!
           </h1>
           <p className="text-gray-600 text-lg mb-6">
@@ -109,8 +110,7 @@ export default function ThankYouBook() {
 
             {/* DOWNLOAD BUTTON */}
             <a 
-              href={PDF_URL}
-              download
+              href={PDF_DOWNLOAD}
               className="px-8 py-3 bg-green-600 text-white text-sm font-semibold rounded-full hover:bg-green-700 transition flex items-center justify-center gap-2"
             >
               <span>⬇️</span> Download Book (PDF)
@@ -131,7 +131,7 @@ export default function ThankYouBook() {
             className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
           >
             <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-              <h3 className="text-xl font-garamond font-bold text-[#1A1A1B]">
+              <h3 className="text-xl font-bold text-[#1A1A1B]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
                 📖 Voice Control Book
               </h3>
               
@@ -160,7 +160,7 @@ export default function ThankYouBook() {
             {/* PDF Document Display */}
             <div className="flex justify-center border-2 border-gray-200 rounded-xl p-4 bg-gray-50 min-h-[500px]">
               <Document
-                file={PDF_URL}
+                file={PDF_PREVIEW}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={
                   <div className="flex items-center justify-center h-[500px]">
@@ -176,8 +176,7 @@ export default function ThankYouBook() {
                       <p className="text-red-500 text-lg mb-2">⚠️ Unable to load PDF</p>
                       <p className="text-gray-500 text-sm mb-4">Please use the download button above to get your book.</p>
                       <a 
-                        href={PDF_URL}
-                        download
+                        href={PDF_DOWNLOAD}
                         className="text-blue-600 underline text-sm"
                       >
                         Click here to download directly
@@ -230,7 +229,7 @@ export default function ThankYouBook() {
           <p className="text-[#C2B280] font-bold tracking-widest uppercase text-xs mb-3">
             Wait! Upgrade Your Voice
           </p>
-          <h2 className="text-2xl md:text-4xl font-garamond font-semibold text-white mb-4">
+          <h2 className="text-2xl md:text-4xl font-semibold text-white mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             Get the Full Video Course
           </h2>
           <p className="text-gray-400 mb-8 max-w-lg mx-auto">
@@ -253,7 +252,7 @@ export default function ThankYouBook() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="bg-transparent border-2 border-gray-200 rounded-2xl p-8 text-center"
         >
-          <h3 className="text-xl font-garamond font-bold text-[#1A1A1B] mb-2">
+          <h3 className="text-xl font-bold text-[#1A1A1B] mb-2" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             Need 1-on-1 Help?
           </h3>
           <p className="text-gray-500 text-sm mb-6">
