@@ -37,7 +37,12 @@ export default function HeroContent() {
           Buy Now— 97$
         </a>
        
-        <button className={styles.samplesButton}>Read Samples</button>
+        <button 
+          className={styles.samplesButton}
+          onClick={() => window.open('https://www.sevilvelsha.com/voice-control-pdf', '_blank')}
+        >
+          Read Samples
+        </button>
       </div>
 
       <p className={styles.guarantee}>30-Day Voice Transformation Guarantee</p>

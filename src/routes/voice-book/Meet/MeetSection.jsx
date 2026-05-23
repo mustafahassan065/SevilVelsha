@@ -1,7 +1,8 @@
-import styles from "./Meet.module.css"
+import { useState } from 'react';
+import styles from "./Meet.module.css";
 
 export const Meet = () => {
-  // Updated — embedded video instead of image link
+  const [isPlaying, setIsPlaying] = useState(false);
   const embedUrl = "https://drive.google.com/file/d/1EB8zdVKi9PB758TbJGwlBl_Hue26fbcI/preview";
 
   return (
@@ -9,15 +10,72 @@ export const Meet = () => {
       <div className={styles.container}>
 
         <div className={styles.videoWrapper}>
-          <iframe
-            src={embedUrl}
-            title="Meet Sevil Velsha"
-            className={styles.videoImage}
-            style={{ border: 'none', width: '100%', aspectRatio: '16/9', display: 'block' }}
-            allow="autoplay"
-            allowFullScreen
-            loading="lazy"
-          />
+          {!isPlaying ? (
+            // ── THUMBNAIL + PLAY BUTTON ──
+            <div 
+              onClick={() => setIsPlaying(true)}
+              style={{ 
+                position: 'relative', 
+                width: '100%', 
+                aspectRatio: '16/9', 
+                cursor: 'pointer',
+                borderRadius: '8px',
+                overflow: 'hidden',
+              }}
+            >
+              <img
+                src="/thumbnails/meet-sevil.jpg"
+                alt="Meet Sevil Velsha"
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+              />
+              {/* Play Button Overlay */}
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'rgba(0,0,0,0.3)',
+                transition: 'background 0.3s',
+              }}>
+                <div style={{
+                  width: 72,
+                  height: 72,
+                  borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.9)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'transform 0.2s',
+                }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#2d4a47">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          ) : (
+            // ── VIDEO IFRAME ──
+            <iframe
+              src={embedUrl}
+              title="Meet Sevil Velsha"
+              style={{ 
+                border: 'none', 
+                width: '100%', 
+                aspectRatio: '16/9', 
+                display: 'block',
+                borderRadius: '8px',
+              }}
+              allow="autoplay"
+              allowFullScreen
+              loading="lazy"
+            />
+          )}
         </div>
 
         <div className={styles.contentGrid}>
