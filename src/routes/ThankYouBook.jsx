@@ -8,7 +8,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 
 // ✅ FIXED: Local worker — no CDN, no build errors
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
+  'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
 ).toString();
 
