@@ -24,7 +24,7 @@ export const Meet = () => {
               }}
             >
               <img
-                src="/thumbnails/meet-sevil.jpg"
+                src="/thumbnails/meet-sevil.png"
                 alt="Meet Sevil Velsha"
                 style={{ 
                   width: '100%', 
