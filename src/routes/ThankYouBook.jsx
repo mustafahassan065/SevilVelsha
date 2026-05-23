@@ -1,32 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
-
-// PDF.js worker setup
-pdfjs.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
 
 export default function ThankYouBook() {
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
   const [showReader, setShowReader] = useState(false);
   const [showWarning, setShowWarning] = useState(true);
 
   // ✅ Google Drive PDF Links
   const PDF_FILE_ID = '12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm';
   const PDF_DOWNLOAD = `https://drive.google.com/uc?export=download&id=${PDF_FILE_ID}`;
-  const PDF_PREVIEW = `https://drive.google.com/file/d/${PDF_FILE_ID}/preview`;
+  const PDF_PREVIEW  = `https://drive.google.com/file/d/${PDF_FILE_ID}/preview`;
 
   // Page load hote hi top par scroll karne ke liye
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
 
   return (
     <div className="min-h-screen bg-[#f8f7f4] pt-28 pb-20 px-4">
@@ -122,7 +110,7 @@ export default function ThankYouBook() {
           </p>
         </motion.div>
 
-        {/* 2. PDF EMBED READER (Toggle show/hide) */}
+        {/* 2. PDF EMBED READER — GOOGLE DRIVE IFRAME (Toggle show/hide) */}
         {showReader && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -134,70 +122,23 @@ export default function ThankYouBook() {
               <h3 className="text-xl font-bold text-[#1A1A1B]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
                 📖 Voice Control Book
               </h3>
-              
-              {/* Page Navigation */}
-              <div className="flex items-center gap-3">
-                <button 
-                  onClick={() => setPageNumber(prev => Math.max(prev - 1, 1))}
-                  disabled={pageNumber <= 1}
-                  className="px-4 py-2 bg-gray-100 rounded-full text-sm font-semibold disabled:opacity-50 hover:bg-gray-200 transition"
-                >
-                  ← Prev
-                </button>
-                <span className="text-sm text-gray-600 font-medium">
-                  Page {pageNumber} of {numPages || '...'}
-                </span>
-                <button 
-                  onClick={() => setPageNumber(prev => (numPages ? Math.min(prev + 1, numPages) : prev + 1))}
-                  disabled={numPages && pageNumber >= numPages}
-                  className="px-4 py-2 bg-gray-100 rounded-full text-sm font-semibold disabled:opacity-50 hover:bg-gray-200 transition"
-                >
-                  Next →
-                </button>
-              </div>
+              <span className="text-sm text-gray-500">
+                Scroll to read all pages
+              </span>
             </div>
 
-            {/* PDF Document Display */}
-            <div className="flex justify-center border-2 border-gray-200 rounded-xl p-4 bg-gray-50 min-h-[500px]">
-              <Document
-                file={PDF_PREVIEW}
-                onLoadSuccess={onDocumentLoadSuccess}
-                loading={
-                  <div className="flex items-center justify-center h-[500px]">
-                    <div className="text-center">
-                      <div className="w-12 h-12 border-4 border-[#C2B280] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                      <p className="text-gray-500">Loading your book...</p>
-                    </div>
-                  </div>
-                }
-                error={
-                  <div className="flex items-center justify-center h-[500px] text-center">
-                    <div>
-                      <p className="text-red-500 text-lg mb-2">⚠️ Unable to load PDF</p>
-                      <p className="text-gray-500 text-sm mb-4">Please use the download button above to get your book.</p>
-                      <a 
-                        href={PDF_DOWNLOAD}
-                        className="text-blue-600 underline text-sm"
-                      >
-                        Click here to download directly
-                      </a>
-                    </div>
-                  </div>
-                }
-              >
-                <Page 
-                  pageNumber={pageNumber} 
-                  renderTextLayer={true}
-                  renderAnnotationLayer={true}
-                  className="shadow-md"
-                  width={600}
-                />
-              </Document>
+            {/* Google Drive iframe embed */}
+            <div className="w-full rounded-xl overflow-hidden border-2 border-gray-200 shadow-sm" style={{ height: '80vh', minHeight: '600px' }}>
+              <iframe
+                src={PDF_PREVIEW}
+                title="Voice Control Book"
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                allowFullScreen
+              />
             </div>
 
-            {/* Quick jump info */}
             <p className="text-center text-gray-400 text-xs mt-4">
-              💡 Tip: Use Prev/Next buttons to navigate. You can also download the PDF for offline reading.
+              💡 Tip: Use the Google Drive viewer controls to navigate pages. You can also download the PDF for offline reading.
             </p>
           </motion.div>
         )}
@@ -217,7 +158,7 @@ export default function ThankYouBook() {
           </p>
         </motion.div>
 
-        {/* 4. UPSELL BLOCK (THE MONEY MAKER) */}
+        {/* 4. UPSELL BLOCK */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -236,7 +177,6 @@ export default function ThankYouBook() {
             Don't just read about it. Watch real examples, do the exact speaking drills, and master your authority presence faster with the complete video course.
           </p>
           
-          {/* UPSELL STRIPE LINK */}
           <a 
             href="https://buy.stripe.com/7sYbJ00yHdM59PUaV2gIo01" 
             className="inline-block w-full md:w-auto px-10 py-4 bg-[#C2B280] text-[#1A1A1B] text-sm font-bold uppercase tracking-widest rounded-full hover:bg-[#d5c48f] transition shadow-[0_0_20px_rgba(194,178,128,0.3)]"
