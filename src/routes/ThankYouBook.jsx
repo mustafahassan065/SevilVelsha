@@ -40,10 +40,9 @@ export default function ThankYouBook() {
 
   const handleDownload = async () => {
     if (!token) {
-      setError('No download token found. Please contact support.');
-      return;
-    }
-
+    window.location.href = `https://drive.google.com/uc?export=download&id=12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm`;
+    return;
+  }
     setLoading(true);
     setError('');
 
