@@ -1,20 +1,88 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export default function ThankYouBook() {
-  const [showReader, setShowReader] = useState(false);
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
+  
   const [showWarning, setShowWarning] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [downloadsLeft, setDownloadsLeft] = useState(null);
+  const [userEmail, setUserEmail] = useState('');
 
-  // ✅ Google Drive PDF Links
-  const PDF_FILE_ID = '12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm';
-  const PDF_DOWNLOAD = `https://drive.google.com/uc?export=download&id=${PDF_FILE_ID}`;
-  const PDF_PREVIEW  = `https://drive.google.com/file/d/${PDF_FILE_ID}/preview`;
-
-  // Page load hote hi top par scroll karne ke liye
+  // Page load hote hi top par scroll
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    
+    // Check token validity
+    if (token) {
+      checkToken();
+    }
+  }, [token]);
+
+  const checkToken = async () => {
+    try {
+      const res = await fetch(`/api/check-token?token=${token}`);
+      const data = await res.json();
+      
+      if (data.valid) {
+        setDownloadsLeft(data.downloadsLeft);
+        setUserEmail(data.email || '');
+      } else {
+        setError(data.message || 'This download link has expired or is invalid.');
+      }
+    } catch (err) {
+      setError('Unable to verify download link. Please contact support.');
+    }
+  };
+
+  const handleDownload = async () => {
+    if (!token) {
+      setError('No download token found. Please contact support.');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch(`/api/download-book?token=${token}`);
+      
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Download failed');
+      }
+
+      // Get filename from headers or use default
+      const disposition = res.headers.get('Content-Disposition');
+      let filename = 'Voice-Control-Book.pdf';
+      if (disposition) {
+        const match = disposition.match(/filename="?(.+)"?/);
+        if (match) filename = match[1];
+      }
+
+      // Download as blob
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+
+      // Refresh token status
+      await checkToken();
+
+    } catch (err) {
+      setError(err.message || 'Download failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#f8f7f4] pt-28 pb-20 px-4">
@@ -80,70 +148,61 @@ export default function ThankYouBook() {
             Payment Successful!
           </h1>
           <p className="text-gray-600 text-lg mb-6">
-            Your <strong>Voice Control Book</strong> is officially yours. Access it below or check your email.
+            Your <strong>Voice Control Book</strong> is officially yours. Download it securely below.
           </p>
-          <div className="p-4 bg-blue-50 text-blue-800 rounded-lg inline-block text-sm font-medium mb-6">
-            📬 We also sent the PDF & your first voice lesson to your email. Check spam folder if not found.
-          </div>
+          
+          {/* Email notice */}
+          {userEmail && (
+            <div className="p-4 bg-blue-50 text-blue-800 rounded-lg inline-block text-sm font-medium mb-6">
+              📬 Licensed to: <strong>{userEmail}</strong>
+            </div>
+          )}
 
-          {/* BUTTON GROUP: Read Online + Download */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* READ ONLINE BUTTON */}
-            <button 
-              onClick={() => setShowReader(!showReader)}
-              className="px-8 py-3 bg-[#1A1A1B] text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition flex items-center justify-center gap-2"
+          {/* Downloads left */}
+          {downloadsLeft !== null && (
+            <div className={`p-4 rounded-lg inline-block text-sm font-medium mb-6 ${
+              downloadsLeft > 0 ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'
+            }`}>
+              {downloadsLeft > 0 
+                ? `📥 ${downloadsLeft} download${downloadsLeft > 1 ? 's' : ''} remaining`
+                : '⚠️ Download limit reached'
+              }
+            </div>
+          )}
+
+          {/* Error message */}
+          {error && (
+            <div className="p-4 bg-red-50 text-red-600 rounded-lg text-sm font-medium mb-6">
+              {error}
+            </div>
+          )}
+
+          {/* DOWNLOAD BUTTON ONLY — No Read Online */}
+          <div className="flex justify-center">
+            <button
+              onClick={handleDownload}
+              disabled={loading || downloadsLeft === 0 || !!error}
+              className="px-10 py-4 bg-[#1A1A1B] text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span>📖</span> {showReader ? 'Hide Reader' : 'Read Online'}
+              {loading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Preparing your book...
+                </>
+              ) : (
+                <>
+                  <span>⬇️</span> Download Your Book (PDF)
+                </>
+              )}
             </button>
-
-            {/* DOWNLOAD BUTTON */}
-            <a 
-              href={PDF_DOWNLOAD}
-              className="px-8 py-3 bg-green-600 text-white text-sm font-semibold rounded-full hover:bg-green-700 transition flex items-center justify-center gap-2"
-            >
-              <span>⬇️</span> Download Book (PDF)
-            </a>
           </div>
 
-          <p className="text-gray-400 text-xs mt-4">
-            ⚠️ Remember: This book is for your personal use only. Do not share with others.
+          <p className="text-gray-400 text-xs mt-6">
+            ⚠️ This book is watermarked with your email. Do not share with others.
           </p>
         </motion.div>
 
-        {/* 2. PDF EMBED READER — GOOGLE DRIVE IFRAME (Toggle show/hide) */}
-        {showReader && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
-          >
-            <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-              <h3 className="text-xl font-bold text-[#1A1A1B]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-                📖 Voice Control Book
-              </h3>
-              <span className="text-sm text-gray-500">
-                Scroll to read all pages
-              </span>
-            </div>
-
-            {/* Google Drive iframe embed */}
-            <div className="w-full rounded-xl overflow-hidden border-2 border-gray-200 shadow-sm" style={{ height: '80vh', minHeight: '600px' }}>
-              <iframe
-                src={PDF_PREVIEW}
-                title="Voice Control Book"
-                style={{ width: '100%', height: '100%', border: 'none' }}
-                allowFullScreen
-              />
-            </div>
-
-            <p className="text-center text-gray-400 text-xs mt-4">
-              💡 Tip: Use the Google Drive viewer controls to navigate pages. You can also download the PDF for offline reading.
-            </p>
-          </motion.div>
-        )}
-
-        {/* 3. COPYRIGHT REMINDER BANNER */}
+        {/* 2. COPYRIGHT REMINDER BANNER */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,7 +217,7 @@ export default function ThankYouBook() {
           </p>
         </motion.div>
 
-        {/* 4. UPSELL BLOCK */}
+        {/* 3. UPSELL BLOCK */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -185,7 +244,7 @@ export default function ThankYouBook() {
           </a>
         </motion.div>
 
-        {/* 5. COACHING CTA */}
+        {/* 4. COACHING CTA */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
