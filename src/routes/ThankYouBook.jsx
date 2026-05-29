@@ -12,7 +12,7 @@ export default function ThankYouBook() {
   const [error, setError] = useState('');
   const [downloadsLeft, setDownloadsLeft] = useState(3);
   const [userEmail, setUserEmail] = useState('');
-  const [tokenValid, setTokenValid] = useState(true);
+  const [tokenValid, setTokenValid] = useState(false);
   const [tokenChecked, setTokenChecked] = useState(false);
 
   // Google Drive File ID (HIDDEN — never exposed directly)
@@ -21,22 +21,19 @@ export default function ThankYouBook() {
   useEffect(() => {
     window.scrollTo(0, 0);
     
+    // Priority: token > session_id > localStorage
     if (token) {
       validateToken();
     } else if (sessionId) {
-      // Session ID se token generate karne ka attempt
       generateTokenFromSession();
     } else {
-      // No token, no session — show limited access
-      setTokenChecked(true);
-      setTokenValid(false);
+      checkLocalStorage();
     }
   }, [token, sessionId]);
 
   // ── TOKEN VALIDATION ────────────────────────────────────────
-  const validateToken = async () => {
+  const validateToken = () => {
     try {
-      // Token ko decode karte hain (simple base64 + timestamp + email)
       const decoded = atob(token);
       const [email, timestamp, downloads] = decoded.split('|');
       
@@ -67,6 +64,12 @@ export default function ThankYouBook() {
       setTokenValid(true);
       setTokenChecked(true);
       
+      // Save to localStorage for backup
+      localStorage.setItem('vc_payment_verified', JSON.stringify({
+        email: email,
+        time: tokenTime,
+      }));
+      
     } catch (err) {
       setTokenValid(false);
       setError('🔒 Invalid download link. Please contact support.');
@@ -81,7 +84,6 @@ export default function ThankYouBook() {
       const data = await res.json();
       
       if (data.paid && data.email) {
-        // Token generate: email|timestamp|downloads
         const email = data.email;
         const timestamp = Date.now();
         const downloads = 3;
@@ -92,12 +94,53 @@ export default function ThankYouBook() {
         setTokenValid(true);
         setTokenChecked(true);
         
-        // URL update (optional — token add karega)
+        // Save to localStorage
+        localStorage.setItem('vc_payment_verified', JSON.stringify({
+          email: email,
+          time: timestamp,
+        }));
+        
+        // Update URL
         window.history.replaceState({}, '', `?token=${newToken}`);
+        
       } else {
-        setTokenValid(false);
-        setTokenChecked(true);
+        // Payment not verified — check localStorage
+        checkLocalStorage();
       }
+    } catch (err) {
+      console.log('Payment verification failed, trying localStorage...');
+      checkLocalStorage();
+    }
+  };
+
+  // ── LOCAL STORAGE FALLBACK ──────────────────────────────────
+  const checkLocalStorage = () => {
+    try {
+      const stored = localStorage.getItem('vc_payment_verified');
+      
+      if (stored) {
+        const { email, time } = JSON.parse(stored);
+        const hoursSince = (Date.now() - time) / (1000 * 60 * 60);
+        
+        if (hoursSince < 24) {
+          const newToken = btoa(`${email}|${Date.now()}|3`);
+          
+          setUserEmail(email);
+          setDownloadsLeft(3);
+          setTokenValid(true);
+          setTokenChecked(true);
+          
+          window.history.replaceState({}, '', `?token=${newToken}`);
+          return;
+        } else {
+          localStorage.removeItem('vc_payment_verified');
+        }
+      }
+      
+      // No valid access
+      setTokenValid(false);
+      setTokenChecked(true);
+      
     } catch (err) {
       setTokenValid(false);
       setTokenChecked(true);
@@ -110,7 +153,6 @@ export default function ThankYouBook() {
     setError('');
 
     try {
-      // Decrement download count
       const newCount = downloadsLeft - 1;
       
       if (newCount < 0) {
