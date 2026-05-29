@@ -53,26 +53,43 @@ export default function ThankYouBook() {
   };
 
   // ── DOWNLOAD ────────────────────────────────────────────────
-  const handleDownload = () => {
+    const handleDownload = async () => {
     setLoading(true);
-    
-    const link = document.createElement('a');
-    link.href = PDF_DOWNLOAD;
-    
-    // Watermarked filename
-    if (userEmail) {
+    setError('');
+
+    try {
+      // Dynamic watermark ke liye backend call
+      const res = await fetch(`/api/download-book-watermarked?email=${encodeURIComponent(userEmail)}`);
+      
+      if (!res.ok) throw new Error('Download failed');
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      
       const safeEmail = userEmail.replace(/[^a-zA-Z0-9@._-]/g, '_');
-      link.download = `Voice-Control-Book-Licensed-to-${safeEmail}.pdf`;
-    } else {
-      link.download = 'Voice-Control-Book.pdf';
+      a.download = `Voice-Control-Book-Licensed-to-${safeEmail}.pdf`;
+      a.href = url;
+      
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+
+    } catch (err) {
+      setError('❌ Download failed. Trying direct download...');
+      
+      // Fallback: Direct Google Drive
+      const link = document.createElement('a');
+      link.href = `https://drive.google.com/uc?export=download&id=12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm`;
+      link.download = `Voice-Control-Book.pdf`;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } finally {
+      setLoading(false);
     }
-    
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    setTimeout(() => setLoading(false), 1000);
   };
 
   return (
