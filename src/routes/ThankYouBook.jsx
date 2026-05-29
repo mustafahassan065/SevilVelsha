@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function ThankYouBook() {
-  const [searchParams] = useSearchParams();
-  const sessionId = searchParams.get('session_id');
-  
   const [showWarning, setShowWarning] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  // Form state
+  const [email, setEmail] = useState('');
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const [accessGranted, setAccessGranted] = useState(false);
-  const [checking, setChecking] = useState(true);
 
   // Google Drive File ID
   const PDF_FILE_ID = '12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm';
@@ -19,68 +18,55 @@ export default function ThankYouBook() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    verifyAccess();
-  }, [sessionId]);
-
-  const verifyAccess = async () => {
-    setChecking(true);
-
-    // Method 1: Check session_id from URL
-    if (sessionId) {
+    
+    // Check localStorage for previous license
+    const stored = localStorage.getItem('vc_license');
+    if (stored) {
       try {
-        const res = await fetch(`/api/verify-payment?session_id=${sessionId}`);
-        const data = await res.json();
-        
-        if (data.paid && data.email) {
-          setUserEmail(data.email);
-          setAccessGranted(true);
-          setChecking(false);
-          return;
-        }
-      } catch (err) {
-        console.log('Session check failed, trying next method...');
-      }
-    }
-
-    // Method 2: Check localStorage
-    try {
-      const stored = localStorage.getItem('vc_payment_verified');
-      if (stored) {
-        const { email, time } = JSON.parse(stored);
-        const hoursSince = (Date.now() - time) / (1000 * 60 * 60);
-        
-        if (hoursSince < 24) {
+        const { email } = JSON.parse(stored);
+        if (email) {
           setUserEmail(email);
-          setAccessGranted(true);
-          setChecking(false);
-          return;
+          setEmailSubmitted(true);
         }
-      }
-    } catch (err) {
-      console.log('localStorage check failed');
+      } catch (err) {}
     }
+  }, []);
 
-    // Method 3: Check if user came from Stripe (document.referrer)
-    if (document.referrer.includes('stripe.com')) {
-      setAccessGranted(true);
-      setChecking(false);
+  // ── EMAIL SUBMIT ────────────────────────────────────────────
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    setError('');
+
+    if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address.');
       return;
     }
 
-    // Method 4: Grant access anyway (Thank You page should always work)
-    setAccessGranted(true);
-    setChecking(false);
+    // Save to localStorage
+    localStorage.setItem('vc_license', JSON.stringify({
+      email: email.trim(),
+      time: Date.now(),
+    }));
+
+    setUserEmail(email.trim());
+    setEmailSubmitted(true);
   };
 
+  // ── DOWNLOAD ────────────────────────────────────────────────
   const handleDownload = () => {
     setLoading(true);
     
-    // Direct Google Drive download
     const link = document.createElement('a');
     link.href = PDF_DOWNLOAD;
-    link.download = userEmail 
-      ? `Voice-Control-Book-${userEmail.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`
-      : 'Voice-Control-Book.pdf';
+    
+    // Watermarked filename
+    if (userEmail) {
+      const safeEmail = userEmail.replace(/[^a-zA-Z0-9@._-]/g, '_');
+      link.download = `Voice-Control-Book-Licensed-to-${safeEmail}.pdf`;
+    } else {
+      link.download = 'Voice-Control-Book.pdf';
+    }
+    
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
@@ -88,18 +74,6 @@ export default function ThankYouBook() {
     
     setTimeout(() => setLoading(false), 1000);
   };
-
-  // Loading state
-  if (checking) {
-    return (
-      <div className="min-h-screen bg-[#f8f7f4] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-[#C2B280] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500">Verifying your purchase...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-[#f8f7f4] pt-28 pb-20 px-4">
@@ -140,7 +114,7 @@ export default function ThankYouBook() {
               onClick={() => setShowWarning(false)}
               className="w-full py-3 bg-[#1A1A1B] text-white font-semibold rounded-full hover:bg-gray-800 transition text-sm"
             >
-              I Understand & Agree — Download My Book
+              I Understand & Agree
             </button>
           </motion.div>
         </div>
@@ -148,7 +122,7 @@ export default function ThankYouBook() {
 
       <div className="max-w-4xl mx-auto space-y-8">
         
-        {/* SUCCESS & DOWNLOAD BLOCK */}
+        {/* 1. SUCCESS & LICENSE BLOCK */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -161,69 +135,149 @@ export default function ThankYouBook() {
           <h1 className="text-3xl md:text-4xl font-bold text-[#1A1A1B] mb-4" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             Payment Successful!
           </h1>
-          <p className="text-gray-600 text-lg mb-6">
+          <p className="text-gray-600 text-lg mb-8">
             Your <strong>Voice Control Book</strong> is ready for download.
           </p>
 
-          {/* Email display */}
-          {userEmail && (
-            <div className="p-4 bg-blue-50 text-blue-800 rounded-lg inline-block text-sm font-medium mb-6">
-              📖 Licensed to: <strong>{userEmail}</strong>
+          {/* ── EMAIL FORM ── */}
+          {!emailSubmitted ? (
+            <div className="max-w-md mx-auto">
+              <p className="text-sm text-gray-500 mb-4">
+                📧 Enter your email to license this book to you:
+              </p>
+              
+              <form onSubmit={handleEmailSubmit} className="space-y-4">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-5 py-3 border border-gray-300 rounded-full text-sm text-center focus:outline-none focus:border-[#C2B280] focus:ring-1 focus:ring-[#C2B280]"
+                />
+                
+                {error && (
+                  <p className="text-red-500 text-xs">{error}</p>
+                )}
+                
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-[#C2B280] text-white text-sm font-semibold rounded-full hover:bg-[#b8a070] transition"
+                >
+                  License My Book →
+                </button>
+              </form>
+              
+              <p className="text-gray-400 text-xs mt-3">
+                Your email will be embedded in the PDF as "Licensed to"
+              </p>
             </div>
+          ) : (
+            <>
+              {/* ── LICENSE DISPLAY ── */}
+              <div className="p-6 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-xl inline-block mb-8">
+                <p className="text-amber-700 text-xs font-semibold uppercase tracking-wider mb-2">
+                  📜 Licensed To
+                </p>
+                <p className="text-gray-800 text-lg font-bold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                  {userEmail}
+                </p>
+                <p className="text-gray-500 text-xs mt-2">
+                  Voice Control by Sevil Velsha
+                </p>
+                <p className="text-gray-400 text-xs mt-1">
+                  Single User License — Do Not Share
+                </p>
+              </div>
+
+              <br/>
+
+              {/* ── DOWNLOAD BUTTON ── */}
+              <button
+                onClick={handleDownload}
+                disabled={loading}
+                className="px-10 py-4 bg-[#1A1A1B] text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition flex items-center justify-center gap-3 mx-auto disabled:opacity-70"
+              >
+                {loading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <span>⬇️</span> Download Your Book (PDF)
+                  </>
+                )}
+              </button>
+
+              {/* Change email option */}
+              <p 
+                onClick={() => {
+                  setEmailSubmitted(false);
+                  setUserEmail('');
+                  setEmail('');
+                  localStorage.removeItem('vc_license');
+                }}
+                className="text-gray-400 text-xs mt-4 underline cursor-pointer hover:text-gray-600"
+              >
+                Change email address
+              </p>
+            </>
           )}
 
-          {/* Error display */}
-          {error && (
-            <div className="p-4 bg-red-50 text-red-600 rounded-lg text-sm font-medium mb-6">
-              {error}
-            </div>
-          )}
-
-          {/* DOWNLOAD BUTTON */}
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={handleDownload}
-              disabled={loading}
-              className="px-10 py-4 bg-[#1A1A1B] text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition flex items-center justify-center gap-3 disabled:opacity-70"
-            >
-              {loading ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Downloading...
-                </>
-              ) : (
-                <>
-                  <span>⬇️</span> Download Your Book (PDF)
-                </>
-              )}
-            </button>
-          </div>
-
-          <p className="text-gray-400 text-xs mt-6">
+          <p className="text-gray-400 text-xs mt-8">
             🔒 Protected by copyright. Do not share.
           </p>
         </motion.div>
 
-        {/* COPYRIGHT REMINDER */}
+        {/* 2. SECURITY FEATURES */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
+        >
+          <h3 className="text-lg font-bold text-[#1A1A1B] mb-4 text-center" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+            🔐 How Your Book Is Protected
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-sm">
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <span className="text-2xl">📧</span>
+              <p className="font-semibold mt-2">Email Licensed</p>
+              <p className="text-gray-500 text-xs mt-1">Your email embedded in the PDF filename</p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <span className="text-2xl">🔒</span>
+              <p className="font-semibold mt-2">Single User</p>
+              <p className="text-gray-500 text-xs mt-1">One license = One person</p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg">
+              <span className="text-2xl">⚖️</span>
+              <p className="font-semibold mt-2">Legal Protection</p>
+              <p className="text-gray-500 text-xs mt-1">Copyright law protected</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 3. COPYRIGHT REMINDER */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="bg-red-50 border-2 border-red-200 rounded-2xl p-6 text-center"
         >
           <p className="text-red-700 font-bold text-sm uppercase tracking-wider mb-2">
             🔒 COPYRIGHT PROTECTED
           </p>
           <p className="text-gray-700 text-sm">
-            This digital book is licensed to <strong>{userEmail || 'you only'}</strong>. Sharing, distributing, or uploading this file anywhere without permission is strictly prohibited.
+            This digital book is licensed to <strong>{userEmail || 'you only'}</strong>. Sharing, distributing, or uploading this file anywhere without permission is strictly prohibited and violates copyright law.
           </p>
         </motion.div>
 
-        {/* UPSELL BLOCK */}
+        {/* 4. UPSELL BLOCK */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
           className="bg-[#1A1A1B] rounded-2xl p-8 md:p-12 shadow-xl text-center relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C2B280] to-[#e6d59e]"></div>
@@ -246,11 +300,11 @@ export default function ThankYouBook() {
           </a>
         </motion.div>
 
-        {/* COACHING CTA */}
+        {/* 5. COACHING CTA */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           className="bg-transparent border-2 border-gray-200 rounded-2xl p-8 text-center"
         >
           <h3 className="text-xl font-bold text-[#1A1A1B] mb-2" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
