@@ -26,6 +26,7 @@ import UpsellPage        from "./routes/voice-course/UpsellPage";
 import CourseDashboard   from "./routes/voice-course/CourseDashboard.jsx";
 import VoiceFreeAccessPage from './routes/voice-course/VoiceFreeAccessPage';
 import VoicePdfPage from './routes/voice-course/VoicePdfPage';
+import VoiceAuditPage from './routes/voice-audit/VoiceAuditPage';
 // ─────────────────────────────────────────────────────────────────
 
 function AppContent() {
@@ -77,6 +78,8 @@ function AppContent() {
         <Route path="/voice-control-dashboard"       element={<CourseDashboard />} />
         <Route path="/voice-free-access" element={<VoiceFreeAccessPage />} />
         <Route path="/voice-control-pdf" element={<VoicePdfPage />} />
+        <Route path="/voice-audit" element={<VoiceAuditPage />} />
+
 
       </Routes>
       {FooterComponent && <FooterComponent />}
