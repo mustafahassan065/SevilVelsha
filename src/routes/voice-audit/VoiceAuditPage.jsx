@@ -146,170 +146,182 @@ export default function VoiceAuditPage() {
           THE PROBLEM — 3 Hidden Career Killers
       ══════════════════════════════════════════════════════════ */}
       <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          <p style={{ 
-            fontFamily: J, fontSize: '11px', fontWeight: 700, 
-            letterSpacing: '0.25em', textTransform: 'uppercase', 
-            color: GOLD, margin: '0 0 20px' 
-          }}>
-            × The Problem
-          </p>
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', 
-            fontWeight: 600, color: '#fff', margin: '0 0 16px', lineHeight: 1.15 
-          }}>
-            The 3 <span style={{ color: GOLD, fontStyle: 'italic' }}>Hidden</span> Career Killers
-          </h2>
-          <p style={{ 
-            fontSize: '15px', color: 'rgba(255,255,255,0.5)', 
-            margin: '0 0 60px', lineHeight: 1.7, maxWidth: 600 
-          }}>
-            Every time you open your mouth in a meeting or a presentation, people judge your competence in <span style={{ color: GOLD }}>less than 3 seconds</span>. You are likely losing your audience because:
-          </p>
+  <div style={{ maxWidth: 960, margin: '0 auto' }}>
+    <p style={{ 
+      fontFamily: J, fontSize: '11px', fontWeight: 700, 
+      letterSpacing: '0.25em', textTransform: 'uppercase', 
+      color: '#C9A84C', margin: '0 0 20px' 
+    }}>
+      × The Problem
+    </p>
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', 
+      fontWeight: 600, color: '#fff', margin: '0 0 16px', lineHeight: 1.15 
+    }}>
+      The 3 <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>Hidden</span> Career Killers
+    </h2>
+    <p style={{ 
+      fontSize: '15px', color: 'rgba(255,255,255,0.5)', 
+      margin: '0 0 60px', lineHeight: 1.7, maxWidth: 600 
+    }}>
+      Every time you open your mouth in a meeting or a presentation, people judge your competence in <span style={{ color: '#C9A84C' }}>less than 3 seconds</span>. You are likely losing your audience because:
+    </p>
 
-          {/* 3 Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20, marginBottom: 40 }}>
-            {/* Card 1 */}
-            <div style={{
-              background: CARD, border: `1px solid ${CARD_BORDER}`,
-              padding: '40px 28px', textAlign: 'center',
-            }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: '50%',
-                border: `1px solid rgba(201,169,110,0.3)`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                margin: '0 auto 16px',
-              }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="9" stroke={GOLD} strokeWidth="1.5"/>
-                  <path d="M12 7v5l3 3" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <div style={{
-                width: 24, height: 24, borderRadius: '50%',
-                background: GOLD, color: DARK,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: J, fontSize: '12px', fontWeight: 700,
-                margin: '0 auto 16px',
-              }}>
-                1
-              </div>
-              <h3 style={{ 
-                fontFamily: G, fontSize: '1.25rem', fontWeight: 600, 
-                color: '#fff', margin: '0 0 12px' 
-              }}>
-                You speak too fast
-              </h3>
-              <p style={{ 
-                fontSize: '14px', color: 'rgba(255,255,255,0.45)', 
-                margin: 0, lineHeight: 1.7 
-              }}>
-                This signals anxiety and a lack of authority.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div style={{
-              background: CARD, border: `1px solid ${CARD_BORDER}`,
-              padding: '40px 28px', textAlign: 'center',
-            }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: '50%',
-                border: `1px solid rgba(201,169,110,0.3)`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                margin: '0 auto 16px',
-              }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M2 12c2-4 5-6 8-6s6 2 8 6c-2 4-5 6-8 6s-6-2-8-6z" stroke={GOLD} strokeWidth="1.5"/>
-                  <circle cx="12" cy="12" r="2" stroke={GOLD} strokeWidth="1.5"/>
-                </svg>
-              </div>
-              <div style={{
-                width: 24, height: 24, borderRadius: '50%',
-                background: GOLD, color: DARK,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: J, fontSize: '12px', fontWeight: 700,
-                margin: '0 auto 16px',
-              }}>
-                2
-              </div>
-              <h3 style={{ 
-                fontFamily: G, fontSize: '1.25rem', fontWeight: 600, 
-                color: '#fff', margin: '0 0 12px' 
-              }}>
-                Your voice lacks contrast
-              </h3>
-              <p style={{ 
-                fontSize: '14px', color: 'rgba(255,255,255,0.45)', 
-                margin: 0, lineHeight: 1.7 
-              }}>
-                Flat, monotone speech causes people to immediately check their phones.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div style={{
-              background: CARD, border: `1px solid ${CARD_BORDER}`,
-              padding: '40px 28px', textAlign: 'center',
-            }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: '50%',
-                border: `1px solid rgba(201,169,110,0.3)`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                margin: '0 auto 16px',
-              }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <rect x="6" y="4" width="4" height="16" rx="1" stroke={GOLD} strokeWidth="1.5"/>
-                  <rect x="14" y="4" width="4" height="16" rx="1" stroke={GOLD} strokeWidth="1.5"/>
-                </svg>
-              </div>
-              <div style={{
-                width: 24, height: 24, borderRadius: '50%',
-                background: GOLD, color: DARK,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: J, fontSize: '12px', fontWeight: 700,
-                margin: '0 auto 16px',
-              }}>
-                3
-              </div>
-              <h3 style={{ 
-                fontFamily: G, fontSize: '1.25rem', fontWeight: 600, 
-                color: '#fff', margin: '0 0 12px' 
-              }}>
-                You skip the pauses
-              </h3>
-              <p style={{ 
-                fontSize: '14px', color: 'rgba(255,255,255,0.45)', 
-                margin: 0, lineHeight: 1.7 
-              }}>
-                Weak speakers rush; powerful leaders control the room with silence.
-              </p>
-            </div>
-          </div>
-
-          {/* Bottom line */}
-          <div style={{
-            background: CARD, border: `1px solid ${CARD_BORDER}`,
-            padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 16,
-          }}>
-            <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
-              {[0,1,2].map(i => (
-                <div key={i} style={{ 
-                  width: 8, height: 8, borderRadius: '50%', 
-                  background: i === 0 ? GOLD : 'rgba(201,169,110,0.25)' 
-                }}/>
-              ))}
-            </div>
-            <p style={{ 
-              fontFamily: G, fontSize: '1.05rem', fontStyle: 'italic', 
-              color: 'rgba(255,255,255,0.7)', margin: 0 
-            }}>
-              If people interrupt you or ignore your ideas, it is not your content — <span style={{ color: GOLD }}>it is your voice.</span>
-            </p>
-          </div>
+    {/* 3 Cards */}
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20, marginBottom: 40 }}>
+      {/* Card 1 */}
+      <div style={{
+        background: CARD, border: `1px solid ${CARD_BORDER}`,
+        padding: '40px 28px', textAlign: 'center',
+      }}>
+        <div style={{
+          width: 44, height: 44, borderRadius: '50%',
+          border: `1px solid rgba(201,168,76,0.3)`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          margin: '0 auto 16px',
+        }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#C9A84C" strokeWidth="1.5"/>
+            <path d="M12 7v5l3 3" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
         </div>
-      </section>
+        <div style={{
+          width: 24, height: 24, borderRadius: '50%',
+          background: '#C9A84C', color: DARK,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontFamily: J, fontSize: '12px', fontWeight: 700,
+          margin: '0 auto 16px',
+        }}>
+          1
+        </div>
+        <h3 style={{ 
+          fontFamily: G, fontSize: '1.25rem', fontWeight: 600, 
+          color: '#fff', margin: '0 0 12px' 
+        }}>
+          You speak too fast
+        </h3>
+        <p style={{ 
+          fontSize: '14px', color: 'rgba(255,255,255,0.45)', 
+          margin: 0, lineHeight: 1.7 
+        }}>
+          This signals anxiety and a lack of authority.
+        </p>
+      </div>
 
+      {/* Card 2 — FIGMA WALA SVG LAGAYA GAYA */}
+      <div style={{
+        background: CARD, border: `1px solid ${CARD_BORDER}`,
+        padding: '40px 28px', textAlign: 'center',
+      }}>
+        <div style={{
+          width: 44, height: 44, borderRadius: '50%',
+          border: `1px solid rgba(201,168,76,0.3)`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          margin: '0 auto 16px',
+        }}>
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clipPath="url(#clip0_wave)">
+              <path d="M-0.00012207 15.9995C2.66645 13.8662 5.33302 13.8662 7.99959 15.9995C10.6662 18.1327 13.3327 18.1327 15.9993 15.9995C18.6659 13.8662 21.3325 13.8662 23.999 15.9995C26.6656 18.1327 29.3322 18.1327 31.9987 15.9995" stroke="#C9A84C" strokeWidth="0.799971"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_wave">
+                <rect width="31.9989" height="31.9989" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div style={{
+          width: 24, height: 24, borderRadius: '50%',
+          background: '#C9A84C', color: DARK,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontFamily: J, fontSize: '12px', fontWeight: 700,
+          margin: '0 auto 16px',
+        }}>
+          2
+        </div>
+        <h3 style={{ 
+          fontFamily: G, fontSize: '1.25rem', fontWeight: 600, 
+          color: '#fff', margin: '0 0 12px' 
+        }}>
+          Your voice lacks contrast
+        </h3>
+        <p style={{ 
+          fontSize: '14px', color: 'rgba(255,255,255,0.45)', 
+          margin: 0, lineHeight: 1.7 
+        }}>
+          Flat, monotone speech causes people to immediately check their phones.
+        </p>
+      </div>
+
+      {/* Card 3 */}
+      <div style={{
+        background: CARD, border: `1px solid ${CARD_BORDER}`,
+        padding: '40px 28px', textAlign: 'center',
+      }}>
+        <div style={{
+          width: 44, height: 44, borderRadius: '50%',
+          border: `1px solid rgba(201,168,76,0.3)`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          margin: '0 auto 16px',
+        }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <rect x="6" y="4" width="4" height="16" rx="1" stroke="#C9A84C" strokeWidth="1.5"/>
+            <rect x="14" y="4" width="4" height="16" rx="1" stroke="#C9A84C" strokeWidth="1.5"/>
+          </svg>
+        </div>
+        <div style={{
+          width: 24, height: 24, borderRadius: '50%',
+          background: '#C9A84C', color: DARK,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontFamily: J, fontSize: '12px', fontWeight: 700,
+          margin: '0 auto 16px',
+        }}>
+          3
+        </div>
+        <h3 style={{ 
+          fontFamily: G, fontSize: '1.25rem', fontWeight: 600, 
+          color: '#fff', margin: '0 0 12px' 
+        }}>
+          You skip the pauses
+        </h3>
+        <p style={{ 
+          fontSize: '14px', color: 'rgba(255,255,255,0.45)', 
+          margin: 0, lineHeight: 1.7 
+        }}>
+          Weak speakers rush; powerful leaders control the room with silence.
+        </p>
+      </div>
+    </div>
+
+    {/* Bottom line — BOTTOM WALA EMOJI BHI FIGMA WALA SVG SE REPLACE */}
+    <div style={{
+      background: CARD, border: `1px solid ${CARD_BORDER}`,
+      padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 16,
+    }}>
+      <div style={{ flexShrink: 0 }}>
+        <svg width="28" height="20" viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clipPath="url(#clip0_eyes)">
+            <path d="M8.0003 20.9938C11.8651 20.9938 14.9981 17.8607 14.9981 13.996C14.9981 10.1312 11.8651 6.99817 8.0003 6.99817C4.13552 6.99817 1.0025 10.1312 1.0025 13.996C1.0025 17.8607 4.13552 20.9938 8.0003 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
+            <path d="M18.9973 20.9938C22.8621 20.9938 25.9951 17.8607 25.9951 13.996C25.9951 10.1312 22.8621 6.99817 18.9973 6.99817C15.1325 6.99817 11.9995 10.1312 11.9995 13.996C11.9995 17.8607 15.1325 20.9938 18.9973 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
+            <path d="M29.9943 20.9938C33.8591 20.9938 36.9921 17.8607 36.9921 13.996C36.9921 10.1312 33.8591 6.99817 29.9943 6.99817C26.1296 6.99817 22.9965 10.1312 22.9965 13.996C22.9965 17.8607 26.1296 20.9938 29.9943 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_eyes">
+              <rect width="37.9953" height="27.9923" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <p style={{ 
+        fontFamily: G, fontSize: '1.05rem', fontStyle: 'italic', 
+        color: 'rgba(255,255,255,0.7)', margin: 0 
+      }}>
+        If people interrupt you or ignore your ideas,<br/>
+        it is not your content — <span style={{ color: '#C9A84C' }}>it is your voice.</span>
+      </p>
+    </div>
+  </div>
+</section>
       {/* ══════════════════════════════════════════════════════════
           THE REALITY
       ══════════════════════════════════════════════════════════ */}
