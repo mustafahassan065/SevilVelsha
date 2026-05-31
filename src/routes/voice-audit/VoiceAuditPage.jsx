@@ -689,244 +689,244 @@ export default function VoiceAuditPage() {
           WHAT YOU GAIN — Transform
       ══════════════════════════════════════════════════════════ */}
       <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          <p style={{ 
-            fontFamily: J, fontSize: '11px', fontWeight: 700, 
-            letterSpacing: '0.25em', textTransform: 'uppercase', 
-            color: GOLD, margin: '0 0 20px' 
-          }}>
-            What You Gain
-          </p>
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', 
-            fontWeight: 600, color: '#fff', margin: '0 0 56px', lineHeight: 1.15 
-          }}>
-            How Your Voice Will <span style={{ color: GOLD, fontStyle: 'italic' }}>Transform</span>
-          </h2>
+  <div style={{ maxWidth: 960, margin: '0 auto' }}>
+    <p style={{ 
+      fontFamily: J, fontSize: '11px', fontWeight: 700, 
+      letterSpacing: '0.25em', textTransform: 'uppercase', 
+      color: '#C9A84C', margin: '0 0 20px' 
+    }}>
+      What You Gain
+    </p>
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', 
+      fontWeight: 600, color: '#fff', margin: '0 0 56px', lineHeight: 1.15 
+    }}>
+      How Your Voice Will <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>Transform</span>
+    </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
-            {[
-              { title: 'Sound More Confident', desc: 'in every conversation' },
-              { title: 'Stop Sounding Rushed', desc: 'and anxious' },
-              { title: 'Speak With Authority', desc: 'that commands respect' },
-              { title: 'Improve Executive Presence', desc: 'in boardrooms' },
-              { title: 'Make People Listen', desc: 'and remember your ideas' },
-              { title: 'Control Silence and Rhythm', desc: 'like a leader' },
-            ].map((item, i) => (
-              <div key={i} style={{ 
-                background: CARD, border: `1px solid rgba(201,169,110,0.1)`, 
-                padding: '28px 24px', textAlign: 'left', 
-                display: 'flex', gap: 12, alignItems: 'flex-start' 
-              }}>
-                <div style={{ 
-                  width: 18, height: 18, borderRadius: '50%', 
-                  border: `1px solid ${GOLD}`, display: 'flex', 
-                  alignItems: 'center', justifyContent: 'center', 
-                  marginTop: 2, flexShrink: 0 
-                }}>
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12l5 5L20 7" stroke={GOLD} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <p style={{ 
-                    fontFamily: J, fontSize: '14px', fontWeight: 600, 
-                    color: '#fff', margin: '0 0 4px' 
-                  }}>{item.title}</p>
-                  <p style={{ 
-                    fontSize: '13px', color: 'rgba(255,255,255,0.4)', 
-                    margin: 0 
-                  }}>{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          URGENCY — Only 10 Slots
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          {/* Warning triangle */}
-          <div style={{ marginBottom: 24 }}>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L2 20h20L12 2z" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
-              <path d="M12 9v5M12 16v1" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round"/>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
+      {[
+        { title: 'Sound More Confident', desc: 'in every conversation' },
+        { title: 'Stop Sounding Rushed', desc: 'and anxious' },
+        { title: 'Speak With Authority', desc: 'that commands respect' },
+        { title: 'Improve Executive Presence', desc: 'in boardrooms' },
+        { title: 'Make People Listen', desc: 'and remember your ideas' },
+        { title: 'Control Silence and Rhythm', desc: 'like a leader' },
+      ].map((item, i) => (
+        <div key={i} style={{ 
+          background: CARD, border: `1px solid rgba(201,168,76,0.1)`, 
+          padding: '28px 24px', textAlign: 'left', 
+          display: 'flex', gap: 12, alignItems: 'flex-start' 
+        }}>
+          <div style={{ 
+            width: 18, height: 18, borderRadius: '50%', 
+            border: `1px solid #C9A84C`, display: 'flex', 
+            alignItems: 'center', justifyContent: 'center', 
+            marginTop: 2, flexShrink: 0 
+          }}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12l5 5L20 7" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
-            fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 
-          }}>
-            Only <span style={{ color: GOLD, fontStyle: 'italic' }}>10 Slots</span>
-          </h2>
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
-            fontWeight: 600, color: '#fff', margin: '0 0 20px', lineHeight: 1.15 
-          }}>
-            Available at $49
-          </h2>
-          <p style={{ 
-            fontSize: '15px', color: 'rgba(255,255,255,0.45)', 
-            margin: '0 0 48px', lineHeight: 1.7 
-          }}>
-            Because this is a personalized, manual review by a professional voice coach, slots are strictly limited.
-          </p>
-
-          {/* Slots counter */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
-            {/* Left card - Spots Left */}
-            <div style={{ 
-              background: CARD, border: `1px solid rgba(201,169,110,0.2)`, 
-              padding: '28px', textAlign: 'left' 
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-                <div style={{ 
-                  width: 48, height: 48, borderRadius: '50%', 
-                  border: `2px solid ${GOLD}`, display: 'flex', 
-                  alignItems: 'center', justifyContent: 'center', 
-                  fontFamily: G, fontSize: '1.3rem', fontWeight: 700, 
-                  color: GOLD 
-                }}>
-                  {slots}
-                </div>
-                <div>
-                  <p style={{ 
-                    fontFamily: J, fontSize: '10px', color: 'rgba(255,255,255,0.35)', 
-                    margin: '0 0 2px', textTransform: 'uppercase', 
-                    letterSpacing: '0.1em' 
-                  }}>Spots Left</p>
-                  <p style={{ 
-                    fontFamily: J, fontSize: '12px', color: 'rgba(255,255,255,0.5)', 
-                    margin: 0 
-                  }}>This week's available slots</p>
-                </div>
-              </div>
-              {/* Slot dots */}
-              <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                {Array(10).fill(0).map((_, i) => (
-                  <div key={i} style={{ 
-                    width: 14, height: 14, borderRadius: '50%', 
-                    background: i < slots ? GOLD : 'rgba(201,169,110,0.15)' 
-                  }}/>
-                ))}
-              </div>
-            </div>
-
-            {/* Right card - Price doubles */}
-            <div style={{ 
-              background: CARD, border: `1px solid rgba(201,169,110,0.2)`, 
-              padding: '28px', display: 'flex', alignItems: 'center', gap: 14 
-            }}>
-              <div style={{ 
-                width: 40, height: 40, borderRadius: '50%', 
-                border: `1px solid ${GOLD}`, display: 'flex', 
-                alignItems: 'center', justifyContent: 'center', flexShrink: 0 
-              }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 5v7l4 2" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round"/>
-                  <circle cx="12" cy="12" r="9" stroke={GOLD} strokeWidth="1.5"/>
-                </svg>
-              </div>
-              <div style={{ textAlign: 'left' }}>
-                <p style={{ 
-                  fontSize: '12px', color: 'rgba(255,255,255,0.4)', 
-                  margin: '0 0 6px', lineHeight: 1.5 
-                }}>
-                  Once this week's 10 spots are gone, the price
-                </p>
-                <p style={{ 
-                  fontFamily: J, fontSize: '15px', fontWeight: 700, 
-                  color: '#e85d5d', margin: 0, letterSpacing: '0.05em' 
-                }}>
-                  DOUBLES TO $99
-                </p>
-              </div>
-            </div>
+          <div>
+            <p style={{ 
+              fontFamily: J, fontSize: '14px', fontWeight: 600, 
+              color: '#fff', margin: '0 0 4px' 
+            }}>{item.title}</p>
+            <p style={{ 
+              fontSize: '13px', color: 'rgba(255,255,255,0.4)', 
+              margin: 0 
+            }}>{item.desc}</p>
           </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
-          {/* Bottom CTA bar */}
+{/* ══════════════════════════════════════════════════════════
+    URGENCY — Only 10 Slots
+══════════════════════════════════════════════════════════ */}
+<section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
+  <div style={{ maxWidth: 700, margin: '0 auto' }}>
+    {/* Warning triangle — CENTERED */}
+    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 20h20L12 2z" stroke="#C9A84C" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M12 9v5M12 16v1" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    </div>
+
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
+      fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 
+    }}>
+      Only <span style={{ color: '#C9A84C', fontStyle: 'italic' }}>10 Slots</span>
+    </h2>
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
+      fontWeight: 600, color: '#fff', margin: '0 0 20px', lineHeight: 1.15 
+    }}>
+      Available at $49
+    </h2>
+    <p style={{ 
+      fontSize: '15px', color: 'rgba(255,255,255,0.45)', 
+      margin: '0 0 48px', lineHeight: 1.7 
+    }}>
+      Because this is a personalized, manual review by a professional voice coach, slots are strictly limited.
+    </p>
+
+    {/* Slots counter */}
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+      {/* Left card - Spots Left */}
+      <div style={{ 
+        background: CARD, border: `1px solid rgba(201,168,76,0.2)`, 
+        padding: '28px', textAlign: 'left' 
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
           <div style={{ 
-            background: CARD, border: `1px solid ${CARD_BORDER}`, 
-            padding: '20px 28px', display: 'flex', 
-            alignItems: 'center', justifyContent: 'space-between', 
-            gap: 20, marginBottom: 16 
+            width: 48, height: 48, borderRadius: '50%', 
+            border: `2px solid #C9A84C`, display: 'flex', 
+            alignItems: 'center', justifyContent: 'center', 
+            fontFamily: G, fontSize: '1.3rem', fontWeight: 700, 
+            color: '#C9A84C' 
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
-              </svg>
-              <span style={{ 
-                fontSize: '13px', color: 'rgba(255,255,255,0.6)' 
-              }}>
-                Secure your $49 Voice Audit now before the slots are gone.
-              </span>
-            </div>
-            <a href={STRIPE_URL} style={{
-              display: 'inline-block', background: GOLD, color: '#1a1a1a',
-              fontFamily: J, fontSize: '11px', fontWeight: 700, 
-              letterSpacing: '0.15em', textTransform: 'uppercase', 
-              padding: '14px 28px', textDecoration: 'none', flexShrink: 0,
-            }}>
-              Audit My Voice For $49 →
-            </a>
+            {slots}
           </div>
+          <div>
+            <p style={{ 
+              fontFamily: J, fontSize: '10px', color: 'rgba(255,255,255,0.35)', 
+              margin: '0 0 2px', textTransform: 'uppercase', 
+              letterSpacing: '0.1em' 
+            }}>Spots Left</p>
+            <p style={{ 
+              fontFamily: J, fontSize: '12px', color: 'rgba(255,255,255,0.5)', 
+              margin: 0 
+            }}>This week's available slots</p>
+          </div>
+        </div>
+        {/* Slot dots */}
+        <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+          {Array(10).fill(0).map((_, i) => (
+            <div key={i} style={{ 
+              width: 14, height: 14, borderRadius: '50%', 
+              background: i < slots ? '#C9A84C' : 'rgba(201,168,76,0.15)' 
+            }}/>
+          ))}
+        </div>
+      </div>
 
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>
-            100% Secure & Confidential
+      {/* Right card - Price doubles */}
+      <div style={{ 
+        background: CARD, border: `1px solid rgba(201,168,76,0.2)`, 
+        padding: '28px', display: 'flex', alignItems: 'center', gap: 14 
+      }}>
+        <div style={{ 
+          width: 40, height: 40, borderRadius: '50%', 
+          border: `1px solid #C9A84C`, display: 'flex', 
+          alignItems: 'center', justifyContent: 'center', flexShrink: 0 
+        }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v7l4 2" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="12" cy="12" r="9" stroke="#C9A84C" strokeWidth="1.5"/>
+          </svg>
+        </div>
+        <div style={{ textAlign: 'left' }}>
+          <p style={{ 
+            fontSize: '12px', color: 'rgba(255,255,255,0.4)', 
+            margin: '0 0 6px', lineHeight: 1.5 
+          }}>
+            Once this week's 10 spots are gone, the price
+          </p>
+          <p style={{ 
+            fontFamily: J, fontSize: '15px', fontWeight: 700, 
+            color: '#e85d5d', margin: 0, letterSpacing: '0.05em' 
+          }}>
+            DOUBLES TO $99
           </p>
         </div>
-      </section>
+      </div>
+    </div>
 
-      {/* ══════════════════════════════════════════════════════════
-          FINAL CTA
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          <p style={{ 
-            fontFamily: J, fontSize: '11px', fontWeight: 700, 
-            letterSpacing: '0.25em', textTransform: 'uppercase', 
-            color: GOLD, margin: '0 0 28px' 
-          }}>
-            Take Action Now
-          </p>
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
-            fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 
-          }}>
-            Your Voice Changes
-          </h2>
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
-            fontWeight: 600, fontStyle: 'italic', color: GOLD, 
-            margin: '0 0 24px', lineHeight: 1.15 
-          }}>
-            How People Treat You.
-          </h2>
-          <p style={{ 
-            fontSize: '15px', color: 'rgba(255,255,255,0.4)', 
-            margin: '0 0 40px' 
-          }}>
-            One investment. One conversation. Permanent transformation.
-          </p>
+    {/* Bottom CTA bar */}
+    <div style={{ 
+      background: CARD, border: `1px solid ${CARD_BORDER}`, 
+      padding: '20px 28px', display: 'flex', 
+      alignItems: 'center', justifyContent: 'space-between', 
+      gap: 20, marginBottom: 16 
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#C9A84C" strokeWidth="1.5" strokeLinejoin="round"/>
+        </svg>
+        <span style={{ 
+          fontSize: '13px', color: 'rgba(255,255,255,0.6)' 
+        }}>
+          Secure your $49 Voice Audit now before the slots are gone.
+        </span>
+      </div>
+      <a href={STRIPE_URL} style={{
+        display: 'inline-block', background: '#C9A84C', color: '#1a1a1a',
+        fontFamily: J, fontSize: '11px', fontWeight: 700, 
+        letterSpacing: '0.15em', textTransform: 'uppercase', 
+        padding: '14px 28px', textDecoration: 'none', flexShrink: 0,
+      }}>
+        Audit My Voice For $49 →
+      </a>
+    </div>
 
-          <a href={STRIPE_URL} style={{
-            display: 'inline-block', background: GOLD, color: '#1a1a1a',
-            fontFamily: J, fontSize: '12px', fontWeight: 700, 
-            letterSpacing: '0.18em', textTransform: 'uppercase', 
-            padding: '18px 48px', textDecoration: 'none', marginBottom: 16,
-          }}>
-            Audit My Voice For $49 →
-          </a>
+    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>
+      100% Secure & Confidential
+    </p>
+  </div>
+</section>
 
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>
-            100% Secure & Confidential
-          </p>
-        </div>
-      </section>
+{/* ══════════════════════════════════════════════════════════
+    FINAL CTA
+══════════════════════════════════════════════════════════ */}
+<section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
+  <div style={{ maxWidth: 700, margin: '0 auto' }}>
+    <p style={{ 
+      fontFamily: J, fontSize: '11px', fontWeight: 700, 
+      letterSpacing: '0.25em', textTransform: 'uppercase', 
+      color: '#C9A84C', margin: '0 0 28px' 
+    }}>
+      Take Action Now
+    </p>
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
+      fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 
+    }}>
+      Your Voice Changes
+    </h2>
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
+      fontWeight: 600, fontStyle: 'italic', color: '#C9A84C', 
+      margin: '0 0 24px', lineHeight: 1.15 
+    }}>
+      How People Treat You.
+    </h2>
+    <p style={{ 
+      fontSize: '15px', color: 'rgba(255,255,255,0.4)', 
+      margin: '0 0 40px' 
+    }}>
+      One investment. One conversation. Permanent transformation.
+    </p>
+
+    <a href={STRIPE_URL} style={{
+      display: 'inline-block', background: '#C9A84C', color: '#1a1a1a',
+      fontFamily: J, fontSize: '12px', fontWeight: 700, 
+      letterSpacing: '0.18em', textTransform: 'uppercase', 
+      padding: '18px 48px', textDecoration: 'none', marginBottom: 16,
+    }}>
+      Audit My Voice For $49 →
+    </a>
+
+    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>
+      100% Secure & Confidential
+    </p>
+  </div>
+</section>
 
     </div>
   );
