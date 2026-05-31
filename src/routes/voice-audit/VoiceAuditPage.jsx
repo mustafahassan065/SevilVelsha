@@ -294,32 +294,33 @@ export default function VoiceAuditPage() {
     </div>
 
     {/* Bottom line — BOTTOM WALA EMOJI BHI FIGMA WALA SVG SE REPLACE */}
-    <div style={{
-      background: CARD, border: `1px solid ${CARD_BORDER}`,
-      padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 16,
-    }}>
-      <div style={{ flexShrink: 0 }}>
-        <svg width="28" height="20" viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clipPath="url(#clip0_eyes)">
-            <path d="M8.0003 20.9938C11.8651 20.9938 14.9981 17.8607 14.9981 13.996C14.9981 10.1312 11.8651 6.99817 8.0003 6.99817C4.13552 6.99817 1.0025 10.1312 1.0025 13.996C1.0025 17.8607 4.13552 20.9938 8.0003 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
-            <path d="M18.9973 20.9938C22.8621 20.9938 25.9951 17.8607 25.9951 13.996C25.9951 10.1312 22.8621 6.99817 18.9973 6.99817C15.1325 6.99817 11.9995 10.1312 11.9995 13.996C11.9995 17.8607 15.1325 20.9938 18.9973 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
-            <path d="M29.9943 20.9938C33.8591 20.9938 36.9921 17.8607 36.9921 13.996C36.9921 10.1312 33.8591 6.99817 29.9943 6.99817C26.1296 6.99817 22.9965 10.1312 22.9965 13.996C22.9965 17.8607 26.1296 20.9938 29.9943 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
-          </g>
-          <defs>
-            <clipPath id="clip0_eyes">
-              <rect width="37.9953" height="27.9923" fill="white"/>
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
-      <p style={{ 
-        fontFamily: G, fontSize: '1.05rem', fontStyle: 'italic', 
-        color: 'rgba(255,255,255,0.7)', margin: 0 
-      }}>
-        If people interrupt you or ignore your ideas,<br/>
-        it is not your content — <span style={{ color: '#C9A84C' }}>it is your voice.</span>
-      </p>
-    </div>
+    {/* Bottom line */}
+<div style={{
+  background: CARD, border: `1px solid ${CARD_BORDER}`,
+  padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 16,
+}}>
+  <div style={{ flexShrink: 0 }}>
+    <svg width="28" height="20" viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_eyes)">
+        <path d="M8.0003 20.9938C11.8651 20.9938 14.9981 17.8607 14.9981 13.996C14.9981 10.1312 11.8651 6.99817 8.0003 6.99817C4.13552 6.99817 1.0025 10.1312 1.0025 13.996C1.0025 17.8607 4.13552 20.9938 8.0003 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
+        <path d="M18.9973 20.9938C22.8621 20.9938 25.9951 17.8607 25.9951 13.996C25.9951 10.1312 22.8621 6.99817 18.9973 6.99817C15.1325 6.99817 11.9995 10.1312 11.9995 13.996C11.9995 17.8607 15.1325 20.9938 18.9973 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
+        <path d="M29.9943 20.9938C33.8591 20.9938 36.9921 17.8607 36.9921 13.996C36.9921 10.1312 33.8591 6.99817 29.9943 6.99817C26.1296 6.99817 22.9965 10.1312 22.9965 13.996C22.9965 17.8607 26.1296 20.9938 29.9943 20.9938Z" stroke="#C9A84C" strokeWidth="1.49959"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_eyes">
+          <rect width="37.9953" height="27.9923" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
+  </div>
+  <p style={{ 
+    fontFamily: G, fontSize: '1.05rem', fontStyle: 'italic', 
+    color: 'rgba(255,255,255,0.7)', margin: 0 
+  }}>
+    If people interrupt you or ignore your ideas,<br/>
+    <span style={{ color: '#C9A84C' }}>it is not your content — it is your voice.</span>
+  </p>
+</div>
   </div>
 </section>
       {/* ══════════════════════════════════════════════════════════
