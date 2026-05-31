@@ -40,7 +40,7 @@ export default function VoiceAuditPage() {
     <p style={{ 
       fontFamily: J, fontSize: '11px', fontWeight: 700, 
       letterSpacing: '0.25em', textTransform: 'uppercase', 
-      color: GOLD, margin: '0 0 24px' 
+      color: '#C9A84C', margin: '0 0 24px' 
     }}>
       Voice Audit
     </p>
@@ -59,7 +59,7 @@ export default function VoiceAuditPage() {
     </h1>
     <h1 style={{ 
       fontFamily: G, fontSize: 'clamp(2.4rem,5vw,4rem)', 
-      fontWeight: 600, color: GOLD, fontStyle: 'italic',
+      fontWeight: 600, color: '#C9A84C', fontStyle: 'italic',
       margin: '0 0 32px', lineHeight: 1.1 
     }}>
       Money and Respect.
@@ -75,12 +75,12 @@ export default function VoiceAuditPage() {
       fontSize: '15px', color: 'rgba(255,255,255,0.55)', 
       margin: '0 0 36px', lineHeight: 1.7 
     }}>
-      For <span style={{ color: GOLD, fontWeight: 600 }}>$49</span>, get a professional <span style={{ color: GOLD, fontWeight: 600 }}>24-hour Voice Audit</span><br/>
+      For <span style={{ color: '#C9A84C', fontWeight: 600 }}>$49</span>, get a professional <span style={{ color: '#C9A84C', fontWeight: 600 }}>24-hour Voice Audit</span><br/>
       and change how the room reacts to you.
     </p>
 
     <a href={STRIPE_URL} style={{
-      display: 'inline-block', background: GOLD, color: '#1a1a1a',
+      display: 'inline-block', background: '#C9A84C', color: '#1a1a1a',
       fontFamily: J, fontSize: '12px', fontWeight: 700, 
       letterSpacing: '0.18em', textTransform: 'uppercase', 
       padding: '16px 36px', textDecoration: 'none',
@@ -92,23 +92,23 @@ export default function VoiceAuditPage() {
     <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="11" width="18" height="11" rx="2" stroke={GOLD} strokeWidth="1.5"/>
-          <path d="M7 11V7a5 5 0 0110 0v4" stroke={GOLD} strokeWidth="1.5"/>
+          <rect x="3" y="11" width="18" height="11" rx="2" stroke="#C9A84C" strokeWidth="1.5"/>
+          <path d="M7 11V7a5 5 0 0110 0v4" stroke="#C9A84C" strokeWidth="1.5"/>
         </svg>
         <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>100% Secure</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke={GOLD} strokeWidth="1.5"/>
-          <path d="M12 8v4l3 3" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="12" cy="12" r="9" stroke="#C9A84C" strokeWidth="1.5"/>
+          <path d="M12 8v4l3 3" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
         <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>Confidential</span>
       </div>
     </div>
   </div>
 
-  {/* Right — photo + waveform graphic — BACKGROUND CHANGED TO NAVY BLUE */}
-  <div style={{ position: 'relative', height: '100%', minHeight: '600px', overflow: 'hidden', background: '#000080' }}>
+  {/* Right — photo + waveform graphic — BACKGROUND: #1A1A24 */}
+  <div style={{ position: 'relative', height: '100%', minHeight: '600px', overflow: 'hidden', background: '#1A1A24' }}>
     <img
       src="/images/audit-hero.png"
       alt="Sevil Velsha"
@@ -117,22 +117,22 @@ export default function VoiceAuditPage() {
     {/* Waveform overlay card */}
     <div style={{
       position: 'absolute', top: 32, right: 32,
-      background: 'rgba(20,20,20,0.92)', border: '1px solid rgba(201,169,110,0.25)',
+      background: 'rgba(20,20,20,0.92)', border: '1px solid rgba(201,168,76,0.25)',
       padding: '16px 20px', backdropFilter: 'blur(8px)',
     }}>
       <p style={{ 
         fontFamily: J, fontSize: '10px', letterSpacing: '0.15em', 
-        color: GOLD, margin: '0 0 10px', textTransform: 'uppercase' 
+        color: '#C9A84C', margin: '0 0 10px', textTransform: 'uppercase' 
       }}>
         Pitch Contour
       </p>
       <svg width="160" height="52" viewBox="0 0 160 52">
         <polyline
           points="0,42 10,38 20,28 30,34 40,22 50,30 60,18 70,26 80,32 90,24 100,28 110,20 120,26 130,32 140,28 150,34 160,30"
-          fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
+          fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinejoin="round"/>
         <polyline
           points="0,46 20,44 40,46 60,42 80,45 100,43 120,46 140,44 160,46"
-          fill="none" stroke="rgba(201,169,110,0.3)" strokeWidth="1"/>
+          fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="1"/>
       </svg>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
         <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)' }}>Hz 75</span>
