@@ -327,49 +327,49 @@ export default function VoiceAuditPage() {
           THE REALITY
       ══════════════════════════════════════════════════════════ */}
       <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <p style={{ 
-            fontFamily: J, fontSize: '11px', fontWeight: 700, 
-            letterSpacing: '0.25em', textTransform: 'uppercase', 
-            color: GOLD, margin: '0 0 28px' 
-          }}>
-            The Reality
-          </p>
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
-            fontWeight: 600, color: '#fff', margin: '0 0 12px', lineHeight: 1.15 
-          }}>
-            If People Ignore You, Interrupt You,<br/>
-            or Forget Your Ideas…
-          </h2>
-          <h2 style={{ 
-            fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
-            fontWeight: 600, fontStyle: 'italic', color: GOLD, 
-            margin: '0 0 36px', lineHeight: 1.15 
-          }}>
-            It May Be Your Voice.
-          </h2>
-          <p style={{ 
-            fontSize: '15px', color: 'rgba(255,255,255,0.5)', 
-            margin: '0 0 40px', lineHeight: 1.8 
-          }}>
-            Your ideas might be brilliant. Your strategy might be sound. But if your voice signals uncertainty, the room will not follow you — no matter what you say.
-          </p>
-          <div style={{
-            background: CARD, border: `1px solid rgba(201,169,110,0.2)`,
-            padding: '28px 36px', textAlign: 'left',
-          }}>
-            <p style={{ 
-              fontFamily: G, fontSize: 'clamp(1rem,2vw,1.25rem)', 
-              fontStyle: 'italic', color: 'rgba(255,255,255,0.75)', 
-              margin: 0, lineHeight: 1.8, 
-              borderLeft: `3px solid ${GOLD}`, paddingLeft: 24 
-            }}>
-              "The voice is an instrument of leadership. Those who master it control the room before they speak a single word."
-            </p>
-          </div>
-        </div>
-      </section>
+  <div style={{ maxWidth: 720, margin: '0 auto' }}>
+    <p style={{ 
+      fontFamily: J, fontSize: '11px', fontWeight: 700, 
+      letterSpacing: '0.25em', textTransform: 'uppercase', 
+      color: '#C9A84C', margin: '0 0 28px' 
+    }}>
+      The Reality
+    </p>
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
+      fontWeight: 600, color: '#fff', margin: '0 0 12px', lineHeight: 1.15 
+    }}>
+      If People Ignore You, Interrupt You,<br/>
+      or Forget Your Ideas…
+    </h2>
+    <h2 style={{ 
+      fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', 
+      fontWeight: 600, fontStyle: 'italic', color: '#C9A84C', 
+      margin: '0 0 36px', lineHeight: 1.15 
+    }}>
+      It May Be Your Voice.
+    </h2>
+    <p style={{ 
+      fontSize: '15px', color: 'rgba(255,255,255,0.5)', 
+      margin: '0 0 40px', lineHeight: 1.8 
+    }}>
+      Your ideas might be brilliant. Your strategy might be sound. But if your voice signals uncertainty, the room will not follow you — no matter what you say.
+    </p>
+    <div style={{
+      background: CARD, border: `1px solid rgba(201,168,76,0.2)`,
+      padding: '28px 36px', textAlign: 'left',
+    }}>
+      <p style={{ 
+        fontFamily: G, fontSize: 'clamp(1rem,2vw,1.25rem)', 
+        fontStyle: 'italic', color: 'rgba(255,255,255,0.75)', 
+        margin: 0, lineHeight: 1.8, 
+        borderLeft: `3px solid #C9A84C`, paddingLeft: 24 
+      }}>
+        "The voice is an instrument of leadership. Those who master it control the room before they speak a single word."
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════════════════════
           THE PROCESS — 24-Hour Fix
