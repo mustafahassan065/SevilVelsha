@@ -10,7 +10,6 @@ export default function VoiceAuditPage() {
   const [slots] = useState(10);
 
   useEffect(() => {
-    // Load Google Fonts
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&display=swap';
     link.rel = 'stylesheet';
@@ -22,7 +21,6 @@ export default function VoiceAuditPage() {
   const GOLD = '#c9a96e';
   const DARK = '#0a0a0a';
   const DARK2 = '#111111';
-  const DARK3 = '#141414';
   const CARD = '#161616';
   const CARD_BORDER = 'rgba(201,169,110,0.15)';
 
@@ -33,7 +31,7 @@ export default function VoiceAuditPage() {
           HERO SECTION
       ══════════════════════════════════════════════════════════ */}
       <section style={{
-        background: DARK3, minHeight: '100vh',
+        background: DARK, minHeight: '100vh',
         display: 'grid', gridTemplateColumns: '1fr 1fr',
         alignItems: 'center', position: 'relative', overflow: 'hidden',
       }}>
@@ -128,7 +126,6 @@ export default function VoiceAuditPage() {
             }}>
               Pitch Contour
             </p>
-            {/* SVG Waveform */}
             <svg width="160" height="52" viewBox="0 0 160 52">
               <polyline
                 points="0,42 10,38 20,28 30,34 40,22 50,30 60,18 70,26 80,32 90,24 100,28 110,20 120,26 130,32 140,28 150,34 160,30"
@@ -562,15 +559,12 @@ export default function VoiceAuditPage() {
               Waveform + Pitch Analysis
             </p>
             <svg width="100%" height="100" viewBox="0 0 320 100" preserveAspectRatio="none">
-              {/* Main waveform */}
               <polyline 
                 points="0,70 15,55 30,65 45,40 60,50 75,30 90,45 105,35 120,50 135,40 150,55 165,35 180,45 195,30 210,50 225,40 240,55 255,45 270,35 285,50 300,40 320,45"
                 fill="none" stroke={GOLD} strokeWidth="1.5"/>
-              {/* Secondary waveform */}
               <polyline 
                 points="0,85 40,82 80,86 120,80 160,84 200,81 240,85 280,83 320,86"
                 fill="none" stroke="rgba(201,169,110,0.2)" strokeWidth="1"/>
-              {/* Pitch contour line */}
               <polyline 
                 points="0,75 40,60 80,70 120,45 160,55 200,35 240,50 280,40 320,48"
                 fill="none" stroke={GOLD} strokeWidth="2" strokeDasharray="4,4" opacity="0.5"/>
