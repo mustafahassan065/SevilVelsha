@@ -564,20 +564,35 @@ export default function VoiceAuditPage() {
   }}>
     {/* Left — Waveform + Pitch Analysis */}
     <div style={{ position: 'relative' }}>
-      <p style={{ 
-        fontFamily: J, fontSize: '11px', fontWeight: 700, 
-        letterSpacing: '0.25em', textTransform: 'uppercase', 
-        color: '#C9A84C', margin: '0 0 28px' 
-      }}>
-        Waveform + Pitch Analysis
-      </p>
-      
       <div style={{
         background: CARD, border: `1px solid rgba(201,168,76,0.15)`,
         padding: '24px 20px',
       }}>
-        {/* Waveform SVG */}
+        <p style={{ 
+          fontFamily: J, fontSize: '11px', fontWeight: 700, 
+          letterSpacing: '0.25em', textTransform: 'uppercase', 
+          color: '#C9A84C', margin: '0 0 20px' 
+        }}>
+          Waveform + Pitch Analysis
+        </p>
+        
+        {/* Pitch analysis SVG — AB UPAR */}
         <div style={{ marginBottom: 16 }}>
+          <svg width="100%" height="auto" viewBox="0 0 447 80" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', width: '100%' }}>
+            <path d="M23.1702 39.9985H28.17L33.1698 29.9988L38.1697 49.9981L43.1695 21.9991L48.1693 57.9978L53.1691 17.9993L58.1689 61.9976L63.1687 24.999L68.1686 54.9979L73.1684 19.9992L78.1682 59.9977L83.168 27.9989L88.1678 51.998L93.1676 34.9986L98.1674 44.9983L103.167 39.9985H113.167L118.167 27.9989L123.167 51.998L128.166 19.9992L133.166 59.9977L138.166 29.9988L143.166 49.9981L148.166 21.9991L153.165 57.9978L158.165 31.9988L163.165 47.9982L168.165 37.9985L173.165 41.9984L183.164 39.9985L188.164 33.9987L193.164 45.9982L198.164 25.999L203.164 53.9979L208.163 35.9986L213.163 43.9983L218.163 29.9988L223.163 49.9981L228.163 39.9985H238.162L243.162 31.9988L248.162 47.9982L253.162 23.999L258.162 55.9979L263.161 37.9985L268.161 41.9984L273.161 39.9985H283.161L288.16 35.9986L293.16 43.9983L298.16 37.9985L303.16 41.9984L313.16 39.9985L318.159 33.9987L323.159 45.9982L328.159 39.9985H333.159H343.158" stroke="url(#paint0_linear_pitch)" strokeWidth="1.49994"/>
+            <defs>
+              <linearGradient id="paint0_linear_pitch" x1="23.1702" y1="17.9993" x2="128018" y2="17.9993" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#C9A84C" stopOpacity="0.3"/>
+                <stop offset="0.3" stopColor="#C9A84C"/>
+                <stop offset="0.7" stopColor="#C9A84C"/>
+                <stop offset="1" stopColor="#C9A84C" stopOpacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        
+        {/* Waveform SVG — AB NEECHE */}
+        <div>
           <svg width="100%" height="auto" viewBox="0 0 447 120" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', width: '100%' }}>
             <g clipPath="url(#clip0_waveform)">
               <path d="M73.1678 9.99976H413.156" stroke="#222222" strokeWidth="0.799972"/>
@@ -603,21 +618,6 @@ export default function VoiceAuditPage() {
               <clipPath id="clip0_waveform">
                 <rect width="446.326" height="119.996" fill="white"/>
               </clipPath>
-            </defs>
-          </svg>
-        </div>
-        
-        {/* Pitch analysis SVG */}
-        <div>
-          <svg width="100%" height="auto" viewBox="0 0 447 80" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', width: '100%' }}>
-            <path d="M23.1702 39.9985H28.17L33.1698 29.9988L38.1697 49.9981L43.1695 21.9991L48.1693 57.9978L53.1691 17.9993L58.1689 61.9976L63.1687 24.999L68.1686 54.9979L73.1684 19.9992L78.1682 59.9977L83.168 27.9989L88.1678 51.998L93.1676 34.9986L98.1674 44.9983L103.167 39.9985H113.167L118.167 27.9989L123.167 51.998L128.166 19.9992L133.166 59.9977L138.166 29.9988L143.166 49.9981L148.166 21.9991L153.165 57.9978L158.165 31.9988L163.165 47.9982L168.165 37.9985L173.165 41.9984L183.164 39.9985L188.164 33.9987L193.164 45.9982L198.164 25.999L203.164 53.9979L208.163 35.9986L213.163 43.9983L218.163 29.9988L223.163 49.9981L228.163 39.9985H238.162L243.162 31.9988L248.162 47.9982L253.162 23.999L258.162 55.9979L263.161 37.9985L268.161 41.9984L273.161 39.9985H283.161L288.16 35.9986L293.16 43.9983L298.16 37.9985L303.16 41.9984L313.16 39.9985L318.159 33.9987L323.159 45.9982L328.159 39.9985H333.159H343.158" stroke="url(#paint0_linear_pitch)" strokeWidth="1.49994"/>
-            <defs>
-              <linearGradient id="paint0_linear_pitch" x1="23.1702" y1="17.9993" x2="128018" y2="17.9993" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#C9A84C" stopOpacity="0.3"/>
-                <stop offset="0.3" stopColor="#C9A84C"/>
-                <stop offset="0.7" stopColor="#C9A84C"/>
-                <stop offset="1" stopColor="#C9A84C" stopOpacity="0.3"/>
-              </linearGradient>
             </defs>
           </svg>
         </div>
