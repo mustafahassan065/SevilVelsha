@@ -12,9 +12,8 @@ export default function ThankYouBook() {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [userEmail, setUserEmail] = useState('');
 
-  // Google Drive File ID
-  const PDF_FILE_ID = '12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm';
-  const PDF_DOWNLOAD = `https://drive.google.com/uc?export=download&id=${PDF_FILE_ID}`;
+  // NEW OneDrive Download Link
+  const ONEDRIVE_DOWNLOAD_URL = 'https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy9iNTBlOGMwMTI0ODA1Y2EzL0lRRHhlQ1RIamhrV1NvYUhmQkdkbVR4SEFlVEdDdFBaRFJibW9lQnpsb3MydjJBP1RlYW1zQ0lEPTY2NTliMjFhLTJhNDEtNDA2NS04MzIxLTU5MzRmZmI4YjdmYSZsaW5rT3BlblRpbWU9MTc4MDg5Mjg3MjA3NA&cid=B50E8C0124805CA3&id=B50E8C0124805CA3%21sc72478f1198e4a1686877c119d993c47&parId=B50E8C0124805CA3%21s44ff9d852fdc4b51bcec42eefc0cd89b&o=OneUp';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,7 +52,7 @@ export default function ThankYouBook() {
   };
 
   // ── DOWNLOAD ────────────────────────────────────────────────
-    const handleDownload = async () => {
+  const handleDownload = async () => {
     setLoading(true);
     setError('');
 
@@ -79,9 +78,9 @@ export default function ThankYouBook() {
     } catch (err) {
       setError('❌ Download failed. Trying direct download...');
       
-      // Fallback: Direct Google Drive
+      // Fallback: Direct OneDrive Link (Updated)
       const link = document.createElement('a');
-      link.href = `https://drive.google.com/uc?export=download&id=12h7Q0FNa9nLATwE9cknvDK1UIWkjV7Qm`;
+      link.href = ONEDRIVE_DOWNLOAD_URL;
       link.download = `Voice-Control-Book.pdf`;
       link.target = '_blank';
       document.body.appendChild(link);
