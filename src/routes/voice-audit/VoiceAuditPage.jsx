@@ -149,7 +149,7 @@ export default function VoiceAuditPage() {
           {/* 3 cards */}
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 24 }}>
   {/* Card 1 */}
-  <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+  <div style={{ background: "#16161C", border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
     <div style={{ position: 'absolute', top: 16, left: 20, fontFamily: G, fontSize: '3.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, userSelect: 'none' }}>01</div>
     <div style={{ position: 'relative', zIndex: 1 }}>
       {/* Bar chart waveform */}
@@ -169,7 +169,7 @@ export default function VoiceAuditPage() {
   </div>
 
   {/* Card 2 */}
-  <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+  <div style={{ background: "#16161C", border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
     <div style={{ position: 'absolute', top: 16, left: 20, fontFamily: G, fontSize: '3.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, userSelect: 'none' }}>02</div>
     <div style={{ position: 'relative', zIndex: 1 }}>
       {/* Hz wave */}
@@ -190,7 +190,7 @@ export default function VoiceAuditPage() {
   </div>
 
   {/* Card 3 */}
-  <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+  <div style={{ background: "#16161C", border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
     <div style={{ position: 'absolute', top: 16, left: 20, fontFamily: G, fontSize: '3.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, userSelect: 'none' }}>03</div>
     <div style={{ position: 'relative', zIndex: 1 }}>
       {/* Pause wave */}
@@ -211,7 +211,7 @@ export default function VoiceAuditPage() {
 </div>
 
           {/* Bottom bar */}
-          <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '22px 32px', display: 'flex', alignItems: 'center', gap: 20 }}>
+          <div style={{ background: "#16161C", border: `1px solid ${CARD_BORDER}`, padding: '22px 32px', display: 'flex', alignItems: 'center', gap: 20 }}>
             {/* Three circles icon */}
             <svg width="56" height="20" viewBox="0 0 56 20" fill="none" style={{ flexShrink: 0 }}>
               <circle cx="10" cy="10" r="8.5" stroke={GOLD} strokeWidth="1.4"/>
