@@ -146,69 +146,69 @@ export default function VoiceAuditPage() {
           </p>
 
           {/* 3 cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 24 }}>
-            {/* Card 1 */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-              <div style={{ position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '6rem', fontWeight: 700, color: 'rgba(201,169,110,0.07)', lineHeight: 1, userSelect: 'none', whiteSpace: 'nowrap' }}>01</div>
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                {/* Bar chart waveform */}
-                <svg width="120" height="48" viewBox="0 0 120 48" style={{ display: 'block', margin: '0 auto 20px' }}>
-                  {[
-                    [0,28],[6,18],[12,32],[18,14],[24,36],[30,20],[36,38],[42,16],[48,30],[54,12],[60,34],[66,22],[72,40],[78,18],[84,32],[90,14],[96,28],[102,10],[108,24],[114,16]
-                  ].map(([x, y], i) => (
-                    <rect key={i} x={x} y={y} width="4" height={48 - y} fill={GOLD} opacity="0.85" rx="1"/>
-                  ))}
-                </svg>
-                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
-                <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>You Speak Too Fast</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
-                  This signals anxiety and a complete lack of authority. Listeners disengage before you finish your first sentence.
-                </p>
-              </div>
-            </div>
+          {/* 3 cards */}
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 24 }}>
+  {/* Card 1 */}
+  <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ position: 'absolute', top: 16, left: 20, fontFamily: G, fontSize: '3.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, userSelect: 'none' }}>01</div>
+    <div style={{ position: 'relative', zIndex: 1 }}>
+      {/* Bar chart waveform */}
+      <svg width="120" height="48" viewBox="0 0 120 48" style={{ display: 'block', margin: '0 auto 20px' }}>
+        {[
+          [0,28],[6,18],[12,32],[18,14],[24,36],[30,20],[36,38],[42,16],[48,30],[54,12],[60,34],[66,22],[72,40],[78,18],[84,32],[90,14],[96,28],[102,10],[108,24],[114,16]
+        ].map(([x, y], i) => (
+          <rect key={i} x={x} y={y} width="4" height={48 - y} fill={GOLD} opacity="0.85" rx="1"/>
+        ))}
+      </svg>
+      <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+      <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>You Speak Too Fast</h3>
+      <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
+        This signals anxiety and a complete lack of authority. Listeners disengage before you finish your first sentence.
+      </p>
+    </div>
+  </div>
 
-            {/* Card 2 */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-              <div style={{ position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '6rem', fontWeight: 700, color: 'rgba(201,169,110,0.07)', lineHeight: 1, userSelect: 'none', whiteSpace: 'nowrap' }}>02</div>
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                {/* Hz wave */}
-                <div style={{ position: 'relative', margin: '0 auto 20px', width: 140, height: 48 }}>
-                  <span style={{ position: 'absolute', top: 0, left: 0, fontFamily: J, fontSize: '9px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>Hz</span>
-                  <svg width="140" height="48" viewBox="0 0 140 48" style={{ display: 'block' }}>
-                    {/* Two sine-like waves stacked */}
-                    <path d="M0,18 C8,8 16,8 24,18 C32,28 40,28 48,18 C56,8 64,8 72,18 C80,28 88,28 96,18 C104,8 112,8 120,18 C128,28 136,28 140,22" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
-                    <path d="M0,30 C8,22 16,22 24,30 C32,38 40,38 48,30 C56,22 64,22 72,30 C80,38 88,38 96,30 C104,22 112,22 120,30 C128,38 136,38 140,34" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round" opacity="0.5"/>
-                    <line x1="0" y1="44" x2="140" y2="44" stroke="rgba(201,168,76,0.3)" strokeWidth="0.8"/>
-                  </svg>
-                </div>
-                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
-                <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>Your Voice Lacks Contrast</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
-                  Flat, monotone speech causes people to immediately check their phones. Without pitch variety, your message disappears.
-                </p>
-              </div>
-            </div>
+  {/* Card 2 */}
+  <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ position: 'absolute', top: 16, left: 20, fontFamily: G, fontSize: '3.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, userSelect: 'none' }}>02</div>
+    <div style={{ position: 'relative', zIndex: 1 }}>
+      {/* Hz wave */}
+      <div style={{ position: 'relative', margin: '0 auto 20px', width: 140, height: 48 }}>
+        <span style={{ position: 'absolute', top: 0, left: 0, fontFamily: J, fontSize: '9px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>Hz</span>
+        <svg width="140" height="48" viewBox="0 0 140 48" style={{ display: 'block' }}>
+          <path d="M0,18 C8,8 16,8 24,18 C32,28 40,28 48,18 C56,8 64,8 72,18 C80,28 88,28 96,18 C104,8 112,8 120,18 C128,28 136,28 140,22" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+          <path d="M0,30 C8,22 16,22 24,30 C32,38 40,38 48,30 C56,22 64,22 72,30 C80,38 88,38 96,30 C104,22 112,22 120,30 C128,38 136,38 140,34" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round" opacity="0.5"/>
+          <line x1="0" y1="44" x2="140" y2="44" stroke="rgba(201,168,76,0.3)" strokeWidth="0.8"/>
+        </svg>
+      </div>
+      <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+      <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>Your Voice Lacks Contrast</h3>
+      <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
+        Flat, monotone speech causes people to immediately check their phones. Without pitch variety, your message disappears.
+      </p>
+    </div>
+  </div>
 
-            {/* Card 3 */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
-              <div style={{ position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '6rem', fontWeight: 700, color: 'rgba(201,169,110,0.07)', lineHeight: 1, userSelect: 'none', whiteSpace: 'nowrap' }}>03</div>
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                {/* Pause wave — broken line with PAUSE text */}
-                <svg width="140" height="48" viewBox="0 0 140 48" style={{ display: 'block', margin: '0 auto 20px' }}>
-                  <path d="M0,26 C6,18 12,18 18,26 C24,34 30,34 36,26" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
-                  <text x="44" y="22" fill={GOLD} fontSize="8" fontFamily="'Jost',sans-serif" letterSpacing="0.08em" opacity="0.9">PAUSE</text>
-                  <line x1="44" y1="26" x2="82" y2="26" stroke={GOLD} strokeWidth="1" strokeDasharray="3 2" opacity="0.5"/>
-                  <path d="M84,26 C90,18 96,18 102,26 C108,34 114,34 120,26 C126,18 132,18 138,26" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
-                  <line x1="0" y1="42" x2="140" y2="42" stroke="rgba(201,168,76,0.25)" strokeWidth="0.8"/>
-                </svg>
-                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
-                <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>You Skip the Pauses</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
-                  Weak speakers rush; powerful leaders control the room with silence. Strategic pauses signal authority.
-                </p>
-              </div>
-            </div>
-          </div>
+  {/* Card 3 */}
+  <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ position: 'absolute', top: 16, left: 20, fontFamily: G, fontSize: '3.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, userSelect: 'none' }}>03</div>
+    <div style={{ position: 'relative', zIndex: 1 }}>
+      {/* Pause wave */}
+      <svg width="140" height="48" viewBox="0 0 140 48" style={{ display: 'block', margin: '0 auto 20px' }}>
+        <path d="M0,26 C6,18 12,18 18,26 C24,34 30,34 36,26" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+        <text x="44" y="22" fill={GOLD} fontSize="8" fontFamily="'Jost',sans-serif" letterSpacing="0.08em" opacity="0.9">PAUSE</text>
+        <line x1="44" y1="26" x2="82" y2="26" stroke={GOLD} strokeWidth="1" strokeDasharray="3 2" opacity="0.5"/>
+        <path d="M84,26 C90,18 96,18 102,26 C108,34 114,34 120,26 C126,18 132,18 138,26" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+        <line x1="0" y1="42" x2="140" y2="42" stroke="rgba(201,168,76,0.25)" strokeWidth="0.8"/>
+      </svg>
+      <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+      <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>You Skip the Pauses</h3>
+      <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
+        Weak speakers rush; powerful leaders control the room with silence. Strategic pauses signal authority.
+      </p>
+    </div>
+  </div>
+</div>
 
           {/* Bottom bar */}
           <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '22px 32px', display: 'flex', alignItems: 'center', gap: 20 }}>
