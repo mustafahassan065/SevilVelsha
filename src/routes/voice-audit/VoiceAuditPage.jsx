@@ -654,20 +654,24 @@ export default function VoiceAuditPage() {
           </p>
 
           {/* Sevil card — full photo */}
-          <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '0', textAlign: 'left', marginBottom: 24, display: 'flex', alignItems: 'stretch', overflow: 'hidden' }}>
-            <div style={{ width: 180, flexShrink: 0, overflow: 'hidden', background: '#16161C' }}>
-              <img src="/images/audit-hero2.png" alt="Sevil Velsha" style={{ width: '100%', height: '60%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}/>
-            </div>
-            <div style={{ padding: '28px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 10px', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
-                Personally Reviewed By
-              </p>
-              <p style={{ fontFamily: G, fontSize: '1.5rem', fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>Sevil Velsha</p>
-              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.65 }}>
-                MA Linguistics . Voice Researcher . Author of The Voice Control Method . Personal Voice Analysis within 24 Hours
-              </p>
-            </div>
-          </div>
+          <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '24px', textAlign: 'left', marginBottom: 24, display: 'flex', alignItems: 'center', gap: '24px', overflow: 'hidden', borderRadius: '16px' }}>
+  <div style={{ width: 100, height: 100, flexShrink: 0 }}>
+    <img 
+      src="/images/audit-hero2.png" 
+      alt="Sevil Velsha" 
+      style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
+    />
+  </div>
+  <div style={{ flex: 1 }}>
+    <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 8px', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+      Personally Reviewed By
+    </p>
+    <p style={{ fontFamily: G, fontSize: '1.5rem', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Sevil Velsha</p>
+    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.6 }}>
+      MA Linguistics • Voice Researcher • Author of The Voice Control Method • Personal Voice Analysis within 24 Hours
+    </p>
+  </div>
+</div>
 
           {/* Slots + Investment */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
