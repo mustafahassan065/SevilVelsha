@@ -1,10 +1,10 @@
 // src/routes/voice-audit/VoiceAuditPage.jsx
 // Route: /voice-audit
-// Pixel-perfect match of Figma design — dark luxury theme, gold accents
+// Pixel-perfect match of Figma screenshots
 
 import React, { useState, useEffect } from 'react';
 
-const STRIPE_URL = 'https://buy.stripe.com/YOUR_VOICE_AUDIT_LINK'; // ← replace with actual Stripe link
+const STRIPE_URL = 'https://buy.stripe.com/YOUR_VOICE_AUDIT_LINK';
 
 export default function VoiceAuditPage() {
   const [slots] = useState(10);
@@ -24,402 +24,441 @@ export default function VoiceAuditPage() {
   const CARD = '#161616';
   const CARD_BORDER = 'rgba(201,169,110,0.15)';
 
-  const CheckIcon = () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
-      <path d="M5 12l5 5L20 7" stroke={GOLD} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  const GoldDivider = () => (
+    <div style={{ width: 48, height: 3, background: GOLD, margin: '20px 0 32px' }} />
+  );
+
+  const GoldDividerCenter = () => (
+    <div style={{ width: 48, height: 3, background: GOLD, margin: '20px auto 32px' }} />
+  );
+
+  const CheckIcon = ({ color = GOLD }) => (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+      <path d="M5 12l5 5L20 7" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 
-  const SectionLabel = ({ children }) => (
-    <p style={{ fontFamily: J, fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: GOLD, margin: '0 0 20px' }}>
-      {children}
-    </p>
-  );
-
   const CtaButton = ({ children, style = {} }) => (
-    <a href={STRIPE_URL} style={{ display: 'inline-block', background: GOLD, color: '#1a1a1a', fontFamily: J, fontSize: '12px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '16px 36px', textDecoration: 'none', ...style }}>
+    <a href={STRIPE_URL} style={{
+      display: 'inline-block', background: GOLD, color: '#111',
+      fontFamily: J, fontSize: '13px', fontWeight: 700,
+      letterSpacing: '0.15em', textTransform: 'uppercase',
+      padding: '20px 48px', textDecoration: 'none',
+      cursor: 'pointer', ...style
+    }}>
       {children}
     </a>
   );
 
-  // Fixed waveform bars — static values so they never re-randomize
-  const waveBarHeights = [8, 14, 6, 18, 10, 22, 7, 15, 12, 20, 9, 17, 11, 19, 8, 13, 16, 10, 18, 14];
-  const waveBarY = waveBarHeights.map(h => 15 - h / 2);
-
-  const stepWaveBarHeights = [6, 12, 5, 15, 8, 18, 6, 13, 10, 17, 7, 14, 9, 16, 7, 11, 14, 8, 16, 12, 5, 14, 9, 18, 7, 13, 11, 17, 6, 12];
-  const stepWaveBarY = stepWaveBarHeights.map(h => 15 - h / 2);
+  const SectionLabel = ({ children, center = false }) => (
+    <p style={{
+      fontFamily: J, fontSize: '11px', fontWeight: 700,
+      letterSpacing: '0.25em', textTransform: 'uppercase',
+      color: GOLD, margin: '0 0 16px',
+      textAlign: center ? 'center' : 'left'
+    }}>
+      {children}
+    </p>
+  );
 
   return (
     <div style={{ fontFamily: J, background: DARK, color: '#fff', minHeight: '100vh', overflowX: 'hidden' }}>
 
-      {/* ══════════════════════════════════════════════════════════
-          HERO SECTION
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK, minHeight: '100vh', display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ padding: 'clamp(60px,8vw,120px) clamp(40px,6vw,80px) clamp(60px,8vw,120px) clamp(60px,8vw,100px)' }}>
-          <p style={{ fontFamily: J, fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: GOLD, margin: '0 0 24px' }}>
-            Voice Audit
-          </p>
-          <h1 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5vw,4rem)', fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.1 }}>
+      {/* ══════════════════════════════════════
+          HERO
+      ══════════════════════════════════════ */}
+      <section style={{
+        display: 'grid', gridTemplateColumns: '1fr 1fr',
+        minHeight: '100vh', background: DARK, overflow: 'hidden'
+      }}>
+        {/* Left */}
+        <div style={{
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          padding: 'clamp(60px,8vw,120px) clamp(40px,5vw,80px) clamp(60px,8vw,120px) clamp(60px,7vw,100px)'
+        }}>
+          <h1 style={{
+            fontFamily: G, fontWeight: 700,
+            fontSize: 'clamp(2.8rem,5.5vw,4.4rem)',
+            lineHeight: 1.05, color: '#fff', margin: '0 0 4px'
+          }}>
             People Judge Your
           </h1>
-          <h1 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5vw,4rem)', fontWeight: 600, color: GOLD, fontStyle: 'italic', margin: '0 0 4px', lineHeight: 1.1 }}>
-            Voice
+          <h1 style={{
+            fontFamily: G, fontWeight: 700,
+            fontSize: 'clamp(2.8rem,5.5vw,4.4rem)',
+            lineHeight: 1.05, margin: '0 0 0'
+          }}>
+            <span style={{ color: GOLD, fontStyle: 'italic' }}>Voice </span>
+            <span style={{ color: '#fff' }}>Before Your</span>
           </h1>
-          <h1 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5vw,4rem)', fontWeight: 600, color: '#fff', margin: '0 0 32px', lineHeight: 1.1 }}>
-            Before Your Ideas
+          <h1 style={{
+            fontFamily: G, fontWeight: 700,
+            fontSize: 'clamp(2.8rem,5.5vw,4.4rem)',
+            lineHeight: 1.05, color: '#fff', margin: '0 0 20px'
+          }}>
+            Ideas
           </h1>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 6px', lineHeight: 1.7, fontStyle: 'italic' }}>
-            Most people spend years improving their skills. Few ever improve the
+
+          <GoldDivider />
+
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 4px', lineHeight: 1.7, fontStyle: 'italic', maxWidth: 480 }}>
+            Most people spend years improving their skills. Few ever improve the voice that delivers those skills.
           </p>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 6px', lineHeight: 1.7, fontStyle: 'italic' }}>
-            voice that delivers those skills.
-          </p>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 6px', lineHeight: 1.7 }}>
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 4px', lineHeight: 1.7 }}>
             People ignore fast, nervous talkers.
           </p>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 36px', lineHeight: 1.7 }}>
-            For <span style={{ color: GOLD, fontWeight: 600 }}>$49</span>, get a professional <span style={{ color: GOLD, fontWeight: 600 }}>24-hour Voice Audit</span><br/>
-            and change how the room reacts to you.
+            For <span style={{ color: GOLD, fontWeight: 600 }}>$49</span>, get a professional{' '}
+            <span style={{ color: GOLD, fontWeight: 600 }}>24-hour Voice Audit</span>
+            <br />and change how the room reacts to you.
           </p>
-          <CtaButton style={{ marginBottom: 28 }}>
-            GET MY PERSONAL VOICE REPORT →
-          </CtaButton>
-          <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <CheckIcon />
-              <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>Personally Reviewed by Sevil Velsha</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <CheckIcon />
-              <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>Not AI Generated</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <CheckIcon />
-              <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>Delivered Within 24 Hours</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <CheckIcon />
-              <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>100% Confidential</span>
-            </div>
+
+          <div>
+            <CtaButton>GET MY PERSONAL VOICE REPORT →</CtaButton>
           </div>
         </div>
-        <div style={{ position: 'relative', height: '100%', minHeight: '600px', overflow: 'hidden', background: DARK2 }}>
-          <img src="/images/audit-hero.png" alt="Sevil Velsha" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
-          <div style={{ position: 'absolute', top: 32, right: 32, background: 'rgba(20,20,20,0.92)', border: '1px solid rgba(201,168,76,0.25)', padding: '20px 24px', backdropFilter: 'blur(8px)' }}>
-            <p style={{ fontFamily: J, fontSize: '10px', letterSpacing: '0.15em', color: GOLD, margin: '0 0 16px', textTransform: 'uppercase' }}>
+
+        {/* Right — photo */}
+        <div style={{ position: 'relative', overflow: 'hidden', background: '#0d0d14', minHeight: '600px' }}>
+          <img
+            src="/images/audit-hero.png"
+            alt="Sevil Velsha"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
+          />
+          {/* Waveform overlay card */}
+          <div style={{
+            position: 'absolute', top: 32, right: 32,
+            background: 'rgba(16,16,20,0.92)',
+            border: '1px solid rgba(201,168,76,0.25)',
+            padding: '18px 22px', backdropFilter: 'blur(8px)', width: 220
+          }}>
+            <p style={{ fontFamily: J, fontSize: '9px', letterSpacing: '0.18em', color: GOLD, margin: '0 0 14px', textTransform: 'uppercase' }}>
               Waveform + Pitch Analysis
             </p>
-            <svg width="200" height="60" viewBox="0 0 200 60" style={{ display: 'block', marginBottom: 8 }}>
-              <polyline points="0,50 15,45 30,30 45,40 60,20 75,35 90,15 105,28 120,38 135,22 150,32 165,18 180,28 195,35" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
+            <svg width="180" height="50" viewBox="0 0 180 50" style={{ display: 'block', marginBottom: 8 }}>
+              <polyline
+                points="0,42 12,36 22,24 34,32 46,16 58,28 70,12 82,22 94,30 106,18 118,26 130,14 142,22 154,28 166,20 180,28"
+                fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"
+              />
             </svg>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
-              <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)' }}>75 Hz</span>
-              <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)' }}>350</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
+              <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>75 Hz</span>
+              <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>350</span>
             </div>
-            <svg width="200" height="40" viewBox="0 0 200 40" style={{ display: 'block' }}>
-              <polyline points="0,20 10,18 20,22 30,15 40,25 50,12 60,28 70,16 80,24 90,14 100,26 110,18 120,22 130,16 140,24 150,20 160,18 170,22 180,16 190,20 200,18" fill="none" stroke="rgba(201,168,76,0.4)" strokeWidth="1"/>
+            <svg width="180" height="32" viewBox="0 0 180 32" style={{ display: 'block' }}>
+              <polyline
+                points="0,16 12,14 22,18 34,10 46,20 58,10 70,22 82,14 94,20 106,12 118,18 130,14 142,18 154,12 166,16 180,14"
+                fill="none" stroke="rgba(201,168,76,0.35)" strokeWidth="1"
+              />
             </svg>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
-              <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)' }}>Amplitude</span>
-            </div>
+            <p style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)', margin: '6px 0 0' }}>Amplitude</p>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          THE PROBLEM — 3 Hidden Career Killers
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+      {/* ══════════════════════════════════════
+          THE PROBLEM
+      ══════════════════════════════════════ */}
+      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)' }}>
+        <div style={{ maxWidth: 1060, margin: '0 auto' }}>
           <SectionLabel>× The Problem</SectionLabel>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 600, color: '#fff', margin: '0 0 16px', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,5vw,3.8rem)', fontWeight: 700, color: '#fff', margin: 0, lineHeight: 1.1 }}>
             The 3 <span style={{ color: GOLD, fontStyle: 'italic' }}>Hidden</span> Career Killers
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', margin: '0 0 60px', lineHeight: 1.7, maxWidth: 600 }}>
-            Every time you open your mouth in a meeting or a presentation, people judge your competence in <span style={{ color: GOLD }}>less than 3 seconds</span>. You are likely losing your audience because:
+          <GoldDivider />
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 56px', lineHeight: 1.75, maxWidth: 640 }}>
+            Every time you open your mouth in a meeting or a presentation, people judge your competence in{' '}
+            <span style={{ color: GOLD }}>less than 3 seconds</span>. You are likely losing your audience because:
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20, marginBottom: 40 }}>
-            {/* Card 1 — Clock icon (You Speak Too Fast) */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 28px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, zIndex: 0, whiteSpace: 'nowrap' }}>01</div>
+          {/* 3 cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 24 }}>
+            {/* Card 1 */}
+            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+              <div style={{ position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '6rem', fontWeight: 700, color: 'rgba(201,169,110,0.07)', lineHeight: 1, userSelect: 'none', whiteSpace: 'nowrap' }}>01</div>
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid rgba(201,168,76,0.3)`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-                  {/* Clock icon — matches PDF card 01 */}
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="9" stroke={GOLD} strokeWidth="1.5"/>
-                    <path d="M12 7v5l3 3" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                </div>
-                <div style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${GOLD}`, color: GOLD, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: J, fontSize: '14px', fontWeight: 700, margin: '0 auto 16px' }}>01</div>
-                <h3 style={{ fontFamily: G, fontSize: '1.25rem', fontWeight: 600, color: '#fff', margin: '0 0 12px' }}>You Speak Too Fast</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.7 }}>
+                {/* Bar chart waveform */}
+                <svg width="120" height="48" viewBox="0 0 120 48" style={{ display: 'block', margin: '0 auto 20px' }}>
+                  {[
+                    [0,28],[6,18],[12,32],[18,14],[24,36],[30,20],[36,38],[42,16],[48,30],[54,12],[60,34],[66,22],[72,40],[78,18],[84,32],[90,14],[96,28],[102,10],[108,24],[114,16]
+                  ].map(([x, y], i) => (
+                    <rect key={i} x={x} y={y} width="4" height={48 - y} fill={GOLD} opacity="0.85" rx="1"/>
+                  ))}
+                </svg>
+                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+                <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>You Speak Too Fast</h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
                   This signals anxiety and a complete lack of authority. Listeners disengage before you finish your first sentence.
                 </p>
               </div>
             </div>
 
-            {/* Card 2 — Wave icon (Your Voice Lacks Contrast) */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 28px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, zIndex: 0, whiteSpace: 'nowrap' }}>02</div>
+            {/* Card 2 */}
+            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+              <div style={{ position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '6rem', fontWeight: 700, color: 'rgba(201,169,110,0.07)', lineHeight: 1, userSelect: 'none', whiteSpace: 'nowrap' }}>02</div>
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid rgba(201,168,76,0.3)`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-                  {/* Wave / sine icon */}
-                  <svg width="22" height="14" viewBox="0 0 32 14" fill="none">
-                    <path d="M0 7 C4 0, 8 0, 12 7 C16 14, 20 14, 24 7 C28 0, 32 0, 32 7" stroke={GOLD} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                {/* Hz wave */}
+                <div style={{ position: 'relative', margin: '0 auto 20px', width: 140, height: 48 }}>
+                  <span style={{ position: 'absolute', top: 0, left: 0, fontFamily: J, fontSize: '9px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>Hz</span>
+                  <svg width="140" height="48" viewBox="0 0 140 48" style={{ display: 'block' }}>
+                    {/* Two sine-like waves stacked */}
+                    <path d="M0,18 C8,8 16,8 24,18 C32,28 40,28 48,18 C56,8 64,8 72,18 C80,28 88,28 96,18 C104,8 112,8 120,18 C128,28 136,28 140,22" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+                    <path d="M0,30 C8,22 16,22 24,30 C32,38 40,38 48,30 C56,22 64,22 72,30 C80,38 88,38 96,30 C104,22 112,22 120,30 C128,38 136,38 140,34" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round" opacity="0.5"/>
+                    <line x1="0" y1="44" x2="140" y2="44" stroke="rgba(201,168,76,0.3)" strokeWidth="0.8"/>
                   </svg>
                 </div>
-                <div style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${GOLD}`, color: GOLD, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: J, fontSize: '14px', fontWeight: 700, margin: '0 auto 16px' }}>02</div>
-                <h3 style={{ fontFamily: G, fontSize: '1.25rem', fontWeight: 600, color: '#fff', margin: '0 0 12px' }}>Your Voice Lacks Contrast</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.7 }}>
+                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+                <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>Your Voice Lacks Contrast</h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
                   Flat, monotone speech causes people to immediately check their phones. Without pitch variety, your message disappears.
                 </p>
               </div>
             </div>
 
-            {/* Card 3 — Pause bars icon (You Skip the Pauses) */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 28px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, zIndex: 0, whiteSpace: 'nowrap' }}>03</div>
+            {/* Card 3 */}
+            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '40px 32px 36px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+              <div style={{ position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '6rem', fontWeight: 700, color: 'rgba(201,169,110,0.07)', lineHeight: 1, userSelect: 'none', whiteSpace: 'nowrap' }}>03</div>
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid rgba(201,168,76,0.3)`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-                  {/* Pause icon — two vertical bars */}
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <rect x="6" y="4" width="4" height="16" rx="1" stroke={GOLD} strokeWidth="1.5"/>
-                    <rect x="14" y="4" width="4" height="16" rx="1" stroke={GOLD} strokeWidth="1.5"/>
-                  </svg>
-                </div>
-                <div style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${GOLD}`, color: GOLD, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: J, fontSize: '14px', fontWeight: 700, margin: '0 auto 16px' }}>03</div>
-                <h3 style={{ fontFamily: G, fontSize: '1.25rem', fontWeight: 600, color: '#fff', margin: '0 0 12px' }}>You Skip the Pauses</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.7 }}>
+                {/* Pause wave — broken line with PAUSE text */}
+                <svg width="140" height="48" viewBox="0 0 140 48" style={{ display: 'block', margin: '0 auto 20px' }}>
+                  <path d="M0,26 C6,18 12,18 18,26 C24,34 30,34 36,26" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+                  <text x="44" y="22" fill={GOLD} fontSize="8" fontFamily="'Jost',sans-serif" letterSpacing="0.08em" opacity="0.9">PAUSE</text>
+                  <line x1="44" y1="26" x2="82" y2="26" stroke={GOLD} strokeWidth="1" strokeDasharray="3 2" opacity="0.5"/>
+                  <path d="M84,26 C90,18 96,18 102,26 C108,34 114,34 120,26 C126,18 132,18 138,26" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+                  <line x1="0" y1="42" x2="140" y2="42" stroke="rgba(201,168,76,0.25)" strokeWidth="0.8"/>
+                </svg>
+                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+                <h3 style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', lineHeight: 1.2 }}>You Skip the Pauses</h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.75 }}>
                   Weak speakers rush; powerful leaders control the room with silence. Strategic pauses signal authority.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Bottom quote bar — three eyes / ellipsis icon from PDF */}
-          <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 16 }}>
-            <div style={{ flexShrink: 0 }}>
-              <svg width="38" height="28" viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clipPath="url(#clip0_eyes)">
-                  <path d="M8.0003 20.9938C11.8651 20.9938 14.9981 17.8607 14.9981 13.996C14.9981 10.1312 11.8651 6.99817 8.0003 6.99817C4.13552 6.99817 1.0025 10.1312 1.0025 13.996C1.0025 17.8607 4.13552 20.9938 8.0003 20.9938Z" stroke={GOLD} strokeWidth="1.49959"/>
-                  <path d="M18.9973 20.9938C22.8621 20.9938 25.9951 17.8607 25.9951 13.996C25.9951 10.1312 22.8621 6.99817 18.9973 6.99817C15.1325 6.99817 11.9995 10.1312 11.9995 13.996C11.9995 17.8607 15.1325 20.9938 18.9973 20.9938Z" stroke={GOLD} strokeWidth="1.49959"/>
-                  <path d="M29.9943 20.9938C33.8591 20.9938 36.9921 17.8607 36.9921 13.996C36.9921 10.1312 33.8591 6.99817 29.9943 6.99817C26.1296 6.99817 22.9965 10.1312 22.9965 13.996C22.9965 17.8607 26.1296 20.9938 29.9943 20.9938Z" stroke={GOLD} strokeWidth="1.49959"/>
-                </g>
-                <defs><clipPath id="clip0_eyes"><rect width="37.9953" height="27.9923" fill="white"/></clipPath></defs>
-              </svg>
-            </div>
-            <p style={{ fontFamily: G, fontSize: '1.05rem', fontStyle: 'italic', color: 'rgba(255,255,255,0.7)', margin: 0 }}>
-              If people interrupt you or ignore your ideas, <span style={{ color: GOLD }}>it is not your content — it is your voice.</span>
+          {/* Bottom bar */}
+          <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '22px 32px', display: 'flex', alignItems: 'center', gap: 20 }}>
+            {/* Three circles icon */}
+            <svg width="56" height="20" viewBox="0 0 56 20" fill="none" style={{ flexShrink: 0 }}>
+              <circle cx="10" cy="10" r="8.5" stroke={GOLD} strokeWidth="1.4"/>
+              <circle cx="28" cy="10" r="8.5" stroke={GOLD} strokeWidth="1.4"/>
+              <circle cx="46" cy="10" r="8.5" stroke={GOLD} strokeWidth="1.4"/>
+            </svg>
+            <p style={{ fontFamily: G, fontSize: '1.05rem', fontStyle: 'italic', color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: 1.6 }}>
+              If people interrupt you or ignore your ideas,{' '}
+              <span style={{ color: GOLD }}>it is not your content — it is your voice.</span>
             </p>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ══════════════════════════════════════
           THE REALITY
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <SectionLabel>The Reality</SectionLabel>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 }}>
+      ══════════════════════════════════════ */}
+      <section style={{ background: DARK, padding: 'clamp(100px,12vw,160px) clamp(40px,6vw,100px)', textAlign: 'center' }}>
+        <div style={{ maxWidth: 800, margin: '0 auto' }}>
+          <SectionLabel center>The Reality</SectionLabel>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: '0', lineHeight: 1.1 }}>
             If People Ignore You, Interrupt You,
           </h2>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 }}>
-            or Forget Your Ideas…
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: '0', lineHeight: 1.1 }}>
+            or Forget Your Ideas...
           </h2>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', fontWeight: 600, color: GOLD, margin: '0 0 36px', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: GOLD, fontStyle: 'italic', margin: '0 0 0', lineHeight: 1.1 }}>
             It May Be Your Voice.
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', margin: '0 0 40px', lineHeight: 1.8 }}>
+          <GoldDividerCenter />
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', margin: '0 auto 52px', lineHeight: 1.8, maxWidth: 580 }}>
             Your ideas might be brilliant. Your strategy might be sound. But if your voice signals uncertainty, the room will not follow you — no matter what you say.
           </p>
 
-          {/* Voice Signal / Pitch Range / Pause Control — static fixed SVGs matching PDF */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 40, marginBottom: 40 }}>
-            {/* Voice Signal — bar chart style */}
+          {/* 3 icons: Voice Signal, Pitch Range, Pause Control */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 60, marginBottom: 52 }}>
+            {/* Voice Signal */}
             <div style={{ textAlign: 'center' }}>
-              <svg width="40" height="30" viewBox="0 0 40 30" style={{ margin: '0 auto 8px', display: 'block' }}>
-                <rect x="0"  y="18" width="2.5" height="12" fill={GOLD} opacity="0.8"/>
-                <rect x="4"  y="10" width="2.5" height="20" fill={GOLD} opacity="0.8"/>
-                <rect x="8"  y="20" width="2.5" height="10" fill={GOLD} opacity="0.8"/>
-                <rect x="12" y="6"  width="2.5" height="24" fill={GOLD} opacity="0.8"/>
-                <rect x="16" y="14" width="2.5" height="16" fill={GOLD} opacity="0.8"/>
-                <rect x="20" y="4"  width="2.5" height="26" fill={GOLD} opacity="0.8"/>
-                <rect x="24" y="16" width="2.5" height="14" fill={GOLD} opacity="0.8"/>
-                <rect x="28" y="8"  width="2.5" height="22" fill={GOLD} opacity="0.8"/>
-                <rect x="32" y="12" width="2.5" height="18" fill={GOLD} opacity="0.8"/>
-                <rect x="36" y="18" width="2.5" height="12" fill={GOLD} opacity="0.8"/>
+              <svg width="52" height="36" viewBox="0 0 52 36" style={{ display: 'block', margin: '0 auto 10px' }}>
+                {[0,6,12,18,24,30,36,42,48].map((x, i) => {
+                  const heights = [10,20,8,26,14,22,10,18,12];
+                  const h = heights[i];
+                  return <rect key={i} x={x} y={36-h} width="4" height={h} fill={GOLD} opacity="0.85" rx="1"/>;
+                })}
               </svg>
-              <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.15em', textTransform: 'uppercase', margin: 0 }}>Voice Signal</p>
+              <p style={{ fontFamily: J, fontSize: '8px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', margin: 0 }}>Voice Signal</p>
             </div>
-            {/* Pitch Range — line chart */}
+            {/* Pitch Range */}
             <div style={{ textAlign: 'center' }}>
-              <svg width="40" height="30" viewBox="0 0 40 30" style={{ margin: '0 auto 8px', display: 'block' }}>
-                <polyline points="0,25 8,20 16,10 24,18 32,8 40,15" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
+              <svg width="52" height="36" viewBox="0 0 52 36" style={{ display: 'block', margin: '0 auto 10px' }}>
+                <path d="M0,26 C8,14 16,14 24,26 C32,38 40,4 52,18" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
               </svg>
-              <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.15em', textTransform: 'uppercase', margin: 0 }}>Pitch Range</p>
+              <p style={{ fontFamily: J, fontSize: '8px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', margin: 0 }}>Pitch Range</p>
             </div>
-            {/* Pause Control — line with PAUSE label */}
+            {/* Pause Control */}
             <div style={{ textAlign: 'center' }}>
-              <svg width="40" height="30" viewBox="0 0 40 30" style={{ margin: '0 auto 8px', display: 'block' }}>
-                <polyline points="0,15 6,12 12,18 18,10 24,16 30,8 36,14 40,12" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
-                <text x="10" y="8" fill={GOLD} fontSize="5" opacity="0.8" fontFamily="sans-serif">PAUSE</text>
+              <svg width="72" height="36" viewBox="0 0 72 36" style={{ display: 'block', margin: '0 auto 10px' }}>
+                <path d="M0,22 C4,14 8,14 12,22" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
+                <line x1="16" y1="22" x2="30" y2="22" stroke={GOLD} strokeWidth="1" strokeDasharray="2 2" opacity="0.5"/>
+                <text x="18" y="18" fill={GOLD} fontSize="7" fontFamily="'Jost',sans-serif" letterSpacing="0.06em">PAUSE</text>
+                <path d="M34,22 C38,14 42,14 46,22 C50,30 54,30 58,22 C62,14 66,14 70,22" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round"/>
               </svg>
-              <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.15em', textTransform: 'uppercase', margin: 0 }}>Pause Control</p>
+              <p style={{ fontFamily: J, fontSize: '8px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', margin: 0 }}>Pause Control</p>
             </div>
           </div>
 
-          <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 36px', textAlign: 'left', maxWidth: 600, margin: '0 auto' }}>
-            <p style={{ fontFamily: G, fontSize: 'clamp(1rem,2vw,1.25rem)', fontStyle: 'italic', color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.8, borderLeft: `3px solid ${GOLD}`, paddingLeft: 24 }}>
+          {/* Quote block */}
+          <div style={{ background: '#0e0e1a', border: `1px solid rgba(201,168,76,0.15)`, padding: '36px 40px', textAlign: 'left', borderLeft: `4px solid ${GOLD}` }}>
+            <p style={{ fontFamily: G, fontSize: 'clamp(1.1rem,2vw,1.35rem)', fontStyle: 'italic', color: 'rgba(255,255,255,0.8)', margin: '0 0 16px', lineHeight: 1.75 }}>
               "The voice is an instrument of leadership. Those who master it control the room before they speak a single word."
             </p>
-            <p style={{ fontFamily: J, fontSize: '11px', color: GOLD, margin: '12px 0 0 27px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            <p style={{ fontFamily: J, fontSize: '11px', color: GOLD, margin: 0, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
               — Sevil Velsha, Voice Control
             </p>
           </div>
         </div>
+
+        {/* CTA strip */}
+        <div style={{ marginTop: 60 }}>
+          <p style={{ fontFamily: J, fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', margin: '0 0 24px' }}>
+            Discover How Your Voice Is Affecting Your Authority
+          </p>
+          <CtaButton>GET MY $49 VOICE AUDIT →</CtaButton>
+        </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          DISCOVER CTA
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK, padding: '40px clamp(40px,6vw,80px)', textAlign: 'center', borderTop: '1px solid rgba(201,168,76,0.1)' }}>
-        <p style={{ fontFamily: J, fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', margin: '0 0 24px' }}>
-          Discover How Your Voice Is Affecting Your Authority
-        </p>
-        <CtaButton>GET MY $49 VOICE AUDIT →</CtaButton>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════
-          THE PROCESS — 24-Hour Fix
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+      {/* ══════════════════════════════════════
+          THE PROCESS
+      ══════════════════════════════════════ */}
+      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)' }}>
+        <div style={{ maxWidth: 1060, margin: '0 auto' }}>
           <SectionLabel>The Process</SectionLabel>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 600, color: '#fff', margin: '0 0 16px', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,5vw,3.6rem)', fontWeight: 700, color: '#fff', margin: 0, lineHeight: 1.1 }}>
             The <span style={{ color: GOLD, fontStyle: 'italic' }}>24-Hour Fix:</span> How It Works
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', margin: '0 0 60px', lineHeight: 1.7, maxWidth: 540 }}>
-            Stop guessing how you sound. Get the exact vocal frameworks used by world leaders like <span style={{ color: GOLD }}>Steve Jobs</span> and elite <span style={{ color: GOLD }}>Shakespearean actors.</span>
+          <GoldDivider />
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', margin: '0 0 60px', lineHeight: 1.75, maxWidth: 560 }}>
+            Stop guessing how you sound. Get the exact vocal frameworks used by world leaders like{' '}
+            <span style={{ color: GOLD }}>Steve Jobs</span> and elite <span style={{ color: GOLD }}>Shakespearean actors.</span>
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
-            {/* Step 1 — waveform bars */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', textAlign: 'center', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '5px', left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, zIndex: 0, whiteSpace: 'nowrap' }}>01</div>
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 20px' }}>Step 1</p>
-                <div style={{ marginBottom: 20 }}>
-                  {/* Fixed static waveform */}
-                  <svg width="80" height="30" viewBox="0 0 80 30" style={{ margin: '0 auto', display: 'block' }}>
-                    <rect x="0"  y="14" width="3" height="10" fill={GOLD} opacity="0.7"/>
-                    <rect x="5"  y="8"  width="3" height="20" fill={GOLD} opacity="0.7"/>
-                    <rect x="10" y="17" width="3" height="8"  fill={GOLD} opacity="0.7"/>
-                    <rect x="15" y="5"  width="3" height="22" fill={GOLD} opacity="0.7"/>
-                    <rect x="20" y="12" width="3" height="14" fill={GOLD} opacity="0.7"/>
-                    <rect x="25" y="3"  width="3" height="24" fill={GOLD} opacity="0.7"/>
-                    <rect x="30" y="14" width="3" height="10" fill={GOLD} opacity="0.7"/>
-                    <rect x="35" y="8"  width="3" height="18" fill={GOLD} opacity="0.7"/>
-                    <rect x="40" y="11" width="3" height="14" fill={GOLD} opacity="0.7"/>
-                    <rect x="45" y="4"  width="3" height="22" fill={GOLD} opacity="0.7"/>
-                    <rect x="50" y="9"  width="3" height="16" fill={GOLD} opacity="0.7"/>
-                    <rect x="55" y="14" width="3" height="10" fill={GOLD} opacity="0.7"/>
-                    <rect x="60" y="6"  width="3" height="20" fill={GOLD} opacity="0.7"/>
-                    <rect x="65" y="13" width="3" height="12" fill={GOLD} opacity="0.7"/>
-                    <rect x="70" y="7"  width="3" height="18" fill={GOLD} opacity="0.7"/>
-                    <rect x="75" y="11" width="3" height="14" fill={GOLD} opacity="0.7"/>
-                  </svg>
-                </div>
-                <h3 style={{ fontFamily: G, fontSize: '1.1rem', fontWeight: 600, color: '#fff', margin: '0 0 12px' }}>Send Your Recording</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', margin: '0 0 20px', lineHeight: 1.7 }}>
+          {/* Big numbers above cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
+            {/* Step 1 */}
+            <div style={{ position: 'relative' }}>
+              <div style={{ fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, paddingLeft: 16, marginBottom: -20, zIndex: 0 }}>01</div>
+              <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
+                <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: GOLD, margin: '0 0 24px', textAlign: 'center' }}>Step 1</p>
+                {/* Waveform */}
+                <svg width="100%" height="50" viewBox="0 0 220 50" style={{ display: 'block', marginBottom: 20 }}>
+                  {[0,7,14,21,28,35,42,49,56,63,70,77,84,91,98,105,112,119,126,133,140,147,154,161,168,175,182,189,196,203].map((x, i) => {
+                    const hs = [12,22,8,30,16,26,10,28,18,32,14,24,20,30,12,26,18,28,10,22,16,30,8,24,14,28,20,18,26,12];
+                    const h = hs[i] || 16;
+                    return <rect key={i} x={x} y={50-h} width="5" height={h} fill={GOLD} opacity="0.8" rx="1"/>;
+                  })}
+                </svg>
+                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+                <h3 style={{ fontFamily: G, fontSize: '1.35rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', textAlign: 'center' }}>Send Your Recording</h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: 1.75, textAlign: 'center' }}>
                   Upload a <span style={{ color: GOLD, fontWeight: 600 }}>2-minute</span> audio or video of you speaking in a meeting, presentation, or conversation.
                 </p>
               </div>
             </div>
 
-            {/* Step 2 — pitch line chart */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', textAlign: 'center', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '5px', left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, zIndex: 0, whiteSpace: 'nowrap' }}>02</div>
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 20px' }}>Step 2</p>
-                <div style={{ marginBottom: 20 }}>
-                  <svg width="80" height="40" viewBox="0 0 80 40" style={{ margin: '0 auto', display: 'block' }}>
-                    <polyline points="0,35 10,30 20,20 30,25 40,15 50,22 60,12 70,18 80,15" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
-                    <line x1="0" y1="38" x2="80" y2="38" stroke="rgba(201,168,76,0.3)" strokeWidth="0.5" strokeDasharray="2 2"/>
-                  </svg>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 5px' }}>
-                    <span style={{ fontSize: '7px', color: 'rgba(255,255,255,0.3)' }}>0</span>
-                    <span style={{ fontSize: '7px', color: 'rgba(255,255,255,0.3)' }}>1</span>
-                    <span style={{ fontSize: '7px', color: 'rgba(255,255,255,0.3)' }}>2</span>
-                  </div>
+            {/* Step 2 */}
+            <div style={{ position: 'relative' }}>
+              <div style={{ fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, paddingLeft: 16, marginBottom: -20, zIndex: 0 }}>02</div>
+              <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
+                <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: GOLD, margin: '0 0 24px', textAlign: 'center' }}>Step 2</p>
+                {/* Pitch line chart */}
+                <svg width="100%" height="70" viewBox="0 0 220 70" style={{ display: 'block', marginBottom: 4 }}>
+                  {/* Grid lines */}
+                  <line x1="24" y1="10" x2="220" y2="10" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
+                  <line x1="24" y1="25" x2="220" y2="25" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
+                  <line x1="24" y1="40" x2="220" y2="40" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
+                  <line x1="24" y1="55" x2="220" y2="55" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
+                  <line x1="24" y1="65" x2="220" y2="65" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
+                  {/* Y labels */}
+                  <text x="0" y="13" fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="sans-serif">350</text>
+                  <text x="0" y="28" fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="sans-serif">250</text>
+                  <text x="0" y="43" fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="sans-serif">150</text>
+                  <text x="0" y="58" fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="sans-serif">100</text>
+                  <text x="2" y="68" fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="sans-serif">75</text>
+                  {/* Line */}
+                  <polyline points="24,58 60,48 95,38 130,44 165,28 200,36 220,34" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round"/>
+                </svg>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 24px', marginBottom: 16 }}>
+                  {['0','1','2'].map(n => <span key={n} style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>{n}</span>)}
                 </div>
-                <h3 style={{ fontFamily: G, fontSize: '1.1rem', fontWeight: 600, color: '#fff', margin: '0 0 12px' }}>Personal Expert Analysis</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', margin: '0 0 20px', lineHeight: 1.7 }}>
+                <div style={{ width: 32, height: 2, background: GOLD, margin: '0 auto 20px' }} />
+                <h3 style={{ fontFamily: G, fontSize: '1.35rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', textAlign: 'center' }}>Personal Expert Analysis</h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', margin: '0 0 16px', lineHeight: 1.75, textAlign: 'center' }}>
                   I <span style={{ color: GOLD }}>personally analyze</span> your pitch, speed, pauses, and enunciation using acoustic voice research methods.
                 </p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 12px', textAlign: 'left', padding: '0 10px' }}>
-                  {['PITCH VARIETY', 'SPEAKING SPEED', 'PAUSE PLACEMENT', 'VOCAL AUTHORITY', 'CLARITY', 'VOCAL PRESENCE'].map((d, j) => (
-                    <span key={j} style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <CheckIcon />{d}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px 8px' }}>
+                  {['PITCH VARIETY','SPEAKING SPEED','PAUSE PLACEMENT','VOCAL AUTHORITY','CLARITY','VOCAL PRESENCE'].map((d,i) => (
+                    <span key={i} style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <CheckIcon />{'  '}{d}
                     </span>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Step 3 — report card */}
-            <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', textAlign: 'center', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '5px', left: '50%', transform: 'translateX(-50%)', fontFamily: G, fontSize: '5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, zIndex: 0, whiteSpace: 'nowrap' }}>03</div>
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 20px' }}>Step 3</p>
-                <h3 style={{ fontFamily: G, fontSize: '1.1rem', fontWeight: 600, color: '#fff', margin: '0 0 12px' }}>Your Voice Audit Report</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', margin: '0 0 20px', lineHeight: 1.7 }}>
+            {/* Step 3 */}
+            <div style={{ position: 'relative' }}>
+              <div style={{ fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, paddingLeft: 16, marginBottom: -20, zIndex: 0 }}>03</div>
+              <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
+                <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: GOLD, margin: '0 0 24px', textAlign: 'center' }}>Step 3</p>
+                <h3 style={{ fontFamily: G, fontSize: '1.35rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', textAlign: 'center' }}>Your Voice Audit Report</h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', margin: '0 0 20px', lineHeight: 1.75, textAlign: 'center' }}>
                   Within <span style={{ color: GOLD, fontWeight: 600 }}>24 hours</span>, you get a custom video breakdown detailing your top 3 vocal flaws and 3 exact exercises to fix them.
                 </p>
-                <div style={{ background: 'rgba(201,168,76,0.08)', border: `1px solid rgba(201,168,76,0.25)`, padding: '16px', textAlign: 'left', marginBottom: 12 }}>
-                  <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, color: GOLD, margin: '0 0 12px', letterSpacing: '0.15em', textTransform: 'uppercase', textAlign: 'center' }}>
-                    VOICE ANALYSIS REPORT
+                {/* Report card */}
+                <div style={{ background: 'rgba(201,168,76,0.07)', border: `1px solid rgba(201,168,76,0.2)`, padding: '16px', marginBottom: 14 }}>
+                  <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, color: GOLD, margin: '0 0 14px', letterSpacing: '0.14em', textTransform: 'uppercase', textAlign: 'center' }}>
+                    Voice Analysis Report
                   </p>
                   {[
-                    { label: 'Authority Score', value: '78%', pct: 78 },
-                    { label: 'Pitch Variety',   value: '62%', pct: 62 },
-                    { label: 'Speaking Pace',   value: '45%', pct: 45 },
-                    { label: 'Pause Control',   value: '38%', pct: 38 },
-                    { label: 'Clarity',         value: '85%', pct: 85 },
+                    { label: 'Authority Score', pct: 78 },
+                    { label: 'Pitch Variety',   pct: 62 },
+                    { label: 'Speaking Pace',   pct: 45 },
+                    { label: 'Pause Control',   pct: 38 },
+                    { label: 'Clarity',         pct: 85 },
                   ].map((item, i) => (
-                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                      <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)' }}>{item.label}</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <div style={{ width: 60, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}>
-                          <div style={{ width: `${item.pct}%`, height: 4, background: GOLD, borderRadius: 2 }} />
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 7 }}>
+                      <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', flex: 1 }}>{item.label}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <div style={{ width: 54, height: 3, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}>
+                          <div style={{ width: `${item.pct}%`, height: 3, background: GOLD, borderRadius: 2 }} />
                         </div>
-                        <span style={{ fontSize: '10px', color: GOLD, fontWeight: 600, minWidth: 28 }}>{item.value}</span>
+                        <span style={{ fontSize: '10px', color: GOLD, fontWeight: 700, minWidth: 26, textAlign: 'right' }}>{item.pct}%</span>
                       </div>
                     </div>
                   ))}
-                  <p style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)', margin: '8px 0 0', textAlign: 'center', letterSpacing: '0.05em' }}>
-                    TOP 3 IMPROVEMENTS + CUSTOM EXERCISES INCLUDED
+                  <p style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)', margin: '10px 0 0', textAlign: 'center', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                    Top 3 Improvements + Custom Exercises Included
                   </p>
                 </div>
-                <div style={{ background: 'rgba(201,168,76,0.08)', border: `1px solid rgba(201,168,76,0.25)`, padding: '8px 14px', display: 'inline-block' }}>
-                  <span style={{ fontSize: '10px', color: GOLD, fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                    ✓ Delivered Within 24 Hours
+                {/* Delivered badge */}
+                <div style={{ background: 'rgba(201,168,76,0.07)', border: `1px solid rgba(201,168,76,0.2)`, padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                  {/* Circle spinner-like icon */}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke={GOLD} strokeWidth="1.5" strokeDasharray="4 2"/>
+                  </svg>
+                  <span style={{ fontSize: '10px', color: GOLD, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                    Delivered Within 24 Hours
                   </span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div style={{ marginTop: 40, textAlign: 'center' }}>
-            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', margin: '0 0 8px', fontStyle: 'italic' }}>
+          <div style={{ marginTop: 48, textAlign: 'center' }}>
+            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', margin: '0 0 6px', fontStyle: 'italic' }}>
               Based on acoustic speech analysis and decades of communication research.
             </p>
-            <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', margin: '0 0 32px', fontStyle: 'italic' }}>
+            <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', margin: '0 0 36px', fontStyle: 'italic' }}>
               Inspired by techniques observed in world-class communicators, leaders, and Shakespearean actors.
             </p>
-            <h3 style={{ fontFamily: G, fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 600, color: '#fff', margin: '0 0 24px' }}>
+            <h3 style={{ fontFamily: G, fontSize: 'clamp(1.5rem,3vw,2.2rem)', fontWeight: 700, color: '#fff', margin: '0 0 28px' }}>
               Ready to Discover What Your Voice Is Communicating?
             </h3>
             <CtaButton>GET MY $49 VOICE AUDIT →</CtaButton>
@@ -427,253 +466,188 @@ export default function VoiceAuditPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          SCIENTIFIC METHOD — Waveform + Analysis
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)' }}>
+      {/* ══════════════════════════════════════
+          SCIENTIFIC METHOD
+      ══════════════════════════════════════ */}
+      <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
-          {/* Left — Waveform + Pitch Analysis panel */}
-          <div style={{ position: 'relative' }}>
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.15)`, padding: '24px 20px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-                <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: 0 }}>
-                  WAVEFORM + PITCH ANALYSIS
-                </p>
-                <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.3)', margin: 0, fontStyle: 'italic' }}>Praat Phonetic Analysis</p>
-              </div>
+          {/* Left — analysis card */}
+          <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.15)`, padding: '28px 24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
+              <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: GOLD, margin: 0, textTransform: 'uppercase' }}>
+                Waveform + Pitch Analysis
+              </p>
+              <p style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)', margin: 0, fontStyle: 'italic' }}>Praat Phonetic Analysis</p>
+            </div>
 
-              <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', margin: '0 0 8px' }}>Amplitude</p>
-              <svg width="100%" height="40" viewBox="0 0 300 40" style={{ display: 'block', marginBottom: 20 }}>
-                <polyline points="0,20 10,15 20,25 30,10 40,28 50,12 60,30 70,18 80,26 90,14 100,24 110,16 120,22 130,12 140,28 150,18 160,26 170,14 180,22 190,16 200,24 210,12 220,28 230,18 240,26 250,14 260,22 270,16 280,24 290,18 300,20" fill="none" stroke={GOLD} strokeWidth="1"/>
-              </svg>
+            <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', margin: '0 0 8px' }}>Amplitude</p>
+            <svg width="100%" height="44" viewBox="0 0 300 44" style={{ display: 'block', marginBottom: 20 }}>
+              <polyline
+                points="0,22 8,16 16,28 24,10 32,30 40,14 48,32 56,18 64,28 72,12 80,26 88,16 96,24 104,10 112,30 120,18 128,28 136,14 144,24 152,16 160,26 168,12 176,30 184,18 192,28 200,14 208,24 216,16 224,28 232,20 240,26 248,14 256,22 264,16 272,24 280,18 288,22 300,20"
+                fill="none" stroke={GOLD} strokeWidth="1.2" strokeLinejoin="round"
+              />
+            </svg>
 
-              <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', margin: '0 0 4px' }}>Pitch Frequency (Hz)</p>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 20px', marginBottom: 4 }}>
-                <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>75</span>
-                <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>100</span>
-                <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>150</span>
-                <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>250</span>
-                <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>350</span>
-              </div>
-              <svg width="100%" height="80" viewBox="0 0 300 80" style={{ display: 'block', marginBottom: 16 }}>
-                <line x1="20" y1="70" x2="280" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
-                <line x1="20" y1="55" x2="280" y2="55" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
-                <line x1="20" y1="40" x2="280" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
-                <line x1="20" y1="25" x2="280" y2="25" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
-                <line x1="20" y1="10" x2="280" y2="10" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
-                <polyline points="20,65 50,55 80,45 110,50 140,35 170,40 200,30 230,38 260,42 280,45" fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
-                <text x="5" y="72" fill="rgba(255,255,255,0.3)" fontSize="7">Hz</text>
-                <text x="5" y="58" fill="rgba(255,255,255,0.3)" fontSize="7">350</text>
-                <text x="5" y="43" fill="rgba(255,255,255,0.3)" fontSize="7">250</text>
-                <text x="5" y="28" fill="rgba(255,255,255,0.3)" fontSize="7">150</text>
-                <text x="5" y="13" fill="rgba(255,255,255,0.3)" fontSize="7">100</text>
-                <text x="5" y="73" fill="rgba(255,255,255,0.3)" fontSize="7">75</text>
-              </svg>
+            <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', margin: '0 0 6px' }}>Pitch Frequency (Hz)</p>
+            <svg width="100%" height="90" viewBox="0 0 300 90" style={{ display: 'block', marginBottom: 12 }}>
+              {[10,25,40,55,70,82].map(y => (
+                <line key={y} x1="22" y1={y} x2="298" y2={y} stroke="rgba(255,255,255,0.07)" strokeWidth="0.8"/>
+              ))}
+              <text x="0" y="13" fill="rgba(255,255,255,0.3)" fontSize="7">Hz</text>
+              <text x="0" y="28" fill="rgba(255,255,255,0.3)" fontSize="7">350</text>
+              <text x="0" y="43" fill="rgba(255,255,255,0.3)" fontSize="7">250</text>
+              <text x="0" y="58" fill="rgba(255,255,255,0.3)" fontSize="7">150</text>
+              <text x="0" y="73" fill="rgba(255,255,255,0.3)" fontSize="7">100</text>
+              <text x="2" y="85" fill="rgba(255,255,255,0.3)" fontSize="7">75</text>
+              {/* X axis ticks */}
+              <text x="22" y="90" fill="rgba(255,255,255,0.3)" fontSize="7">0</text>
+              <text x="118" y="90" fill="rgba(255,255,255,0.3)" fontSize="7">1</text>
+              <text x="210" y="90" fill="rgba(255,255,255,0.3)" fontSize="7">2</text>
+              <text x="290" y="90" fill="rgba(255,255,255,0.3)" fontSize="7">3</text>
+              {/* Dashed baseline */}
+              <line x1="22" y1="72" x2="298" y2="72" stroke="rgba(201,168,76,0.2)" strokeWidth="0.8" strokeDasharray="4 3"/>
+              <polyline points="22,70 60,58 100,46 138,52 176,36 214,42 252,32 290,40" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round"/>
+            </svg>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px', marginBottom: 12 }}>
-                {['PITCH RANGE', 'SPEAKING RATE', 'PAUSE DENSITY', 'VOICE DYNAMICS', 'AUTHORITY INDICATORS', 'ACOUSTIC ANALYSIS'].map((label, i) => (
-                  <span key={i} style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                    <span style={{ width: 3, height: 3, borderRadius: '50%', background: GOLD }} />{label}
-                  </span>
-                ))}
-              </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 14px', marginBottom: 12 }}>
+              {['PITCH RANGE','SPEAKING RATE','PAUSE DENSITY','VOICE DYNAMICS','AUTHORITY INDICATORS','ACOUSTIC ANALYSIS'].map((label,i) => (
+                <span key={i} style={{ fontSize: '8px', color: 'rgba(255,255,255,0.35)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <span style={{ width: 3, height: 3, borderRadius: '50%', background: GOLD, display: 'inline-block' }}/>{label}
+                </span>
+              ))}
+            </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.3)', margin: 0, fontStyle: 'italic' }}>Praat Phonetic Analysis</p>
-                <p style={{ fontSize: '9px', color: 'rgba(255,255,255,0.3)', margin: 0, fontStyle: 'italic' }}>Speech Rhythm & Prosody</p>
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+              <p style={{ fontSize: '8px', color: 'rgba(255,255,255,0.25)', margin: 0, fontStyle: 'italic' }}>Praat Phonetic Analysis</p>
+              <p style={{ fontSize: '8px', color: 'rgba(255,255,255,0.25)', margin: 0, fontStyle: 'italic' }}>Speech Rhythm & Prosody</p>
             </div>
           </div>
 
-          {/* Right — Content */}
+          {/* Right */}
           <div>
             <SectionLabel>Scientific Method</SectionLabel>
-            <h2 style={{ fontFamily: G, fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 }}>
+            <h2 style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 700, color: '#fff', margin: '0 0 0', lineHeight: 1.1 }}>
               The Science Behind
             </h2>
-            <h2 style={{ fontFamily: G, fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 600, fontStyle: 'italic', color: GOLD, margin: '0 0 24px', lineHeight: 1.15 }}>
+            <h2 style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 700, color: GOLD, fontStyle: 'italic', margin: '0 0 0', lineHeight: 1.1 }}>
               Vocal Authority
             </h2>
-            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', margin: '0 0 32px', lineHeight: 1.8 }}>
+            <GoldDivider />
+            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', margin: '0 0 28px', lineHeight: 1.8 }}>
               Using professional vocal analysis grounded in phonetics and acoustic research, I examine the same prosodic dimensions that define the most commanding voices in history.
             </p>
 
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '24px', marginBottom: 24 }}>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 16px' }}>
-                RESEARCH FOUNDATION
+            {/* Research Foundation box */}
+            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '20px 22px', marginBottom: 20 }}>
+              <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 12px' }}>
+                Research Foundation
               </p>
-              <p style={{ fontFamily: G, fontSize: '1.1rem', fontWeight: 600, color: '#fff', margin: '0 0 8px' }}>Sevil Velsha</p>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', margin: '0 0 4px' }}>MA Linguistics • Phonetics Researcher</p>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', margin: '0 0 4px' }}>Author of Voice Control</p>
+              <p style={{ fontFamily: G, fontSize: '1.15rem', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Sevil Velsha</p>
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', margin: '0 0 3px' }}>MA Linguistics • Phonetics Researcher</p>
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', margin: '0 0 3px' }}>Author of Voice Control</p>
               <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', margin: 0 }}>Specialist in Acoustic Voice Analysis</p>
             </div>
 
+            {/* 2x2 grid */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               {[
-                { name: 'Steve Jobs',           desc: 'Pause Structure • Speech Rhythm' },
-                { name: 'Barack Obama',          desc: 'Cadence • Pitch Control' },
-                { name: 'Globe Theatre Actors',  desc: 'Projection • Vocal Presence' },
-                { name: 'Christine Lagarde',     desc: 'Executive Authority • Strategic Pace' },
-              ].map((s, i) => (
-                <div key={i} style={{ background: CARD, border: `1px solid rgba(201,169,110,0.1)`, padding: '14px 16px' }}>
+                { name: 'Steve Jobs',          desc: 'Pause Structure • Speech Rhythm' },
+                { name: 'Barack Obama',         desc: 'Cadence • Pitch Control' },
+                { name: 'Globe Theatre Actors', desc: 'Projection • Vocal Presence' },
+                { name: 'Christine Lagarde',    desc: 'Executive Authority • Strategic Pace' },
+              ].map((s,i) => (
+                <div key={i} style={{ background: CARD, border: `1px solid rgba(201,169,110,0.1)`, padding: '12px 14px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                    <div style={{ width: 5, height: 5, borderRadius: '50%', background: GOLD, flexShrink: 0 }}/>
+                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: GOLD, flexShrink: 0 }}/>
                     <p style={{ fontFamily: J, fontSize: '13px', fontWeight: 600, color: '#fff', margin: 0 }}>{s.name}</p>
                   </div>
-                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', margin: '0 0 0 13px' }}>{s.desc}</p>
+                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', margin: '0 0 0 14px', lineHeight: 1.5 }}>{s.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div style={{ maxWidth: 1100, margin: '60px auto 0', textAlign: 'center' }}>
-          <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', margin: '0 0 16px' }}>
-            YOUR VOICE CAN BE ANALYZED TOO
+        {/* Bottom CTA strip */}
+        <div style={{ maxWidth: 1100, margin: '60px auto 0', textAlign: 'center', paddingTop: 40, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+          <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', margin: '0 0 14px' }}>
+            Your Voice Can Be Analyzed Too
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 32, flexWrap: 'wrap' }}>
-            {['Pitch Variety', 'Speech Rate', 'Pause Control', 'Vocal Presence', 'Authority Indicators'].map((item, i) => (
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 24, flexWrap: 'wrap' }}>
+            {['Pitch Variety','Speech Rate','Pause Control','Vocal Presence','Authority Indicators'].map((item,i) => (
               <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                <span style={{ width: 4, height: 4, borderRadius: '50%', background: GOLD }} />{item}
+                <span style={{ width: 4, height: 4, borderRadius: '50%', background: GOLD }}/>{item}
               </span>
             ))}
           </div>
-          <p style={{ fontFamily: G, fontSize: 'clamp(1.2rem,2vw,1.5rem)', fontStyle: 'italic', color: 'rgba(255,255,255,0.6)', margin: '0 0 24px' }}>
+          <p style={{ fontFamily: G, fontSize: 'clamp(1rem,2vw,1.25rem)', fontStyle: 'italic', color: 'rgba(255,255,255,0.5)', margin: '0 0 28px' }}>
             Get Your Personal Voice Audit Within 24 Hours
           </p>
           <CtaButton>GET MY $49 VOICE AUDIT →</CtaButton>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          FROM IGNORED TO UNIGNORABLE — 8 Benefits
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
+      {/* ══════════════════════════════════════
+          FROM IGNORED TO UNIGNORABLE
+      ══════════════════════════════════════ */}
+      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)', textAlign: 'center' }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          <SectionLabel>The Reality</SectionLabel>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 }}>
+          <SectionLabel center>The Reality</SectionLabel>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5vw,4rem)', fontWeight: 700, color: '#fff', margin: 0, lineHeight: 1.1 }}>
             From Ignored
           </h2>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 600, color: GOLD, fontStyle: 'italic', margin: '0 0 16px', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5vw,4rem)', fontWeight: 700, color: GOLD, fontStyle: 'italic', margin: 0, lineHeight: 1.1 }}>
             to Unignorable
           </h2>
-          <div style={{ width: 40, height: 1, background: GOLD, margin: '0 auto 40px' }} />
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', margin: '0 auto 56px', lineHeight: 1.8, maxWidth: 600 }}>
+          <GoldDividerCenter />
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', margin: '0 auto 52px', lineHeight: 1.8, maxWidth: 660 }}>
             Your ideas might be brilliant. Your strategy might be sound. But if your voice signals uncertainty, the room will not follow you — no matter what you say.
           </p>
 
-          {/* 4×2 Benefits Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+          {/* 2-column grid — 4 rows */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {[
-              {
-                num: '01',
-                title: 'People Stop Interrupting You',
-                desc: 'Speak without being interrupted.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
-                ),
-              },
-              {
-                num: '02',
-                title: 'Command Attention',
-                desc: 'People listen when you speak.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/>
-                  </svg>
-                ),
-              },
-              {
-                num: '03',
-                title: 'Sound More Credible',
-                desc: 'Project expertise and authority.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <path d="M9.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 01-4.96.44 2.5 2.5 0 01-2.96-3.08 3 3 0 01-.34-5.58 2.5 2.5 0 01-1.32-4.24 2.5 2.5 0 011.32-4.24 3 3 0 01.34-5.58 2.5 2.5 0 014.96-.44z"/>
-                    <path d="M14.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 004.96.44 2.5 2.5 0 002.96-3.08 3 3 0 00.34-5.58 2.5 2.5 0 001.32-4.24 2.5 2.5 0 00-1.32-4.24 3 3 0 00-.34-5.58 2.5 2.5 0 00-4.96-.44z"/>
-                  </svg>
-                ),
-              },
-              {
-                num: '04',
-                title: 'Become More Memorable',
-                desc: 'Make your words stick.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                  </svg>
-                ),
-              },
-              {
-                num: '05',
-                title: 'Executive Presence',
-                desc: 'Sound like a leader.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
-                ),
-              },
-              {
-                num: '06',
-                title: 'Stronger First Impressions',
-                desc: 'Be taken seriously immediately.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/>
-                  </svg>
-                ),
-              },
-              {
-                num: '07',
-                title: 'Calm Confidence',
-                desc: 'Speak without sounding nervous.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                  </svg>
-                ),
-              },
-              {
-                num: '08',
-                title: 'Master Silence',
-                desc: 'Use pauses like powerful speakers.',
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                  </svg>
-                ),
-              },
-            ].map((item, i) => (
-              <div key={i} style={{ background: CARD, border: `1px solid rgba(201,168,76,0.1)`, padding: '28px 24px', textAlign: 'left', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontFamily: G, fontSize: '6rem', fontWeight: 700, color: 'rgba(201,169,110,0.04)', lineHeight: 1, zIndex: 0 }}>{item.num}</div>
+              { num: '01', title: 'People Stop Interrupting You', desc: 'Speak without being interrupted.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg> },
+              { num: '02', title: 'Command Attention', desc: 'People listen when you speak.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg> },
+              { num: '03', title: 'Sound More Credible', desc: 'Project expertise and authority.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><circle cx="12" cy="8" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/></svg> },
+              { num: '04', title: 'Become More Memorable', desc: 'Make your words stick.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><path d="M9.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 01-4.96.44 2.5 2.5 0 01-2.96-3.08 3 3 0 01-.34-5.58 2.5 2.5 0 014.96-7.28z"/><path d="M14.5 2A2.5 2.5 0 0112 4.5v15a2.5 2.5 0 004.96.44 2.5 2.5 0 002.96-3.08 3 3 0 00.34-5.58 2.5 2.5 0 00-4.96-7.28z"/></svg> },
+              { num: '05', title: 'Executive Presence', desc: 'Sound like a leader.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> },
+              { num: '06', title: 'Stronger First Impressions', desc: 'Be taken seriously immediately.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> },
+              { num: '07', title: 'Calm Confidence', desc: 'Speak without sounding nervous.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> },
+              { num: '08', title: 'Master Silence', desc: 'Use pauses like powerful speakers.',
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> },
+            ].map((item,i) => (
+              <div key={i} style={{ background: CARD, border: `1px solid rgba(201,168,76,0.1)`, padding: '28px 28px', textAlign: 'left', position: 'relative', overflow: 'hidden' }}>
+                {/* Faded number bottom-right */}
+                <div style={{ position: 'absolute', bottom: -10, right: 10, fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, userSelect: 'none' }}>{item.num}</div>
                 <div style={{ position: 'relative', zIndex: 1 }}>
-                  <div style={{ marginBottom: 12 }}>{item.icon}</div>
-                  <p style={{ fontFamily: G, fontSize: '1.1rem', fontWeight: 600, color: '#fff', margin: '0 0 8px', lineHeight: 1.3 }}>{item.title}</p>
-                  <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.6 }}>{item.desc}</p>
+                  <div style={{ marginBottom: 14 }}>{item.icon}</div>
+                  <p style={{ fontFamily: G, fontSize: '1.25rem', fontWeight: 700, color: '#fff', margin: '0 0 8px', lineHeight: 1.2 }}>{item.title}</p>
+                  <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.6 }}>{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div style={{ marginTop: 48 }}>
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 36px', textAlign: 'left', maxWidth: 700, margin: '0 auto' }}>
-              <p style={{ fontFamily: G, fontSize: 'clamp(1rem,2vw,1.25rem)', fontStyle: 'italic', color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.8, borderLeft: `3px solid ${GOLD}`, paddingLeft: 24 }}>
-                "The voice is an instrument of leadership. Those who master it control the room before they speak a single word."
-              </p>
-              <p style={{ fontFamily: J, fontSize: '11px', color: GOLD, margin: '12px 0 0 27px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                — Sevil Velsha, Voice Control
-              </p>
-            </div>
+          {/* Quote */}
+          <div style={{ background: '#0e0e1a', border: `1px solid rgba(201,168,76,0.15)`, padding: '36px 40px', textAlign: 'left', borderLeft: `4px solid ${GOLD}`, marginTop: 40 }}>
+            <p style={{ fontFamily: G, fontSize: 'clamp(1rem,2vw,1.25rem)', fontStyle: 'italic', color: 'rgba(255,255,255,0.8)', margin: '0 0 16px', lineHeight: 1.75 }}>
+              "The voice is an instrument of leadership. Those who master it control the room before they speak a single word."
+            </p>
+            <p style={{ fontFamily: J, fontSize: '11px', color: GOLD, margin: 0, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+              — Sevil Velsha, Voice Control
+            </p>
           </div>
 
           <div style={{ marginTop: 40 }}>
-            <p style={{ fontFamily: J, fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', margin: '0 0 24px' }}>
+            <p style={{ fontFamily: J, fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', margin: '0 0 24px' }}>
               Discover How Your Voice Is Affecting Your Authority
             </p>
             <CtaButton>GET MY $49 VOICE AUDIT →</CtaButton>
@@ -681,137 +655,140 @@ export default function VoiceAuditPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ══════════════════════════════════════
           URGENCY — Only 10 Slots
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          {/* Triangle warning icon */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L2 20h20L12 2z" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
-              <path d="M12 9v5M12 16v1" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </div>
+      ══════════════════════════════════════ */}
+      <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)', textAlign: 'center' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          {/* Triangle icon */}
+          <svg width="36" height="34" viewBox="0 0 36 34" fill="none" style={{ marginBottom: 24 }}>
+            <path d="M18 2L1 31h34L18 2z" stroke={GOLD} strokeWidth="1.8" strokeLinejoin="round"/>
+            <path d="M18 13v8M18 24v2" stroke={GOLD} strokeWidth="2" strokeLinecap="round"/>
+          </svg>
 
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: 0, lineHeight: 1.1 }}>
             Only <span style={{ color: GOLD, fontStyle: 'italic' }}>10 Slots</span>
           </h2>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', fontWeight: 600, color: '#fff', margin: '0 0 20px', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: '0 0 0', lineHeight: 1.1 }}>
             Available at <span style={{ color: GOLD }}>$49</span>
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', margin: '0 0 48px', lineHeight: 1.7 }}>
-            Because this is a personalized, manual review by a <span style={{ color: GOLD }}>voice researcher and author</span>, slots are strictly limited.
+          <GoldDividerCenter />
+
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', margin: '0 0 44px', lineHeight: 1.75 }}>
+            Because this is a personalized, manual review by a{' '}
+            <span style={{ color: GOLD }}>voice researcher and author</span>, slots are <span style={{ color: GOLD }}>strictly limited.</span>
           </p>
 
-          {/* Sevil Velsha card */}
-          <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px', textAlign: 'left', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 20 }}>
-            <img src="/images/audit-hero.png" alt="Sevil Velsha" style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top center', flexShrink: 0 }} />
-            <div>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 8px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-                PERSONALLY REVIEWED BY
+          {/* Sevil card — full photo */}
+          <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '0', textAlign: 'left', marginBottom: 24, display: 'flex', alignItems: 'stretch', overflow: 'hidden' }}>
+            <div style={{ width: 180, flexShrink: 0, overflow: 'hidden', background: '#0d0d14' }}>
+              <img src="/images/audit-hero.png" alt="Sevil Velsha" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}/>
+            </div>
+            <div style={{ padding: '28px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 10px', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+                Personally Reviewed By
               </p>
-              <p style={{ fontFamily: G, fontSize: '1.4rem', fontWeight: 600, color: '#fff', margin: '0 0 6px' }}>Sevil Velsha</p>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.6 }}>
+              <p style={{ fontFamily: G, fontSize: '1.5rem', fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>Sevil Velsha</p>
+              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.65 }}>
                 MA Linguistics . Voice Researcher . Author of The Voice Control Method . Personal Voice Analysis within 24 Hours
               </p>
             </div>
           </div>
 
-          {/* Slots + Investment 2-col */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px', textAlign: 'center' }}>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 16px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
-                WEEKLY CAPACITY
+          {/* Slots + Investment */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
+            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
+              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
+                Weekly Capacity
               </p>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 8, marginBottom: 8 }}>
-                <span style={{ fontFamily: G, fontSize: '3rem', fontWeight: 600, color: GOLD }}>{slots}</span>
-                <span style={{ fontFamily: J, fontSize: '12px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>VOICE AUDITS</span>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 8, marginBottom: 6 }}>
+                <span style={{ fontFamily: G, fontSize: '3.2rem', fontWeight: 700, color: GOLD }}>{slots}</span>
+                <span style={{ fontFamily: J, fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Voice Audits</span>
               </div>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: '0 0 16px' }}>This week's available slots</p>
-              <div style={{ display: 'flex', gap: 5, justifyContent: 'center' }}>
-                {Array(10).fill(0).map((_, i) => (
-                  <div key={i} style={{ width: 16, height: 16, borderRadius: '50%', background: i < slots ? GOLD : 'rgba(201,168,76,0.15)' }} />
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: '0 0 18px' }}>This week's available slots</p>
+              {/* Gold dots */}
+              <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
+                {Array(10).fill(0).map((_,i) => (
+                  <div key={i} style={{ width: 18, height: 18, borderRadius: '50%', background: i < slots ? GOLD : 'rgba(201,168,76,0.15)' }}/>
                 ))}
               </div>
             </div>
 
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px', textAlign: 'center' }}>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 16px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
-                INVESTMENT
+            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
+              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
+                Investment
               </p>
-              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 4px', textDecoration: 'line-through' }}>
-                Regular Price: $99
-              </p>
-              <p style={{ fontFamily: G, fontSize: '2.5rem', fontWeight: 600, color: GOLD, margin: '0 0 12px' }}>
-                Today: $49
-              </p>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.6 }}>
+              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 6px', textDecoration: 'line-through' }}>Regular Price: $99</p>
+              <p style={{ fontFamily: G, fontSize: '2.8rem', fontWeight: 700, color: GOLD, margin: '0 0 14px', lineHeight: 1 }}>Today: $49</p>
+              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.65 }}>
                 Once this week's 10 spots are gone,<br/>the price returns to $99
               </p>
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 24, flexWrap: 'wrap' }}>
-            {['Personal Review', '24-Hour Delivery', 'Custom Exercises', '100% Confidential'].map((item, i) => (
-              <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', gap: 6 }}>
+          {/* Check items */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 20, flexWrap: 'wrap' }}>
+            {['Personal Review','24-Hour Delivery','Custom Exercises','100% Confidential'].map((item,i) => (
+              <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', display: 'flex', alignItems: 'center', gap: 6 }}>
                 <CheckIcon />{item}
               </span>
             ))}
           </div>
 
-          {/* Shield / secure bar */}
-          <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '20px 28px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
+          {/* Security line */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 28 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
             </svg>
-            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
+            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>
               Secure your $49 Voice Audit now before the slots are gone.
             </span>
           </div>
 
-          <CtaButton style={{ marginBottom: 16 }}>GET MY $49 VOICE AUDIT →</CtaButton>
+          <CtaButton style={{ marginBottom: 14 }}>GET MY $49 VOICE AUDIT →</CtaButton>
           <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>100% Secure & Confidential</p>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
+      {/* ══════════════════════════════════════
           FINAL CTA
-      ══════════════════════════════════════════════════════════ */}
-      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          <SectionLabel>Take Action Now</SectionLabel>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', fontWeight: 600, color: '#fff', margin: '0 0 4px', lineHeight: 1.15 }}>
+      ══════════════════════════════════════ */}
+      <section style={{ background: DARK2, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)', textAlign: 'center' }}>
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <SectionLabel center>Take Action Now</SectionLabel>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,6vw,5rem)', fontWeight: 700, color: '#fff', margin: 0, lineHeight: 1.05 }}>
             Your Voice Changes
           </h2>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2rem,4vw,3.2rem)', fontWeight: 600, color: GOLD, margin: '0 0 24px', lineHeight: 1.15 }}>
+          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,6vw,5rem)', fontWeight: 700, color: GOLD, margin: '0 0 0', lineHeight: 1.05 }}>
             How People Treat You.
           </h2>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.4)', margin: '0 0 40px' }}>
+
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.4)', margin: '28px 0 40px', lineHeight: 1.7 }}>
             One investment. One conversation. Permanent transformation.
           </p>
 
-          <CtaButton style={{ padding: '18px 48px', marginBottom: 32 }}>
+          <CtaButton style={{ padding: '20px 56px', marginBottom: 28 }}>
             GET MY $49 VOICE AUDIT →
           </CtaButton>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 48, flexWrap: 'wrap' }}>
-            {['Personally Reviewed', 'Delivered Within 24 Hours', 'Personalized Exercises Included', '100% Confidential'].map((item, i) => (
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 52, flexWrap: 'wrap' }}>
+            {['Personally Reviewed','Delivered Within 24 Hours','Personalized Exercises Included','100% Confidential'].map((item,i) => (
               <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', gap: 6 }}>
                 <CheckIcon />{item}
               </span>
             ))}
           </div>
 
-          <div style={{ paddingTop: 48, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-            <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 16px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-              PERSONALLY ANALYZED BY
-            </p>
-            <p style={{ fontFamily: G, fontSize: '1.6rem', fontWeight: 600, color: '#fff', margin: '0 0 12px' }}>Sevil Velsha</p>
-            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 4px' }}>MA Linguistics</p>
-            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 4px' }}>Voice Researcher</p>
-            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>Author of Voice Control</p>
-          </div>
+          {/* Divider */}
+          <div style={{ width: 1, height: 60, background: 'rgba(255,255,255,0.1)', margin: '0 auto 44px' }}/>
+
+          <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 16px', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+            Personally Analyzed By
+          </p>
+          <p style={{ fontFamily: G, fontSize: '2rem', fontWeight: 700, color: '#fff', margin: '0 0 10px' }}>Sevil Velsha</p>
+          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 4px' }}>MA Linguistics</p>
+          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 4px' }}>Voice Researcher</p>
+          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: 0, fontStyle: 'italic' }}>Author of <em>Voice Control</em></p>
         </div>
       </section>
 
