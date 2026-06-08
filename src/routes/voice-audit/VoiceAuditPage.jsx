@@ -656,7 +656,7 @@ export default function VoiceAuditPage() {
           {/* Sevil card — full photo */}
           <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '0', textAlign: 'left', marginBottom: 24, display: 'flex', alignItems: 'stretch', overflow: 'hidden' }}>
             <div style={{ width: 180, flexShrink: 0, overflow: 'hidden', background: '#16161C' }}>
-              <img src="/images/audit-hero2.png" alt="Sevil Velsha" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}/>
+              <img src="/images/audit-hero2.png" alt="Sevil Velsha" style={{ width: '100%', height: '60%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}/>
             </div>
             <div style={{ padding: '28px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 10px', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
