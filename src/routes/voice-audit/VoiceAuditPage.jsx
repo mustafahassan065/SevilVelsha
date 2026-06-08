@@ -119,40 +119,14 @@ export default function VoiceAuditPage() {
         </div>
 
         {/* Right — photo */}
-        <div style={{ position: 'relative', overflow: 'hidden', background: '#0d0d14', minHeight: '600px' }}>
+        <div style={{ position: 'relative', overflow: 'hidden', background: '#1A1A24', minHeight: '600px' }}>
           <img
             src="/images/audit-hero.png"
             alt="Sevil Velsha"
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
           />
           {/* Waveform overlay card */}
-          <div style={{
-            position: 'absolute', top: 32, right: 32,
-            background: 'rgba(16,16,20,0.92)',
-            border: '1px solid rgba(201,168,76,0.25)',
-            padding: '18px 22px', backdropFilter: 'blur(8px)', width: 220
-          }}>
-            <p style={{ fontFamily: J, fontSize: '9px', letterSpacing: '0.18em', color: GOLD, margin: '0 0 14px', textTransform: 'uppercase' }}>
-              Waveform + Pitch Analysis
-            </p>
-            <svg width="180" height="50" viewBox="0 0 180 50" style={{ display: 'block', marginBottom: 8 }}>
-              <polyline
-                points="0,42 12,36 22,24 34,32 46,16 58,28 70,12 82,22 94,30 106,18 118,26 130,14 142,22 154,28 166,20 180,28"
-                fill="none" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"
-              />
-            </svg>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-              <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>75 Hz</span>
-              <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)' }}>350</span>
-            </div>
-            <svg width="180" height="32" viewBox="0 0 180 32" style={{ display: 'block' }}>
-              <polyline
-                points="0,16 12,14 22,18 34,10 46,20 58,10 70,22 82,14 94,20 106,12 118,18 130,14 142,18 154,12 166,16 180,14"
-                fill="none" stroke="rgba(201,168,76,0.35)" strokeWidth="1"
-              />
-            </svg>
-            <p style={{ fontSize: '8px', color: 'rgba(255,255,255,0.3)', margin: '6px 0 0' }}>Amplitude</p>
-          </div>
+         
         </div>
       </section>
 
