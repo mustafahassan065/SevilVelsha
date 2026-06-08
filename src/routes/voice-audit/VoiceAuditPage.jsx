@@ -318,7 +318,7 @@ export default function VoiceAuditPage() {
             {/* Step 1 */}
             <div style={{ position: 'relative' }}>
               <div style={{ fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, paddingLeft: 16, marginBottom: -20, zIndex: 0 }}>01</div>
-              <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
+              <div style={{ background: "#16161C", border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
                 <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: GOLD, margin: '0 0 24px', textAlign: 'center' }}>Step 1</p>
                 {/* Waveform */}
                 <svg width="100%" height="50" viewBox="0 0 220 50" style={{ display: 'block', marginBottom: 20 }}>
@@ -339,7 +339,7 @@ export default function VoiceAuditPage() {
             {/* Step 2 */}
             <div style={{ position: 'relative' }}>
               <div style={{ fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, paddingLeft: 16, marginBottom: -20, zIndex: 0 }}>02</div>
-              <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
+              <div style={{ background: "#16161C", border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
                 <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: GOLD, margin: '0 0 24px', textAlign: 'center' }}>Step 2</p>
                 {/* Pitch line chart */}
                 <svg width="100%" height="70" viewBox="0 0 220 70" style={{ display: 'block', marginBottom: 4 }}>
@@ -379,7 +379,7 @@ export default function VoiceAuditPage() {
             {/* Step 3 */}
             <div style={{ position: 'relative' }}>
               <div style={{ fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.12)', lineHeight: 1, paddingLeft: 16, marginBottom: -20, zIndex: 0 }}>03</div>
-              <div style={{ background: CARD, border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
+              <div style={{ background: "#16161C", border: `1px solid ${CARD_BORDER}`, padding: '36px 28px', position: 'relative', zIndex: 1 }}>
                 <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: GOLD, margin: '0 0 24px', textAlign: 'center' }}>Step 3</p>
                 <h3 style={{ fontFamily: G, fontSize: '1.35rem', fontWeight: 700, color: '#fff', margin: '0 0 14px', textAlign: 'center' }}>Your Voice Audit Report</h3>
                 <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', margin: '0 0 20px', lineHeight: 1.75, textAlign: 'center' }}>
@@ -426,10 +426,10 @@ export default function VoiceAuditPage() {
           </div>
 
           <div style={{ marginTop: 48, textAlign: 'center' }}>
-            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', margin: '0 0 6px', fontStyle: 'italic' }}>
+            <p style={{ fontSize: '13px', color: '#ffff', margin: '0 0 6px', fontStyle: 'italic' }}>
               Based on acoustic speech analysis and decades of communication research.
             </p>
-            <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', margin: '0 0 36px', fontStyle: 'italic' }}>
+            <p style={{ fontSize: '12px', color: '#ffff', margin: '0 0 36px', fontStyle: 'italic' }}>
               Inspired by techniques observed in world-class communicators, leaders, and Shakespearean actors.
             </p>
             <h3 style={{ fontFamily: G, fontSize: 'clamp(1.5rem,3vw,2.2rem)', fontWeight: 700, color: '#fff', margin: '0 0 28px' }}>
@@ -446,7 +446,7 @@ export default function VoiceAuditPage() {
       <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
           {/* Left — analysis card */}
-          <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.15)`, padding: '28px 24px' }}>
+          <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.15)`, padding: '28px 24px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
               <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.22em', color: GOLD, margin: 0, textTransform: 'uppercase' }}>
                 Waveform + Pitch Analysis
@@ -512,7 +512,7 @@ export default function VoiceAuditPage() {
             </p>
 
             {/* Research Foundation box */}
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '20px 22px', marginBottom: 20 }}>
+            <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '20px 22px', marginBottom: 20 }}>
               <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 12px' }}>
                 Research Foundation
               </p>
@@ -530,7 +530,7 @@ export default function VoiceAuditPage() {
                 { name: 'Globe Theatre Actors', desc: 'Projection • Vocal Presence' },
                 { name: 'Christine Lagarde',    desc: 'Executive Authority • Strategic Pace' },
               ].map((s,i) => (
-                <div key={i} style={{ background: CARD, border: `1px solid rgba(201,169,110,0.1)`, padding: '12px 14px' }}>
+                <div key={i} style={{ background: "#16161C", border: `1px solid rgba(201,169,110,0.1)`, padding: '12px 14px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                     <div style={{ width: 6, height: 6, borderRadius: '50%', background: GOLD, flexShrink: 0 }}/>
                     <p style={{ fontFamily: J, fontSize: '13px', fontWeight: 600, color: '#fff', margin: 0 }}>{s.name}</p>
@@ -598,7 +598,7 @@ export default function VoiceAuditPage() {
               { num: '08', title: 'Master Silence', desc: 'Use pauses like powerful speakers.',
                 icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> },
             ].map((item,i) => (
-              <div key={i} style={{ background: CARD, border: `1px solid rgba(201,168,76,0.1)`, padding: '28px 28px', textAlign: 'left', position: 'relative', overflow: 'hidden' }}>
+              <div key={i} style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.1)`, padding: '28px 28px', textAlign: 'left', position: 'relative', overflow: 'hidden' }}>
                 {/* Faded number bottom-right */}
                 <div style={{ position: 'absolute', bottom: -10, right: 10, fontFamily: G, fontSize: '5.5rem', fontWeight: 700, color: 'rgba(201,169,110,0.06)', lineHeight: 1, userSelect: 'none' }}>{item.num}</div>
                 <div style={{ position: 'relative', zIndex: 1 }}>
@@ -654,9 +654,9 @@ export default function VoiceAuditPage() {
           </p>
 
           {/* Sevil card — full photo */}
-          <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '0', textAlign: 'left', marginBottom: 24, display: 'flex', alignItems: 'stretch', overflow: 'hidden' }}>
-            <div style={{ width: 180, flexShrink: 0, overflow: 'hidden', background: '#0d0d14' }}>
-              <img src="/images/audit-hero.png" alt="Sevil Velsha" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}/>
+          <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '0', textAlign: 'left', marginBottom: 24, display: 'flex', alignItems: 'stretch', overflow: 'hidden' }}>
+            <div style={{ width: 180, flexShrink: 0, overflow: 'hidden', background: '#16161C' }}>
+              <img src="/images/audit-hero2.png" alt="Sevil Velsha" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}/>
             </div>
             <div style={{ padding: '28px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 10px', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
@@ -671,7 +671,7 @@ export default function VoiceAuditPage() {
 
           {/* Slots + Investment */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
+            <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
               <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
                 Weekly Capacity
               </p>
@@ -688,7 +688,7 @@ export default function VoiceAuditPage() {
               </div>
             </div>
 
-            <div style={{ background: CARD, border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
+            <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
               <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
                 Investment
               </p>
