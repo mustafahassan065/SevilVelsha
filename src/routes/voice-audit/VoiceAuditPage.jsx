@@ -3,6 +3,8 @@
 // Pixel-perfect match of Figma screenshots
 
 import React, { useState, useEffect } from 'react';
+import VoiceAuditNav from '../../components/VoiceAuditNav';
+import VoiceAuditFooter from '../../components/VoiceAuditFooter';
 
 const STRIPE_URL = 'https://buy.stripe.com/YOUR_VOICE_AUDIT_LINK';
 
