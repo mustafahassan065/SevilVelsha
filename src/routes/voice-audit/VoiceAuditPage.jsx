@@ -62,6 +62,8 @@ export default function VoiceAuditPage() {
   );
 
   return (
+    <>
+      <VoiceAuditNav />
     <div style={{ fontFamily: J, background: DARK, color: '#fff', minHeight: '100vh', overflowX: 'hidden' }}>
 
       {/* ══════════════════════════════════════
@@ -771,5 +773,7 @@ export default function VoiceAuditPage() {
       </section>
 
     </div>
+    <VoiceAuditFooter />
+    </>
   );
 }
