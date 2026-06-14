@@ -18,8 +18,8 @@ export default function PricingSection() {
   // The "Free" tier doesn't need Stripe — link it to your free-submission form.
   const LINKS = {
     free:     '/free-voice-check',                                  // internal route or form
-    quick:    'https://buy.stripe.com/YOUR_QUICK_AUDIT_LINK_19',     // $19
-    complete: 'https://buy.stripe.com/YOUR_COMPLETE_AUDIT_LINK_49',  // $49
+    quick:    'https://buy.stripe.com/test_cNi6oGgxF6jDfae2owgIo05',   
+    complete: 'https://buy.stripe.com/test_9B67sK95d23n7HM0gogIo04',  // $49
   };
 
   const CheckIcon = () => (

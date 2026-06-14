@@ -5,8 +5,9 @@
 import React, { useState, useEffect } from 'react';
 import VoiceAuditNav from '../../components/VoiceAuditNav';
 import VoiceAuditFooter from '../../components/VoiceAuditFooter';
+import PricingSection from './PricingSection';
 
-const STRIPE_URL = 'https://buy.stripe.com/YOUR_VOICE_AUDIT_LINK';
+const STRIPE_URL = 'https://buy.stripe.com/test_9B67sK95d23n7HM0gogIo04';
 
 export default function VoiceAuditPage() {
   const [slots] = useState(10);
@@ -632,6 +633,7 @@ export default function VoiceAuditPage() {
           </div>
         </div>
       </section>
+      <PricingSection />
 
       {/* ══════════════════════════════════════
           URGENCY — Only 10 Slots
