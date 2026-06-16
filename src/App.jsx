@@ -1,7 +1,4 @@
 // src/App.jsx
-// Updated with Voice Course funnel routes:
-// /voice-control-checkout → /voice-control-success → /voice-control-coaching-offer → /voice-control-dashboard
-
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./routes/Home";
@@ -20,13 +17,15 @@ import VoiceCoachingPage from "./routes/VoiceCoachingPage";
 import ThankYouBook from "./routes/ThankYouBook";
 
 // ── Voice Course Funnel Pages ─────────────────────────────────────
-
 import ThankYouVoicePage from "./routes/voice-course/ThankyouVoicePage";
 import UpsellPage        from "./routes/voice-course/UpsellPage";
 import CourseDashboard   from "./routes/voice-course/CourseDashboard.jsx";
 import VoiceFreeAccessPage from './routes/voice-course/VoiceFreeAccessPage';
 import VoicePdfPage from './routes/voice-course/VoicePdfPage';
-import VoiceAuditPage from './routes/voice-audit/VoiceAuditPage';
+
+// ── Voice Audit Pages ─────────────────────────────────────────────
+import VoiceAuditPage  from './routes/voice-audit/VoiceAuditPage';
+import ThankYouPage    from './routes/voice-audit/ThankYouPage';
 // ─────────────────────────────────────────────────────────────────
 
 function AppContent() {
@@ -35,11 +34,10 @@ function AppContent() {
   const isVoiceControlPage = location.pathname.startsWith("/voice-control-");
   const isCoachingPage     = location.pathname.startsWith("/voice-control-coaching");
   const isCoursePage       = location.pathname.startsWith("/voice-control-course");
-  
-  // NEW: Voice Audit page ke liye check
-  const isVoiceAuditPage = location.pathname === "/voice-audit";
 
-  // These funnel pages have their own nav — hide global header/footer
+  // Voice Audit pages — hide global nav/footer
+  const isVoiceAuditPage = location.pathname.startsWith("/voice-audit");
+
   const isFunnelPage = [
     '/voice-control-checkout',
     '/voice-control-success',
@@ -47,16 +45,14 @@ function AppContent() {
     '/voice-control-dashboard',
   ].includes(location.pathname);
 
-  // Voice Audit page ke liye global header/footer hide karo (kyunki page apna khud ka navbar/footer use karega)
   const hideGlobalHeader = isCoachingPage || isCoursePage || isFunnelPage || isVoiceAuditPage;
-  
+
   const Header = hideGlobalHeader
     ? null
     : (isVoiceControlPage ? VoiceNav : Nav);
 
-  // Voice Audit page ke liye footer bhi hide karo
   const hideGlobalFooter = isFunnelPage || isVoiceAuditPage;
-  
+
   const FooterComponent = hideGlobalFooter
     ? null
     : (isVoiceControlPage && !isCoachingPage
@@ -83,9 +79,12 @@ function AppContent() {
         <Route path="/voice-control-success"         element={<ThankYouVoicePage />} />
         <Route path="/voice-control-coaching-offer"  element={<UpsellPage />} />
         <Route path="/voice-control-dashboard"       element={<CourseDashboard />} />
-        <Route path="/voice-free-access" element={<VoiceFreeAccessPage />} />
-        <Route path="/voice-control-pdf" element={<VoicePdfPage />} />
-        <Route path="/voice-audit" element={<VoiceAuditPage />} />
+        <Route path="/voice-free-access"             element={<VoiceFreeAccessPage />} />
+        <Route path="/voice-control-pdf"             element={<VoicePdfPage />} />
+
+        {/* ── Voice Audit ── */}
+        <Route path="/voice-audit"             element={<VoiceAuditPage />} />
+        <Route path="/voice-audit/thank-you"   element={<ThankYouPage />} />
       </Routes>
       {FooterComponent && <FooterComponent />}
     </main>
