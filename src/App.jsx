@@ -24,8 +24,9 @@ import VoiceFreeAccessPage from './routes/voice-course/VoiceFreeAccessPage';
 import VoicePdfPage from './routes/voice-course/VoicePdfPage';
 
 // ── Voice Audit Pages ─────────────────────────────────────────────
-import VoiceAuditPage  from './routes/voice-audit/VoiceAuditPage';
-import ThankYouPage    from './routes/voice-audit/ThankYouPage';
+import VoiceAuditPage       from './routes/voice-audit/VoiceAuditPage';
+import ThankYouPage         from './routes/voice-audit/ThankYouPage';
+import FreeVoiceCheckPage   from './routes/voice-audit/FreeVoiceCheckPage';
 // ─────────────────────────────────────────────────────────────────
 
 function AppContent() {
@@ -36,7 +37,8 @@ function AppContent() {
   const isCoursePage       = location.pathname.startsWith("/voice-control-course");
 
   // Voice Audit pages — hide global nav/footer
-  const isVoiceAuditPage = location.pathname.startsWith("/voice-audit");
+  const isVoiceAuditPage = location.pathname.startsWith("/voice-audit")
+    || location.pathname === "/free-voice-check";
 
   const isFunnelPage = [
     '/voice-control-checkout',
@@ -85,6 +87,7 @@ function AppContent() {
         {/* ── Voice Audit ── */}
         <Route path="/voice-audit"             element={<VoiceAuditPage />} />
         <Route path="/voice-audit/thank-you"   element={<ThankYouPage />} />
+        <Route path="/free-voice-check"        element={<FreeVoiceCheckPage />} />
       </Routes>
       {FooterComponent && <FooterComponent />}
     </main>
