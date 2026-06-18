@@ -686,25 +686,55 @@ export default function VoiceAuditPage() {
           </p>
 
           {/* Sevil card — full photo */}
-          <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '24px', textAlign: 'left', marginBottom: 24, display: 'flex', alignItems: 'center', gap: '24px', overflow: 'hidden', borderRadius: '16px' }}>
-  <div style={{ width: 100, height: 100, flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
-    <img 
-      src="/images/audit-hero2.png" 
-      alt="Sevil Velsha" 
-      style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block' }}
-    />
-  </div>
-  <div style={{ flex: 1 }}>
-    <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 8px', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
-      Personally Reviewed By
-    </p>
-    <p style={{ fontFamily: G, fontSize: '1.5rem', fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Sevil Velsha</p>
-    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', margin: 0, lineHeight: 1.6 }}>
-      MA Linguistics • Voice Researcher • Author of The Voice Control Method • Personal Voice Analysis within 24 Hours
-    </p>
-  </div>
-</div>
-
+          <div style={{
+            background: CARD, border: `1px solid rgba(201,168,76,0.25)`,
+            marginBottom: 28, overflow: 'hidden',
+            display: 'grid', gridTemplateColumns: '340px 1fr',
+          }}>
+            {/* Photo — large, prominent */}
+            <div style={{ position: 'relative', minHeight: 380, background: '#0a0a12', overflow: 'hidden' }}>
+              <img
+                src="/images/audit-hero.png"
+                alt="Sevil Velsha"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
+              />
+              {/* subtle gold gradient overlay at bottom */}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, background: 'linear-gradient(to top, rgba(10,10,18,0.7), transparent)' }}/>
+            </div>
+ 
+            {/* Content */}
+            <div style={{ padding: '40px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 16px', letterSpacing: '0.22em', textTransform: 'uppercase' }}>
+                Personally Reviewed By
+              </p>
+              <p style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3vw,2.4rem)', fontWeight: 700, color: '#fff', margin: '0 0 6px', lineHeight: 1.1 }}>
+                Sevil Velsha
+              </p>
+              <div style={{ width: 36, height: 2, background: GOLD, margin: '0 0 20px' }}/>
+ 
+              {/* Credentials */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
+                {[
+                  'MA Linguistics',
+                  'Voice Researcher',
+                  'Author of The Voice Control Method',
+                  'Personal Voice Analysis within 24 Hours',
+                ].map((item, i) => (
+                  <span key={i} style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: GOLD, flexShrink: 0 }}/>
+                    {item}
+                  </span>
+                ))}
+              </div>
+ 
+              {/* Quote */}
+              <div style={{ borderLeft: `3px solid ${GOLD}`, paddingLeft: 16 }}>
+                <p style={{ fontFamily: G, fontSize: '1rem', fontStyle: 'italic', color: 'rgba(255,255,255,0.5)', margin: 0, lineHeight: 1.7 }}>
+                  "Your voice is your most powerful leadership tool. Let me show you how to use it."
+                </p>
+              </div>
+            </div>
+          </div>
           {/* Slots + Investment */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
             <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
