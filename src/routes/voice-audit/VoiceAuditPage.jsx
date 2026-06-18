@@ -72,7 +72,7 @@ export default function VoiceAuditPage() {
       {/* ══════════════════════════════════════
           HERO
       ══════════════════════════════════════ */}
-      <section style={{
+       <section style={{
         display: 'grid', gridTemplateColumns: '1fr 1fr',
         minHeight: '100vh', background: DARK, overflow: 'hidden'
       }}>
@@ -81,59 +81,85 @@ export default function VoiceAuditPage() {
           display: 'flex', flexDirection: 'column', justifyContent: 'center',
           padding: 'clamp(60px,8vw,120px) clamp(40px,5vw,80px) clamp(60px,8vw,120px) clamp(60px,7vw,100px)'
         }}>
+          {/* Headline */}
           <h1 style={{
             fontFamily: G, fontWeight: 700,
-            fontSize: 'clamp(2.8rem,5.5vw,4.4rem)',
-            lineHeight: 1.05, color: '#fff', margin: '0 0 4px'
+            fontSize: 'clamp(2.4rem,5vw,3.8rem)',
+            lineHeight: 1.08, color: '#fff', margin: '0 0 4px'
           }}>
-            People Judge Your
+            Your Voice May Be
           </h1>
           <h1 style={{
             fontFamily: G, fontWeight: 700,
-            fontSize: 'clamp(2.8rem,5.5vw,4.4rem)',
-            lineHeight: 1.05, margin: '0 0 0'
+            fontSize: 'clamp(2.4rem,5vw,3.8rem)',
+            lineHeight: 1.08, margin: '0 0 20px'
           }}>
-            <span style={{ color: GOLD, fontStyle: 'italic' }}>Voice </span>
-            <span style={{ color: '#fff' }}>Before Your</span>
+            <span style={{ color: GOLD, fontStyle: 'italic' }}>Costing You </span>
+            <span style={{ color: '#fff' }}>Opportunities</span>
           </h1>
-          <h1 style={{
-            fontFamily: G, fontWeight: 700,
-            fontSize: 'clamp(2.8rem,5.5vw,4.4rem)',
-            lineHeight: 1.05, color: '#fff', margin: '0 0 20px'
-          }}>
-            Ideas
-          </h1>
-
+ 
           <GoldDivider />
-
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 4px', lineHeight: 1.7, fontStyle: 'italic', maxWidth: 480 }}>
-            Most people spend years improving their skills. Few ever improve the voice that delivers those skills.
+ 
+          {/* Subheadline */}
+          <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.75)', margin: '0 0 16px', lineHeight: 1.7, fontStyle: 'italic', maxWidth: 480 }}>
+            People decide whether you sound confident, credible, and trustworthy before they fully hear your ideas.
           </p>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 4px', lineHeight: 1.7 }}>
-            People ignore fast, nervous talkers.
+ 
+          {/* Body */}
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', margin: '0 0 28px', lineHeight: 1.75, maxWidth: 480 }}>
+            If your voice sounds rushed, nervous, monotone, or uncertain, your message may not get the attention it deserves.
+            <br /><br />
+            Submit a 30-second voice sample and receive a{' '}
+            <span style={{ color: GOLD, fontWeight: 600 }}>FREE Voice Check</span>{' '}
+            within 24 hours.
           </p>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: '0 0 36px', lineHeight: 1.7 }}>
-            For <span style={{ color: GOLD, fontWeight: 600 }}>$49</span>, get a professional{' '}
-            <span style={{ color: GOLD, fontWeight: 600 }}>24-hour Voice Audit</span>
-            <br />and change how the room reacts to you.
-          </p>
-
+ 
+          {/* Benefits */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
+            {[
+              'One Voice Strength',
+              'One Area for Improvement',
+              'One Practical Tip',
+              'Personalized Feedback Within 24 Hours',
+            ].map((item, i) => (
+              <span key={i} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                <CheckIcon />
+                {item}
+              </span>
+            ))}
+          </div>
+ 
+          {/* CTA */}
           <div>
-            <CtaButton>GET MY PERSONAL VOICE REPORT →</CtaButton>
+            <a
+              href="/free-voice-check"
+              style={{
+                display: 'inline-block', background: GOLD, color: '#111',
+                fontFamily: J, fontSize: '13px', fontWeight: 700,
+                letterSpacing: '0.15em', textTransform: 'uppercase',
+                padding: '20px 48px', textDecoration: 'none', cursor: 'pointer',
+              }}
+            >
+              GET MY FREE VOICE CHECK →
+            </a>
+            <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', margin: '14px 0 0', letterSpacing: '0.05em' }}>
+              No obligation. No sales pressure.
+            </p>
           </div>
         </div>
-
+ 
         {/* Right — photo */}
-        <div style={{ position: 'relative', overflow: 'hidden', background: '#1A1A24', minHeight: '600px' }}>
+        <div style={{ position: 'relative', overflow: 'hidden', background: '#0d0d14', minHeight: '600px' }}>
           <img
             src="/images/audit-hero.png"
             alt="Sevil Velsha"
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
           />
           {/* Waveform overlay card */}
-         
+          
         </div>
       </section>
+ 
 
       {/* ══════════════════════════════════════
           THE PROBLEM
