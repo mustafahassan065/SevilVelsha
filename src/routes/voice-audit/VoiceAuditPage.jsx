@@ -694,7 +694,7 @@ export default function VoiceAuditPage() {
             {/* Photo — large, prominent */}
             <div style={{ position: 'relative', minHeight: 380, background: '#0a0a12', overflow: 'hidden' }}>
               <img
-                src="/images/audit-hero.png"
+                src="/images/audit-hero2.png"
                 alt="Sevil Velsha"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
               />
