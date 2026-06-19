@@ -29,31 +29,16 @@ export default function FreeVoiceCheckPage() {
   const [status, setStatus]   = useState('idle'); // idle | uploading | success | error
   const [errorMsg, setErrorMsg]   = useState('');
 
-  const MAX_DURATION = 30; // seconds
-
   const handleFileChange = (e) => {
     const f = e.target.files[0];
     setFileError('');
     setFile(null);
     if (!f) return;
-
     if (!f.type.startsWith('audio/') && !f.type.startsWith('video/')) {
       setFileError('Please upload an audio or video file.');
       return;
     }
-
-    const url = URL.createObjectURL(f);
-    const media = document.createElement(f.type.startsWith('video/') ? 'video' : 'audio');
-    media.preload = 'metadata';
-    media.onloadedmetadata = () => {
-      URL.revokeObjectURL(url);
-      if (media.duration > MAX_DURATION) {
-        setFileError(`Recording is ${Math.round(media.duration)}s. Please keep it under 30 seconds.`);
-      } else {
-        setFile(f);
-      }
-    };
-    media.src = url;
+    setFile(f);
   };
 
   const handleSubmit = async (e) => {
@@ -205,10 +190,10 @@ export default function FreeVoiceCheckPage() {
               />
 
               {/* File upload */}
-              <label style={labelStyle}>Upload Recording (max 30 seconds)</label>
+              <label style={labelStyle}>Upload Your Recording</label>
               <div style={{ border: `1px dashed rgba(201,168,76,0.3)`, padding: '24px', textAlign: 'center', marginBottom: 8, background: 'rgba(201,168,76,0.03)' }}>
                 <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 12px', lineHeight: 1.6 }}>
-                  Record a 30-second introduction of yourself and upload the audio file.
+                  Record an introduction of yourself and upload the audio file.
                 </p>
                 <input
                   type="file" accept="audio/*,video/*"
@@ -225,7 +210,7 @@ export default function FreeVoiceCheckPage() {
                 <p style={{ fontSize: '12px', color: '#e07a7a', margin: '0 0 16px' }}>{fileError}</p>
               )}
               <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', margin: '0 0 28px' }}>
-                Accepted formats: MP3, WAV, M4A, MP4, MOV
+                Accepted formats: MP3, WAV, M4A, MP4, MOV, WEBM
               </p>
 
               {errorMsg && (
