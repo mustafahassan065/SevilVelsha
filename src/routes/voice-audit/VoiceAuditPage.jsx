@@ -664,131 +664,133 @@ export default function VoiceAuditPage() {
       {/* ══════════════════════════════════════
           URGENCY — Only 10 Slots
       ══════════════════════════════════════ */}
-      <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)', textAlign: 'center' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          {/* Triangle icon */}
-          <svg width="36" height="34" viewBox="0 0 36 34" fill="none" style={{ marginBottom: 24 }}>
-            <path d="M18 2L1 31h34L18 2z" stroke={GOLD} strokeWidth="1.8" strokeLinejoin="round"/>
-            <path d="M18 13v8M18 24v2" stroke={GOLD} strokeWidth="2" strokeLinecap="round"/>
-          </svg>
+     <section style={{ background: DARK, padding: 'clamp(80px,10vw,120px) clamp(40px,6vw,100px)', textAlign: 'center' }}>
+  <div style={{ maxWidth: 720, margin: '0 auto' }}>
+    {/* Triangle icon - now centered */}
+    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
+      <svg width="36" height="34" viewBox="0 0 36 34" fill="none">
+        <path d="M18 2L1 31h34L18 2z" stroke={GOLD} strokeWidth="1.8" strokeLinejoin="round"/>
+        <path d="M18 13v8M18 24v2" stroke={GOLD} strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+    </div>
 
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: 0, lineHeight: 1.1 }}>
-            Only <span style={{ color: GOLD, fontStyle: 'italic' }}>10 Slots</span>
-          </h2>
-          <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: '0 0 0', lineHeight: 1.1 }}>
-            Available at <span style={{ color: GOLD }}>$49</span>
-          </h2>
-          <GoldDividerCenter />
+    <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: 0, lineHeight: 1.1 }}>
+      Only <span style={{ color: GOLD, fontStyle: 'italic' }}>10 Slots</span>
+    </h2>
+    <h2 style={{ fontFamily: G, fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 700, color: '#fff', margin: '0 0 0', lineHeight: 1.1 }}>
+      Available at <span style={{ color: GOLD }}>$49</span>
+    </h2>
+    <GoldDividerCenter />
 
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', margin: '0 0 44px', lineHeight: 1.75 }}>
-            Because this is a personalized, manual review by a{' '}
-            <span style={{ color: GOLD }}>voice researcher and author</span>, slots are <span style={{ color: GOLD }}>strictly limited.</span>
-          </p>
+    <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.45)', margin: '0 0 44px', lineHeight: 1.75 }}>
+      Because this is a personalized, manual review by a{' '}
+      <span style={{ color: GOLD }}>voice researcher and author</span>, slots are <span style={{ color: GOLD }}>strictly limited.</span>
+    </p>
 
-          {/* Sevil card — full photo */}
-          <div style={{
-            background: CARD, border: `1px solid rgba(201,168,76,0.25)`,
-            marginBottom: 28, overflow: 'hidden',
-            display: 'grid', gridTemplateColumns: '340px 1fr',
-          }}>
-            {/* Photo — large, prominent */}
-            <div style={{ position: 'relative', minHeight: 380, background: '#0a0a12', overflow: 'hidden' }}>
-              <img
-                src="/images/audit-hero2.png"
-                alt="Sevil Velsha"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
-              />
-              {/* subtle gold gradient overlay at bottom */}
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, background: 'linear-gradient(to top, rgba(10,10,18,0.7), transparent)' }}/>
-            </div>
- 
-            {/* Content */}
-            <div style={{ padding: '40px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 16px', letterSpacing: '0.22em', textTransform: 'uppercase' }}>
-                Personally Reviewed By
-              </p>
-              <p style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3vw,2.4rem)', fontWeight: 700, color: '#fff', margin: '0 0 6px', lineHeight: 1.1 }}>
-                Sevil Velsha
-              </p>
-              <div style={{ width: 36, height: 2, background: GOLD, margin: '0 0 20px' }}/>
- 
-              {/* Credentials */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
-                {[
-                  'MA Linguistics',
-                  'Voice Researcher',
-                  'Author of The Voice Control Method',
-                  'Personal Voice Analysis within 24 Hours',
-                ].map((item, i) => (
-                  <span key={i} style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: GOLD, flexShrink: 0 }}/>
-                    {item}
-                  </span>
-                ))}
-              </div>
- 
-              {/* Quote */}
-              <div style={{ borderLeft: `3px solid ${GOLD}`, paddingLeft: 16 }}>
-                <p style={{ fontFamily: G, fontSize: '1rem', fontStyle: 'italic', color: 'rgba(255,255,255,0.5)', margin: 0, lineHeight: 1.7 }}>
-                  "Your voice is your most powerful leadership tool. Let me show you how to use it."
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* Slots + Investment */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
-            <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
-                Weekly Capacity
-              </p>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontFamily: G, fontSize: '3.2rem', fontWeight: 700, color: GOLD }}>{slots}</span>
-                <span style={{ fontFamily: J, fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Voice Audits</span>
-              </div>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: '0 0 18px' }}>This week's available slots</p>
-              {/* Gold dots */}
-              <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
-                {Array(10).fill(0).map((_,i) => (
-                  <div key={i} style={{ width: 18, height: 18, borderRadius: '50%', background: i < slots ? GOLD : 'rgba(201,168,76,0.15)' }}/>
-                ))}
-              </div>
-            </div>
+    {/* Sevil card — full photo */}
+    <div style={{
+      background: CARD, border: `1px solid rgba(201,168,76,0.25)`,
+      marginBottom: 28, overflow: 'hidden',
+      display: 'grid', gridTemplateColumns: '340px 1fr',
+    }}>
+      {/* Photo — large, prominent */}
+      <div style={{ position: 'relative', minHeight: 380, background: '#0a0a12', overflow: 'hidden' }}>
+        <img
+          src="/images/audit-hero2.png"
+          alt="Sevil Velsha"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
+        />
+        {/* subtle gold gradient overlay at bottom */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 80, background: 'linear-gradient(to top, rgba(10,10,18,0.7), transparent)' }}/>
+      </div>
 
-            <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
-                Investment
-              </p>
-              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 6px', textDecoration: 'line-through' }}>Regular Price: $99</p>
-              <p style={{ fontFamily: G, fontSize: '2.8rem', fontWeight: 700, color: GOLD, margin: '0 0 14px', lineHeight: 1 }}>Today: $49</p>
-              <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.65 }}>
-                Once this week's 10 spots are gone,<br/>the price returns to $99
-              </p>
-            </div>
-          </div>
+      {/* Content */}
+      <div style={{ padding: '40px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: GOLD, margin: '0 0 16px', letterSpacing: '0.22em', textTransform: 'uppercase' }}>
+          Personally Reviewed By
+        </p>
+        <p style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3vw,2.4rem)', fontWeight: 700, color: '#fff', margin: '0 0 6px', lineHeight: 1.1 }}>
+          Sevil Velsha
+        </p>
+        <div style={{ width: 36, height: 2, background: GOLD, margin: '0 0 20px' }}/>
 
-          {/* Check items */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 20, flexWrap: 'wrap' }}>
-            {['Personal Review','24-Hour Delivery','Custom Exercises','100% Confidential'].map((item,i) => (
-              <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                <CheckIcon />{item}
-              </span>
-            ))}
-          </div>
-
-          {/* Security line */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 28 }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
-            </svg>
-            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>
-              Secure your $49 Voice Audit now before the slots are gone.
+        {/* Credentials */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
+          {[
+            'MA Linguistics',
+            'Voice Researcher',
+            'Author of The Voice Control Method',
+            'Personal Voice Analysis within 24 Hours',
+          ].map((item, i) => (
+            <span key={i} style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', background: GOLD, flexShrink: 0 }}/>
+              {item}
             </span>
-          </div>
-
-          <CtaButton style={{ marginBottom: 14 }}>GET MY $49 VOICE AUDIT →</CtaButton>
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>100% Secure & Confidential</p>
+          ))}
         </div>
-      </section>
+
+        {/* Quote */}
+        <div style={{ borderLeft: `3px solid ${GOLD}`, paddingLeft: 16 }}>
+          <p style={{ fontFamily: G, fontSize: '1rem', fontStyle: 'italic', color: 'rgba(255,255,255,0.5)', margin: 0, lineHeight: 1.7 }}>
+            "Your voice is your most powerful leadership tool. Let me show you how to use it."
+          </p>
+        </div>
+      </div>
+    </div>
+    {/* Slots + Investment */}
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
+      <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
+        <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
+          Weekly Capacity
+        </p>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 8, marginBottom: 6 }}>
+          <span style={{ fontFamily: G, fontSize: '3.2rem', fontWeight: 700, color: GOLD }}>{slots}</span>
+          <span style={{ fontFamily: J, fontSize: '11px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Voice Audits</span>
+        </div>
+        <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: '0 0 18px' }}>This week's available slots</p>
+        {/* Gold dots */}
+        <div style={{ display: 'flex', gap: 6, justifyContent: 'center' }}>
+          {Array(10).fill(0).map((_,i) => (
+            <div key={i} style={{ width: 18, height: 18, borderRadius: '50%', background: i < slots ? GOLD : 'rgba(201,168,76,0.15)' }}/>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ background: "#16161C", border: `1px solid rgba(201,168,76,0.2)`, padding: '28px 24px', textAlign: 'center' }}>
+        <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.35)', margin: '0 0 14px', textTransform: 'uppercase', letterSpacing: '0.16em' }}>
+          Investment
+        </p>
+        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', margin: '0 0 6px', textDecoration: 'line-through' }}>Regular Price: $99</p>
+        <p style={{ fontFamily: G, fontSize: '2.8rem', fontWeight: 700, color: GOLD, margin: '0 0 14px', lineHeight: 1 }}>Today: $49</p>
+        <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.65 }}>
+          Once this week's 10 spots are gone,<br/>the price returns to $99
+        </p>
+      </div>
+    </div>
+
+    {/* Check items */}
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 20, flexWrap: 'wrap' }}>
+      {['Personal Review','24-Hour Delivery','Custom Exercises','100% Confidential'].map((item,i) => (
+        <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <CheckIcon />{item}
+        </span>
+      ))}
+    </div>
+
+    {/* Security line */}
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 28 }}>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke={GOLD} strokeWidth="1.5" strokeLinejoin="round"/>
+      </svg>
+      <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.55)' }}>
+        Secure your $49 Voice Audit now before the slots are gone.
+      </span>
+    </div>
+
+    <CtaButton style={{ marginBottom: 14 }}>GET MY $49 VOICE AUDIT →</CtaButton>
+    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', margin: 0 }}>100% Secure & Confidential</p>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════
           FINAL CTA
