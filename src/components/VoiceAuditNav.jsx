@@ -25,6 +25,7 @@ const VOICE_CONTROL_ITEMS = [
   { label: "Voice Control Video Course", path: "/voice-control-course" },
   { label: "Voice Control Book", path: "/voice-control-book" },
   { label: "Voice Control Coaching", path: "/voice-control-coaching" },
+  { label: "Voice Audit", path: "/voice-audit" },
 ];
 
 function VoiceAuditNav() {

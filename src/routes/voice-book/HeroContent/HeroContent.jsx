@@ -41,7 +41,7 @@ export default function HeroContent() {
           className={styles.samplesButton}
           onClick={() => window.open('https://www.sevilvelsha.com/voice-control-pdf', '_blank')}
         >
-          Read Samples
+         Free Book Preview
         </button>
       </div>
 
