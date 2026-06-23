@@ -132,44 +132,6 @@ export default function VoicePdfPage() {
   }
 
   // ── EMAIL FIELD with typo UI (reusable block) ─────────────────
-  const EmailField = () => (
-    <div style={{ marginBottom: suggestion ? 8 : 20 }}>
-      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#555', marginBottom: 6 }}>Email Address</label>
-      <input
-        type="email"
-        placeholder="your@email.com"
-        value={email}
-        onChange={e => { setEmail(e.target.value); setSuggestion(''); setError(''); }}
-        onBlur={handleEmailBlur}
-        onKeyDown={e => e.key === 'Enter' && handleSubmit()}
-        style={{
-          width: '100%', padding: '12px 16px', boxSizing: 'border-box',
-          border: `1px solid ${suggestion ? '#e67e22' : error ? '#c0392b' : '#ddd'}`,
-          fontSize: '14px', color: DARK, fontFamily: 'inherit', outline: 'none',
-        }}
-      />
-      {/* Typo suggestion */}
-      {suggestion && (
-        <div style={{
-          background: '#fff8ee', border: '1px solid #e67e22',
-          padding: '10px 14px', marginTop: 8, marginBottom: 8,
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap',
-        }}>
-          <p style={{ fontSize: '13px', color: '#c0392b', margin: 0 }}>
-            Did you mean <strong>{suggestion}</strong>?
-          </p>
-          <button onClick={applySuggestion} style={{
-            background: '#e67e22', color: '#fff', border: 'none',
-            padding: '6px 14px', fontSize: '12px', fontWeight: 700,
-            cursor: 'pointer', letterSpacing: '0.05em', flexShrink: 0,
-          }}>
-            Yes, fix it
-          </button>
-        </div>
-      )}
-      {error && <p style={{ fontSize: '13px', color: '#c0392b', margin: '8px 0 0' }}>{error}</p>}
-    </div>
-  );
 
   // ── MAIN PAGE ─────────────────────────────────────────────────
   return (
@@ -250,7 +212,30 @@ export default function VoicePdfPage() {
 
             {/* Email with typo detection */}
             <EmailField />
-
+{/* Email with typo detection */}
+<div style={{ marginBottom: suggestion ? 8 : 20 }}>
+  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#555', marginBottom: 6 }}>Email Address</label>
+  <input
+    type="email"
+    placeholder="your@email.com"
+    value={email}
+    onChange={e => { setEmail(e.target.value); setSuggestion(''); setError(''); }}
+    onBlur={handleEmailBlur}
+    onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+    style={{
+      width: '100%', padding: '12px 16px', boxSizing: 'border-box',
+      border: `1px solid ${suggestion ? '#e67e22' : error ? '#c0392b' : '#ddd'}`,
+      fontSize: '14px', color: DARK, fontFamily: 'inherit', outline: 'none',
+    }}
+  />
+  {suggestion && (
+    <div style={{ background: '#fff8ee', border: '1px solid #e67e22', padding: '10px 14px', marginTop: 8, marginBottom: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+      <p style={{ fontSize: '13px', color: '#c0392b', margin: 0 }}>Did you mean <strong>{suggestion}</strong>?</p>
+      <button onClick={applySuggestion} style={{ background: '#e67e22', color: '#fff', border: 'none', padding: '6px 14px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>Yes, fix it</button>
+    </div>
+  )}
+  {error && <p style={{ fontSize: '13px', color: '#c0392b', margin: '8px 0 0' }}>{error}</p>}
+</div>
             <button onClick={handleSubmit} disabled={loading}
               style={{ width:'100%', padding:'16px', background:loading?'#888':DARK, color:WHITE, border:'none', fontSize:'12px', fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', cursor:loading?'not-allowed':'pointer', marginBottom:10, marginTop: suggestion ? 8 : 0 }}>
               {loading ? 'Getting your PDF...' : '↓ Download Free PDF'}
