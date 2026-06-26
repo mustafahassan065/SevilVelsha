@@ -27,6 +27,7 @@ import VoicePdfPage from './routes/voice-course/VoicePdfPage';
 import VoiceAuditPage       from './routes/voice-audit/VoiceAuditPage';
 import ThankYouPage         from './routes/voice-audit/ThankYouPage';
 import FreeVoiceCheckPage   from './routes/voice-audit/FreeVoiceCheckPage';
+import Home_New from "./routes/Home_New";
 // ─────────────────────────────────────────────────────────────────
 
 function AppContent() {
@@ -88,6 +89,7 @@ function AppContent() {
         <Route path="/voice-audit"             element={<VoiceAuditPage />} />
         <Route path="/voice-audit/thank-you"   element={<ThankYouPage />} />
         <Route path="/free-voice-check"        element={<FreeVoiceCheckPage />} />
+        <Route path="/home_new" element={<Home_New />} />
       </Routes>
       {FooterComponent && <FooterComponent />}
     </main>
