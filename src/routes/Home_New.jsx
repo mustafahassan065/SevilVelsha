@@ -286,53 +286,75 @@ export default function Home_New() {
       {/* ═══════════════════════════
           ABOUT SEVIL
       ═══════════════════════════ */}
-      <section style={{ background: '#ffffff', padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(48px,7vw,100px)', alignItems: 'center' }}>
-          {/* Left — navy bg, image top-left aligned, full height, matches Figma */}
-          <div style={{ background: '#1a2b3c', minHeight: 560, overflow: 'hidden', position: 'relative' }}>
-            <img src="/images/HomeThird.png" alt="Sevil Velsha"
-              style={{
-                position: 'absolute', top: 0, left: 0,
-                width: '100%', height: '100%',
-                objectFit: 'cover', objectPosition: '30% top',
-                display: 'block'
+      <section style={{ backgroundColor: '#f5f2eb', padding: '6rem 8rem', color: '#111827' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6rem', maxWidth: 1400, margin: '0 auto' }}>
+
+          {/* Left column — image with navy ::before effect via wrapper */}
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
+            <div style={{ position: 'relative', width: '100%' }}>
+              {/* Navy blue background box — starts 6rem from top */}
+              <div style={{
+                position: 'absolute', top: '6rem', left: 0, right: 0, bottom: 0,
+                backgroundColor: '#1a2b3c', borderRadius: 12, zIndex: 1,
               }} />
+              {/* Image sits on top */}
+              <img src="/images/HomeThird.png" alt="Sevil Velsha"
+                style={{
+                  position: 'relative', zIndex: 2,
+                  width: '100%', height: 'auto',
+                  objectFit: 'cover',
+                  borderBottomLeftRadius: 12,
+                  borderBottomRightRadius: 12,
+                  display: 'block',
+                }}
+              />
+            </div>
           </div>
 
-          {/* Right */}
-          <div style={{ color: '#111827' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <div style={{ width: 28, height: 1.5, background: '#C9A84C' }} />
-              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C9A84C', margin: 0 }}>About Sevil</p>
+          {/* Right column */}
+          <div style={{ flex: 1, maxWidth: 600 }}>
+            {/* Label */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+              <span style={{ width: 40, height: 1, backgroundColor: '#C9A84C', display: 'inline-block' }} />
+              <h3 style={{ fontFamily: J, fontWeight: 700, fontSize: '10.4px', letterSpacing: '2.6px', textTransform: 'uppercase', color: '#C9A84C', margin: 0 }}>
+                About Sevil
+              </h3>
             </div>
-            <h2 style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 600, color: '#111827', margin: '0 0 24px', lineHeight: 1.15 }}>
-              Hi, I'm Sevil <span style={{ fontStyle: 'italic', color: '#C9A84C' }}>Velsha.</span>
+
+            {/* Heading */}
+            <h2 style={{ fontFamily: G, fontWeight: 600, fontSize: 'clamp(2.2rem,4vw,3.8rem)', lineHeight: 1.1, color: '#111827', marginBottom: '2rem' }}>
+              Hi, I'm Sevil{' '}
+              <span style={{ fontFamily: G, fontWeight: 300, fontStyle: 'italic', color: '#C9A84C' }}>Velsha.</span>
             </h2>
-            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 14px', lineHeight: 1.9 }}>
+
+            {/* Paragraphs */}
+            <p style={{ fontFamily: J, fontWeight: 300, fontSize: '15.2px', lineHeight: '24.7px', color: '#4b5563', marginBottom: '1.5rem' }}>
               I'm a speaker, educator, and researcher specializing in voice, communication, executive presence, and stage speech. For years I've studied what makes certain voices cut through the noise — and what keeps talented people invisible.
             </p>
-            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 14px', lineHeight: 1.9 }}>
+            <p style={{ fontFamily: J, fontWeight: 300, fontSize: '15.2px', lineHeight: '24.7px', color: '#4b5563', marginBottom: '1.5rem' }}>
               My academic research explored how powerful speakers use pitch, pauses, rhythm, emphasis, and vocal control to influence audiences. Today, I help professionals apply these same principles in meetings, presentations, interviews, and leadership roles.
             </p>
-            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 28px', lineHeight: 1.9 }}>
+            <p style={{ fontFamily: J, fontWeight: 300, fontSize: '15.2px', lineHeight: '24.7px', color: '#4b5563', marginBottom: '1.5rem' }}>
               Whether you're on a global stage or in a boardroom with 10 executives, I will not only teach you how to speak — I'll teach you how to be heard.
             </p>
 
-            <div style={{ height: 1, background: '#e8e4dc', margin: '0 0 24px' }} />
+            {/* Divider */}
+            <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.1)', margin: '2.5rem 0' }} />
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {/* Bullet list */}
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {[
                 "Master's Degree in English & Linguistics",
                 'PhD Research in Stage Speech & Voice Authority',
                 'Author of The Voice Control Method',
                 'Communication Educator, Coach & International Speaker',
               ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9A84C', flexShrink: 0, marginTop: 6 }} />
-                  <p style={{ fontFamily: J, fontSize: '13px', color: '#374151', margin: 0, lineHeight: 1.65 }}>{item}</p>
-                </div>
+                <li key={i} style={{ position: 'relative', paddingLeft: 24, fontFamily: J, fontWeight: 500, fontSize: '13.12px', lineHeight: '19.68px', letterSpacing: '0.33px', color: '#111827' }}>
+                  <span style={{ position: 'absolute', left: 0, top: 6, width: 6, height: 6, borderRadius: '50%', backgroundColor: '#C9A84C', display: 'inline-block' }} />
+                  {item}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </section>
