@@ -41,6 +41,9 @@ function AppContent() {
   const isVoiceAuditPage = location.pathname.startsWith("/voice-audit")
     || location.pathname === "/free-voice-check";
 
+  // Home_New — apna khud ka nav/footer hai, global hide karo
+  const isHomeNew = location.pathname === "/home_new";
+
   const isFunnelPage = [
     '/voice-control-checkout',
     '/voice-control-success',
@@ -48,13 +51,13 @@ function AppContent() {
     '/voice-control-dashboard',
   ].includes(location.pathname);
 
-  const hideGlobalHeader = isCoachingPage || isCoursePage || isFunnelPage || isVoiceAuditPage;
+  const hideGlobalHeader = isCoachingPage || isCoursePage || isFunnelPage || isVoiceAuditPage || isHomeNew;
 
   const Header = hideGlobalHeader
     ? null
     : (isVoiceControlPage ? VoiceNav : Nav);
 
-  const hideGlobalFooter = isFunnelPage || isVoiceAuditPage;
+  const hideGlobalFooter = isFunnelPage || isVoiceAuditPage || isHomeNew;
 
   const FooterComponent = hideGlobalFooter
     ? null
@@ -89,6 +92,8 @@ function AppContent() {
         <Route path="/voice-audit"             element={<VoiceAuditPage />} />
         <Route path="/voice-audit/thank-you"   element={<ThankYouPage />} />
         <Route path="/free-voice-check"        element={<FreeVoiceCheckPage />} />
+
+        {/* ── Home New ── */}
         <Route path="/home_new" element={<Home_New />} />
       </Routes>
       {FooterComponent && <FooterComponent />}
