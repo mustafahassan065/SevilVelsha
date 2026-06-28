@@ -188,10 +188,10 @@ export default function Home_New() {
             </div>
           </div>
 
-          {/* Right — navy bg, portrait centered */}
-          <div style={{ background: '#1a2b3c', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', minHeight: 520, overflow: 'hidden' }}>
+          {/* Right — navy bg, portrait full height centered */}
+          <div style={{ background: '#1a2b3c', minHeight: 560, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img src="/images/HomeSec.png" alt="Sevil Velsha portrait"
-              style={{ width: '85%', height: 'auto', display: 'block', objectFit: 'contain' }} />
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
           </div>
         </div>
       </section>
@@ -288,10 +288,10 @@ export default function Home_New() {
       ═══════════════════════════ */}
       <section style={{ background: '#ffffff', padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(48px,7vw,100px)', alignItems: 'center' }}>
-          {/* Left — navy bg, image right-aligned since subject is on right */}
-          <div style={{ background: '#1a2b3c', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end', minHeight: 520, overflow: 'hidden' }}>
+          {/* Left — navy bg, image fills full, subject visible */}
+          <div style={{ background: '#1a2b3c', minHeight: 560, overflow: 'hidden' }}>
             <img src="/images/HomeThird.png" alt="Sevil Velsha"
-              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }} />
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right center', display: 'block' }} />
           </div>
 
           {/* Right */}
