@@ -294,7 +294,7 @@ export default function Home_New() {
               style={{
                 position: 'absolute', top: 0, left: 0,
                 width: '100%', height: '100%',
-                objectFit: 'cover', objectPosition: 'center top',
+                objectFit: 'cover', objectPosition: '30% top',
                 display: 'block'
               }} />
           </div>
@@ -587,10 +587,10 @@ export default function Home_New() {
               </svg>
               WhatsApp
             </a>
-            {/* Email button */}
-            <a href="mailto:sevilvelsha@gmail.com" style={{
+            {/* Email button — opens Gmail directly in browser */}
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sevilvelsha@gmail.com&su=Booking%20Inquiry%20-%20Sevil%20Velsha" target="_blank" rel="noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
-              background: DARK, color: WHITE,
+              background: '#111827', color: '#ffffff',
               fontFamily: J, fontSize: '11px', fontWeight: 700,
               letterSpacing: '0.14em', textTransform: 'uppercase',
               padding: '17px 32px', textDecoration: 'none',
