@@ -149,24 +149,27 @@ export default function Home_New() {
       {/* ═══════════════════════════
           WHY VOICE MATTERS
       ═══════════════════════════ */}
-      <section id="about" style={{ background: CREAM, padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
+      <section id="about" style={{ background: '#f5f2eb', padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(48px,7vw,100px)', alignItems: 'center' }}>
           {/* Left */}
-          <div>
-            <Label>Why Voice Matters</Label>
-            <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,4.5vw,3.6rem)', fontWeight: 600, color: DARK, margin: '0', lineHeight: 1.12 }}>
+          <div style={{ color: '#111827' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <div style={{ width: 28, height: 1.5, background: '#C9A84C' }} />
+              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C9A84C', margin: 0 }}>Why Voice Matters</p>
+            </div>
+            <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,4.5vw,3.6rem)', fontWeight: 600, color: '#111827', margin: '0', lineHeight: 1.12 }}>
               Give your audience
             </h2>
-            <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,4.5vw,3.6rem)', fontWeight: 600, color: DARK, margin: '0', lineHeight: 1.12 }}>
+            <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,4.5vw,3.6rem)', fontWeight: 600, color: '#111827', margin: '0', lineHeight: 1.12 }}>
               more than
             </h2>
-            <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,4.5vw,3.6rem)', fontWeight: 400, fontStyle: 'italic', color: DARK, margin: '0 0 28px', lineHeight: 1.12 }}>
+            <h2 style={{ fontFamily: G, fontSize: 'clamp(2.2rem,4.5vw,3.6rem)', fontWeight: 400, fontStyle: 'italic', color: '#111827', margin: '0 0 28px', lineHeight: 1.12 }}>
               inspiration...
             </h2>
-            <p style={{ fontSize: '14px', color: '#555', margin: '0 0 16px', lineHeight: 1.9 }}>
+            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 16px', lineHeight: 1.9 }}>
               Every day, talented professionals are overlooked — not because they lack expertise, but because they struggle to communicate with confidence, authority, and presence.
             </p>
-            <p style={{ fontSize: '14px', color: '#555', margin: '0 0 28px', lineHeight: 1.9 }}>
+            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 28px', lineHeight: 1.9 }}>
               Great speakers don't just inform. They move people. They shift energy in a room. Sevil combines years of academic research with high-impact delivery to give your audience tools they can use the moment they leave the stage.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -178,17 +181,17 @@ export default function Home_New() {
                 'Insights drawn from voice science and stage speech research',
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                  <span style={{ color: GOLD, fontSize: '14px', flexShrink: 0, marginTop: 1 }}>✦</span>
-                  <p style={{ fontSize: '13px', color: '#444', margin: 0, lineHeight: 1.65 }}>{item}</p>
+                  <span style={{ color: '#C9A84C', fontSize: '14px', flexShrink: 0, marginTop: 1 }}>✦</span>
+                  <p style={{ fontFamily: J, fontSize: '13px', color: '#374151', margin: 0, lineHeight: 1.65 }}>{item}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right — portrait on blue bg, full image shown */}
-          <div style={{ position: 'relative', alignSelf: 'stretch', minHeight: 480 }}>
+          {/* Right — navy bg, portrait centered */}
+          <div style={{ background: '#1a2b3c', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', minHeight: 520, overflow: 'hidden' }}>
             <img src="/images/HomeSec.png" alt="Sevil Velsha portrait"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+              style={{ width: '85%', height: 'auto', display: 'block', objectFit: 'contain' }} />
           </div>
         </div>
       </section>
@@ -283,27 +286,30 @@ export default function Home_New() {
       {/* ═══════════════════════════
           ABOUT SEVIL
       ═══════════════════════════ */}
-      <section style={{ background: WHITE, padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
+      <section style={{ background: '#ffffff', padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(48px,7vw,100px)', alignItems: 'center' }}>
-          {/* Left — portrait full, uncropped */}
-          <div style={{ alignSelf: 'stretch', minHeight: 480, position: 'relative' }}>
+          {/* Left — navy bg, image right-aligned since subject is on right */}
+          <div style={{ background: '#1a2b3c', display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end', minHeight: 520, overflow: 'hidden' }}>
             <img src="/images/HomeThird.png" alt="Sevil Velsha"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
+              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }} />
           </div>
 
           {/* Right */}
-          <div>
-            <Label>About Sevil</Label>
-            <h2 style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 600, color: DARK, margin: '0 0 24px', lineHeight: 1.15 }}>
-              Hi, I'm Sevil <span style={{ fontStyle: 'italic', color: GOLD }}>Velsha.</span>
+          <div style={{ color: '#111827' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <div style={{ width: 28, height: 1.5, background: '#C9A84C' }} />
+              <p style={{ fontFamily: J, fontSize: '10px', fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C9A84C', margin: 0 }}>About Sevil</p>
+            </div>
+            <h2 style={{ fontFamily: G, fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 600, color: '#111827', margin: '0 0 24px', lineHeight: 1.15 }}>
+              Hi, I'm Sevil <span style={{ fontStyle: 'italic', color: '#C9A84C' }}>Velsha.</span>
             </h2>
-            <p style={{ fontSize: '14px', color: '#555', margin: '0 0 14px', lineHeight: 1.9 }}>
+            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 14px', lineHeight: 1.9 }}>
               I'm a speaker, educator, and researcher specializing in voice, communication, executive presence, and stage speech. For years I've studied what makes certain voices cut through the noise — and what keeps talented people invisible.
             </p>
-            <p style={{ fontSize: '14px', color: '#555', margin: '0 0 14px', lineHeight: 1.9 }}>
+            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 14px', lineHeight: 1.9 }}>
               My academic research explored how powerful speakers use pitch, pauses, rhythm, emphasis, and vocal control to influence audiences. Today, I help professionals apply these same principles in meetings, presentations, interviews, and leadership roles.
             </p>
-            <p style={{ fontSize: '14px', color: '#555', margin: '0 0 28px', lineHeight: 1.9 }}>
+            <p style={{ fontFamily: J, fontSize: '14px', color: '#4b5563', margin: '0 0 28px', lineHeight: 1.9 }}>
               Whether you're on a global stage or in a boardroom with 10 executives, I will not only teach you how to speak — I'll teach you how to be heard.
             </p>
 
@@ -317,8 +323,8 @@ export default function Home_New() {
                 'Communication Educator, Coach & International Speaker',
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: GOLD, flexShrink: 0, marginTop: 6 }} />
-                  <p style={{ fontSize: '13px', color: '#444', margin: 0, lineHeight: 1.65 }}>{item}</p>
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C9A84C', flexShrink: 0, marginTop: 6 }} />
+                  <p style={{ fontFamily: J, fontSize: '13px', color: '#374151', margin: 0, lineHeight: 1.65 }}>{item}</p>
                 </div>
               ))}
             </div>
