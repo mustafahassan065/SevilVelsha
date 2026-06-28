@@ -288,10 +288,15 @@ export default function Home_New() {
       ═══════════════════════════ */}
       <section style={{ background: '#ffffff', padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(48px,7vw,100px)', alignItems: 'center' }}>
-          {/* Left — navy bg, image fills full, subject visible */}
-          <div style={{ background: '#1a2b3c', minHeight: 560, overflow: 'hidden' }}>
+          {/* Left — navy bg, image top-left aligned, full height, matches Figma */}
+          <div style={{ background: '#1a2b3c', minHeight: 560, overflow: 'hidden', position: 'relative' }}>
             <img src="/images/HomeThird.png" alt="Sevil Velsha"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right center', display: 'block' }} />
+              style={{
+                position: 'absolute', top: 0, left: 0,
+                width: '100%', height: '100%',
+                objectFit: 'cover', objectPosition: 'center top',
+                display: 'block'
+              }} />
           </div>
 
           {/* Right */}
