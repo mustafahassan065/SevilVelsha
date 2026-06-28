@@ -185,10 +185,10 @@ export default function Home_New() {
             </div>
           </div>
 
-          {/* Right — portrait on blue bg */}
-          <div style={{ position: 'relative' }}>
+          {/* Right — portrait on blue bg, full image shown */}
+          <div style={{ position: 'relative', alignSelf: 'stretch', minHeight: 480 }}>
             <img src="/images/HomeSec.png" alt="Sevil Velsha portrait"
-              style={{ width: '100%', height: 'clamp(420px,55vw,620px)', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
           </div>
         </div>
       </section>
@@ -214,25 +214,46 @@ export default function Home_New() {
               These are learnable skills. And in one keynote, your audience will start applying them.
             </p>
 
-            {/* List items with icons */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-              {[
-                { icon: '〜', label: 'Pitch & Vocal Variation' },
-                { icon: '▌▌▌', label: 'Rhythm & Pacing' },
-                { icon: '○', label: 'Strategic Silence & Pauses' },
-                { icon: 'A', label: 'Emphasis & Authority' },
-              ].map((item, i) => (
-                <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 16,
-                  padding: '16px 20px',
-                  borderBottom: i < 3 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                  background: 'rgba(255,255,255,0.03)',
-                  marginBottom: 2,
-                }}>
-                  <span style={{ fontFamily: G, fontSize: '13px', color: GOLD, width: 24, textAlign: 'center', flexShrink: 0 }}>{item.icon}</span>
-                  <p style={{ fontFamily: G, fontSize: '1rem', color: 'rgba(255,255,255,0.75)', margin: 0 }}>{item.label}</p>
+            {/* List items with icons — exact match screenshot */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {/* Pitch & Vocal Variation — wave icon */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.03)' }}>
+                <div style={{ width: 32, height: 32, border: '1px solid rgba(201,168,76,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg width="16" height="10" viewBox="0 0 32 12" fill="none">
+                    <path d="M0,6 C4,1 8,1 12,6 C16,11 20,11 24,6 C28,1 30,1 32,4" stroke="#C9A84C" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  </svg>
                 </div>
-              ))}
+                <p style={{ fontFamily: G, fontSize: '1rem', color: 'rgba(255,255,255,0.8)', margin: 0 }}>Pitch &amp; Vocal Variation</p>
+              </div>
+              {/* Rhythm & Pacing — bars icon */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.03)' }}>
+                <div style={{ width: 32, height: 32, border: '1px solid rgba(201,168,76,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg width="16" height="14" viewBox="0 0 20 16" fill="none">
+                    <rect x="0" y="4" width="3" height="12" fill="#C9A84C"/>
+                    <rect x="5" y="0" width="3" height="16" fill="#C9A84C"/>
+                    <rect x="10" y="6" width="3" height="10" fill="#C9A84C"/>
+                    <rect x="15" y="2" width="3" height="14" fill="#C9A84C"/>
+                  </svg>
+                </div>
+                <p style={{ fontFamily: G, fontSize: '1rem', color: 'rgba(255,255,255,0.8)', margin: 0 }}>Rhythm &amp; Pacing</p>
+              </div>
+              {/* Strategic Silence & Pauses — clock/circle icon */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.03)' }}>
+                <div style={{ width: 32, height: 32, border: '1px solid rgba(201,168,76,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="#C9A84C" strokeWidth="1.5"/>
+                    <path d="M12 7v5l3 3" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <p style={{ fontFamily: G, fontSize: '1rem', color: 'rgba(255,255,255,0.8)', margin: 0 }}>Strategic Silence &amp; Pauses</p>
+              </div>
+              {/* Emphasis & Authority — A letter icon */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.03)' }}>
+                <div style={{ width: 32, height: 32, border: '1px solid rgba(201,168,76,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontFamily: G, fontSize: '16px', fontWeight: 700, color: '#C9A84C', lineHeight: 1 }}>A</span>
+                </div>
+                <p style={{ fontFamily: G, fontSize: '1rem', color: 'rgba(255,255,255,0.8)', margin: 0 }}>Emphasis &amp; Authority</p>
+              </div>
             </div>
           </div>
 
@@ -264,10 +285,10 @@ export default function Home_New() {
       ═══════════════════════════ */}
       <section style={{ background: WHITE, padding: 'clamp(80px,10vw,120px) clamp(32px,6vw,80px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(48px,7vw,100px)', alignItems: 'center' }}>
-          {/* Left — portrait */}
-          <div>
+          {/* Left — portrait full, uncropped */}
+          <div style={{ alignSelf: 'stretch', minHeight: 480, position: 'relative' }}>
             <img src="/images/HomeThird.png" alt="Sevil Velsha"
-              style={{ width: '100%', height: 'clamp(420px,55vw,600px)', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
           </div>
 
           {/* Right */}
@@ -540,19 +561,36 @@ export default function Home_New() {
             </div>
           </div>
 
-          <a href="mailto:sevilvelsha@gmail.com" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-            background: DARK, color: WHITE,
-            fontFamily: J, fontSize: '11px', fontWeight: 700,
-            letterSpacing: '0.16em', textTransform: 'uppercase',
-            padding: '17px 36px', textDecoration: 'none',
-          }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" strokeWidth="1.5"/>
-              <polyline points="22,6 12,13 2,6" stroke="white" strokeWidth="1.5"/>
-            </svg>
-            Send an Email
-          </a>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
+            {/* WhatsApp button */}
+            <a href="https://wa.me/17786366633" target="_blank" rel="noreferrer" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 10,
+              background: '#25D366', color: WHITE,
+              fontFamily: J, fontSize: '11px', fontWeight: 700,
+              letterSpacing: '0.14em', textTransform: 'uppercase',
+              padding: '17px 32px', textDecoration: 'none',
+            }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M11.999 2C6.478 2 2 6.478 2 12c0 1.895.524 3.668 1.434 5.184L2 22l4.978-1.404A9.935 9.935 0 0012 22c5.522 0 10-4.478 10-10S17.521 2 11.999 2z" fillRule="evenodd" clipRule="evenodd"/>
+              </svg>
+              WhatsApp
+            </a>
+            {/* Email button */}
+            <a href="mailto:sevilvelsha@gmail.com" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 10,
+              background: DARK, color: WHITE,
+              fontFamily: J, fontSize: '11px', fontWeight: 700,
+              letterSpacing: '0.14em', textTransform: 'uppercase',
+              padding: '17px 32px', textDecoration: 'none',
+            }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" strokeWidth="1.5"/>
+                <polyline points="22,6 12,13 2,6" stroke="white" strokeWidth="1.5"/>
+              </svg>
+              Send an Email
+            </a>
+          </div>
         </div>
       </section>
 
