@@ -94,7 +94,7 @@ function AppContent() {
         <Route path="/free-voice-check"        element={<FreeVoiceCheckPage />} />
 
         {/* ── Home New ── */}
-        <Route path="/home_new" element={<Home_New />} />
+        <Route path="/speaker" element={<Home_New />} />
       </Routes>
       {FooterComponent && <FooterComponent />}
     </main>

@@ -60,15 +60,20 @@ export default function Home_New() {
           Sevil <span style={{ fontStyle: 'italic' }}>Velsha</span>
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 36 }}>
-          {['About', 'Keynote', 'Book', 'Speaking'].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} style={{
+          {[
+            { label: 'About',    href: '#about' },
+            { label: 'Keynote',  href: '#keynote' },
+            { label: 'Book',     href: '/voice-control-book' },
+            { label: 'Speaking', href: '#contact' },
+          ].map(l => (
+            <a key={l.label} href={l.href} style={{
               fontFamily: J, fontSize: '11px', fontWeight: 500,
               letterSpacing: '0.16em', textTransform: 'uppercase',
               color: 'rgba(255,255,255,0.75)', textDecoration: 'none',
             }}
               onMouseEnter={e => e.target.style.color = GOLD}
               onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.75)'}
-            >{l}</a>
+            >{l.label}</a>
           ))}
           <a href="#contact" style={{
             background: GOLD, color: '#111',
@@ -586,7 +591,7 @@ export default function Home_New() {
           <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
             <div style={{ border: '1px solid #d8d3cc', padding: '18px 28px', minWidth: 180, textAlign: 'left' }}>
               <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 8px' }}>Email</p>
-              <a href="mailto:sevilvelsha@gmail.com" style={{ fontFamily: G, fontSize: '1rem', color: DARK, textDecoration: 'none' }}>sevilvelsha@gmail.com</a>
+              <a href="mailto:info@sevilvelsha.com" style={{ fontFamily: G, fontSize: '1rem', color: DARK, textDecoration: 'none' }}>info@sevilvelsha.com</a>
             </div>
             <div style={{ border: '1px solid #d8d3cc', padding: '18px 28px', minWidth: 180, textAlign: 'left' }}>
               <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 8px' }}>Website</p>
@@ -610,7 +615,7 @@ export default function Home_New() {
               WhatsApp
             </a>
             {/* Email button — opens Gmail directly in browser */}
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sevilvelsha@gmail.com&su=Booking%20Inquiry%20-%20Sevil%20Velsha" target="_blank" rel="noreferrer" style={{
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com&su=Booking%20Inquiry%20-%20Sevil%20Velsha" target="_blank" rel="noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               background: '#111827', color: '#ffffff',
               fontFamily: J, fontSize: '11px', fontWeight: 700,
@@ -640,8 +645,14 @@ export default function Home_New() {
           Sevil <span style={{ fontStyle: 'italic', color: GOLD }}>Velsha</span>
         </span>
         <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
-          {['About', 'Keynote', 'Book', 'Contact', 'Website'].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} style={{ fontFamily: J, fontSize: '10px', fontWeight: 500, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>{l}</a>
+          {[
+            { label: 'About',    href: '#about' },
+            { label: 'Keynote',  href: '#keynote' },
+            { label: 'Book',     href: '/voice-control-book' },
+            { label: 'Contact',  href: '#contact' },
+            { label: 'Website',  href: 'https://sevilvelsha.com' },
+          ].map(l => (
+            <a key={l.label} href={l.href} style={{ fontFamily: J, fontSize: '10px', fontWeight: 500, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>{l.label}</a>
           ))}
         </div>
         <p style={{ fontFamily: J, fontSize: '11px', color: 'rgba(255,255,255,0.3)', margin: 0 }}>© 2026 Sevil Velsha. All rights reserved.</p>
