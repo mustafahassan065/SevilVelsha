@@ -42,7 +42,7 @@ function AppContent() {
     || location.pathname === "/free-voice-check";
 
   // Home_New — apna khud ka nav/footer hai, global hide karo
-  const isHomeNew = location.pathname === "/home_new";
+  const isHomeNew = location.pathname === "/speaker";
 
   const isFunnelPage = [
     '/voice-control-checkout',
