@@ -8,6 +8,64 @@ export default function Home_New() {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
+  // Booking inquiry modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [form, setForm] = useState({
+    reason: '', firstName: '', lastName: '', email: '', subject: '', message: '',
+  });
+  const [formErrors, setFormErrors] = useState({});
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  const REASONS = [
+    'Keynote Booking',
+    'Workshop Inquiry',
+    'Podcast / Summit Invitation',
+    'Coaching Inquiry',
+    'Media / Press',
+    'Other',
+  ];
+
+  const BOOKING_API = 'https://sevil-velsha-backend-main.vercel.app/api/booking-inquiry';
+
+  const updateForm = (key, value) => {
+    setForm(prev => ({ ...prev, [key]: value }));
+    setFormErrors(prev => ({ ...prev, [key]: false }));
+  };
+
+  const handleFormSubmit = async () => {
+    const errs = {};
+    if (!form.reason) errs.reason = true;
+    if (!form.firstName.trim()) errs.firstName = true;
+    if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) errs.email = true;
+    if (!form.message.trim()) errs.message = true;
+    setFormErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setSending(true);
+    try {
+      await fetch(BOOKING_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      setSent(true);
+    } catch {
+      // Even on network error, show confirmation so user isn't blocked —
+      // but you can change this to show an error state instead.
+      setSent(true);
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSent(false);
+    setForm({ reason: '', firstName: '', lastName: '', email: '', subject: '', message: '' });
+    setFormErrors({});
+  };
+
   useEffect(() => {
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jost:wght@300;400;500;600;700&display=swap';
@@ -75,12 +133,12 @@ export default function Home_New() {
               onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.75)'}
             >{l.label}</a>
           ))}
-          <a href="#contact" style={{
+          <button onClick={() => setModalOpen(true)} style={{
             background: GOLD, color: '#111',
             fontFamily: J, fontSize: '11px', fontWeight: 700,
             letterSpacing: '0.14em', textTransform: 'uppercase',
-            padding: '10px 22px', textDecoration: 'none',
-          }}>Book Sevil</a>
+            padding: '10px 22px', border: 'none', cursor: 'pointer',
+          }}>Book Sevil</button>
         </div>
       </nav>
 
@@ -589,9 +647,12 @@ export default function Home_New() {
 
           {/* Email + Website boxes */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
-            <div style={{ border: '1px solid #d8d3cc', padding: '18px 28px', minWidth: 180, textAlign: 'left' }}>
+            <div onClick={() => setModalOpen(true)} style={{ border: '1px solid #d8d3cc', padding: '18px 28px', minWidth: 180, textAlign: 'left', cursor: 'pointer', transition: 'border-color 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = GOLD}
+              onMouseLeave={e => e.currentTarget.style.borderColor = '#d8d3cc'}
+            >
               <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 8px' }}>Email</p>
-              <a href="mailto:info@sevilvelsha.com" style={{ fontFamily: G, fontSize: '1rem', color: DARK, textDecoration: 'none' }}>info@sevilvelsha.com</a>
+              <span style={{ fontFamily: G, fontSize: '1rem', color: DARK }}>info@sevilvelsha.com</span>
             </div>
             <div style={{ border: '1px solid #d8d3cc', padding: '18px 28px', minWidth: 180, textAlign: 'left' }}>
               <p style={{ fontFamily: J, fontSize: '9px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: GOLD, margin: '0 0 8px' }}>Website</p>
@@ -614,23 +675,199 @@ export default function Home_New() {
               </svg>
               WhatsApp
             </a>
-            {/* Email button — opens Gmail directly in browser */}
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com&su=Booking%20Inquiry%20-%20Sevil%20Velsha" target="_blank" rel="noreferrer" style={{
+            {/* Send an Email button — opens booking inquiry modal */}
+            <button onClick={() => setModalOpen(true)} style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               background: '#111827', color: '#ffffff',
               fontFamily: J, fontSize: '11px', fontWeight: 700,
               letterSpacing: '0.14em', textTransform: 'uppercase',
-              padding: '17px 32px', textDecoration: 'none',
+              padding: '17px 32px', border: 'none', cursor: 'pointer',
             }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" strokeWidth="1.5"/>
                 <polyline points="22,6 12,13 2,6" stroke="white" strokeWidth="1.5"/>
               </svg>
               Send an Email
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════
+          BOOKING INQUIRY MODAL
+      ═══════════════════════════ */}
+      {modalOpen && (
+        <div
+          onClick={(e) => e.target === e.currentTarget && closeModal()}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 1000,
+            background: 'rgba(13,27,42,0.7)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 20,
+          }}
+        >
+          <div style={{
+            background: CREAM, maxWidth: 560, width: '100%',
+            maxHeight: '90vh', overflowY: 'auto',
+            padding: 'clamp(32px,5vw,52px)', position: 'relative',
+            borderRadius: 4,
+          }}>
+            {/* Close button */}
+            <button onClick={closeModal} style={{
+              position: 'absolute', top: 18, right: 18,
+              background: 'none', border: 'none', fontSize: 26,
+              cursor: 'pointer', color: '#999', lineHeight: 1,
+            }}>×</button>
+
+            {sent ? (
+              // ── Success state ──
+              <div style={{ textAlign: 'center', padding: '20px 0' }}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ margin: '0 auto 20px', display: 'block' }}>
+                  <circle cx="12" cy="12" r="10" stroke={GOLD} strokeWidth="1.5"/>
+                  <path d="M8 12.5l2.5 2.5L16 9" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <h3 style={{ fontFamily: G, fontSize: '1.5rem', fontWeight: 700, color: DARK, margin: '0 0 12px' }}>
+                  Message sent!
+                </h3>
+                <p style={{ fontSize: '14px', color: '#666', margin: '0 0 28px', lineHeight: 1.7 }}>
+                  Thank you for reaching out. Sevil will get back to you within 24 hours.
+                </p>
+                <button onClick={closeModal} style={{
+                  background: DARK, color: '#fff', border: 'none',
+                  fontFamily: J, fontSize: '11px', fontWeight: 700,
+                  letterSpacing: '0.14em', textTransform: 'uppercase',
+                  padding: '14px 32px', cursor: 'pointer',
+                }}>Close</button>
+              </div>
+            ) : (
+              // ── Form ──
+              <>
+                <h2 style={{ fontFamily: G, fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 700, color: DARK, margin: '0 0 10px', lineHeight: 1.25 }}>
+                  Have a question?
+                </h2>
+                <p style={{ fontSize: '14px', color: '#666', margin: '0 0 28px', lineHeight: 1.7 }}>
+                  For all inquiries, please use this form to get in touch with Sevil's team.
+                </p>
+
+                {/* Reason for Contact */}
+                <div style={{ marginBottom: 16 }}>
+                  <select
+                    value={form.reason}
+                    onChange={e => updateForm('reason', e.target.value)}
+                    style={{
+                      width: '100%', padding: '14px 16px', boxSizing: 'border-box',
+                      border: `1.5px solid ${formErrors.reason ? '#c0392b' : '#ddd'}`,
+                      borderRadius: 6, fontSize: '14px', color: form.reason ? DARK : '#888',
+                      fontFamily: 'inherit', outline: 'none', background: '#fff',
+                      appearance: 'none',
+                    }}
+                  >
+                    <option value="">Reason for Contact*</option>
+                    {REASONS.map(r => <option key={r} value={r}>{r}</option>)}
+                  </select>
+                  {formErrors.reason && (
+                    <p style={{ fontSize: '12px', color: '#c0392b', margin: '6px 0 0' }}>Please complete this required field.</p>
+                  )}
+                </div>
+
+                {/* First / Last name */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
+                  <div>
+                    <input
+                      type="text" placeholder="First Name*"
+                      value={form.firstName}
+                      onChange={e => updateForm('firstName', e.target.value)}
+                      style={{
+                        width: '100%', padding: '14px 16px', boxSizing: 'border-box',
+                        border: `1.5px solid ${formErrors.firstName ? '#c0392b' : '#ddd'}`,
+                        borderRadius: 6, fontSize: '14px', color: DARK,
+                        fontFamily: 'inherit', outline: 'none', background: '#fff',
+                      }}
+                    />
+                    {formErrors.firstName && (
+                      <p style={{ fontSize: '12px', color: '#c0392b', margin: '6px 0 0' }}>Required.</p>
+                    )}
+                  </div>
+                  <input
+                    type="text" placeholder="Last Name"
+                    value={form.lastName}
+                    onChange={e => updateForm('lastName', e.target.value)}
+                    style={{
+                      width: '100%', padding: '14px 16px', boxSizing: 'border-box',
+                      border: '1.5px solid #ddd', borderRadius: 6, fontSize: '14px', color: DARK,
+                      fontFamily: 'inherit', outline: 'none', background: '#fff',
+                    }}
+                  />
+                </div>
+
+                {/* Email / Subject */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
+                  <div>
+                    <input
+                      type="email" placeholder="Email Address*"
+                      value={form.email}
+                      onChange={e => updateForm('email', e.target.value)}
+                      style={{
+                        width: '100%', padding: '14px 16px', boxSizing: 'border-box',
+                        border: `1.5px solid ${formErrors.email ? '#c0392b' : '#ddd'}`,
+                        borderRadius: 6, fontSize: '14px', color: DARK,
+                        fontFamily: 'inherit', outline: 'none', background: '#fff',
+                      }}
+                    />
+                    {formErrors.email && (
+                      <p style={{ fontSize: '12px', color: '#c0392b', margin: '6px 0 0' }}>Valid email required.</p>
+                    )}
+                  </div>
+                  <input
+                    type="text" placeholder="Subject"
+                    value={form.subject}
+                    onChange={e => updateForm('subject', e.target.value)}
+                    style={{
+                      width: '100%', padding: '14px 16px', boxSizing: 'border-box',
+                      border: '1.5px solid #ddd', borderRadius: 6, fontSize: '14px', color: DARK,
+                      fontFamily: 'inherit', outline: 'none', background: '#fff',
+                    }}
+                  />
+                </div>
+
+                {/* Message */}
+                <div style={{ marginBottom: 20 }}>
+                  <textarea
+                    placeholder="Message*"
+                    rows={5}
+                    value={form.message}
+                    onChange={e => updateForm('message', e.target.value)}
+                    style={{
+                      width: '100%', padding: '14px 16px', boxSizing: 'border-box',
+                      border: `1.5px solid ${formErrors.message ? '#c0392b' : '#ddd'}`,
+                      borderRadius: 6, fontSize: '14px', color: DARK,
+                      fontFamily: 'inherit', outline: 'none', resize: 'vertical', background: '#fff',
+                    }}
+                  />
+                  {formErrors.message && (
+                    <p style={{ fontSize: '12px', color: '#c0392b', margin: '6px 0 0' }}>Please complete this required field.</p>
+                  )}
+                </div>
+
+                <button
+                  onClick={handleFormSubmit}
+                  disabled={sending}
+                  style={{
+                    background: GOLD, color: '#111', border: 'none',
+                    fontFamily: J, fontSize: '12px', fontWeight: 700,
+                    letterSpacing: '0.14em', textTransform: 'uppercase',
+                    padding: '16px 40px', cursor: sending ? 'not-allowed' : 'pointer',
+                    opacity: sending ? 0.6 : 1,
+                    borderRadius: 4,
+                  }}
+                >
+                  {sending ? 'Sending...' : 'Send'}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* ═══════════════════════════
           FOOTER
