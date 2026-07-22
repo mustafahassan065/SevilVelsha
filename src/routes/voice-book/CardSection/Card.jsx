@@ -26,55 +26,39 @@ const Card = () => {
   ];
 
   return (
-    <>
-      <section className={styles.bonusSection}>
-        <div className={styles.container}>
-          <div className={styles.header}>
-            <h2 className={styles.mainTitle}>Bonus: Voice Mastery Training</h2>
-          </div>
-
-          <div className={styles.gridContainer}>
-            {bonuses.map((item, index) => (
-              <div key={index} className={styles.cardItem}>
-                <div className={styles.iconWrapper}>
-                  <img src={item.icon} alt={item.title} className={styles.icon} />
-                </div>
-                <div className={styles.textWrapper}>
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                  <p className={styles.cardDescription}>{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.footerText}>
-            When you order today, you also get these exclusive bonuses:
-          </div>
+    <section className={styles.bonusSection}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h2 className={styles.mainTitle}>Bonus: Voice Mastery Training</h2>
         </div>
-      </section>
 
-      {/* ── CTA Section ── */}
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaContainer}>
+        <div className={styles.gridContainer}>
+          {bonuses.map((item, index) => (
+            <div key={index} className={styles.cardItem}>
+              <div className={styles.iconWrapper}>
+                <img src={item.icon} alt={item.title} className={styles.icon} />
+              </div>
+              <div className={styles.textWrapper}>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+                <p className={styles.cardDescription}>{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.footerText}>
+          When you order today, you also get these exclusive bonuses:
+        </div>
+
+        {/* ── CTA portion — inside same section ── */}
+        <div className={styles.ctaWrapper}>
           <h2 className={styles.ctaTitle}>Ready to Change How People Hear You?</h2>
-
-          <a
-            href="https://www.sevilvelsha.com/voice-control-pdf"
-            className={styles.ctaButton}
-          >
+          <a href="https://www.sevilvelsha.com/voice-control-pdf" className={styles.ctaButton}>
             Get the Book
           </a>
-
           <p className={styles.ctaSubtext}>
-            Download a free sample chapter:&nbsp;
-            <a
-              href="https://www.sevilvelsha.com/voice-control-pdf"
-              className={styles.ctaSubLink}
-            >
-              www.sevilvelsha.com/voice-control-pdf
-            </a>
+            Download a free sample chapter
           </p>
-
           <p className={styles.ctaContact}>
             Questions? Contact:{' '}
             <a
@@ -87,8 +71,9 @@ const Card = () => {
             </a>
           </p>
         </div>
-      </section>
-    </>
+
+      </div>
+    </section>
   );
 };
 
