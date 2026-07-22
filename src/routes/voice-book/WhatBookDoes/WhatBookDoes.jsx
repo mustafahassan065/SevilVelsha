@@ -16,12 +16,7 @@ const afterItems = [
   "You speak less — and say more",
   "Your presence is felt before you finish a sentence",
 ];
-const images = [
-  "/images/sundayTimes.png",
-  "/images/amazon.png",
-  "/images/newYork.png",
-  "/images/audible.png",
-];
+
 export default function WhatBookDoes() {
   return (
     <section className={styles.section}>
@@ -32,13 +27,7 @@ export default function WhatBookDoes() {
             Inside these pages, you will discover powerful techniques that will transform how you speak forever.
           </p>
         </div>
-        <div className={styles.imageGrid}>
-          {images.map((src, index) => (
-            <div key={index} className={styles.imageBox}>
-              <img src={src} alt={`Feature ${index + 1}`} className={styles.img} />
-            </div>
-          ))}
-        </div>
+        
       </div>
       <div className={styles.comparison}>
         <div className={styles.column}>

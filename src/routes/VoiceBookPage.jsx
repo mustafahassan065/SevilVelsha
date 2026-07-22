@@ -6,7 +6,7 @@ import { GiftSection } from "./voice-book/GiftSection/GiftSection";
 import Header from "./voice-book/Header/Header";  // Correct path
 import Hero from "./voice-book/Hero/Hero";
 import { Meet } from "./voice-book/Meet/MeetSection";
-import Testimonials from "./voice-book/Testimonials/Testimonials";
+
 import { TransformationSection } from "./voice-book/TransformationSection/TransformationSection";
 import ComparisonCard from "./voice-book/WhatBookDoes/ComparisonCard";
 import WhatBookDoes from "./voice-book/WhatBookDoes/WhatBookDoes";
@@ -24,7 +24,6 @@ function VoiceBookPage() {
       <ChapterSection />
       <TransformationSection />
       <WhoIsFor />
-      <Testimonials />
       <Card />
       
     </div>

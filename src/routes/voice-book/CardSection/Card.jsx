@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import styles from './Card.module.css';
 
@@ -28,31 +26,69 @@ const Card = () => {
   ];
 
   return (
-    <section className={styles.bonusSection}>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.mainTitle}>Bonus: Voice Mastery Training</h2>
-        </div>
+    <>
+      <section className={styles.bonusSection}>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h2 className={styles.mainTitle}>Bonus: Voice Mastery Training</h2>
+          </div>
 
-        <div className={styles.gridContainer}>
-          {bonuses.map((item, index) => (
-            <div key={index} className={styles.cardItem}>
-              <div className={styles.iconWrapper}>
-                <img src={item.icon} alt={item.title} className={styles.icon} />
+          <div className={styles.gridContainer}>
+            {bonuses.map((item, index) => (
+              <div key={index} className={styles.cardItem}>
+                <div className={styles.iconWrapper}>
+                  <img src={item.icon} alt={item.title} className={styles.icon} />
+                </div>
+                <div className={styles.textWrapper}>
+                  <h3 className={styles.cardTitle}>{item.title}</h3>
+                  <p className={styles.cardDescription}>{item.description}</p>
+                </div>
               </div>
-              <div className={styles.textWrapper}>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardDescription}>{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className={styles.footerText}>
-          When you order today, you also get these exclusive bonuses:
+          <div className={styles.footerText}>
+            When you order today, you also get these exclusive bonuses:
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ── CTA Section ── */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaContainer}>
+          <h2 className={styles.ctaTitle}>Ready to Change How People Hear You?</h2>
+
+          <a
+            href="https://www.sevilvelsha.com/voice-control-pdf"
+            className={styles.ctaButton}
+          >
+            Get the Book
+          </a>
+
+          <p className={styles.ctaSubtext}>
+            Download a free sample chapter:&nbsp;
+            <a
+              href="https://www.sevilvelsha.com/voice-control-pdf"
+              className={styles.ctaSubLink}
+            >
+              www.sevilvelsha.com/voice-control-pdf
+            </a>
+          </p>
+
+          <p className={styles.ctaContact}>
+            Questions? Contact:{' '}
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=info@sevilvelsha.com"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.ctaEmail}
+            >
+              info@sevilvelsha.com
+            </a>
+          </p>
+        </div>
+      </section>
+    </>
   );
 };
 

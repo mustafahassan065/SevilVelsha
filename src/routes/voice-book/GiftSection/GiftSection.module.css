@@ -20,9 +20,7 @@
 
 .bookImage {
   width: 520px;
-  /* Kept your exact width */
   height: 680px;
-  /* Kept your exact height */
   object-fit: cover;
   border-radius: 40px;
 }
@@ -33,7 +31,6 @@
   display: flex;
   flex-direction: column;
   margin-left: 70px;
-  /* Kept your exact margin */
 }
 
 .title {
@@ -88,20 +85,110 @@
   text-align: center;
 }
 
-/* ONLY Mobile Fixes Below - No changes to Desktop */
+/* ── CTA Section ── */
+.ctaSection {
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 60px);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.ctaContainer {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ctaTitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.ctaButton {
+  display: inline-block;
+  background: #C9A84C;
+  color: #111111;
+  font-family: 'Jost', 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 18px 48px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.ctaButton:hover {
+  background: #dbbf6a;
+  transform: translateY(-2px);
+}
+
+.ctaSubtext {
+  font-family: 'Jost', 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ctaSubLink {
+  color: #C9A84C;
+  text-decoration: none;
+}
+
+.ctaSubLink:hover {
+  text-decoration: underline;
+}
+
+.ctaContact {
+  font-family: 'Jost', 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+}
+
+.ctaEmail {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ctaEmail:hover {
+  color: #C9A84C;
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
   .bookImage {
     width: 100%;
-    /* Becomes fluid on mobile */
     max-width: 520px;
     height: auto;
-    /* Fixes stretching on mobile */
   }
 
   .content {
     margin-left: 0;
-    /* Removes the 70px shift so it stays centered on mobile */
     max-width: 100%;
     padding: 0 10px;
+  }
+
+  .ctaTitle {
+    font-size: 1.6rem;
+  }
+
+  .ctaButton {
+    padding: 16px 32px;
+    width: 100%;
+    text-align: center;
   }
 }

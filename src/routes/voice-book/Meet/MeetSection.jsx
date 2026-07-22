@@ -24,7 +24,7 @@ export const Meet = () => {
               }}
             >
               <img
-                src="/thumbnails/meet-sevil.png"
+                src="/thumbnails/thumbnailupdate.png"
                 alt="Meet Sevil Velsha"
                 style={{ 
                   width: '100%', 
@@ -106,7 +106,7 @@ export const Meet = () => {
             </ul>
 
             <p className={styles.bioText}>
-              Sevil Velsha is a voice coach, PhD, and educator dedicated to helping
+              Sevil Velsha is a voice coach, PhD,researcher and educator dedicated to helping
               people unlock authority, calm, and presence through their voice.
               With a background in linguistics, intonation research, and stage
               performance, she bridges science and art to teach voice control
