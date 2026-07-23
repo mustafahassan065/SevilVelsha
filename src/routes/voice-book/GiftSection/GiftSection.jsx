@@ -42,13 +42,25 @@ export const GiftSection = () => {
 
           <p className={styles.footerText}>Beautiful gift card included</p>
 
-          {/* ── CTA portion — inside same section ── */}
+          {/* ── CTA portion ── */}
           <div className={styles.ctaWrapper}>
             <h2 className={styles.ctaTitle}>Ready to Change How People Hear You?</h2>
-            <a href="https://www.sevilvelsha.com/voice-control-pdf" className={styles.ctaButton}>
-              Get the Book
-            </a>
-            <p className={styles.ctaSubtext}>Download a free sample chapter</p>
+            <div className={styles.ctaButtons}>
+              <a
+                href="https://buy.stripe.com/test_cNi9AS5T16jD1jo8MUgIo00"
+                className={styles.ctaButton}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get the Book — $97
+              </a>
+              <button
+                className={styles.ctaSampleButton}
+                onClick={() => window.open('https://www.sevilvelsha.com/voice-control-pdf', '_blank')}
+              >
+                Download a free sample chapter
+              </button>
+            </div>
             <p className={styles.ctaContact}>
               Questions? Contact:{' '}
               <a
