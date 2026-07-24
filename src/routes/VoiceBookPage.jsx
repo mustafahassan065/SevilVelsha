@@ -1,12 +1,10 @@
 import React from "react";
 import Card from "./voice-book/CardSection/Card";
 import { ChapterSection } from "./voice-book/ChapterSection/ChapterSection";
-
 import { GiftSection } from "./voice-book/GiftSection/GiftSection";
-import Header from "./voice-book/Header/Header";  // Correct path
+import Header from "./voice-book/Header/Header";
 import Hero from "./voice-book/Hero/Hero";
 import { Meet } from "./voice-book/Meet/MeetSection";
-
 import { TransformationSection } from "./voice-book/TransformationSection/TransformationSection";
 import ComparisonCard from "./voice-book/WhatBookDoes/ComparisonCard";
 import WhatBookDoes from "./voice-book/WhatBookDoes/WhatBookDoes";
@@ -17,15 +15,14 @@ function VoiceBookPage() {
     <div className="bg-[#F5F1E8]">
       <Header />
       <Hero />
-      <WhoIsFor />
-      <WhatBookDoes />
-      <Meet />
+      <div id="whoIsFor"><WhoIsFor /></div>
+      <div id="whatBookDoes"><WhatBookDoes /></div>
+      <div id="meet"><Meet /></div>
       <GiftSection />
-      <ChapterSection />
-      <TransformationSection />
+      <div id="chapters"><ChapterSection /></div>
+      <div id="transformation"><TransformationSection /></div>
       <WhoIsFor />
       <Card />
-      
     </div>
   );
 }

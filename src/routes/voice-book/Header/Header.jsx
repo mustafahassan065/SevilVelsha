@@ -1,71 +1,64 @@
-
-
 import { useState } from "react";
 import styles from "./Header.module.css";
 
 const navItems = [
-  { label: "Podcast", hasDropdown: false },
-  { label: "Topics", hasDropdown: true },
-  { label: "Books", hasDropdown: true },
-  { label: "About", hasDropdown: true },
-  { label: "Tour", hasDropdown: false },
-  { label: "Shop", hasDropdown: false },
+  { label: "Who Is It For",   sectionId: "whoIsFor" },
+  { label: "What It Does",    sectionId: "whatBookDoes" },
+  { label: "Meet Sevil",      sectionId: "meet" },
+  { label: "Chapters",        sectionId: "chapters" },
+  { label: "Transformation",  sectionId: "transformation" },
+  { label: "Get the Book",    href: "https://buy.stripe.com/test_cNi9AS5T16jD1jo8MUgIo00" },
 ];
+
+function scrollToSection(sectionId) {
+  const el = document.getElementById(sectionId);
+  if (!el) return;
+  const offset = 80;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top, behavior: "smooth" });
+}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleClick = (item) => {
+    if (item.href) {
+      window.open(item.href, "_blank", "noopener noreferrer");
+    } else {
+      scrollToSection(item.sectionId);
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
       <header className={styles.header}>
         <div className={styles.logo}>SEVIL VELSHA</div>
+
         <nav className={styles.nav}>
           {navItems.map((item) => (
-            <button key={item.label} className={styles.navItem}>
+            <button
+              key={item.label}
+              className={styles.navItem}
+              onClick={() => handleClick(item)}
+            >
               {item.label}
-              {item.hasDropdown && (
-                <svg
-                  className={styles.chevron}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              )}
             </button>
           ))}
-          <button className={styles.searchBtn}>
-            <svg
-              className={styles.searchIcon}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
-          </button>
         </nav>
+
         <button
           className={styles.mobileMenuBtn}
           onClick={() => setMobileMenuOpen(true)}
           aria-label="Open menu"
         >
-          <svg
-            className={styles.menuIcon}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
+          <svg className={styles.menuIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 12h18M3 6h18M3 18h18" />
           </svg>
         </button>
       </header>
 
+      {/* Mobile Nav */}
       <nav className={`${styles.mobileNav} ${mobileMenuOpen ? styles.open : ""}`}>
         <div className={styles.mobileNavHeader}>
           <span className={styles.mobileNavLogo}>SEVIL VELSHA</span>
@@ -74,13 +67,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
           >
-            <svg
-              className={styles.closeIcon}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
+            <svg className={styles.closeIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
@@ -90,20 +77,9 @@ export default function Header() {
             <button
               key={item.label}
               className={styles.mobileNavItem}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => handleClick(item)}
             >
               {item.label}
-              {item.hasDropdown && (
-                <svg
-                  className={styles.chevron}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M9 6l6 6-6 6" />
-                </svg>
-              )}
             </button>
           ))}
         </div>
