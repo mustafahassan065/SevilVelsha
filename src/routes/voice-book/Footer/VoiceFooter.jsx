@@ -6,7 +6,7 @@ import { LuInstagram } from "react-icons/lu";
 import { NavLink } from "react-router";
 
 const QUICK_LINKS = [
-  { label: "Ph.D. in intonation and acoustics", href: "#" },
+  { label: "Ph.D. researcher in intonation and acoustics", href: "#" },
   { label: "My story", href: "#" },
   { label: "About me", href: "#" },
   { label: "How We Work", href: "#" },
