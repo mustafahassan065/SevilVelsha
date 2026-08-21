@@ -13,7 +13,7 @@ export default function ThankYouBook() {
   const [userEmail, setUserEmail] = useState('');
 
   // NEW OneDrive Download Link
-  const ONEDRIVE_DOWNLOAD_URL = 'https://drive.google.com/uc?export=download&id=14MhVBuxXJazbCe0DFO_yGYHwxU9QAznl';
+  const ONEDRIVE_DOWNLOAD_URL = 'https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy9iNTBlOGMwMTI0ODA1Y2EzL0lRRHhlQ1RIamhrV1NvYUhmQkdkbVR4SEFlVEdDdFBaRFJibW9lQnpsb3MydjJBP1RlYW1zQ0lEPTY2NTliMjFhLTJhNDEtNDA2NS04MzIxLTU5MzRmZmI4YjdmYSZsaW5rT3BlblRpbWU9MTc4MDg5Mjg3MjA3NA&cid=B50E8C0124805CA3&id=B50E8C0124805CA3%21sc72478f1198e4a1686877c119d993c47&parId=B50E8C0124805CA3%21s44ff9d852fdc4b51bcec42eefc0cd89b&o=OneUp';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,43 +52,13 @@ export default function ThankYouBook() {
   };
 
   // ── DOWNLOAD ────────────────────────────────────────────────
-  const handleDownload = async () => {
-    setLoading(true);
-    setError('');
-
-    try {
-      // Dynamic watermark ke liye backend call
-      const res = await fetch(`/api/download-book-watermarked?email=${encodeURIComponent(userEmail)}`);
-      
-      if (!res.ok) throw new Error('Download failed');
-
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      
-      const safeEmail = userEmail.replace(/[^a-zA-Z0-9@._-]/g, '_');
-      a.download = `Voice-Control-Book-Licensed-to-${safeEmail}.pdf`;
-      a.href = url;
-      
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-
-    } catch (err) {
-      setError('❌ Download failed. Trying direct download...');
-      
-      // Fallback: Direct OneDrive Link (Updated)
-      const link = document.createElement('a');
-      link.href = ONEDRIVE_DOWNLOAD_URL;
-      link.download = `Voice-Control-Book.pdf`;
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } finally {
-      setLoading(false);
-    }
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = 'https://drive.google.com/uc?export=download&id=14MhVBuxXJazbCe0DFO_yGYHwxU9QAznl';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
