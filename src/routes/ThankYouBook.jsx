@@ -13,7 +13,7 @@ export default function ThankYouBook() {
   const [userEmail, setUserEmail] = useState('');
 
   // NEW OneDrive Download Link
-  const ONEDRIVE_DOWNLOAD_URL = 'https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvYy9iNTBlOGMwMTI0ODA1Y2EzL0lRRHhlQ1RIamhrV1NvYUhmQkdkbVR4SEFlVEdDdFBaRFJibW9lQnpsb3MydjJBP1RlYW1zQ0lEPTY2NTliMjFhLTJhNDEtNDA2NS04MzIxLTU5MzRmZmI4YjdmYSZsaW5rT3BlblRpbWU9MTc4MDg5Mjg3MjA3NA&cid=B50E8C0124805CA3&id=B50E8C0124805CA3%21sc72478f1198e4a1686877c119d993c47&parId=B50E8C0124805CA3%21s44ff9d852fdc4b51bcec42eefc0cd89b&o=OneUp';
+  const ONEDRIVE_DOWNLOAD_URL = 'https://drive.google.com/uc?export=download&id=14MhVBuxXJazbCe0DFO_yGYHwxU9QAznl';
 
   useEffect(() => {
     window.scrollTo(0, 0);
