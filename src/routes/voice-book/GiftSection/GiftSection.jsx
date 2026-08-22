@@ -47,7 +47,7 @@ export const GiftSection = () => {
             <h2 className={styles.ctaTitle}>Ready to Change How People Hear You?</h2>
             <div className={styles.ctaButtons}>
               <a
-                href="https://buy.stripe.com/test_dRm00ichp5fzaTY9QYgIo06"
+                href="https://buy.stripe.com/9B67sK95d23n7HM0gogIo04"
                 className={styles.ctaButton}
                 target="_blank"
                 rel="noopener noreferrer"
