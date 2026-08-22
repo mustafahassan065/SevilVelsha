@@ -29,19 +29,19 @@ export default function HeroContent() {
 
       <div className={styles.buttons}>
         <a
-          href="https://buy.stripe.com/test_cNi9AS5T16jD1jo8MUgIo00"
+          href="https://buy.stripe.com/9B67sK95d23n7HM0gogIo04"
           className={styles.buyButton}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Buy Now— 97$
+          Buy Now — $29
         </a>
-       
-        <button 
+
+        <button
           className={styles.samplesButton}
           onClick={() => window.open('https://www.sevilvelsha.com/voice-control-pdf', '_blank')}
         >
-         Free Book Preview
+          Free Book Preview
         </button>
       </div>
 
