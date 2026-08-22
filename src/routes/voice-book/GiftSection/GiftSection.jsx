@@ -47,12 +47,12 @@ export const GiftSection = () => {
             <h2 className={styles.ctaTitle}>Ready to Change How People Hear You?</h2>
             <div className={styles.ctaButtons}>
               <a
-                href="https://buy.stripe.com/test_cNi9AS5T16jD1jo8MUgIo00"
+                href="https://buy.stripe.com/test_dRm00ichp5fzaTY9QYgIo06"
                 className={styles.ctaButton}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Get the Book — $97
+                Get the Book — $29
               </a>
               <button
                 className={styles.ctaSampleButton}
