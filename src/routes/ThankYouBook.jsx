@@ -54,7 +54,7 @@ export default function ThankYouBook() {
   // ── DOWNLOAD ────────────────────────────────────────────────
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=14MhVBuxXJazbCe0DFO_yGYHwxU9QAznl';
+    link.href = 'https://drive.google.com/uc?export=download&id=12JldRDEThz3uUXIFHrYIKUdwWrSr_9Dz';
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
