@@ -6,29 +6,29 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 // Put the exported real PDF pages in /public/images/look-inside/
 const pages = [
   {
-    src: "/images/look-inside/page-30.webp",
+    src: "/images/qrpage.jpeg",
     alt: "Praat speech diagram with QR code to an audio demonstration",
-    caption: "Praat diagram + QR code to the audio demonstration",
+    
   },
   {
-    src: "/images/look-inside/page-17.webp",
+    src: "/images/page1.jpeg",
     alt: "Complete Audio Companion QR code page",
-    caption: "Complete Audio Companion QR code",
+    
   },
   {
-    src: "/images/look-inside/pages-23-24.webp",
+    src: "/images/page2.jpeg",
     alt: "Practical voice exercise, two-page spread",
-    caption: "A practical voice exercise",
+    
   },
   {
-    src: "/images/look-inside/pages-216-217.webp",
+    src: "/images/page3.jpeg",
     alt: "Professional speaking exercises, two-page spread",
-    caption: "Professional speaking exercises",
+    
   },
   {
-    src: "/images/look-inside/page-230.webp",
+    src: "/images/page4.jpeg",
     alt: "Classroom Calm Drill page",
-    caption: "The Classroom Calm Drill",
+    
   },
 ];
 
@@ -96,7 +96,7 @@ export default function LookInside() {
               decoding="async"
               className={styles.pageImg}
             />
-            <span className={styles.caption}>{p.caption}</span>
+            
           </button>
         ))}
       </div>
