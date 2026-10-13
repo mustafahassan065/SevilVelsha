@@ -23,9 +23,7 @@ export default function HeroContent() {
         Transform your voice into your most powerful leadership tool. Learn the secrets of magnetic communication that commands attention and inspires action.
       </p>
 
-      <p className={styles.secondaryTitle}>
-        How to Speak With Power, Calm &amp; Magnetic Presence
-      </p>
+      {/* secondaryTitle removed: it repeated the subtitle above */}
 
       <div className={styles.buttons}>
         <a
