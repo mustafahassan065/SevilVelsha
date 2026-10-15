@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./LookInside.module.css";
+import { ChartIcon, HeadphonesIcon, DocIcon, BookIcon } from "../shared/Icons";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
-// Images go in /public/images/look-inside/ (follow the client's reference images)
+// Card artwork lives in /public/images/look-inside/ (cropped from the client's design)
 const cards = [
-  { src: "/images/look-inside/card-1.webp", alt: "Voice analysis diagram", icon: "📊", title: "Voice Analysis Diagrams", text: "See what confident speech looks like in real acoustic analysis." },
-  { src: "/images/look-inside/card-2.webp", alt: "Audio demonstrations with QR codes", icon: "🎧", title: "QR Audio Demonstrations", text: "Hear the difference. Then practise it yourself." },
-  { src: "/images/look-inside/card-3.webp", alt: "Practical voice exercise", icon: "📝", title: "Step-by-Step Exercises", text: "Turn voice science into practical speaking skills." },
-  { src: "/images/look-inside/card-4.webp", alt: "Real-world speech example", icon: "👤", title: "Real-World Speech Examples", text: "Learn from real speech analyses and how great speakers use their voice." },
+  { src: "/images/look-inside/card-1.webp", alt: "Voice analysis diagram", Icon: ChartIcon, title: "Voice Analysis Diagrams", text: "See what confident speech looks like in real acoustic analysis." },
+  { src: "/images/look-inside/card-2.webp", alt: "Audio demonstrations with QR codes", Icon: HeadphonesIcon, title: "QR Audio Demonstrations", text: "Hear the difference. Then practise it yourself." },
+  { src: "/images/look-inside/card-3.webp", alt: "Practical voice exercise", Icon: DocIcon, title: "Step-by-Step Exercises", text: "Turn voice science into practical speaking skills." },
 ];
 
 export default function LookInside() {
@@ -42,7 +42,7 @@ export default function LookInside() {
   };
 
   return (
-    <section className={`${styles.section} ${styles.bgCream}`}>
+    <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
         <h2 className={styles.title}>
           Don't Just Read About Confidence.<br />See How Your Voice Works.
@@ -58,7 +58,7 @@ export default function LookInside() {
             <button key={c.src} type="button" className={styles.slide} onClick={() => setOpen(i)} aria-label={`Enlarge: ${c.title}`}>
               <img src={c.src} alt={c.alt} loading="lazy" decoding="async" className={styles.pageImg} />
               <div className={styles.cap}>
-                <span className={styles.capIcon}>{c.icon}</span>
+                <span className={styles.capIcon}><c.Icon /></span>
                 <span>
                   <span className={styles.capTitle}>{c.title}</span>
                   <span className={styles.capText}>{c.text}</span>
@@ -78,9 +78,16 @@ export default function LookInside() {
               Real-world examples · Techniques you can use immediately
             </p>
           </div>
+          <div className={styles.bannerCta}>
           <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
             Get Your Copy — $29 →
           </a>
+          <div className={styles.miniRow}>
+            <span><BookIcon /> Instant access</span>
+            <span><HeadphonesIcon /> Audio examples</span>
+            <span><DocIcon /> Practical exercises</span>
+          </div>
+          </div>
         </div>
       </div>
 

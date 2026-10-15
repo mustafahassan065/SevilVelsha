@@ -2,11 +2,11 @@ import styles from "./SameWords.module.css";
 
 export default function SameWords() {
   return (
-    <section className={`${styles.section} ${styles.bgTeal}`}>
+    <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
         <p className={styles.eyebrow}>Same words. Different impact.</p>
-        <h2 className={`${styles.title} ${styles.titleLight}`}>Hear the Power of Voice Control</h2>
-        <p className={styles.quote}>"I believe this is the right decision."</p>
+        <h2 className={styles.title}>Hear the Power of Voice Control</h2>
+        <p className={styles.quote}>&ldquo;I believe this is the right decision.&rdquo;</p>
 
         <div className={styles.versus}>
           <div className={`${styles.vCard} ${styles.before}`}>

@@ -1,8 +1,8 @@
 .section { position: relative; padding: 72px 20px; text-align: center; overflow: hidden; }
-.bgCream { background: linear-gradient(180deg, #fbf3dd 0%, #f6e8c3 100%); }
+.bgCream { background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); }
 .container { max-width: 1150px; margin: 0 auto; position: relative; z-index: 1; }
 .eyebrow { letter-spacing: 0.3em; font-size: 13px; text-transform: uppercase; color: #a8802c; margin: 0 0 10px; font-weight: 600; }
-.title { font-family: Georgia, "Times New Roman", serif; font-size: clamp(30px, 5.5vw, 52px); line-height: 1.12; color: #1f3a37; margin: 0 0 14px; }
+.title { font-family: Georgia, "Times New Roman", serif; font-size: clamp(30px, 5.5vw, 52px); line-height: 1.12; color: #133d41; margin: 0 0 14px; }
 
 .sciGrid { display: grid; grid-template-columns: 1fr; gap: 34px; align-items: center; text-align: left; }
 @media (min-width: 900px) { .sciGrid { grid-template-columns: 1.1fr 1fr; } }
@@ -13,5 +13,5 @@
 .play { width: 74px; height: 74px; border-radius: 50%; background: linear-gradient(135deg, #f1cc5c, #c8932f); display: flex; align-items: center; justify-content: center; }
 
 .role { color: #a8802c; font-weight: 700; margin: 0 0 14px; font-size: 16px; }
-.body { color: #4d4a3f; line-height: 1.7; font-size: 17px; margin: 0 0 12px; }
-.strong { font-family: Georgia, serif; font-size: 20px; color: #1f3a37; margin: 18px 0 0; line-height: 1.5; }
+.body { color: #4b4a42; line-height: 1.7; font-size: 17px; margin: 0 0 12px; }
+.strong { font-family: Georgia, serif; font-size: 20px; color: #133d41; margin: 18px 0 0; line-height: 1.5; }
