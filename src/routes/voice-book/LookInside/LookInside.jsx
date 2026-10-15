@@ -3,48 +3,20 @@ import styles from "./LookInside.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
-// Put the exported real PDF pages in /public/images/look-inside/
-const pages = [
-  {
-    src: "/images/qrpage.jpeg",
-    alt: "Praat speech diagram with QR code to an audio demonstration",
-    
-  },
-  {
-    src: "/images/page1.jpeg",
-    alt: "Complete Audio Companion QR code page",
-    
-  },
-  {
-    src: "/images/page2.jpeg",
-    alt: "Practical voice exercise, two-page spread",
-    
-  },
-  {
-    src: "/images/page3.jpeg",
-    alt: "Professional speaking exercises, two-page spread",
-    
-  },
-  {
-    src: "/images/page4.jpeg",
-    alt: "Classroom Calm Drill page",
-    
-  },
+// Images go in /public/images/look-inside/ (follow the client's reference images)
+const cards = [
+  { src: "/images/look-inside/card-1.webp", alt: "Voice analysis diagram", icon: "📊", title: "Voice Analysis Diagrams", text: "See what confident speech looks like in real acoustic analysis." },
+  { src: "/images/look-inside/card-2.webp", alt: "Audio demonstrations with QR codes", icon: "🎧", title: "QR Audio Demonstrations", text: "Hear the difference. Then practise it yourself." },
+  { src: "/images/look-inside/card-3.webp", alt: "Practical voice exercise", icon: "📝", title: "Step-by-Step Exercises", text: "Turn voice science into practical speaking skills." },
+  { src: "/images/look-inside/card-4.webp", alt: "Real-world speech example", icon: "👤", title: "Real-World Speech Examples", text: "Learn from real speech analyses and how great speakers use their voice." },
 ];
 
 export default function LookInside() {
-  const [open, setOpen] = useState(null); // index or null
+  const [open, setOpen] = useState(null);
   const touchX = useRef(null);
-
   const close = useCallback(() => setOpen(null), []);
-  const next = useCallback(
-    () => setOpen((i) => (i === null ? i : (i + 1) % pages.length)),
-    []
-  );
-  const prev = useCallback(
-    () => setOpen((i) => (i === null ? i : (i - 1 + pages.length) % pages.length)),
-    []
-  );
+  const next = useCallback(() => setOpen((i) => (i === null ? i : (i + 1) % cards.length)), []);
+  const prev = useCallback(() => setOpen((i) => (i === null ? i : (i - 1 + cards.length) % cards.length)), []);
 
   useEffect(() => {
     if (open === null) return;
@@ -70,82 +42,57 @@ export default function LookInside() {
   };
 
   return (
-    <section className={styles.section}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Look Inside the Book</h2>
+    <section className={`${styles.section} ${styles.bgCream}`}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>
+          Don't Just Read About Confidence.<br />See How Your Voice Works.
+        </h2>
         <p className={styles.subtitle}>
-          Explore real speech diagrams, listen to audio demonstrations, and
-          practise techniques you can use in everyday communication.
+          Explore real voice diagrams, listen to speech demonstrations, and practise
+          techniques designed to help you speak with greater authority in work,
+          interviews and everyday life.
         </p>
-      </div>
 
-      <div className={styles.gallery} role="list">
-        {pages.map((p, i) => (
-          <button
-            key={p.src}
-            type="button"
-            role="listitem"
-            className={styles.slide}
-            onClick={() => setOpen(i)}
-            aria-label={`Enlarge: ${p.caption}`}
-          >
-            <img
-              src={p.src}
-              alt={p.alt}
-              loading="lazy"
-              decoding="async"
-              className={styles.pageImg}
-            />
-            
-          </button>
-        ))}
-      </div>
+        <div className={styles.gallery}>
+          {cards.map((c, i) => (
+            <button key={c.src} type="button" className={styles.slide} onClick={() => setOpen(i)} aria-label={`Enlarge: ${c.title}`}>
+              <img src={c.src} alt={c.alt} loading="lazy" decoding="async" className={styles.pageImg} />
+              <div className={styles.cap}>
+                <span className={styles.capIcon}>{c.icon}</span>
+                <span>
+                  <span className={styles.capTitle}>{c.title}</span>
+                  <span className={styles.capText}>{c.text}</span>
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+        <p className={styles.hint}>Swipe to browse · Tap to enlarge</p>
 
-      <p className={styles.hint}>Swipe to browse · Tap a page to enlarge</p>
-
-      <div className={styles.ctaRow}>
-        <a
-          href={BUY_URL}
-          className={styles.buyButton}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Buy Now — $29
-        </a>
+        <div className={styles.banner}>
+          <img src="/images/heroBookImage.png" alt="Voice Control book" className={styles.cover} loading="lazy" />
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <h3 className={styles.bannerTitle}>This Isn't Just a Book.<br />It's a Voice Training System.</h3>
+            <p className={styles.bannerText}>
+              Speech analysis · Audio demonstrations · Practical exercises ·
+              Real-world examples · Techniques you can use immediately
+            </p>
+          </div>
+          <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
+            Get Your Copy — $29 →
+          </a>
+        </div>
       </div>
 
       {open !== null && (
-        <div
-          className={styles.lightbox}
-          role="dialog"
-          aria-modal="true"
-          onClick={close}
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-        >
-          <button className={styles.close} onClick={close} aria-label="Close">
-            ×
-          </button>
-          <button
-            className={`${styles.nav} ${styles.navPrev}`}
-            onClick={(e) => { e.stopPropagation(); prev(); }}
-            aria-label="Previous page"
-          >
-            ‹
-          </button>
+        <div className={styles.lightbox} role="dialog" aria-modal="true" onClick={close} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <button className={styles.close} onClick={close} aria-label="Close">×</button>
+          <button className={`${styles.nav} ${styles.navPrev}`} onClick={(e) => { e.stopPropagation(); prev(); }} aria-label="Previous">‹</button>
           <figure className={styles.figure} onClick={(e) => e.stopPropagation()}>
-            <img src={pages[open].src} alt={pages[open].alt} className={styles.bigImg} />
-            <figcaption className={styles.bigCaption}>
-              {pages[open].caption} ({open + 1}/{pages.length})
-            </figcaption>
+            <img src={cards[open].src} alt={cards[open].alt} className={styles.bigImg} />
+            <figcaption className={styles.bigCaption}>{cards[open].title} ({open + 1}/{cards.length})</figcaption>
           </figure>
-          <button
-            className={`${styles.nav} ${styles.navNext}`}
-            onClick={(e) => { e.stopPropagation(); next(); }}
-            aria-label="Next page"
-          >
-            ›
-          </button>
+          <button className={`${styles.nav} ${styles.navNext}`} onClick={(e) => { e.stopPropagation(); next(); }} aria-label="Next">›</button>
         </div>
       )}
     </section>
