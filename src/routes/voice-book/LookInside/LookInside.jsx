@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./LookInside.module.css";
-import { ChartIcon, HeadphonesIcon, DocIcon, BookIcon } from "../shared/Icons";
+import { ChartIcon, HeadphonesIcon, DocIcon, BookIcon, UserIcon } from "../shared/Icons";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
@@ -9,6 +9,7 @@ const cards = [
   { src: "/images/look-inside/card-1.webp", alt: "Voice analysis diagram", Icon: ChartIcon, title: "Voice Analysis Diagrams", text: "See what confident speech looks like in real acoustic analysis." },
   { src: "/images/look-inside/card-2.webp", alt: "Audio demonstrations with QR codes", Icon: HeadphonesIcon, title: "QR Audio Demonstrations", text: "Hear the difference. Then practise it yourself." },
   { src: "/images/look-inside/card-3.webp", alt: "Practical voice exercise", Icon: DocIcon, title: "Step-by-Step Exercises", text: "Turn voice science into practical speaking skills." },
+  { src: "/images/look-inside/card-4.webp", alt: "Real-world speech example", Icon: UserIcon, title: "Real-World Speech Examples", text: "Learn from great speakers like Barack Obama, Steve Jobs and more." },
 ];
 
 export default function LookInside() {
