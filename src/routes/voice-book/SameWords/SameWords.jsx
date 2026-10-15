@@ -21,7 +21,7 @@ export default function SameWords() {
 
         {/* Audio is delivered through the book's QR code. Save the QR image as /public/images/audio-qr.png */}
         <div className={styles.qrBox}>
-          <img src="/images/audio-qr.png" alt="QR code to the audio examples" className={styles.qrImg} loading="lazy" />
+          <img src="/images/audio-qr.jpeg" alt="QR code to the audio examples" className={styles.qrImg} loading="lazy" />
           <p className={styles.qrNote}>Scan to listen</p>
           <p className={styles.qrSub}>Open your phone camera and scan to hear the Before and After audio.</p>
         </div>
