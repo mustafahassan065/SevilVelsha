@@ -1,23 +1,82 @@
 .section { position: relative; padding: 90px 20px; text-align: center; overflow: hidden; }
 .bg { background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); }
-.container { max-width: 1180px; margin: 0 auto; }
+.container { max-width: 1200px; margin: 0 auto; }
 
-.heroGrid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; text-align: left; }
-@media (min-width: 900px) { .heroGrid { grid-template-columns: 1.1fr 0.9fr; } }
+/* 2-Column Grid: Image Left, Spaced Text Right */
+.heroGrid { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 48px; 
+  align-items: center; 
+  text-align: left; 
+}
 
-.imageCol { display: flex; flex-direction: column; gap: 20px; }
-.bookImg { width: 100%; border-radius: 8px; filter: drop-shadow(0 14px 24px rgba(80, 60, 20, 0.22)); display: block; }
+@media (min-width: 900px) { 
+  .heroGrid { 
+    grid-template-columns: 1.1fr 0.9fr; 
+  } 
+}
 
-.heroTitle { font-family: Georgia, serif; font-size: clamp(32px, 4.8vw, 50px); line-height: 1.12; color: #133d41; margin: 0 0 16px; font-weight: 700; }
-.heroSubtitle { font-size: clamp(16px, 1.8vw, 19px); color: #4b4a42; line-height: 1.6; margin: 0 0 24px; }
+.imageCol { 
+  display: flex; 
+  justify-content: center; 
+}
 
-.bigSubText { font-family: Georgia, serif; font-size: 19px; font-weight: 700; color: #133d41; margin-top: 20px; line-height: 1.4; }
+.openBookImg { 
+  width: 100%; 
+  border-radius: 12px; 
+  filter: drop-shadow(0 16px 32px rgba(80, 60, 20, 0.22)); 
+  display: block; 
+}
+
+/* Right Text Column Spacing & Balance */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.heroTitle { 
+  font-family: Georgia, serif; 
+  font-size: clamp(32px, 4.5vw, 48px); 
+  line-height: 1.15; 
+  color: #133d41; 
+  margin: 0 0 24px; /* Space below title */
+  font-weight: 700; 
+}
+
+.heroSubtitle { 
+  font-size: clamp(16px, 1.8vw, 20px); 
+  color: #4b4a42; 
+  line-height: 1.65; 
+  margin: 0 0 32px; /* Space below subtitle */
+}
+
+.ctaWrapper {
+  margin-bottom: 28px; /* Space below button */
+}
+
+.bigSubText { 
+  font-family: Georgia, serif; 
+  font-size: clamp(18px, 2vw, 22px); /* Slightly bigger font */
+  font-weight: 700; 
+  color: #133d41; 
+  margin: 0; 
+  line-height: 1.45; 
+}
 
 .buyButton {
-  display: inline-flex; align-items: center; justify-content: center;
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
   background: linear-gradient(180deg, #e6b54e 0%, #c99a3a 100%);
-  color: #1c1608; font-weight: 700; font-size: 20px;
-  padding: 16px 40px; border-radius: 999px; text-decoration: none;
+  color: #1c1608; 
+  font-weight: 700; 
+  font-size: 20px;
+  padding: 18px 44px; 
+  border-radius: 999px; 
+  text-decoration: none;
   box-shadow: 0 8px 20px rgba(191, 145, 57, 0.4);
   transition: transform .15s ease, filter .15s ease;
 }

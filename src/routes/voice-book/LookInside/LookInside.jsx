@@ -8,36 +8,32 @@ export default function LookInside() {
       <div className={styles.container}>
         <div className={styles.heroGrid}>
           
-          {/* Left Column: Two Images for Page 31 & Page 32 */}
+          {/* Left Column: Single Open-Book Image (Page 31) */}
           <div className={styles.imageCol}>
-            {/* IMAGE PLACEHOLDER 1: Page 31 Image */}
+            {/* IMAGE PLACEHOLDER: Yahan Page 31 ki large open-book image lagani hai */}
             {/* Path: /public/images/page-31.png */}
             <img 
               src="/images/page31.jpeg" 
-              alt="Voice Control Book - Page 31" 
-              className={styles.bookImg} 
-            />
-            
-            {/* IMAGE PLACEHOLDER 2: Page 32 Image */}
-            {/* Path: /public/images/page-32.png */}
-            <img 
-              src="/images/page32.jpeg" 
-              alt="Voice Control Book - Page 32" 
-              className={styles.bookImg} 
+              alt="Voice Control Book - Acoustic Diagram Page 31" 
+              className={styles.openBookImg} 
             />
           </div>
 
-          {/* Right Column: Text & CTA */}
+          {/* Right Column: Text & CTA with Proper Vertical Spacing */}
           <div className={styles.textCol}>
             <h1 className={styles.heroTitle}>See the Science Behind a Powerful Voice.</h1>
+            
             <p className={styles.heroSubtitle}>
               Explore real speech analysis, hear the difference and learn techniques you can practise immediately.
             </p>
             
-            <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
-              $29 — Get the Book →
-            </a>
+            <div className={styles.ctaWrapper}>
+              <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
+                $29 - Get the Book →
+              </a>
+            </div>
 
+            {/* Big font sub-text with top/bottom space */}
             <p className={styles.bigSubText}>
               Voice diagrams · 70+ audio demonstrations · Practical exercises
             </p>
