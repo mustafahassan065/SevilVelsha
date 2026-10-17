@@ -1,4 +1,4 @@
-.section { position: relative; padding: 72px 20px; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 90px 20px; text-align: center; overflow: hidden; }
 .bgCream { background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); }
 .container { max-width: 1150px; margin: 0 auto; position: relative; z-index: 1; }
 .title { font-family: Georgia, "Times New Roman", serif; font-size: clamp(30px, 5.5vw, 52px); line-height: 1.12; color: #133d41; margin: 0 0 14px; }

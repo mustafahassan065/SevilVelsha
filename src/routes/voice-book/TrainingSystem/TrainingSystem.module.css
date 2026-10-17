@@ -1,4 +1,4 @@
-.section { position: relative; padding: 72px 20px; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 90px 20px; text-align: center; overflow: hidden; }
 .bg { background: linear-gradient(180deg, #f9f4ea 0%, #f3ebdc 100%); }
 .container { max-width: 900px; margin: 0 auto; }
 

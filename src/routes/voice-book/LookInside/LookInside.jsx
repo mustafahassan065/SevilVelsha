@@ -7,16 +7,27 @@ export default function LookInside() {
     <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
         <div className={styles.heroGrid}>
+          
+          {/* Left Column: Two Images for Page 31 & Page 32 */}
           <div className={styles.imageCol}>
-            {/* IMAGE PLACEHOLDER: Yahan Pages 31 & 32 ki open-book acoustic diagram image lagani hai */}
-            {/* Path: /public/images/open-book-diagram.png */}
+            {/* IMAGE PLACEHOLDER 1: Page 31 Image */}
+            {/* Path: /public/images/page-31.png */}
             <img 
-              src="/images/open-book-diagram.jpeg" 
-              alt="Acoustic Voice Diagram Open Book" 
-              className={styles.openBookImg} 
+              src="/images/page31.jpeg" 
+              alt="Voice Control Book - Page 31" 
+              className={styles.bookImg} 
+            />
+            
+            {/* IMAGE PLACEHOLDER 2: Page 32 Image */}
+            {/* Path: /public/images/page-32.png */}
+            <img 
+              src="/images/page32.jpeg" 
+              alt="Voice Control Book - Page 32" 
+              className={styles.bookImg} 
             />
           </div>
 
+          {/* Right Column: Text & CTA */}
           <div className={styles.textCol}>
             <h1 className={styles.heroTitle}>See the Science Behind a Powerful Voice.</h1>
             <p className={styles.heroSubtitle}>
@@ -27,11 +38,11 @@ export default function LookInside() {
               $29 — Get the Book →
             </a>
 
-            {/* Client requirement: Big font sub text */}
             <p className={styles.bigSubText}>
               Voice diagrams · 70+ audio demonstrations · Practical exercises
             </p>
           </div>
+
         </div>
       </div>
     </section>
