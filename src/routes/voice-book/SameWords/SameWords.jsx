@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./SameWords.module.css";
 
-// Google Drive Preview Video Link
 const EMBED_URL = "https://drive.google.com/file/d/1EB8zdVKi9PB758TbJGwlBl_Hue26fbcI/preview";
 
 export default function SameWords() {
@@ -12,12 +11,12 @@ export default function SameWords() {
       <div className={styles.container}>
         <h2 className={styles.title}>Don't Just Read It. Hear It. Practise It.</h2>
 
-        {/* Video Player Section */}
+        {/* Video Player Box */}
         <div className={styles.videoBox} onClick={() => !playing && setPlaying(true)}>
           {!playing ? (
             <>
-              {/* IMAGE PLACEHOLDER 1: Video Thumbnail Image */}
-              {/* Image Path: /public/thumbnails/thumbnailupdate.png */}
+              {/* IMAGE PLACEHOLDER: Video Thumbnail Image */}
+              {/* Path: /public/thumbnails/thumbnailupdate.png */}
               <img 
                 src="/thumbnails/thumbnailupdate.png" 
                 alt="Voice Control Demo Video" 
@@ -36,14 +35,13 @@ export default function SameWords() {
           )}
         </div>
 
-        {/* Audio Controls for Visitors to Compare Voices */}
+        {/* Audio Controls for Voice Comparison */}
         <div className={styles.audioControlsContainer}>
           <p className={styles.audioGuideText}>Listen, practise, and improve your own speaking:</p>
           <div className={styles.audioRow}>
             <div className={styles.audioBox}>
               <span className={styles.audioLabel}>Original Delivery</span>
               <audio controls className={styles.audioPlayer}>
-                {/* AUDIO PLACEHOLDER 1: Add path to original audio sample */}
                 <source src="/audio/original-voice.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
@@ -51,7 +49,6 @@ export default function SameWords() {
             <div className={styles.audioBox}>
               <span className={styles.audioLabel}>Improved Delivery</span>
               <audio controls className={styles.audioPlayer}>
-                {/* AUDIO PLACEHOLDER 2: Add path to improved audio sample */}
                 <source src="/audio/improved-voice.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>

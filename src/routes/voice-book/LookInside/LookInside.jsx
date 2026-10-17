@@ -6,15 +6,13 @@ export default function LookInside() {
   return (
     <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
-        
-        {/* HERO / TOP ARRANGEMENT */}
         <div className={styles.heroGrid}>
           <div className={styles.imageCol}>
-            {/* IMAGE PLACEHOLDER 2: Open Book Image (Pages 31 & 32 with Acoustic Diagram) */}
-            {/* Image Path: /public/images/open-book-diagram.png */}
+            {/* IMAGE PLACEHOLDER: Yahan Pages 31 & 32 ki open-book acoustic diagram image lagani hai */}
+            {/* Path: /public/images/open-book-diagram.png */}
             <img 
               src="/images/open-book-diagram.png" 
-              alt="Voice Control Open Book showing acoustic diagram" 
+              alt="Acoustic Voice Diagram Open Book" 
               className={styles.openBookImg} 
             />
           </div>
@@ -29,31 +27,12 @@ export default function LookInside() {
               $29 — Get the Book →
             </a>
 
-            {/* BIG FONT Sub-text as requested in Doc */}
+            {/* Client requirement: Big font sub text */}
             <p className={styles.bigSubText}>
               Voice diagrams · 70+ audio demonstrations · Practical exercises
             </p>
           </div>
         </div>
-
-        {/* BOTTOM SECTION / FOOTER CTA */}
-        <div className={styles.bottomCtaBox}>
-          <h2 className={styles.bottomHeading}>
-            You Know What to Say. But Does Your Voice Deliver It?
-          </h2>
-          <p className={styles.bottomDesc}>
-            Stop rushing, sounding uncertain, or losing your listener's attention. Learn to use your voice with confidence and authority.
-          </p>
-          <div className={styles.badge}>VOICE CONTROL · DIGITAL BOOK · $29</div>
-          
-          <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
-            Start Training Your Voice
-          </a>
-          <p className={styles.bottomFeatures}>
-            Instant access · Audio demonstrations · Practical exercises
-          </p>
-        </div>
-
       </div>
     </section>
   );
