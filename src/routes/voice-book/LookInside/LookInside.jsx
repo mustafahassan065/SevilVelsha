@@ -11,7 +11,7 @@ export default function LookInside() {
             {/* IMAGE PLACEHOLDER: Yahan Pages 31 & 32 ki open-book acoustic diagram image lagani hai */}
             {/* Path: /public/images/open-book-diagram.png */}
             <img 
-              src="/images/open-book-diagram.png" 
+              src="/images/open-book-diagram.jpeg" 
               alt="Acoustic Voice Diagram Open Book" 
               className={styles.openBookImg} 
             />

@@ -7,11 +7,6 @@
 .sciGrid { display: grid; grid-template-columns: 1fr; gap: 34px; align-items: center; text-align: left; }
 @media (min-width: 900px) { .sciGrid { grid-template-columns: 1.1fr 1fr; } }
 
-.videoBox { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; cursor: pointer; box-shadow: 0 16px 34px rgba(90,64,12,.35); background: #e8d9a8; }
-.videoBox img, .videoBox iframe { width: 100%; height: 100%; object-fit: cover; border: 0; display: block; }
-.playWrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.18); }
-.play { width: 74px; height: 74px; border-radius: 50%; background: linear-gradient(135deg, #f1cc5c, #c8932f); display: flex; align-items: center; justify-content: center; }
-
 .role { color: #a8802c; font-weight: 700; margin: 0 0 14px; font-size: 16px; }
 .body { color: #4b4a42; line-height: 1.7; font-size: 17px; margin: 0 0 12px; }
 .strong { font-family: Georgia, serif; font-size: 20px; color: #133d41; margin: 18px 0 0; line-height: 1.5; }
