@@ -1,28 +1,23 @@
 .section { position: relative; padding: 64px 20px; text-align: center; overflow: hidden; }
 .bg { background: linear-gradient(180deg, #f9f4ea 0%, #f3ebdc 100%); }
-.container { max-width: 1180px; margin: 0 auto; }
-.eyebrow { letter-spacing: 0.32em; font-size: 13px; text-transform: uppercase; color: #a8802c; margin: 0 0 8px; font-weight: 500; }
-.title { font-family: Georgia, "Times New Roman", serif; font-size: clamp(38px, 6vw, 66px); line-height: 1.05; color: #133d41; margin: 0 0 10px; font-weight: 700; }
-.subtitle { font-family: Georgia, serif; font-size: clamp(17px, 2.4vw, 24px); color: #2f3b38; margin: 0 auto 34px; }
+.container { max-width: 900px; margin: 0 auto; }
 
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; text-align: left; }
-.card { background: #fcf8f0; border: 1px solid #ebe0c8; border-radius: 22px; padding: 22px 22px 0; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 8px 22px rgba(120, 90, 30, 0.1); }
-.head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
-.num { flex: 0 0 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #e6c15f, #bf9139); color: #fff; font-weight: 700; font-size: 20px; display: flex; align-items: center; justify-content: center; }
-.cardTitle { font-family: Georgia, serif; font-size: 22px; color: #133d41; margin: 0; font-weight: 700; }
-.cardText { margin: 0 0 16px; color: #4b4a42; line-height: 1.5; font-size: 15.5px; }
-.art { display: block; width: calc(100% + 44px); margin: auto -22px 0; }
+.iconRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-bottom: 40px; }
+.iconCard { flex: 1; min-width: 200px; max-width: 260px; display: flex; flex-direction: column; align-items: center; }
+.iconWrap { width: 64px; height: 64px; border-radius: 50%; background: #f1dfae; color: #bf8f2d; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.iconWrap svg { width: 32px; height: 32px; }
+.iconTitle { font-family: Georgia, serif; font-size: 20px; color: #133d41; margin: 0 0 6px; font-weight: 700; }
+.iconDesc { color: #4b4a42; font-size: 15px; margin: 0; }
 
-.bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 34px; margin-top: 30px; }
-.side { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; font-family: Georgia, serif; font-size: 15px; color: #4b4a42; }
-.side span { display: inline-flex; align-items: center; gap: 8px; }
-.side svg { width: 26px; height: 26px; color: #bf8f2d; }
+.pricingCard { background: #fcf8f0; border: 1px solid #ebe0c8; border-radius: 20px; padding: 36px 24px; box-shadow: 0 8px 22px rgba(120, 90, 30, 0.1); max-width: 500px; margin: 0 auto; }
+.price { font-size: 48px; font-weight: 800; color: #133d41; font-family: Georgia, serif; line-height: 1; margin-bottom: 10px; }
+.priceMeta { font-size: 14px; color: #4b4a42; margin: 0 0 24px; }
 
 .buyButton {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  display: inline-flex; align-items: center; justify-content: center;
   background: linear-gradient(180deg, #e6b54e 0%, #c99a3a 100%);
-  color: #1c1608; font-weight: 700; font-size: 21px;
-  padding: 18px 52px; border-radius: 999px; text-decoration: none; white-space: nowrap;
+  color: #1c1608; font-weight: 700; font-size: 20px;
+  padding: 16px 44px; border-radius: 999px; text-decoration: none;
   box-shadow: 0 8px 20px rgba(191, 145, 57, 0.4);
   transition: transform .15s ease, filter .15s ease;
 }
