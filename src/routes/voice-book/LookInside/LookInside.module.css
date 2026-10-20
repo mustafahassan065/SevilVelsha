@@ -1,6 +1,14 @@
-.section { position: relative; padding: 100px 20px; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 120px 20px; text-align: center; overflow: hidden; }
 .bg { background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); }
 .container { max-width: 1200px; margin: 0 auto; }
+
+.sectionHeadline {
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 4vw, 42px);
+  color: #133d41;
+  margin-bottom: 60px;
+  font-weight: 700;
+}
 
 .heroGrid { 
   display: grid; 
@@ -11,71 +19,88 @@
 }
 
 @media (min-width: 900px) { 
-  .heroGrid { 
-    grid-template-columns: 1.1fr 0.9fr; 
-  } 
+  .heroGrid { grid-template-columns: 1.1fr 0.9fr; } 
 }
 
-.imageCol { 
-  display: flex; 
-  justify-content: center; 
-}
-
-.openBookImg { 
-  width: 100%; 
-  border-radius: 12px; 
-  filter: drop-shadow(0 16px 32px rgba(80, 60, 20, 0.22)); 
-  display: block; 
-}
-
-.textCol {
+/* 3D Perspective Stage for Smooth Rotation */
+.animationStage {
+  perspective: 1200px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  padding: 10px 0;
+  align-items: center;
+  min-height: 400px;
 }
 
-.heroTitle { 
-  font-family: Georgia, serif; 
-  font-size: clamp(32px, 4.5vw, 48px); 
-  line-height: 1.18; 
-  color: #133d41; 
-  margin: 0 0 24px; 
-  font-weight: 700; 
+.book3DContainer {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  transform-style: preserve-3d;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
-.heroSubtitle { 
-  font-size: clamp(16px, 1.8vw, 20px); 
-  color: #4b4a42; 
-  line-height: 1.65; 
-  margin: 0 0 32px; 
+/* Inside Page with Acoustic Diagram */
+.bookInsidePage {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: 0 8px 8px 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-left: 4px solid #d4c5a0;
 }
 
-.ctaWrapper {
-  margin-bottom: 28px; 
+.diagramImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.bigSubText { 
-  font-family: Georgia, serif; 
-  font-size: clamp(18px, 2vw, 22px); 
-  font-weight: 700; 
-  color: #133d41; 
-  margin: 0; 
-  line-height: 1.45; 
+/* Front Gold Cover opening to the Left */
+.bookFrontCover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #c99a3a 0%, #8c671e 100%);
+  color: #fff;
+  border-radius: 4px 8px 8px 4px;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
 }
+
+.coverContent h3 {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  color: #fce8b8;
+}
+
+.coverContent p {
+  font-size: 14px;
+  color: #e2cb96;
+}
+
+/* Text Column */
+.textCol { display: flex; flex-direction: column; justify-content: center; }
+.heroTitle { font-family: Georgia, serif; font-size: clamp(30px, 4vw, 44px); line-height: 1.18; color: #133d41; margin: 0 0 20px; font-weight: 700; }
+.heroSubtitle { font-size: clamp(16px, 1.8vw, 19px); color: #4b4a42; line-height: 1.65; margin: 0 0 28px; }
+.ctaWrapper { margin-bottom: 24px; }
+.bigSubText { font-family: Georgia, serif; font-size: 18px; font-weight: 700; color: #133d41; margin: 0; }
 
 .buyButton {
-  display: inline-flex; 
-  align-items: center; 
-  justify-content: center;
+  display: inline-flex; align-items: center; justify-content: center;
   background: linear-gradient(180deg, #e6b54e 0%, #c99a3a 100%);
-  color: #1c1608; 
-  font-weight: 700; 
-  font-size: 20px;
-  padding: 18px 44px; 
-  border-radius: 999px; 
-  text-decoration: none;
+  color: #1c1608; font-weight: 700; font-size: 19px;
+  padding: 18px 42px; border-radius: 999px; text-decoration: none;
   box-shadow: 0 8px 20px rgba(191, 145, 57, 0.4);
-  transition: transform .15s ease, filter .15s ease;
 }
-.buyButton:hover { transform: translateY(-2px); filter: brightness(1.05); }
