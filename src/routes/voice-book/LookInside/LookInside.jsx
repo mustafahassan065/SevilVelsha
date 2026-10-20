@@ -7,26 +7,21 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 export default function LookInside() {
   const containerRef = useRef(null);
 
-  // Scroll Progress Track
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Smooth Spring Physics for Natural Scroll
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 35,
-    damping: 22,
+    stiffness: 50,
+    damping: 20,
     restDelta: 0.001,
   });
 
-  // Scroll Transforms: Scale Up for Clear Image View on Open
-  const bookRotateY = useTransform(smoothProgress, [0, 0.6], [-28, 0]);
-  const coverRotateY = useTransform(smoothProgress, [0.1, 0.85], [0, -180]);
-  
-  // Book size increases as it opens so inside page diagram is clearly readable
-  const bookScale = useTransform(smoothProgress, [0.1, 0.8], [1, 1.22]);
-  const diagramOpacity = useTransform(smoothProgress, [0.35, 0.75], [0, 1]);
+  // Jaise hi user section mein enter karega (0 se 0.3 scroll par), book foran open ho jayegi aur wahi khuli rahegi
+  const coverRotateY = useTransform(smoothProgress, [0.05, 0.35], [0, -180]);
+  const diagramOpacity = useTransform(smoothProgress, [0.15, 0.35], [0, 1]);
+  const bookScale = useTransform(smoothProgress, [0.05, 0.35], [1, 1.12]);
 
   return (
     <section ref={containerRef} className={`${styles.section} ${styles.bg}`}>
@@ -38,13 +33,13 @@ export default function LookInside() {
 
         <div className={styles.heroGrid}>
           
-          {/* 3D Animated Book Container */}
+          {/* 3D Animated Book Stage */}
           <div className={styles.animationStage}>
             <motion.div 
               className={styles.book3DContainer}
-              style={{ rotateY: bookRotateY, scale: bookScale }}
+              style={{ scale: bookScale }}
             >
-              {/* Inside Page (Page 31 Speech Diagram - Scaled Big for Clarity) */}
+              {/* Inside Page (Page 31 Speech Diagram) */}
               <div className={styles.bookInsidePage}>
                 <motion.img 
                   src="/images/page31.jpeg" 
@@ -54,7 +49,7 @@ export default function LookInside() {
                 />
               </div>
 
-              {/* Cover Matching Reference Image 1 */}
+              {/* Exact Dark Teal Cover matching reference */}
               <motion.div 
                 className={styles.bookFrontCover}
                 style={{ rotateY: coverRotateY }}

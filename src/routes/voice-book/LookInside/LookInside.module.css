@@ -1,63 +1,60 @@
 .section { 
   position: relative; 
-  padding: 100px 20px; 
+  padding: 80px 20px; 
   text-align: center; 
   overflow: hidden; 
-  height: 180vh; /* Smooth scroll travel space */
+  height: 200vh; /* Scroll space taake user araam se section mein ruk kar review kar sake */
 }
 
 .bg { 
-  background: #f4ede2; /* Cream background matching reference site */
+  background: #f4ede2; 
 }
 
 .container { 
   max-width: 1240px; 
   margin: 0 auto; 
   position: sticky; 
-  top: 80px; 
+  top: 50px; 
 }
 
 .sectionHeadline {
   font-family: Georgia, serif;
   font-size: clamp(30px, 4.2vw, 48px);
   color: #133d41;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  text-align: center;
 }
 
 .heroGrid { 
   display: grid; 
   grid-template-columns: 1fr; 
-  gap: 60px; 
+  gap: 50px; 
   align-items: center; 
   text-align: left; 
 }
 
 @media (min-width: 900px) { 
-  .heroGrid { grid-template-columns: 1.15fr 0.85fr; } 
+  .heroGrid { grid-template-columns: 1.1fr 0.9fr; } 
 }
 
-/* 3D Animation Stage */
 .animationStage {
   perspective: 1500px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 480px;
+  min-height: 460px;
 }
 
 .book3DContainer {
   position: relative;
-  width: 320px;
-  height: 440px;
+  width: 330px;
+  height: 450px;
   transform-style: preserve-3d;
-  box-shadow: -20px 25px 45px rgba(0, 0, 0, 0.22);
+  box-shadow: -20px 25px 45px rgba(0, 0, 0, 0.25);
   border-radius: 4px 8px 8px 4px;
-  transition: box-shadow 0.3s ease;
 }
 
-/* Inside Page with Acoustic Diagram */
 .bookInsidePage {
   position: absolute;
   inset: 0;
@@ -67,7 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px;
+  padding: 12px;
   border-left: 6px solid #dcd1b8;
   box-shadow: inset 10px 0 20px rgba(0,0,0,0.06);
 }
@@ -78,11 +75,11 @@
   object-fit: contain;
 }
 
-/* Exact Cover Styling matching Screenshot (965) */
+/* Exact Deep Teal/Green Cover Color matching reference image */
 .bookFrontCover {
   position: absolute;
   inset: 0;
-  background: #0f2b2e; /* Exact Dark Forest Teal Color */
+  background: #0f2b2e; 
   color: #ffffff;
   border-radius: 4px 8px 8px 4px;
   transform-origin: left center;
@@ -92,7 +89,7 @@
   justify-content: center;
   text-align: center;
   backface-visibility: hidden;
-  box-shadow: inset -2px 0 10px rgba(0,0,0,0.4);
+  box-shadow: inset -2px 0 12px rgba(0,0,0,0.5);
   border-left: 4px solid #1a4246;
 }
 
@@ -110,20 +107,19 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 11px;
   letter-spacing: 0.22em;
-  color: #a3b899; /* Muted soft sage/gold text */
-  margin-top: 20px;
+  color: #a3b899; 
+  margin-top: 15px;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 .coverTitle {
   font-family: Georgia, serif;
-  font-size: 27px;
-  letter-spacing: 0.1em;
+  font-size: 28px;
+  letter-spacing: 0.08em;
   color: #f7f3eb;
-  line-height: 1.25;
+  line-height: 1.2;
   font-weight: 600;
-  margin: 10px 0;
 }
 
 .coverAuthor {
@@ -132,7 +128,6 @@
   color: #bdcaa9;
   letter-spacing: 0.04em;
   font-style: italic;
-  margin: 0;
 }
 
 .coverHint {
@@ -140,10 +135,9 @@
   font-size: 12px;
   color: #7b9496;
   letter-spacing: 0.08em;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-/* Text Column */
 .textCol { 
   display: flex; 
   flex-direction: column; 
@@ -155,7 +149,7 @@
   font-size: clamp(32px, 4.2vw, 48px); 
   line-height: 1.15; 
   color: #133d41; 
-  margin: 0 0 20px; 
+  margin: 0 0 18px; 
   font-weight: 700; 
 }
 
@@ -163,11 +157,11 @@
   font-size: clamp(16px, 1.8vw, 19.5px); 
   color: #4b4a42; 
   line-height: 1.65; 
-  margin: 0 0 28px; 
+  margin: 0 0 24px; 
 }
 
 .ctaWrapper { 
-  margin-bottom: 24px; 
+  margin-bottom: 22px; 
 }
 
 .bigSubText { 
