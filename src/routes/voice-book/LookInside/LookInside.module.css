@@ -1,12 +1,12 @@
-.section { position: relative; padding: 120px 20px; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 120px 20px; text-align: center; overflow: hidden; height: 160vh; /* Scroll space dene ke liye height barhayi hai taake smooth open ho */ }
 .bg { background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); }
-.container { max-width: 1200px; margin: 0 auto; }
+.container { max-width: 1200px; margin: 0 auto; position: sticky; top: 60px; }
 
 .sectionHeadline {
   font-family: Georgia, serif;
   font-size: clamp(28px, 4vw, 42px);
   color: #133d41;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   font-weight: 700;
 }
 
@@ -22,25 +22,23 @@
   .heroGrid { grid-template-columns: 1.1fr 0.9fr; } 
 }
 
-/* 3D Perspective Stage for Smooth Rotation */
 .animationStage {
-  perspective: 1200px;
+  perspective: 1400px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 400px;
+  min-height: 420px;
 }
 
 .book3DContainer {
   position: relative;
-  width: 320px;
-  height: 440px;
+  width: 310px;
+  height: 430px;
   transform-style: preserve-3d;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  box-shadow: -15px 20px 35px rgba(0, 0, 0, 0.25);
+  border-radius: 4px 8px 8px 4px;
 }
 
-/* Inside Page with Acoustic Diagram */
 .bookInsidePage {
   position: absolute;
   inset: 0;
@@ -50,8 +48,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  border-left: 4px solid #d4c5a0;
+  padding: 12px;
+  border-left: 5px solid #d4c5a0;
 }
 
 .diagramImg {
@@ -60,11 +58,11 @@
   object-fit: contain;
 }
 
-/* Front Gold Cover opening to the Left */
+/* Brown Cover styling with text */
 .bookFrontCover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #c99a3a 0%, #8c671e 100%);
+  background: linear-gradient(135deg, #283638 0%, #133d41 100%); /* Elegant dark-green / luxury leather theme */
   color: #fff;
   border-radius: 4px 8px 8px 4px;
   transform-origin: left center;
@@ -74,20 +72,50 @@
   justify-content: center;
   text-align: center;
   backface-visibility: hidden;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+  border-left: 3px solid #e6b54e;
 }
 
-.coverContent h3 {
+.coverContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.coverBadge {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #e6b54e;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.coverTitle {
   font-family: Georgia, serif;
-  font-size: 28px;
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
-  color: #fce8b8;
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  color: #f9f5ee;
+  line-height: 1.2;
 }
 
-.coverContent p {
+.coverAuthor {
   font-size: 14px;
-  color: #e2cb96;
+  color: #bfa878;
+  letter-spacing: 0.05em;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.coverHint {
+  font-size: 12px;
+  color: #8c9e9f;
+  letter-spacing: 0.1em;
+  animation: pulse 2s infinite;
 }
 
 /* Text Column */
