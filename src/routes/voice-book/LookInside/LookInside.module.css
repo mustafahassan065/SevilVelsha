@@ -1,55 +1,75 @@
-.section { position: relative; padding: 120px 20px; text-align: center; overflow: hidden; height: 160vh; /* Scroll space dene ke liye height barhayi hai taake smooth open ho */ }
-.bg { background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); }
-.container { max-width: 1200px; margin: 0 auto; position: sticky; top: 60px; }
+.section { 
+  position: relative; 
+  padding: 100px 20px; 
+  text-align: center; 
+  overflow: hidden; 
+  height: 180vh; /* Smooth scroll travel space */
+}
+
+.bg { 
+  background: #f4ede2; /* Cream background matching reference site */
+}
+
+.container { 
+  max-width: 1240px; 
+  margin: 0 auto; 
+  position: sticky; 
+  top: 80px; 
+}
 
 .sectionHeadline {
   font-family: Georgia, serif;
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(30px, 4.2vw, 48px);
   color: #133d41;
   margin-bottom: 40px;
   font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .heroGrid { 
   display: grid; 
   grid-template-columns: 1fr; 
-  gap: 48px; 
+  gap: 60px; 
   align-items: center; 
   text-align: left; 
 }
 
 @media (min-width: 900px) { 
-  .heroGrid { grid-template-columns: 1.1fr 0.9fr; } 
+  .heroGrid { grid-template-columns: 1.15fr 0.85fr; } 
 }
 
+/* 3D Animation Stage */
 .animationStage {
-  perspective: 1400px;
+  perspective: 1500px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 420px;
+  min-height: 480px;
 }
 
 .book3DContainer {
   position: relative;
-  width: 310px;
-  height: 430px;
+  width: 320px;
+  height: 440px;
   transform-style: preserve-3d;
-  box-shadow: -15px 20px 35px rgba(0, 0, 0, 0.25);
+  box-shadow: -20px 25px 45px rgba(0, 0, 0, 0.22);
   border-radius: 4px 8px 8px 4px;
+  transition: box-shadow 0.3s ease;
 }
 
+/* Inside Page with Acoustic Diagram */
 .bookInsidePage {
   position: absolute;
   inset: 0;
-  background: #fff;
-  border-radius: 0 8px 8px 0;
+  background: #ffffff;
+  border-radius: 0 6px 6px 0;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  border-left: 5px solid #d4c5a0;
+  padding: 14px;
+  border-left: 6px solid #dcd1b8;
+  box-shadow: inset 10px 0 20px rgba(0,0,0,0.06);
 }
 
 .diagramImg {
@@ -58,12 +78,12 @@
   object-fit: contain;
 }
 
-/* Brown Cover styling with text */
+/* Exact Cover Styling matching Screenshot (965) */
 .bookFrontCover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #283638 0%, #133d41 100%); /* Elegant dark-green / luxury leather theme */
-  color: #fff;
+  background: #0f2b2e; /* Exact Dark Forest Teal Color */
+  color: #ffffff;
   border-radius: 4px 8px 8px 4px;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -72,63 +92,108 @@
   justify-content: center;
   text-align: center;
   backface-visibility: hidden;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
-  border-left: 3px solid #e6b54e;
+  box-shadow: inset -2px 0 10px rgba(0,0,0,0.4);
+  border-left: 4px solid #1a4246;
 }
 
 .coverContent {
-  padding: 24px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .coverBadge {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 11px;
-  letter-spacing: 0.25em;
-  color: #e6b54e;
-  margin-bottom: 14px;
+  letter-spacing: 0.22em;
+  color: #a3b899; /* Muted soft sage/gold text */
+  margin-top: 20px;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 .coverTitle {
   font-family: Georgia, serif;
-  font-size: 26px;
-  letter-spacing: 0.08em;
-  margin-bottom: 10px;
-  color: #f9f5ee;
-  line-height: 1.2;
+  font-size: 27px;
+  letter-spacing: 0.1em;
+  color: #f7f3eb;
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 10px 0;
 }
 
 .coverAuthor {
-  font-size: 14px;
-  color: #bfa878;
-  letter-spacing: 0.05em;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  color: #bdcaa9;
+  letter-spacing: 0.04em;
   font-style: italic;
-  margin-bottom: 40px;
+  margin: 0;
 }
 
 .coverHint {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 12px;
-  color: #8c9e9f;
-  letter-spacing: 0.1em;
-  animation: pulse 2s infinite;
+  color: #7b9496;
+  letter-spacing: 0.08em;
+  margin-bottom: 15px;
 }
 
 /* Text Column */
-.textCol { display: flex; flex-direction: column; justify-content: center; }
-.heroTitle { font-family: Georgia, serif; font-size: clamp(30px, 4vw, 44px); line-height: 1.18; color: #133d41; margin: 0 0 20px; font-weight: 700; }
-.heroSubtitle { font-size: clamp(16px, 1.8vw, 19px); color: #4b4a42; line-height: 1.65; margin: 0 0 28px; }
-.ctaWrapper { margin-bottom: 24px; }
-.bigSubText { font-family: Georgia, serif; font-size: 18px; font-weight: 700; color: #133d41; margin: 0; }
+.textCol { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+}
+
+.heroTitle { 
+  font-family: Georgia, serif; 
+  font-size: clamp(32px, 4.2vw, 48px); 
+  line-height: 1.15; 
+  color: #133d41; 
+  margin: 0 0 20px; 
+  font-weight: 700; 
+}
+
+.heroSubtitle { 
+  font-size: clamp(16px, 1.8vw, 19.5px); 
+  color: #4b4a42; 
+  line-height: 1.65; 
+  margin: 0 0 28px; 
+}
+
+.ctaWrapper { 
+  margin-bottom: 24px; 
+}
+
+.bigSubText { 
+  font-family: Georgia, serif; 
+  font-size: 18px; 
+  font-weight: 700; 
+  color: #133d41; 
+  margin: 0; 
+  line-height: 1.4;
+}
 
 .buyButton {
-  display: inline-flex; align-items: center; justify-content: center;
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
   background: linear-gradient(180deg, #e6b54e 0%, #c99a3a 100%);
-  color: #1c1608; font-weight: 700; font-size: 19px;
-  padding: 18px 42px; border-radius: 999px; text-decoration: none;
+  color: #1c1608; 
+  font-weight: 700; 
+  font-size: 20px;
+  padding: 18px 44px; 
+  border-radius: 999px; 
+  text-decoration: none;
   box-shadow: 0 8px 20px rgba(191, 145, 57, 0.4);
+  transition: transform .15s ease, filter .15s ease;
+}
+.buyButton:hover { 
+  transform: translateY(-2px); 
+  filter: brightness(1.05); 
 }

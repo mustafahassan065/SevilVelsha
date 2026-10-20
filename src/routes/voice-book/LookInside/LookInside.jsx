@@ -7,24 +7,26 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 export default function LookInside() {
   const containerRef = useRef(null);
 
-  // Scroll Progress Tracking
+  // Scroll Progress Track
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Smooth Spring Physics lagayi hai taake fast ya jerky na lage, bilkul smooth open ho
+  // Smooth Spring Physics for Natural Scroll
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 40,
-    damping: 25,
-    restDelta: 0.001
+    stiffness: 35,
+    damping: 22,
+    restDelta: 0.001,
   });
 
-  // Scroll ke sath Smooth 3D Transformations
-  const bookRotateY = useTransform(smoothProgress, [0, 0.7], [-30, 0]);
-  const coverRotateY = useTransform(smoothProgress, [0.1, 0.8], [0, -180]); // Aaram se 180 degree open hoga
-  const bookScale = useTransform(smoothProgress, [0.1, 0.6], [0.9, 1]);
-  const diagramOpacity = useTransform(smoothProgress, [0.4, 0.7], [0, 1]);
+  // Scroll Transforms: Scale Up for Clear Image View on Open
+  const bookRotateY = useTransform(smoothProgress, [0, 0.6], [-28, 0]);
+  const coverRotateY = useTransform(smoothProgress, [0.1, 0.85], [0, -180]);
+  
+  // Book size increases as it opens so inside page diagram is clearly readable
+  const bookScale = useTransform(smoothProgress, [0.1, 0.8], [1, 1.22]);
+  const diagramOpacity = useTransform(smoothProgress, [0.35, 0.75], [0, 1]);
 
   return (
     <section ref={containerRef} className={`${styles.section} ${styles.bg}`}>
@@ -36,13 +38,13 @@ export default function LookInside() {
 
         <div className={styles.heroGrid}>
           
-          {/* 3D Scroll-Driven Book Animation Stage */}
+          {/* 3D Animated Book Container */}
           <div className={styles.animationStage}>
             <motion.div 
               className={styles.book3DContainer}
               style={{ rotateY: bookRotateY, scale: bookScale }}
             >
-              {/* Inside Page (Page 31 Speech Diagram) */}
+              {/* Inside Page (Page 31 Speech Diagram - Scaled Big for Clarity) */}
               <div className={styles.bookInsidePage}>
                 <motion.img 
                   src="/images/page31.jpeg" 
@@ -52,7 +54,7 @@ export default function LookInside() {
                 />
               </div>
 
-              {/* Front Brown Cover with Text */}
+              {/* Cover Matching Reference Image 1 */}
               <motion.div 
                 className={styles.bookFrontCover}
                 style={{ rotateY: coverRotateY }}
