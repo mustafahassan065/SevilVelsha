@@ -15,8 +15,6 @@ export default function SameWords() {
         <div className={styles.videoBox} onClick={() => !playing && setPlaying(true)}>
           {!playing ? (
             <>
-              {/* IMAGE PLACEHOLDER: Video Thumbnail Image */}
-              {/* Path: /public/thumbnails/thumbnailupdate.png */}
               <img 
                 src="/thumbnails/thumbnailupdate.png" 
                 alt="Voice Control Demo Video" 
@@ -35,7 +33,7 @@ export default function SameWords() {
           )}
         </div>
 
-        {/* Audio Controls for Voice Comparison */}
+        {/* Audio Controls */}
         <div className={styles.audioControlsContainer}>
           <p className={styles.audioGuideText}>Listen, practise, and improve your own speaking:</p>
           <div className={styles.audioRow}>

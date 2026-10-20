@@ -7,7 +7,7 @@ export default function TrainingSystem() {
   return (
     <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
-        {/* 3 Icons in a Horizontal Row */}
+        {/* 3 Icons Horizontal Row */}
         <div className={styles.iconRow}>
           <div className={styles.iconCard}>
             <div className={styles.iconWrap}><BookIcon /></div>
