@@ -1,48 +1,53 @@
 .section {
   position: relative;
-  padding: 80px 20px;
+  padding: 90px 20px;
   text-align: center;
   background: #f4ede2;
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1550px; /* Enlarged max-width to accommodate 20% bigger book */
   margin: 0 auto;
 }
 
 /* Top Heading */
 .mainHeading {
   font-family: Georgia, serif;
-  font-size: clamp(34px, 5vw, 52px);
+  font-size: clamp(36px, 5vw, 54px);
   color: #133d41;
-  margin: 0 0 40px;
+  margin: 0 0 44px;
   font-weight: 700;
 }
 
-/* Spread Layout (30% Bigger for Laptops & Desktops) */
+/* Spread Layout */
 .bookSpreadWrapper {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
+}
+
+.openBookOuter {
+  width: 100%;
+  max-width: 1400px; /* 20% Bigger book preview container */
+  perspective: 1200px;
 }
 
 .openBook {
   display: flex;
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.22);
   overflow: hidden;
-  position: relative;
-  max-width: 1280px; /* 30% larger width */
   width: 100%;
   border: 1px solid #e2d7c3;
+  transform-style: preserve-3d;
 }
 
 /* Spine effect between pages */
 .bookSpine {
-  width: 14px;
+  width: 16px;
   background: linear-gradient(90deg, rgba(0,0,0,0.18) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.18) 100%);
   flex-shrink: 0;
   z-index: 2;
@@ -57,13 +62,13 @@
   align-items: center;
   justify-content: center;
   background: #fff;
-  padding: 16px;
+  padding: 18px;
 }
 
 .bookPageImg {
   width: 100%;
   height: auto;
-  max-height: 750px; /* 30% larger image height */
+  max-height: 880px; /* Increased 20% more height for absolute desktop readability */
   object-fit: contain;
   display: block;
   transition: transform 0.25s ease;
@@ -99,14 +104,14 @@
   background: #133d41;
   color: #ffffff;
   border: none;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  font-size: 32px;
+  font-size: 34px;
   line-height: 1;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
   transition: background 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
@@ -119,20 +124,30 @@
   transform: translateY(-50%) scale(1.08);
 }
 
-.prevBtn { left: -24px; }
-.nextBtn { right: -24px; }
+.prevBtn { left: -28px; }
+.nextBtn { right: -28px; }
 
-/* Description Below */
-.description {
+/* Page Number Indicator */
+.pageIndicator {
   font-family: Georgia, serif;
-  font-size: clamp(17px, 2.2vw, 21px);
-  color: #4b4a42;
-  max-width: 850px;
-  margin: 0 auto 32px;
-  line-height: 1.6;
+  font-size: 15px;
+  font-weight: 600;
+  color: #a8802c;
+  margin-bottom: 35px; /* Doubled space for breathing */
+  letter-spacing: 0.05em;
 }
 
-/* Gold Button */
+/* Description with Doubled Spacing (Breathing room) */
+.description {
+  font-family: Georgia, serif;
+  font-size: clamp(18px, 2.3vw, 22px);
+  color: #4b4a42;
+  max-width: 880px;
+  margin: 0 auto 55px; /* Doubled margin bottom for ample breathing space */
+  line-height: 1.65;
+}
+
+/* Gold Button with Proper Spacing */
 .ctaWrapper {
   margin-top: 10px;
 }
@@ -204,33 +219,37 @@
 /* Mobile Devices Optimization */
 @media (max-width: 768px) {
   .section {
-    padding: 50px 16px;
+    padding: 60px 16px;
   }
 
   .bookSpreadWrapper {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   .openBook {
     flex-direction: column;
-    max-width: 100%;
   }
 
   .bookSpine {
     display: none;
   }
 
-  /* Show 1 large page at a time on Mobile */
+  /* Show 1 large readable page at a time on Mobile */
   .pageContainer:nth-child(3) {
     display: none;
   }
 
   .bookPageImg {
-    max-height: 520px;
+    max-height: 600px; /* Enlarged mobile page size */
   }
 
-  .prevBtn { left: -10px; width: 44px; height: 44px; font-size: 26px; }
-  .nextBtn { right: -10px; width: 44px; height: 44px; font-size: 26px; }
+  .prevBtn { left: -8px; width: 44px; height: 44px; font-size: 26px; }
+  .nextBtn { right: -8px; width: 44px; height: 44px; font-size: 26px; }
+
+  .description {
+    margin-bottom: 40px; /* Scaled breathing space for mobile */
+    padding: 0 10px;
+  }
 
   .buyButton {
     width: 100%;
