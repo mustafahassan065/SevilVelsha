@@ -13,7 +13,7 @@ function VoiceBookPage() {
       <Header />
       <Hero />
       <div id="lookInside"><LookInside /></div>
-      <div id="sameWords"><SameWords /></div>
+      
       <div id="science"><ScienceSection /></div>
       <div id="system"><TrainingSystem /></div>
       <div id="getCopy"><FinalCTA /></div>
