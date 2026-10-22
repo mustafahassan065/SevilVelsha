@@ -9,7 +9,7 @@ const bookSpreads = [
   {
     id: 1,
     leftImg: "/images/page31.jpeg",
-    rightImg: "/images/page-32.png",
+    rightImg: "/images/page32.jpeg",
     leftAlt: "Voice Control Book - Left Page",
     rightAlt: "Voice Control Book - Right Page",
   },
