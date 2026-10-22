@@ -15,7 +15,7 @@ export default function ScienceSection() {
           {/* Author Photo Column */}
           <div className={styles.imageCol}>
             <img 
-              src="/images/page31.jpeg" 
+              src="/images/audit-hero.png" 
               alt="Sevil Velsha - Voice Researcher" 
               className={styles.authorImg} 
             />
