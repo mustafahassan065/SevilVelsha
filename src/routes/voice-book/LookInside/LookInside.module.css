@@ -1,193 +1,148 @@
 .section { 
   position: relative; 
-  padding: 80px 20px; 
+  padding: 100px 20px; 
   text-align: center; 
-  overflow: hidden; 
-  height: 200vh; /* Scroll space taake user araam se section mein ruk kar review kar sake */
+  background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); 
 }
-
-.bg { 
-  background: #f4ede2; 
-}
-
-.container { 
-  max-width: 1240px; 
-  margin: 0 auto; 
-  position: sticky; 
-  top: 50px; 
-}
+.container { max-width: 1200px; margin: 0 auto; }
 
 .sectionHeadline {
   font-family: Georgia, serif;
-  font-size: clamp(30px, 4.2vw, 48px);
+  font-size: clamp(30px, 4.5vw, 46px);
   color: #133d41;
-  margin-bottom: 35px;
+  margin-bottom: 12px;
   font-weight: 700;
+}
+.sectionSub {
+  font-size: 18px;
+  color: #4b4a42;
+  margin-bottom: 50px;
+}
+
+.previewWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
+  align-items: center;
+  text-align: left;
+}
+@media (min-width: 900px) {
+  .previewWrapper {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.bookViewer {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(90, 64, 12, 0.15);
+  border: 1px solid #ebe0c8;
+}
+
+.pageCard {
   text-align: center;
 }
 
-.heroGrid { 
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 50px; 
-  align-items: center; 
-  text-align: left; 
-}
-
-@media (min-width: 900px) { 
-  .heroGrid { grid-template-columns: 1.1fr 0.9fr; } 
-}
-
-.animationStage {
-  perspective: 1500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 460px;
-}
-
-.book3DContainer {
-  position: relative;
-  width: 330px;
-  height: 450px;
-  transform-style: preserve-3d;
-  box-shadow: -20px 25px 45px rgba(0, 0, 0, 0.25);
-  border-radius: 4px 8px 8px 4px;
-}
-
-.bookInsidePage {
-  position: absolute;
-  inset: 0;
-  background: #ffffff;
-  border-radius: 0 6px 6px 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  border-left: 6px solid #dcd1b8;
-  box-shadow: inset 10px 0 20px rgba(0,0,0,0.06);
-}
-
-.diagramImg {
+.pageImg {
   width: 100%;
-  height: 100%;
+  max-height: 400px;
   object-fit: contain;
-}
-/* Book Front Cover - Same Gold Gradient as CTA Button */
-.bookFrontCover {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #e6b54e 0%, #c99a3a 100%); /* Same CTA Button Color */
-  color: #133d41;
-  border-radius: 4px 8px 8px 4px;
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  backface-visibility: hidden;
-  box-shadow: inset -2px 0 12px rgba(0, 0, 0, 0.15), 0 12px 28px rgba(191, 145, 57, 0.35);
-  border-left: 4px solid #b3852b;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #eee;
 }
 
-.coverContent {
-  padding: 30px 20px;
+.pageInfo h4 {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  color: #133d41;
+  margin: 0 0 6px;
+}
+
+.pageInfo p {
+  font-size: 14.5px;
+  color: #4b4a42;
+  margin: 0 0 20px;
+}
+
+.navControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0e6d0;
+  padding-top: 16px;
+}
+
+.navBtn {
+  background: #f3ebdc;
+  border: 1px solid #dcd1b8;
+  color: #133d41;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.navBtn:hover {
+  background: #e6b54e;
+  color: #fff;
+  border-color: #e6b54e;
+}
+
+.pageCounter {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a8802c;
+}
+
+.textCol {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  box-sizing: border-box;
+  justify-content: center;
 }
 
-.coverBadge {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  color: #1c1608;
-  margin-top: 15px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.coverTitle {
+.boxTitle {
   font-family: Georgia, serif;
-  font-size: 28px;
-  letter-spacing: 0.08em;
+  font-size: clamp(26px, 3.5vw, 38px);
   color: #133d41;
   line-height: 1.2;
-  font-weight: 800;
+  margin: 0 0 16px;
 }
 
-.coverAuthor {
-  font-family: Georgia, serif;
-  font-size: 15px;
-  color: #2a1f08;
-  letter-spacing: 0.04em;
-  font-style: italic;
-  font-weight: 600;
+.boxDesc {
+  font-size: 17px;
+  color: #4b4a42;
+  line-height: 1.65;
+  margin: 0 0 24px;
 }
 
-.coverHint {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 12px;
-  color: #3d3012;
-  letter-spacing: 0.08em;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-.textCol { 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-}
-
-.heroTitle { 
-  font-family: Georgia, serif; 
-  font-size: clamp(32px, 4.2vw, 48px); 
-  line-height: 1.15; 
-  color: #133d41; 
-  margin: 0 0 18px; 
-  font-weight: 700; 
-}
-
-.heroSubtitle { 
-  font-size: clamp(16px, 1.8vw, 19.5px); 
-  color: #4b4a42; 
-  line-height: 1.65; 
-  margin: 0 0 24px; 
-}
-
-.ctaWrapper { 
-  margin-bottom: 22px; 
-}
-
-.bigSubText { 
-  font-family: Georgia, serif; 
-  font-size: 18px; 
-  font-weight: 700; 
-  color: #133d41; 
-  margin: 0; 
-  line-height: 1.4;
+.ctaWrapper {
+  margin-bottom: 20px;
 }
 
 .buyButton {
-  display: inline-flex; 
-  align-items: center; 
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
   background: linear-gradient(180deg, #e6b54e 0%, #c99a3a 100%);
-  color: #1c1608; 
-  font-weight: 700; 
-  font-size: 20px;
-  padding: 18px 44px; 
-  border-radius: 999px; 
+  color: #1c1608;
+  font-weight: 700;
+  font-size: 19px;
+  padding: 16px 40px;
+  border-radius: 999px;
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(191, 145, 57, 0.4);
-  transition: transform .15s ease, filter .15s ease;
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
-.buyButton:hover { 
-  transform: translateY(-2px); 
-  filter: brightness(1.05); 
+.buyButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.featuresList {
+  font-size: 15px;
+  color: #133d41;
+  font-weight: 600;
+  margin: 0;
 }

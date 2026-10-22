@@ -1,85 +1,82 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useState } from "react";
 import styles from "./LookInside.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
+// Sample book pages / diagrams list for interactive preview
+const bookPages = [
+  { id: 1, title: "Page 31: Acoustic Speech Diagram", img: "/images/page31.jpeg", desc: "Visible sound patterns, pitch contours, and emphasis." },
+  { id: 2, title: "Page 32: Delivery Analysis", img: "/images/page-32.png", desc: "Pauses and rhythm structure for executive presence." },
+  { id: 3, title: "Voice Exercises & Practice", img: "/images/page31.jpeg", desc: "Practical drills to train your vocal delivery immediately." }
+];
+
 export default function LookInside() {
-  const containerRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const handleNext = () => {
+    setCurrentPage((prev) => (prev + 1) % bookPages.length);
+  };
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 20,
-    restDelta: 0.001,
-  });
-
-  // Jaise hi user section mein enter karega (0 se 0.3 scroll par), book foran open ho jayegi aur wahi khuli rahegi
-  const coverRotateY = useTransform(smoothProgress, [0.05, 0.35], [0, -180]);
-  const diagramOpacity = useTransform(smoothProgress, [0.15, 0.35], [0, 1]);
-  const bookScale = useTransform(smoothProgress, [0.05, 0.35], [1, 1.12]);
+  const handlePrev = () => {
+    setCurrentPage((prev) => (prev - 1 + bookPages.length) % bookPages.length);
+  };
 
   return (
-    <section ref={containerRef} className={`${styles.section} ${styles.bg}`}>
+    <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
         
         <h2 className={styles.sectionHeadline}>
-          Open the Book. Discover the Power of Your Voice.
+          Preview — Look Inside the Book
         </h2>
+        <p className={styles.sectionSub}>
+          Explore real acoustic diagrams and training pages directly from the book.
+        </p>
 
-        <div className={styles.heroGrid}>
+        <div className={styles.previewWrapper}>
           
-          {/* 3D Animated Book Stage */}
-          <div className={styles.animationStage}>
-            <motion.div 
-              className={styles.book3DContainer}
-              style={{ scale: bookScale }}
-            >
-              {/* Inside Page (Page 31 Speech Diagram) */}
-              <div className={styles.bookInsidePage}>
-                <motion.img 
-                  src="/images/page31.jpeg" 
-                  alt="Voice Diagram Page 31" 
-                  className={styles.diagramImg}
-                  style={{ opacity: diagramOpacity }}
-                />
+          {/* Interactive Book Display / Viewer */}
+          <div className={styles.bookViewer}>
+            <div className={styles.pageCard}>
+              <img 
+                src={bookPages[currentPage].img} 
+                alt={bookPages[currentPage].title} 
+                className={styles.pageImg} 
+              />
+              <div className={styles.pageInfo}>
+                <h4>{bookPages[currentPage].title}</h4>
+                <p>{bookPages[currentPage].desc}</p>
               </div>
+            </div>
 
-              {/* Exact Dark Teal Cover matching reference */}
-              <motion.div 
-                className={styles.bookFrontCover}
-                style={{ rotateY: coverRotateY }}
-              >
-                <div className={styles.coverContent}>
-                  <span className={styles.coverBadge}>DIGITAL BOOK</span>
-                  <h3 className={styles.coverTitle}>VOICE CONTROL</h3>
-                  <p className={styles.coverAuthor}>Sevil Velsha</p>
-                  <span className={styles.coverHint}>Scroll to open ↓</span>
-                </div>
-              </motion.div>
-            </motion.div>
+            {/* Navigation Arrows */}
+            <div className={styles.navControls}>
+              <button onClick={handlePrev} className={styles.navBtn} aria-label="Previous Page">
+                ← Prev
+              </button>
+              <span className={styles.pageCounter}>
+                Page {currentPage + 1} of {bookPages.length}
+              </span>
+              <button onClick={handleNext} className={styles.navBtn} aria-label="Next Page">
+                Next →
+              </button>
+            </div>
           </div>
 
-          {/* Right Text Column */}
+          {/* Right Column: CTA & Summary */}
           <div className={styles.textCol}>
-            <h1 className={styles.heroTitle}>See What Makes a Voice Powerful.</h1>
-            
-            <p className={styles.heroSubtitle}>
-              Your voice leaves a visible pattern. Discover how pitch, pauses, and emphasis influence the way your words are heard.
+            <h3 className={styles.boxTitle}>Open the Book. Discover the Power of Your Voice.</h3>
+            <p className={styles.boxDesc}>
+              Your voice leaves a visible pattern. Use these exact diagrams and exercises to transform how your speech is delivered and heard.
             </p>
             
             <div className={styles.ctaWrapper}>
               <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
-                Get Voice Control — $29 →
+                Get the Complete Book — $29 →
               </a>
             </div>
 
-            <p className={styles.bigSubText}>
-              Voice diagrams · 70+ audio demonstrations · Practical exercises
+            <p className={styles.featuresList}>
+              ✓ Voice diagrams &nbsp;·&nbsp; ✓ 70+ audio demos &nbsp;·&nbsp; ✓ Practical exercises
             </p>
           </div>
 
