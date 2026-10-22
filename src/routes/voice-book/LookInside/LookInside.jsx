@@ -3,85 +3,120 @@ import styles from "./LookInside.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
-// Sample book pages / diagrams list for interactive preview
-const bookPages = [
-  { id: 1, title: "Acoustic Speech Diagram", img: "/images/page31.jpeg", desc: "Visible sound patterns, pitch contours, and emphasis." },
-  { id: 2, title: "Delivery Analysis", img: "/images/page32.jpeg", desc: "Pauses and rhythm structure for executive presence." },
-  { id: 3, title: "The Purpose", img: "/images/page4.jpeg", desc: "Practical drills to train your vocal delivery immediately." }
+// Book spreads (Left page + Right page pairs)
+const bookSpreads = [
+  {
+    id: 1,
+    leftImg: "/images/page31.jpeg",
+    rightImg: "/images/page32.jpeg",
+    leftAlt: "Voice Control Book - Left Page",
+    rightAlt: "Voice Control Book - Right Page",
+  },
+  {
+    id: 2,
+    leftImg: "/images/page32.jpeg",
+    rightImg: "/images/page31.jpeg",
+    leftAlt: "Voice Control Book - Exercises Left Page",
+    rightAlt: "Voice Control Book - Exercises Right Page",
+  }
 ];
 
 export default function LookInside() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentSpreadIndex, setCurrentSpreadIndex] = useState(0);
+  const [activeZoomImg, setActiveZoomImg] = useState(null);
+
+  const currentSpread = bookSpreads[currentSpreadIndex];
 
   const handleNext = () => {
-    setCurrentPage((prev) => (prev + 1) % bookPages.length);
+    setCurrentSpreadIndex((prev) => (prev + 1) % bookSpreads.length);
   };
 
   const handlePrev = () => {
-    setCurrentPage((prev) => (prev - 1 + bookPages.length) % bookPages.length);
+    setCurrentSpreadIndex((prev) => (prev - 1 + bookSpreads.length) % bookSpreads.length);
   };
 
   return (
     <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
         
-        <h2 className={styles.sectionHeadline}>
-          Preview — Look Inside the Book
-        </h2>
-        <p className={styles.sectionSub}>
-          Explore real acoustic diagrams and training pages directly from the book.
-        </p>
+        {/* 1. Top Simple Heading */}
+        <h2 className={styles.mainHeading}>Book Preview</h2>
 
-        <div className={styles.previewWrapper}>
+        {/* 2 & 4. Physical Open Book Spread + Page Turning Navigation */}
+        <div className={styles.bookSpreadWrapper}>
           
-          {/* Interactive Book Display / Viewer */}
-          <div className={styles.bookViewer}>
-            <div className={styles.pageCard}>
+          <button 
+            onClick={handlePrev} 
+            className={`${styles.navBtn} ${styles.prevBtn}`} 
+            aria-label="Previous Pages"
+          >
+            ‹
+          </button>
+
+          {/* Open Physical Book Container */}
+          <div className={styles.openBook}>
+            <div 
+              className={styles.pageContainer} 
+              onClick={() => setActiveZoomImg(currentSpread.leftImg)}
+              title="Click to zoom page"
+            >
               <img 
-                src={bookPages[currentPage].img} 
-                alt={bookPages[currentPage].title} 
-                className={styles.pageImg} 
+                src={currentSpread.leftImg} 
+                alt={currentSpread.leftAlt} 
+                className={styles.bookPageImg} 
               />
-              <div className={styles.pageInfo}>
-                <h4>{bookPages[currentPage].title}</h4>
-                <p>{bookPages[currentPage].desc}</p>
-              </div>
+              <span className={styles.zoomBadge}>🔍 Click to zoom</span>
             </div>
 
-            {/* Navigation Arrows */}
-            <div className={styles.navControls}>
-              <button onClick={handlePrev} className={styles.navBtn} aria-label="Previous Page">
-                ← Prev
-              </button>
-              <span className={styles.pageCounter}>
-                Page {currentPage + 1} of {bookPages.length}
-              </span>
-              <button onClick={handleNext} className={styles.navBtn} aria-label="Next Page">
-                Next →
-              </button>
+            <div className={styles.bookSpine}></div>
+
+            <div 
+              className={styles.pageContainer} 
+              onClick={() => setActiveZoomImg(currentSpread.rightImg)}
+              title="Click to zoom page"
+            >
+              <img 
+                src={currentSpread.rightImg} 
+                alt={currentSpread.rightAlt} 
+                className={styles.bookPageImg} 
+              />
+              <span className={styles.zoomBadge}>🔍 Click to zoom</span>
             </div>
           </div>
 
-          {/* Right Column: CTA & Summary */}
-          <div className={styles.textCol}>
-            <h3 className={styles.boxTitle}>Open the Book. Discover the Power of Your Voice.</h3>
-            <p className={styles.boxDesc}>
-              Your voice leaves a visible pattern. Use these exact diagrams and exercises to transform how your speech is delivered and heard.
-            </p>
-            
-            <div className={styles.ctaWrapper}>
-              <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
-                Get the Complete Book — $29 →
-              </a>
-            </div>
-
-            <p className={styles.featuresList}>
-              ✓ Voice diagrams &nbsp;·&nbsp; ✓ 70+ audio demos &nbsp;·&nbsp; ✓ Practical exercises
-            </p>
-          </div>
+          <button 
+            onClick={handleNext} 
+            className={`${styles.navBtn} ${styles.nextBtn}`} 
+            aria-label="Next Pages"
+          >
+            ›
+          </button>
 
         </div>
+
+        {/* 5. Short Description Below */}
+        <p className={styles.description}>
+          Acoustic diagrams, 70+ audio demonstrations, and practical exercises designed to train your vocal delivery.
+        </p>
+
+        {/* 6. Gold Purchase Button Below */}
+        <div className={styles.ctaWrapper}>
+          <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
+            Get the Complete Book — $29 →
+          </a>
+        </div>
+
       </div>
+
+      {/* 4. Click-to-Zoom Modal */}
+      {activeZoomImg && (
+        <div className={styles.modalOverlay} onClick={() => setActiveZoomImg(null)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeBtn} onClick={() => setActiveZoomImg(null)}>✕</button>
+            <img src={activeZoomImg} alt="Enlarged Book Page" className={styles.zoomedImg} />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
