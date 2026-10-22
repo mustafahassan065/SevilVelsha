@@ -6,8 +6,8 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 // Sample book pages / diagrams list for interactive preview
 const bookPages = [
   { id: 1, title: "Page 31: Acoustic Speech Diagram", img: "/images/page31.jpeg", desc: "Visible sound patterns, pitch contours, and emphasis." },
-  { id: 2, title: "Page 32: Delivery Analysis", img: "/images/page-32.png", desc: "Pauses and rhythm structure for executive presence." },
-  { id: 3, title: "Voice Exercises & Practice", img: "/images/page31.jpeg", desc: "Practical drills to train your vocal delivery immediately." }
+  { id: 2, title: "Page 32: Delivery Analysis", img: "/images/page-32.jpeg", desc: "Pauses and rhythm structure for executive presence." },
+  { id: 3, title: "Voice Exercises & Practice", img: "/images/page4.jpeg", desc: "Practical drills to train your vocal delivery immediately." }
 ];
 
 export default function LookInside() {
