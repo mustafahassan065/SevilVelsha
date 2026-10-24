@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "./LookInside.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
@@ -7,15 +7,15 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 const bookSpreads = [
   {
     id: 1,
-    leftImg: "/images/page33.jpeg",
-    rightImg: "/images/page34.jpeg",
+    leftImg: "/images/page31.jpeg",
+    rightImg: "/images/page32.jpeg",
     leftAlt: "Voice Control Book - Left Page",
     rightAlt: "Voice Control Book - Right Page",
   },
   {
     id: 2,
-    leftImg: "/images/page34.jpeg",
-    rightImg: "/images/page33.jpeg",
+    leftImg: "/images/page32.jpeg",
+    rightImg: "/images/page31.jpeg",
     leftAlt: "Voice Control Book - Exercises Left Page",
     rightAlt: "Voice Control Book - Exercises Right Page",
   }
@@ -23,19 +23,11 @@ const bookSpreads = [
 
 export default function LookInside() {
   const [currentSpreadIndex, setCurrentSpreadIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [activeZoomImg, setActiveZoomImg] = useState(null);
-
   const currentSpread = bookSpreads[currentSpreadIndex];
 
-  const handleNext = () => {
-    setDirection(1);
+  // Simple click to toggle spread smoothly like Apple's interactive cards
+  const handleToggleSpread = () => {
     setCurrentSpreadIndex((prev) => (prev + 1) % bookSpreads.length);
-  };
-
-  const handlePrev = () => {
-    setDirection(-1);
-    setCurrentSpreadIndex((prev) => (prev - 1 + bookSpreads.length) % bookSpreads.length);
   };
 
   return (
@@ -45,77 +37,47 @@ export default function LookInside() {
         {/* Simple Heading */}
         <h2 className={styles.mainHeading}>Book Preview</h2>
 
-        {/* Clean Apple-Style Smooth Animation Spread */}
-        <div className={styles.bookSpreadWrapper}>
-          
-          <button 
-            onClick={handlePrev} 
-            className={`${styles.navBtn} ${styles.prevBtn}`} 
-            aria-label="Previous Pages"
+        {/* Apple-Style Clean Interactive Open Book Showcase */}
+        <div className={styles.showcaseWrapper} onClick={handleToggleSpread} title="Click to flip pages">
+          <motion.div 
+            initial={{ opacity: 0, y: 30, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.openBookContainer}
           >
-            ‹
-          </button>
+            <div className={styles.openBook}>
+              
+              {/* Left Page */}
+              <div className={styles.pageContainer}>
+                <img 
+                  src={currentSpread.leftImg} 
+                  alt={currentSpread.leftAlt} 
+                  className={styles.bookPageImg} 
+                />
+              </div>
 
-          <div className={styles.openBookOuter}>
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div 
-                key={currentSpreadIndex}
-                custom={direction}
-                initial={{ opacity: 0, x: direction * 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction * -20 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className={styles.openBook}
-              >
-                {/* Left Page */}
-                <div 
-                  className={styles.pageContainer} 
-                  onClick={() => setActiveZoomImg(currentSpread.leftImg)}
-                  title="Click to zoom page"
-                >
-                  <img 
-                    src={currentSpread.leftImg} 
-                    alt={currentSpread.leftAlt} 
-                    className={styles.bookPageImg} 
-                  />
-                  <span className={styles.zoomBadge}>🔍 Click to zoom</span>
-                </div>
+              <div className={styles.bookSpine}></div>
 
-                <div className={styles.bookSpine}></div>
+              {/* Right Page */}
+              <div className={styles.pageContainer}>
+                <img 
+                  src={currentSpread.rightImg} 
+                  alt={currentSpread.rightAlt} 
+                  className={styles.bookPageImg} 
+                />
+              </div>
 
-                {/* Right Page */}
-                <div 
-                  className={styles.pageContainer} 
-                  onClick={() => setActiveZoomImg(currentSpread.rightImg)}
-                  title="Click to zoom page"
-                >
-                  <img 
-                    src={currentSpread.rightImg} 
-                    alt={currentSpread.rightAlt} 
-                    className={styles.bookPageImg} 
-                  />
-                  <span className={styles.zoomBadge}>🔍 Click to zoom</span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            </div>
+          </motion.div>
+
+          {/* Subtle click hint instead of distracting arrows */}
+          <div className={styles.interactionHint}>
+            Tap / Click book to explore next pages ({currentSpreadIndex + 1} of {bookSpreads.length})
           </div>
-
-          <button 
-            onClick={handleNext} 
-            className={`${styles.navBtn} ${styles.nextBtn}`} 
-            aria-label="Next Pages"
-          >
-            ›
-          </button>
-
         </div>
 
-        {/* Page Number Indicator */}
-        <div className={styles.pageIndicator}>
-          Spread {currentSpreadIndex + 1} of {bookSpreads.length}
-        </div>
-
-        {/* Description with Doubled Spacing */}
+        {/* Description with Breathing Space */}
         <p className={styles.description}>
           Acoustic diagrams, 70+ audio demonstrations, and practical exercises designed to train your vocal delivery.
         </p>
@@ -128,16 +90,6 @@ export default function LookInside() {
         </div>
 
       </div>
-
-      {/* Click-to-Zoom Modal */}
-      {activeZoomImg && (
-        <div className={styles.modalOverlay} onClick={() => setActiveZoomImg(null)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeBtn} onClick={() => setActiveZoomImg(null)}>✕</button>
-            <img src={activeZoomImg} alt="Enlarged Book Page" className={styles.zoomedImg} />
-          </div>
-        </div>
-      )}
     </section>
   );
 }

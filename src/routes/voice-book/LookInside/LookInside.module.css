@@ -1,8 +1,9 @@
 .section {
   position: relative;
-  padding: 90px 20px;
+  padding: 100px 20px;
   text-align: center;
   background: #f4ede2;
+  overflow: hidden;
 }
 
 .container {
@@ -13,21 +14,21 @@
 /* Top Heading */
 .mainHeading {
   font-family: Georgia, serif;
-  font-size: clamp(36px, 5vw, 54px);
+  font-size: clamp(36px, 5vw, 56px);
   color: #133d41;
-  margin: 0 0 44px;
+  margin: 0 0 40px;
   font-weight: 700;
 }
 
-.bookSpreadWrapper {
-  position: relative;
+.showcaseWrapper {
+  cursor: pointer;
+  margin-bottom: 25px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
 }
 
-.openBookOuter {
+.openBookContainer {
   width: 100%;
   max-width: 1400px;
 }
@@ -35,11 +36,17 @@
 .openBook {
   display: flex;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   width: 100%;
   border: 1px solid #e2d7c3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.openBook:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.16);
 }
 
 .bookSpine {
@@ -52,13 +59,11 @@
 .pageContainer {
   position: relative;
   flex: 1;
-  cursor: pointer;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
-  padding: 18px;
+  padding: 20px;
 }
 
 .bookPageImg {
@@ -67,68 +72,22 @@
   max-height: 880px;
   object-fit: contain;
   display: block;
-  transition: transform 0.25s ease;
 }
 
-.pageContainer:hover .bookPageImg {
-  transform: scale(1.015);
-}
-
-.zoomBadge {
-  position: absolute;
-  bottom: 20px;
-  background: rgba(19, 61, 65, 0.88);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 20px;
-  opacity: 0.88;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-
-.pageContainer:hover .zoomBadge {
-  opacity: 1;
-}
-
-.navBtn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #133d41;
-  color: #ffffff;
-  border: none;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  font-size: 34px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-  transition: background 0.2s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navBtn:hover {
-  background: #e6b54e;
-  color: #1c1608;
-  transform: translateY(-50%) scale(1.08);
-}
-
-.prevBtn { left: -28px; }
-.nextBtn { right: -28px; }
-
-.pageIndicator {
-  font-family: Georgia, serif;
-  font-size: 15px;
+/* Subtle Interaction Hint */
+.interactionHint {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13.5px;
   font-weight: 600;
   color: #a8802c;
-  margin-bottom: 35px;
-  letter-spacing: 0.05em;
+  margin-top: 18px;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.showcaseWrapper:hover .interactionHint {
+  opacity: 1;
 }
 
 .description {
@@ -164,49 +123,7 @@
   filter: brightness(1.05);
 }
 
-.modalOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.modalContent {
-  position: relative;
-  max-width: 92vw;
-  max-height: 92vh;
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.zoomedImg {
-  width: 100%;
-  max-height: 88vh;
-  object-fit: contain;
-  display: block;
-}
-
-.closeBtn {
-  position: absolute;
-  top: -16px;
-  right: -16px;
-  background: #e6b54e;
-  color: #1c1608;
-  border: none;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
+/* Mobile Devices Optimization */
 @media (max-width: 768px) {
   .section {
     padding: 60px 16px;
@@ -227,9 +144,6 @@
   .bookPageImg {
     max-height: 600px;
   }
-
-  .prevBtn { left: -8px; width: 44px; height: 44px; font-size: 26px; }
-  .nextBtn { right: -8px; width: 44px; height: 44px; font-size: 26px; }
 
   .description {
     margin-bottom: 40px;
