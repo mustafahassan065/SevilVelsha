@@ -7,15 +7,15 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 const bookSpreads = [
   {
     id: 1,
-    leftImg: "/images/page31.jpeg",
-    rightImg: "/images/page32.jpeg",
+    leftImg: "/images/page33.jpeg",
+    rightImg: "/images/page34.jpeg",
     leftAlt: "Voice Control Book - Left Page",
     rightAlt: "Voice Control Book - Right Page",
   },
   {
     id: 2,
-    leftImg: "/images/page32.jpeg",
-    rightImg: "/images/page31.jpeg",
+    leftImg: "/images/page34.jpeg",
+    rightImg: "/images/page33.jpeg",
     leftAlt: "Voice Control Book - Exercises Left Page",
     rightAlt: "Voice Control Book - Exercises Right Page",
   }

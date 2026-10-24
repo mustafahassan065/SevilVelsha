@@ -24,7 +24,7 @@ export default function ScienceSection() {
           {/* Author Bio Column */}
           <div className={styles.bioCol}>
             <h3 className={styles.authorName}>Sevil Velsha</h3>
-            <p className={styles.role}>Linguist | Voice Researcher | Author</p>
+            <p className={styles.role}>Linguist | PHD Voice Researcher | Author</p>
             
             <p className={styles.body}>
               My research into English stage speech explored how pitch, pauses, rhythm, and emphasis influence the way we communicate and lead.
