@@ -6,7 +6,7 @@
 }
 
 .container {
-  max-width: 1550px; /* Enlarged max-width to accommodate 20% bigger book */
+  max-width: 1550px;
   margin: 0 auto;
 }
 
@@ -19,7 +19,6 @@
   font-weight: 700;
 }
 
-/* Spread Layout */
 .bookSpreadWrapper {
   position: relative;
   display: flex;
@@ -30,25 +29,22 @@
 
 .openBookOuter {
   width: 100%;
-  max-width: 1400px; /* 20% Bigger book preview container */
-  perspective: 1200px;
+  max-width: 1400px;
 }
 
 .openBook {
   display: flex;
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   width: 100%;
   border: 1px solid #e2d7c3;
-  transform-style: preserve-3d;
 }
 
-/* Spine effect between pages */
 .bookSpine {
   width: 16px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.18) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.18) 100%);
+  background: linear-gradient(90deg, rgba(0,0,0,0.12) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.12) 100%);
   flex-shrink: 0;
   z-index: 2;
 }
@@ -68,14 +64,14 @@
 .bookPageImg {
   width: 100%;
   height: auto;
-  max-height: 880px; /* Increased 20% more height for absolute desktop readability */
+  max-height: 880px;
   object-fit: contain;
   display: block;
   transition: transform 0.25s ease;
 }
 
 .pageContainer:hover .bookPageImg {
-  transform: scale(1.02);
+  transform: scale(1.015);
 }
 
 .zoomBadge {
@@ -96,7 +92,6 @@
   opacity: 1;
 }
 
-/* Navigation Buttons */
 .navBtn {
   position: absolute;
   top: 50%;
@@ -127,27 +122,24 @@
 .prevBtn { left: -28px; }
 .nextBtn { right: -28px; }
 
-/* Page Number Indicator */
 .pageIndicator {
   font-family: Georgia, serif;
   font-size: 15px;
   font-weight: 600;
   color: #a8802c;
-  margin-bottom: 35px; /* Doubled space for breathing */
+  margin-bottom: 35px;
   letter-spacing: 0.05em;
 }
 
-/* Description with Doubled Spacing (Breathing room) */
 .description {
   font-family: Georgia, serif;
   font-size: clamp(18px, 2.3vw, 22px);
   color: #4b4a42;
   max-width: 880px;
-  margin: 0 auto 55px; /* Doubled margin bottom for ample breathing space */
+  margin: 0 auto 55px; /* Doubled breathing space */
   line-height: 1.65;
 }
 
-/* Gold Button with Proper Spacing */
 .ctaWrapper {
   margin-top: 10px;
 }
@@ -172,7 +164,6 @@
   filter: brightness(1.05);
 }
 
-/* Zoom Modal */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -216,14 +207,9 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-/* Mobile Devices Optimization */
 @media (max-width: 768px) {
   .section {
     padding: 60px 16px;
-  }
-
-  .bookSpreadWrapper {
-    margin-bottom: 16px;
   }
 
   .openBook {
@@ -234,20 +220,19 @@
     display: none;
   }
 
-  /* Show 1 large readable page at a time on Mobile */
   .pageContainer:nth-child(3) {
     display: none;
   }
 
   .bookPageImg {
-    max-height: 600px; /* Enlarged mobile page size */
+    max-height: 600px;
   }
 
   .prevBtn { left: -8px; width: 44px; height: 44px; font-size: 26px; }
   .nextBtn { right: -8px; width: 44px; height: 44px; font-size: 26px; }
 
   .description {
-    margin-bottom: 40px; /* Scaled breathing space for mobile */
+    margin-bottom: 40px;
     padding: 0 10px;
   }
 

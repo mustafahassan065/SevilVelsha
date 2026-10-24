@@ -4,11 +4,13 @@
   text-align: center; 
   overflow: hidden; 
 }
+
 .bgCream { 
   background: linear-gradient(180deg, #f9f5ee 0%, #f3ebdc 100%); 
 }
+
 .container { 
-  max-width: 1250px; /* Container width increased for bigger photo layout */
+  max-width: 1250px; 
   margin: 0 auto; 
 }
 
@@ -37,24 +39,29 @@
   align-items: center;
   text-align: left;
 }
+
 @media (min-width: 900px) {
   .authorGrid {
-    grid-template-columns: 1fr 1.1fr; /* Adjusted for 40% bigger image balance */
+    grid-template-columns: 1fr 1.1fr;
   }
 }
 
 .imageCol {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 
-/* 40% Bigger Image Styling (360px -> 504px) */
+/* 40% Bigger Image Styling - Seamless Integration (No Frame, No Shadow) */
 .authorImg {
   width: 100%;
   max-width: 504px; /* 40% larger than 360px */
-  border-radius: 12px;
-  box-shadow: 0 18px 36px rgba(90, 64, 12, 0.22);
-  object-fit: cover;
+  border-radius: 0; /* Frame boundary removed */
+  box-shadow: none; /* Shadow removed completely */
+  object-fit: contain;
+  background: transparent;
+  mix-blend-mode: multiply; /* Blends photo background with page background */
+  filter: contrast(1.02);
 }
 
 .bioCol {
@@ -105,6 +112,7 @@
   box-shadow: 0 8px 20px rgba(191, 145, 57, 0.4);
   transition: transform 0.15s ease, filter 0.15s ease;
 }
+
 .buyButton:hover {
   transform: translateY(-2px);
   filter: brightness(1.05);
@@ -113,7 +121,7 @@
 /* Mobile Devices Optimization */
 @media (max-width: 768px) {
   .authorImg {
-    max-width: 100%; /* Mobile par full readable width */
+    max-width: 100%;
   }
 
   .buyButton {

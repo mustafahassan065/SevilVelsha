@@ -12,7 +12,7 @@ export default function ScienceSection() {
 
         <div className={styles.authorGrid}>
           
-          {/* Author Photo Column */}
+          {/* Author Photo Column - Seamless Natural Integration (No Frame/No Shadow) */}
           <div className={styles.imageCol}>
             <img 
               src="/images/audit-hero.png" 

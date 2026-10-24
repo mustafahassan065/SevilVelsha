@@ -4,19 +4,18 @@ import styles from "./LookInside.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
-// Book spreads (Left page + Right page pairs)
 const bookSpreads = [
   {
     id: 1,
-    leftImg: "/images/page31.jpeg",
-    rightImg: "/images/page32.jpeg",
+    leftImg: "/images/page33.jpeg",
+    rightImg: "/images/page34.jpeg",
     leftAlt: "Voice Control Book - Left Page",
     rightAlt: "Voice Control Book - Right Page",
   },
   {
     id: 2,
-    leftImg: "/images/page32.jpeg",
-    rightImg: "/images/page31.jpeg",
+    leftImg: "/images/page34.jpeg",
+    rightImg: "/images/page33.jpeg",
     leftAlt: "Voice Control Book - Exercises Left Page",
     rightAlt: "Voice Control Book - Exercises Right Page",
   }
@@ -43,10 +42,10 @@ export default function LookInside() {
     <section className={`${styles.section} ${styles.bg}`}>
       <div className={styles.container}>
         
-        {/* Top Simple Heading */}
+        {/* Simple Heading */}
         <h2 className={styles.mainHeading}>Book Preview</h2>
 
-        {/* Physical Open Book Spread + Page Turning Animation */}
+        {/* Clean Apple-Style Smooth Animation Spread */}
         <div className={styles.bookSpreadWrapper}>
           
           <button 
@@ -62,10 +61,10 @@ export default function LookInside() {
               <motion.div 
                 key={currentSpreadIndex}
                 custom={direction}
-                initial={{ opacity: 0, rotateY: direction * 15, scale: 0.98 }}
-                animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-                exit={{ opacity: 0, rotateY: direction * -15, scale: 0.98 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
+                initial={{ opacity: 0, x: direction * 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -20 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className={styles.openBook}
               >
                 {/* Left Page */}
@@ -116,12 +115,12 @@ export default function LookInside() {
           Spread {currentSpreadIndex + 1} of {bookSpreads.length}
         </div>
 
-        {/* Description with Doubled Breathing Space */}
+        {/* Description with Doubled Spacing */}
         <p className={styles.description}>
           Acoustic diagrams, 70+ audio demonstrations, and practical exercises designed to train your vocal delivery.
         </p>
 
-        {/* Gold Purchase Button with Extra Breathing Margin */}
+        {/* Gold Purchase Button */}
         <div className={styles.ctaWrapper}>
           <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
             Get the Complete Book — $29 →
