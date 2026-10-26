@@ -15,8 +15,8 @@ const AFTER_AUDIO_SRC = "audios/audiobefore.mp3";
 
 // Exactly three pages. Replace the image paths with your own.
 const bookPages = [
-  { id: 1, img: "/images/page35.jpeg", alt: "Voice Control Book - Page 1" },
-  { id: 2, img: "/images/page33.jpeg", alt: "Voice Control Book - Page 2" },
+  { id: 2, img: "/images/page35.jpeg", alt: "Voice Control Book - Page 1" },
+  { id: 1, img: "/images/page33.jpeg", alt: "Voice Control Book - Page 2" },
   { id: 3, img: "/images/page34.jpeg", alt: "Voice Control Book - Page 3" },
   
 ];
