@@ -21,7 +21,6 @@
 }
 
 .showcaseWrapper {
-  cursor: pointer;
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
@@ -33,45 +32,129 @@
   max-width: 1400px;
 }
 
-.openBook {
-  display: flex;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-  width: 100%;
-  border: 1px solid #e2d7c3;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.openBook:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.16);
-}
-
-.bookSpine {
-  width: 16px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.12) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.12) 100%);
-  flex-shrink: 0;
-  z-index: 2;
-}
-
-.pageContainer {
-  position: relative;
-  flex: 1;
+/* Arrows + book in one row */
+.bookRow {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 24px;
+}
+
+.arrowBtn {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid #e2d7c3;
+  background: #ffffff;
+  color: #133d41;
+  font-size: 34px;
+  line-height: 1;
+  padding: 0 0 4px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s;
+}
+
+.arrowBtn:hover:not(:disabled) {
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+}
+
+.arrowBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* 3D stage */
+.bookStage {
+  flex: 1;
+  max-width: 1000px;
+  perspective: 2200px;
+  perspective-origin: 50% 40%;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2; /* two page-widths of 3:4 pages */
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.14));
+}
+
+/* Empty left side (where turned pages land) */
+.leftBase {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, #f7f2e8 0%, #ece3d1 100%);
+  border: 1px solid #e2d7c3;
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+}
+
+.bookSpine {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.12) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.12) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* A single turning page, hinged at the spine */
+.leaf {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
   background: #fff;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border: 1px solid #e2d7c3;
+}
+
+.front {
+  border-radius: 0 12px 12px 0;
   padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back {
+  transform: rotateY(180deg);
+  border-radius: 12px 0 0 12px;
+  background: linear-gradient(90deg, #ece3d1 0%, #f7f2e8 100%);
 }
 
 .bookPageImg {
   width: 100%;
-  height: auto;
-  max-height: 880px;
+  height: 100%;
   object-fit: contain;
   display: block;
+}
+
+/* Moving shadow during the turn */
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0) 70%);
+  pointer-events: none;
+  opacity: 0;
 }
 
 /* Subtle Interaction Hint */
@@ -83,11 +166,45 @@
   margin-top: 18px;
   letter-spacing: 0.04em;
   opacity: 0.9;
-  transition: opacity 0.2s;
 }
 
-.showcaseWrapper:hover .interactionHint {
-  opacity: 1;
+/* Audio demonstrations (directly under the book, no separate section) */
+.audioBlock {
+  margin: 28px auto 0;
+  max-width: 880px;
+}
+
+.audioHeading {
+  font-family: Georgia, serif;
+  font-size: clamp(20px, 2.6vw, 26px);
+  color: #133d41;
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+
+.audioGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.audioItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.audioLabel {
+  font-family: Georgia, serif;
+  font-size: 17px;
+  color: #4b4a42;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.audioPlayer {
+  width: 100%;
+  max-width: 400px;
 }
 
 .description {
@@ -95,7 +212,7 @@
   font-size: clamp(18px, 2.3vw, 22px);
   color: #4b4a42;
   max-width: 880px;
-  margin: 0 auto 55px; /* Doubled breathing space */
+  margin: 40px auto 55px;
   line-height: 1.65;
 }
 
@@ -129,24 +246,46 @@
     padding: 60px 16px;
   }
 
-  .openBook {
-    flex-direction: column;
+  .bookRow {
+    gap: 8px;
   }
 
+  .arrowBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+
+  /* Single page visible on mobile */
+  .bookStage {
+    max-width: 420px;
+  }
+
+  .book {
+    aspect-ratio: 3 / 4;
+  }
+
+  .leftBase,
   .bookSpine {
     display: none;
   }
 
-  .pageContainer:nth-child(3) {
-    display: none;
+  .leaf {
+    left: 0;
+    width: 100%;
   }
 
-  .bookPageImg {
-    max-height: 600px;
+  .front {
+    border-radius: 12px;
+  }
+
+  .audioGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .description {
-    margin-bottom: 40px;
+    margin: 32px 0 40px;
     padding: 0 10px;
   }
 
