@@ -81,17 +81,23 @@
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.14));
 }
 
-/* Empty left side (where turned pages land) */
+/* Left side base (shows page 3 at the start) */
 .leftBase {
   position: absolute;
   top: 0;
   left: 0;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, #f7f2e8 0%, #ece3d1 100%);
+  background: #fff;
   border: 1px solid #e2d7c3;
   border-right: none;
   border-radius: 12px 0 0 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .bookSpine {
@@ -125,6 +131,7 @@
   -webkit-backface-visibility: hidden;
   overflow: hidden;
   border: 1px solid #e2d7c3;
+  box-sizing: border-box;
 }
 
 .front {
@@ -138,7 +145,11 @@
 .back {
   transform: rotateY(180deg);
   border-radius: 12px 0 0 12px;
-  background: linear-gradient(90deg, #ece3d1 0%, #f7f2e8 100%);
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bookPageImg {

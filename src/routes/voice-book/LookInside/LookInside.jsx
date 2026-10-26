@@ -9,19 +9,27 @@ import styles from "./LookInside.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
-// Replace these with your own audio files (e.g. "/audio/before.mp3")
-const BEFORE_AUDIO_SRC = "/audios/audiobefore.mp3";
-const AFTER_AUDIO_SRC = "/audios/audioafter.mp3";
+// Apni audio files ka path yahan daalo (e.g. "/audio/before.mp3")
+const BEFORE_AUDIO_SRC = "/audios/audioafter.mp3";
+const AFTER_AUDIO_SRC = "audios/audiobefore.mp3";
 
 // Exactly three pages. Replace the image paths with your own.
 const bookPages = [
-  { id: 1, img: "/images/page35.jpeg", alt: "Voice Control Book - Page 1" },
-  { id: 2, img: "/images/page33.jpeg", alt: "Voice Control Book - Page 2" },
-  { id: 3, img: "/images/page34.jpeg", alt: "Voice Control Book - Page 3" },
+  { id: 3, img: "/images/page35.jpeg", alt: "Voice Control Book - Page 1" },
+  { id: 1, img: "/images/page33.jpeg", alt: "Voice Control Book - Page 2" },
+  { id: 2, img: "/images/page34.jpeg", alt: "Voice Control Book - Page 3" },
   
 ];
 
 const TOTAL = bookPages.length;
+
+// Har leaf ke front/back pe kaunsa page (index into bookPages) aayega
+// Desktop sequence: 3|1 -> 2|3 -> 1|2
+const leafFaces = [
+  { front: 0, back: 1 },
+  { front: 2, back: 0 },
+  { front: 1, back: 2 },
+];
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false);
@@ -36,7 +44,7 @@ function useIsMobile(breakpoint = 768) {
 }
 
 /* A single 3D page (leaf). It hinges on the spine and turns with perspective. */
-function Leaf({ page, index, turned, isMobile }) {
+function Leaf({ frontPage, backPage, index, turned, isMobile }) {
   const rot = useMotionValue(0);
   const turnedAngle = isMobile ? -120 : -180;
 
@@ -66,14 +74,23 @@ function Leaf({ page, index, turned, isMobile }) {
         delay: isMobile && turned ? 0.7 : 0,
       }}
     >
-      {/* Front face: the actual page */}
+      {/* Front face */}
       <div className={`${styles.face} ${styles.front}`}>
-        <img src={page.img} alt={page.alt} className={styles.bookPageImg} />
+        <img
+          src={frontPage.img}
+          alt={frontPage.alt}
+          className={styles.bookPageImg}
+        />
         <motion.div className={styles.shade} style={{ opacity: frontShade }} />
       </div>
 
-      {/* Back face: blank paper once the page has turned */}
+      {/* Back face */}
       <div className={`${styles.face} ${styles.back}`}>
+        <img
+          src={backPage.img}
+          alt={backPage.alt}
+          className={styles.bookPageImg}
+        />
         <motion.div className={styles.shade} style={{ opacity: backShade }} />
       </div>
     </motion.div>
@@ -115,13 +132,20 @@ export default function LookInside() {
 
               <div className={styles.bookStage}>
                 <div className={styles.book}>
-                  <div className={styles.leftBase} />
+                  <div className={styles.leftBase}>
+                    <img
+                      src={bookPages[2].img}
+                      alt={bookPages[2].alt}
+                      className={styles.bookPageImg}
+                    />
+                  </div>
                   <div className={styles.bookSpine} />
-                  {bookPages.map((page, i) => (
+                  {leafFaces.map((faces, i) => (
                     <Leaf
-                      key={page.id}
-                      page={page}
+                      key={i}
                       index={i}
+                      frontPage={bookPages[isMobile ? i : faces.front]}
+                      backPage={bookPages[faces.back]}
                       turned={i < current}
                       isMobile={isMobile}
                     />
@@ -148,19 +172,31 @@ export default function LookInside() {
 
         {/* Before / After audio demonstration (directly under the book) */}
         <div className={styles.audioBlock}>
-          <h3 className={styles.audioHeading}>Before and After Audio Demonstration</h3>
+          <h3 className={styles.audioHeading}>
+            Before and After Audio Demonstration
+          </h3>
           <div className={styles.audioGrid}>
             <div className={styles.audioItem}>
               <p className={styles.audioLabel}>Before</p>
-              <audio controls preload="none" className={styles.audioPlayer}>
-                {BEFORE_AUDIO_SRC && <source src={BEFORE_AUDIO_SRC} />}
+              <audio
+                key={BEFORE_AUDIO_SRC}
+                controls
+                preload="metadata"
+                src={BEFORE_AUDIO_SRC || undefined}
+                className={styles.audioPlayer}
+              >
                 Your browser does not support audio playback.
               </audio>
             </div>
             <div className={styles.audioItem}>
               <p className={styles.audioLabel}>After</p>
-              <audio controls preload="none" className={styles.audioPlayer}>
-                {AFTER_AUDIO_SRC && <source src={AFTER_AUDIO_SRC} />}
+              <audio
+                key={AFTER_AUDIO_SRC}
+                controls
+                preload="metadata"
+                src={AFTER_AUDIO_SRC || undefined}
+                className={styles.audioPlayer}
+              >
                 Your browser does not support audio playback.
               </audio>
             </div>
@@ -174,7 +210,12 @@ export default function LookInside() {
 
         {/* Gold Purchase Button */}
         <div className={styles.ctaWrapper}>
-          <a href={BUY_URL} className={styles.buyButton} target="_blank" rel="noopener noreferrer">
+          <a
+            href={BUY_URL}
+            className={styles.buyButton}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Get the Complete Book — $29 →
           </a>
         </div>
