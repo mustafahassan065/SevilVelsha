@@ -29,7 +29,7 @@
 
 .openBookContainer {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1450px;
 }
 
 /* Arrows + book in one row */
@@ -66,11 +66,11 @@
   cursor: not-allowed;
 }
 
-/* 3D stage */
+/* 3D stage (bigger book) */
 .bookStage {
   flex: 1;
-  max-width: 1000px;
-  perspective: 2200px;
+  max-width: 1250px;
+  perspective: 2600px;
   perspective-origin: 50% 40%;
 }
 
@@ -81,7 +81,7 @@
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.14));
 }
 
-/* Left side base (shows page 3 at the start) */
+/* Left side base (shows page 1 at the start) */
 .leftBase {
   position: absolute;
   top: 0;
@@ -182,7 +182,7 @@
 /* Audio demonstrations (directly under the book, no separate section) */
 .audioBlock {
   margin: 28px auto 0;
-  max-width: 880px;
+  max-width: 1000px;
 }
 
 .audioHeading {
@@ -196,7 +196,7 @@
 .audioGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 64px;
 }
 
 .audioItem {
@@ -292,7 +292,7 @@
 
   .audioGrid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 32px;
   }
 
   .description {

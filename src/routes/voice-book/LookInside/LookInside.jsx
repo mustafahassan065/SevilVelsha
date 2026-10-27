@@ -11,25 +11,26 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
 // Apni audio files ka path yahan daalo (e.g. "/audio/before.mp3")
 const BEFORE_AUDIO_SRC = "/audios/audioafter.mp3";
-const AFTER_AUDIO_SRC = "audios/audiobefore.mp3";
+const AFTER_AUDIO_SRC = "/audios/audiobefore.mp3";
 
-// Exactly three pages. Replace the image paths with your own.
+// 5 pages. Extension agar .jpeg nahi hai to yahan badal do.
 const bookPages = [
-  { id: 2, img: "/images/page35.jpeg", alt: "Voice Control Book - Page 1" },
-  { id: 1, img: "/images/page33.jpeg", alt: "Voice Control Book - Page 2" },
-  { id: 3, img: "/images/page34.jpeg", alt: "Voice Control Book - Page 3" },
-  
+  { id: 1, img: "/images/pageimage1.jpeg", alt: "Voice Control Book - Page 1" },
+  { id: 2, img: "/images/pageimage2.jpeg", alt: "Voice Control Book - Page 2" },
+  { id: 3, img: "/images/pageimage3.jpeg", alt: "Voice Control Book - Page 3" },
+  { id: 4, img: "/images/pageimage4.jpeg", alt: "Voice Control Book - Page 4" },
+  { id: 5, img: "/images/pageimage5.jpeg", alt: "Voice Control Book - Page 5" },
 ];
 
 const TOTAL = bookPages.length;
 
-// Har leaf ke front/back pe kaunsa page (index into bookPages) aayega
-// Desktop sequence: 3|1 -> 2|3 -> 1|2
-const leafFaces = [
-  { front: 0, back: 1 },
-  { front: 2, back: 0 },
-  { front: 1, back: 2 },
-];
+// Desktop spreads (left | right):
+// 1|2 -> 3|4 -> 5|1 -> 2|3 -> 4|5
+// Har leaf ke front/back pe kaunsa page aayega (index into bookPages)
+const leafFaces = bookPages.map((_, k) => ({
+  front: (2 * k + 1) % TOTAL,
+  back: (2 * k + 2) % TOTAL,
+}));
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false);
@@ -98,7 +99,7 @@ function Leaf({ frontPage, backPage, index, turned, isMobile }) {
 }
 
 export default function LookInside() {
-  const [current, setCurrent] = useState(0); // 0..2
+  const [current, setCurrent] = useState(0); // 0..4
   const isMobile = useIsMobile();
 
   const goNext = () => setCurrent((p) => Math.min(p + 1, TOTAL - 1));
@@ -134,8 +135,8 @@ export default function LookInside() {
                 <div className={styles.book}>
                   <div className={styles.leftBase}>
                     <img
-                      src={bookPages[2].img}
-                      alt={bookPages[2].alt}
+                      src={bookPages[0].img}
+                      alt={bookPages[0].alt}
                       className={styles.bookPageImg}
                     />
                   </div>
