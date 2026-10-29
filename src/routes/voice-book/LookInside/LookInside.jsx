@@ -13,19 +13,26 @@ const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 const BEFORE_AUDIO_SRC = "/audios/audioafter.mp3";
 const AFTER_AUDIO_SRC = "/audios/audiobefore.mp3";
 
-// 5 pages. Extension agar .jpeg nahi hai to yahan badal do.
+// true = dono recordings mein alfaaz same hain ("Same words." subtitle dikhegi)
+const SAME_WORDS = true;
+
+// 9 pages. Nayi images (6-9) purani last 2 (4, 5) se pehle hain.
+// Extension agar .jpeg nahi hai to yahan badal do.
 const bookPages = [
   { id: 1, img: "/images/pageimage1.jpeg", alt: "Voice Control Book - Page 1" },
   { id: 2, img: "/images/pageimage2.jpeg", alt: "Voice Control Book - Page 2" },
   { id: 3, img: "/images/pageimage3.jpeg", alt: "Voice Control Book - Page 3" },
-  { id: 4, img: "/images/pageimage4.jpeg", alt: "Voice Control Book - Page 4" },
-  { id: 5, img: "/images/pageimage5.jpeg", alt: "Voice Control Book - Page 5" },
+  { id: 4, img: "/images/pageimage6.jpeg", alt: "Voice Control Book - Page 4" },
+  { id: 5, img: "/images/pageimage7.jpeg", alt: "Voice Control Book - Page 5" },
+  { id: 6, img: "/images/pageimage8.jpeg", alt: "Voice Control Book - Page 6" },
+  { id: 7, img: "/images/pageimage9.jpeg", alt: "Voice Control Book - Page 7" },
+  { id: 8, img: "/images/pageimage4.jpeg", alt: "Voice Control Book - Page 8" },
+  { id: 9, img: "/images/pageimage5.jpeg", alt: "Voice Control Book - Page 9" },
 ];
 
 const TOTAL = bookPages.length;
 
-// Desktop spreads (left | right):
-// 1|2 -> 3|4 -> 5|1 -> 2|3 -> 4|5
+// Desktop spreads (left | right): 1|2 -> 3|4 -> 5|6 -> 7|8 -> 9|1 -> 2|3 -> 4|5 -> 6|7 -> 8|9
 // Har leaf ke front/back pe kaunsa page aayega (index into bookPages)
 const leafFaces = bookPages.map((_, k) => ({
   front: (2 * k + 1) % TOTAL,
@@ -43,6 +50,40 @@ function useIsMobile(breakpoint = 768) {
   }, [breakpoint]);
   return isMobile;
 }
+
+/* Simple line icons for "What to Listen For" */
+function PitchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 15c2.5 0 2.5-8 5-8s2.5 10 5 10 2.5-6 5-6c1 0 1.6.4 3 1.5" />
+    </svg>
+  );
+}
+
+function PausesIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M10 9v6M14 9v6" />
+    </svg>
+  );
+}
+
+function EmphasisIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 18 12 5l6 13" />
+      <path d="M8.3 13.5h7.4" />
+      <path d="M5 21h14" />
+    </svg>
+  );
+}
+
+const listenItems = [
+  { key: "pitch", title: "PITCH", text: "How the voice rises and falls.", Icon: PitchIcon },
+  { key: "pauses", title: "PAUSES", text: "How silence gives words greater impact.", Icon: PausesIcon },
+  { key: "emphasis", title: "EMPHASIS", text: "How stressing words changes meaning.", Icon: EmphasisIcon },
+];
 
 /* A single 3D page (leaf). It hinges on the spine and turns with perspective. */
 function Leaf({ frontPage, backPage, index, turned, isMobile }) {
@@ -99,7 +140,7 @@ function Leaf({ frontPage, backPage, index, turned, isMobile }) {
 }
 
 export default function LookInside() {
-  const [current, setCurrent] = useState(0); // 0..4
+  const [current, setCurrent] = useState(0); // 0..8
   const isMobile = useIsMobile();
 
   const goNext = () => setCurrent((p) => Math.min(p + 1, TOTAL - 1));
@@ -173,41 +214,84 @@ export default function LookInside() {
 
         {/* Before / After audio demonstration (directly under the book) */}
         <div className={styles.audioBlock}>
-          <h3 className={styles.audioHeading}>
-            Before and After Audio Demonstration
-          </h3>
+          <h3 className={styles.audioHeading}>Hear How a Voice Can Transform</h3>
+          <p className={styles.audioSubtitle}>
+            {SAME_WORDS ? "Same words. " : ""}Different delivery. Discover how
+            pitch, pauses, and emphasis can change the impact of your voice.
+          </p>
+
           <div className={styles.audioGrid}>
             <div className={styles.audioItem}>
-              <p className={styles.audioLabel}>Before</p>
+              <p className={styles.audioLabel}>Original Delivery</p>
+              <p className={styles.audioDesc}>
+                Listen to the original vocal delivery.
+              </p>
               <audio
                 key={BEFORE_AUDIO_SRC}
                 controls
                 preload="metadata"
                 src={BEFORE_AUDIO_SRC || undefined}
                 className={styles.audioPlayer}
+                aria-label="Original Delivery audio"
               >
                 Your browser does not support audio playback.
               </audio>
             </div>
-            <div className={styles.audioItem}>
-              <p className={styles.audioLabel}>After</p>
+
+            <div className={`${styles.audioItem} ${styles.audioItemAfter}`}>
+              <p className={styles.audioLabel}>Trained Delivery</p>
+              <p className={styles.audioDesc}>
+                Notice how vocal techniques change the delivery.
+              </p>
               <audio
                 key={AFTER_AUDIO_SRC}
                 controls
                 preload="metadata"
                 src={AFTER_AUDIO_SRC || undefined}
                 className={styles.audioPlayer}
+                aria-label="Trained Delivery audio"
               >
                 Your browser does not support audio playback.
               </audio>
             </div>
           </div>
-        </div>
 
-        {/* Description with Breathing Space */}
-        <p className={styles.description}>
-          Acoustic diagrams, 70+ audio demonstrations, and practical exercises designed to train your vocal delivery.
-        </p>
+          {/* What to Listen For */}
+          <p className={styles.listenHeading}>What to Listen For</p>
+          <ul className={styles.listenList}>
+            {listenItems.map(({ key, title, text, Icon }) => (
+              <li key={key} className={styles.listenItem}>
+                <span className={styles.listenIcon}>
+                  <Icon />
+                </span>
+                <span className={styles.listenText}>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Mini Voice Exercise (text only) */}
+          <div className={styles.tryBox}>
+            <p className={styles.tryTitle}>Try It Yourself</p>
+            <p className={styles.trySay}>“Say: I believe we can do this.”</p>
+            <p className={styles.tryText}>
+              “Now pause after ‘believe’ and emphasize ‘CAN.’ Notice how your
+              message changes.”
+            </p>
+          </div>
+
+          {/* Closing message */}
+          <h3 className={styles.closingHeading}>
+            You Heard the Difference. Now Learn How to Create It.
+          </h3>
+          <p className={styles.closingText}>
+            Discover 70+ audio demonstrations, acoustic diagrams, and practical
+            exercises to develop a more confident, expressive, and authoritative
+            voice.
+          </p>
+        </div>
 
         {/* Gold Purchase Button */}
         <div className={styles.ctaWrapper}>
