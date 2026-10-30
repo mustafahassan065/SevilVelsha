@@ -43,13 +43,14 @@ export default function FinalCTA() {
     <section className={`${styles.section} ${styles.bgCream}`}>
       <div className={styles.container}>
         <div className={styles.grid}>
-          {/* Left: photo */}
+          {/* Left: photo (transparent, soft-faded edges) */}
           <div className={styles.imageCol}>
             <img
-              src="/images/voice-control-people.jpg"
+              src="/images/voice-control-people.png"
               alt="Readers holding the Voice Control book"
               className={styles.heroImg}
               loading="lazy"
+              draggable="false"
             />
           </div>
 
