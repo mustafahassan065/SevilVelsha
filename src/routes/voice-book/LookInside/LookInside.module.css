@@ -607,3 +607,345 @@
     font-size: 18px;
   }
 }
+
+
+/* ===== REDESIGNED "WHAT TO LISTEN FOR" WOW SECTION ===== */
+.listenSection {
+  margin: 110px auto 0;
+  max-width: 1350px;
+  padding: 0 16px;
+}
+
+.listenHeaderWrapper {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.listenEyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a8802c;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.listenMainTitle {
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 3.8vw, 46px);
+  color: #133d41;
+  font-weight: 700;
+  margin: 0 0 16px;
+  line-height: 1.25;
+}
+
+.listenTitleItalic {
+  font-style: italic;
+  font-weight: normal;
+  color: #c99a3a;
+}
+
+.listenTagsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #133d41;
+  opacity: 0.8;
+}
+
+.dot {
+  color: #c99a3a;
+  font-size: 16px;
+}
+
+/* WOW Cards Grid */
+.wowCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  align-items: stretch;
+  margin-bottom: 70px;
+}
+
+.wowCard {
+  background: #ffffff;
+  border: 1px solid #e2d7c3;
+  border-radius: 20px;
+  padding: 34px 26px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 36px rgba(19, 61, 65, 0.06);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.wowCard:hover {
+  border-color: #c99a3a;
+  box-shadow: 0 22px 46px rgba(19, 61, 65, 0.12);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cardIconBox {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(230, 181, 78, 0.12);
+  color: #c99a3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  color: #133d41;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardDesc {
+  font-family: Georgia, serif;
+  font-size: 15px;
+  color: #5a584e;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  min-height: 48px;
+}
+
+.cardVisualArea {
+  flex: 1;
+  background: #fbf8f2;
+  border: 1px solid #eee5d3;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+  min-height: 140px;
+  box-sizing: border-box;
+}
+
+/* Pitch Card Elements */
+.pitchCanvas {
+  width: 100%;
+  position: relative;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pitchSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.moodBadge {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #e2d7c3;
+  color: #5a584e;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.moodBadge:nth-of-type(1) { top: 4px; left: 10px; }
+.moodBadge:nth-of-type(2) { top: 4px; right: 10px; }
+
+.badgeActiveUncertain {
+  background: #133d41;
+  color: #ffffff;
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(19, 61, 65, 0.2);
+}
+
+.badgeActiveConfident {
+  background: #e6b54e;
+  color: #1c1608;
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(230, 181, 78, 0.4);
+}
+
+/* Pauses & Emphasis Sentence Display */
+.sentenceDisplay {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  color: #133d41;
+  text-align: center;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.pauseDotsContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 4px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.pauseActive {
+  opacity: 1;
+}
+
+.pDot {
+  width: 5px;
+  height: 5px;
+  background: #c99a3a;
+  border-radius: 50%;
+}
+
+.miniWaveformRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.waveGroup {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.wBar {
+  width: 3px;
+  background: #133d41;
+  border-radius: 2px;
+  opacity: 0.4;
+  transition: height 0.2s ease, background-color 0.2s ease;
+}
+
+.wBarGold {
+  background: #c99a3a;
+  opacity: 1;
+}
+
+.pauseIndicatorBlock {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #eee5d3;
+  color: #7a6e56;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.pauseBlockActive {
+  background: #c99a3a;
+  color: #1c1608;
+  box-shadow: 0 0 12px rgba(201, 154, 58, 0.5);
+}
+
+.emphasizedWord {
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: transparent;
+  color: #133d41;
+  transition: all 0.3s ease;
+}
+
+.wordActive {
+  background: #e6b54e;
+  color: #1c1608;
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(230, 181, 78, 0.5);
+}
+
+.miniWaveformCenter {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Card Toggle Buttons */
+.cardToggleBtns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.toggleBtn {
+  background: #f4ede2;
+  border: 1px solid #e2d7c3;
+  color: #133d41;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.toggleBtn:hover {
+  background: #eee5d3;
+}
+
+.toggleActive {
+  background: #133d41;
+  border-color: #133d41;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(19, 61, 65, 0.2);
+}
+
+.playMiniIcon {
+  font-size: 9px;
+}
+
+/* Cinematic Banner Replacing Try It Yourself */
+.cinematicBanner {
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.bannerText {
+  font-family: Georgia, serif;
+  font-size: clamp(22px, 2.8vw, 30px);
+  color: #133d41;
+  font-style: italic;
+  font-weight: normal;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* Responsive Optimization for Wow Section */
+@media (max-width: 1024px) {
+  .wowCardsGrid {
+    grid-template-columns: 1fr;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
