@@ -8,6 +8,7 @@ import {
 import styles from "./LookInside.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
+const COVER_IMG = "/images/pages/book-cover.png";
 
 // Apni audio files ka path yahan daalo (e.g. "/audio/before.mp3")
 const BEFORE_AUDIO_SRC = "/audios/audioafter.mp3";
@@ -31,14 +32,17 @@ const bookPages = [
 const N = bookPages.length;
 
 // Desktop: left base = page 1, phir har leaf ke front/back pe agle 2 pages.
-// Spreads: 1|2 -> 3|4 -> 5|6 -> 7|(khali)
+// Spreads: 1|2 -> 3|4 -> 5|6 -> 7|(sales page)
 const desktopLeaves = Array.from({ length: Math.ceil((N - 1) / 2) }, (_, k) => ({
   front: bookPages[2 * k + 1],
   back: bookPages[2 * k + 2],
 }));
 
-// Mobile: ek waqt mein ek page, seedha 1, 2, 3...
-const mobileLeaves = bookPages.map((p) => ({ front: p, back: p }));
+// Mobile: ek waqt mein ek page, aakhir mein sales card
+const mobileLeaves = [
+  ...bookPages.map((p) => ({ front: p, back: p })),
+  { front: { sales: true }, back: null },
+];
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false);
@@ -86,8 +90,37 @@ const listenItems = [
   { key: "emphasis", title: "EMPHASIS", text: "How stressing words changes meaning.", Icon: EmphasisIcon },
 ];
 
+/* Short sales message shown on the last (otherwise empty) page */
+function SalesPanel({ active }) {
+  return (
+    <div className={styles.sales} aria-hidden={!active}>
+      <img
+        src={COVER_IMG}
+        alt="Voice Control book cover"
+        className={styles.salesCover}
+      />
+      <h3 className={styles.salesTitle}>
+        Your Voice Changes How People Hear You.
+      </h3>
+      <p className={styles.salesText}>
+        Discover how to use pitch, pauses, rhythm, and emphasis to speak with
+        confidence and authority.
+      </p>
+      <a
+        href={BUY_URL}
+        className={styles.salesBtn}
+        target="_blank"
+        rel="noopener noreferrer"
+        tabIndex={active ? 0 : -1}
+      >
+        Get Voice Control — $29
+      </a>
+    </div>
+  );
+}
+
 /* A single 3D page (leaf). It hinges on the spine and turns with perspective. */
-function Leaf({ frontPage, backPage, index, total, turned, isMobile }) {
+function Leaf({ frontPage, backPage, index, total, turned, isMobile, salesActive }) {
   const rot = useMotionValue(0);
   const turnedAngle = isMobile ? -120 : -180;
 
@@ -119,13 +152,15 @@ function Leaf({ frontPage, backPage, index, total, turned, isMobile }) {
     >
       {/* Front face */}
       <div className={`${styles.face} ${styles.front}`}>
-        {frontPage && (
+        {frontPage && frontPage.sales ? (
+          <SalesPanel active={salesActive} />
+        ) : frontPage ? (
           <img
             src={frontPage.img}
             alt={frontPage.alt}
             className={styles.bookPageImg}
           />
-        )}
+        ) : null}
         <motion.div className={styles.shade} style={{ opacity: frontShade }} />
       </div>
 
@@ -149,8 +184,9 @@ export default function LookInside() {
   const isMobile = useIsMobile();
 
   const leaves = isMobile ? mobileLeaves : desktopLeaves;
-  const states = isMobile ? N : leaves.length + 1;
+  const states = isMobile ? mobileLeaves.length : leaves.length + 1;
   const cur = Math.min(current, states - 1);
+  const atEnd = cur === states - 1;
 
   const goNext = () => setCurrent(Math.min(cur + 1, states - 1));
   const goPrev = () => setCurrent(Math.max(cur - 1, 0));
@@ -190,8 +226,12 @@ export default function LookInside() {
                       className={styles.bookPageImg}
                     />
                   </div>
-                  {/* Aakhri page ke baad dikhne wala khali page */}
-                  <div className={styles.rightBase} />
+
+                  {/* Aakhri page ke baad dikhne wala sales page (desktop) */}
+                  <div className={styles.rightBase}>
+                    <SalesPanel active={!isMobile && atEnd} />
+                  </div>
+
                   <div className={styles.bookSpine} />
                   {leaves.map((leaf, i) => (
                     <Leaf
@@ -202,6 +242,7 @@ export default function LookInside() {
                       backPage={leaf.back}
                       turned={i < cur}
                       isMobile={isMobile}
+                      salesActive={isMobile && atEnd}
                     />
                   ))}
                 </div>
@@ -211,7 +252,7 @@ export default function LookInside() {
                 type="button"
                 className={styles.arrowBtn}
                 onClick={goNext}
-                disabled={cur === states - 1}
+                disabled={atEnd}
                 aria-label="Next page"
               >
                 ›
