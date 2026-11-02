@@ -16,28 +16,29 @@ const AFTER_AUDIO_SRC = "/audios/audiobefore.mp3";
 // true = dono recordings mein alfaaz same hain ("Same words." subtitle dikhegi)
 const SAME_WORDS = true;
 
-// 9 pages. Nayi images (6-9) purani last 2 (4, 5) se pehle hain.
+// 7 pages, isi order mein. Har image sirf ek baar aati hai.
 // Extension agar .jpeg nahi hai to yahan badal do.
 const bookPages = [
-  { id: 1, img: "/images/pageimage1.jpeg", alt: "Voice Control Book - Page 1" },
-  { id: 2, img: "/images/pageimage2.jpeg", alt: "Voice Control Book - Page 2" },
-  { id: 3, img: "/images/pageimage3.jpeg", alt: "Voice Control Book - Page 3" },
-  { id: 4, img: "/images/pageimage6.jpeg", alt: "Voice Control Book - Page 4" },
-  { id: 5, img: "/images/pageimage7.jpeg", alt: "Voice Control Book - Page 5" },
-  { id: 6, img: "/images/pageimage8.jpeg", alt: "Voice Control Book - Page 6" },
-  { id: 7, img: "/images/pageimage9.jpeg", alt: "Voice Control Book - Page 7" },
-  { id: 8, img: "/images/pageimage4.jpeg", alt: "Voice Control Book - Page 8" },
-  { id: 9, img: "/images/pageimage5.jpeg", alt: "Voice Control Book - Page 9" },
+  { id: 1, img: "/images/pages/page1.jpeg", alt: "Voice Control Book - Page 1" },
+  { id: 2, img: "/images/pages/page22.jpeg", alt: "Voice Control Book - Page 2" },
+  { id: 3, img: "/images/pages/pageimage2.jpeg", alt: "Voice Control Book - Page 3" },
+  { id: 4, img: "/images/pages/page33.jpeg", alt: "Voice Control Book - Page 4" },
+  { id: 5, img: "/images/pages/pageimage4.jpeg", alt: "Voice Control Book - Page 5" },
+  { id: 6, img: "/images/pages/pageimage5.jpeg", alt: "Voice Control Book - Page 6" },
+  { id: 7, img: "/images/pages/pagelast.jpeg", alt: "Voice Control Book - Page 7" },
 ];
 
-const TOTAL = bookPages.length;
+const N = bookPages.length;
 
-// Desktop spreads (left | right): 1|2 -> 3|4 -> 5|6 -> 7|8 -> 9|1 -> 2|3 -> 4|5 -> 6|7 -> 8|9
-// Har leaf ke front/back pe kaunsa page aayega (index into bookPages)
-const leafFaces = bookPages.map((_, k) => ({
-  front: (2 * k + 1) % TOTAL,
-  back: (2 * k + 2) % TOTAL,
+// Desktop: left base = page 1, phir har leaf ke front/back pe agle 2 pages.
+// Spreads: 1|2 -> 3|4 -> 5|6 -> 7|(khali)
+const desktopLeaves = Array.from({ length: Math.ceil((N - 1) / 2) }, (_, k) => ({
+  front: bookPages[2 * k + 1],
+  back: bookPages[2 * k + 2],
 }));
+
+// Mobile: ek waqt mein ek page, seedha 1, 2, 3...
+const mobileLeaves = bookPages.map((p) => ({ front: p, back: p }));
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false);
@@ -86,7 +87,7 @@ const listenItems = [
 ];
 
 /* A single 3D page (leaf). It hinges on the spine and turns with perspective. */
-function Leaf({ frontPage, backPage, index, turned, isMobile }) {
+function Leaf({ frontPage, backPage, index, total, turned, isMobile }) {
   const rot = useMotionValue(0);
   const turnedAngle = isMobile ? -120 : -180;
 
@@ -100,7 +101,7 @@ function Leaf({ frontPage, backPage, index, turned, isMobile }) {
 
   // Layering: switch stacking order halfway through the turn
   const zIndex = useTransform(rot, (v) =>
-    v < -90 ? index + 1 : TOTAL + 5 - index
+    v < -90 ? index + 1 : total + 5 - index
   );
   // Soft shadow that darkens the page as it passes through the middle of the turn
   const frontShade = useTransform(rot, [-180, -90, 0], [0, 0.45, 0]);
@@ -118,21 +119,25 @@ function Leaf({ frontPage, backPage, index, turned, isMobile }) {
     >
       {/* Front face */}
       <div className={`${styles.face} ${styles.front}`}>
-        <img
-          src={frontPage.img}
-          alt={frontPage.alt}
-          className={styles.bookPageImg}
-        />
+        {frontPage && (
+          <img
+            src={frontPage.img}
+            alt={frontPage.alt}
+            className={styles.bookPageImg}
+          />
+        )}
         <motion.div className={styles.shade} style={{ opacity: frontShade }} />
       </div>
 
-      {/* Back face */}
+      {/* Back face (khali agar page nahi hai) */}
       <div className={`${styles.face} ${styles.back}`}>
-        <img
-          src={backPage.img}
-          alt={backPage.alt}
-          className={styles.bookPageImg}
-        />
+        {backPage && (
+          <img
+            src={backPage.img}
+            alt={backPage.alt}
+            className={styles.bookPageImg}
+          />
+        )}
         <motion.div className={styles.shade} style={{ opacity: backShade }} />
       </div>
     </motion.div>
@@ -140,11 +145,15 @@ function Leaf({ frontPage, backPage, index, turned, isMobile }) {
 }
 
 export default function LookInside() {
-  const [current, setCurrent] = useState(0); // 0..8
+  const [current, setCurrent] = useState(0);
   const isMobile = useIsMobile();
 
-  const goNext = () => setCurrent((p) => Math.min(p + 1, TOTAL - 1));
-  const goPrev = () => setCurrent((p) => Math.max(p - 1, 0));
+  const leaves = isMobile ? mobileLeaves : desktopLeaves;
+  const states = isMobile ? N : leaves.length + 1;
+  const cur = Math.min(current, states - 1);
+
+  const goNext = () => setCurrent(Math.min(cur + 1, states - 1));
+  const goPrev = () => setCurrent(Math.max(cur - 1, 0));
 
   return (
     <section className={`${styles.section} ${styles.bg}`}>
@@ -166,7 +175,7 @@ export default function LookInside() {
                 type="button"
                 className={styles.arrowBtn}
                 onClick={goPrev}
-                disabled={current === 0}
+                disabled={cur === 0}
                 aria-label="Previous page"
               >
                 ‹
@@ -181,14 +190,17 @@ export default function LookInside() {
                       className={styles.bookPageImg}
                     />
                   </div>
+                  {/* Aakhri page ke baad dikhne wala khali page */}
+                  <div className={styles.rightBase} />
                   <div className={styles.bookSpine} />
-                  {leafFaces.map((faces, i) => (
+                  {leaves.map((leaf, i) => (
                     <Leaf
                       key={i}
                       index={i}
-                      frontPage={bookPages[isMobile ? i : faces.front]}
-                      backPage={bookPages[faces.back]}
-                      turned={i < current}
+                      total={leaves.length}
+                      frontPage={leaf.front}
+                      backPage={leaf.back}
+                      turned={i < cur}
                       isMobile={isMobile}
                     />
                   ))}
@@ -199,7 +211,7 @@ export default function LookInside() {
                 type="button"
                 className={styles.arrowBtn}
                 onClick={goNext}
-                disabled={current === TOTAL - 1}
+                disabled={cur === states - 1}
                 aria-label="Next page"
               >
                 ›
@@ -208,7 +220,7 @@ export default function LookInside() {
           </motion.div>
 
           <div className={styles.interactionHint}>
-            Use the arrows to turn pages ({current + 1} of {TOTAL})
+            Use the arrows to turn pages ({cur + 1} of {states})
           </div>
         </div>
 
