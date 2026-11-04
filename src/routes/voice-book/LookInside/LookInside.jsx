@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   motion,
   animate,
@@ -39,10 +39,6 @@ const mobileLeaves = [
 const PITCH_PATHS = {
   uncertain: "M15 70 C 60 75, 90 60, 130 65 C 170 70, 200 55, 265 45",
   confident: "M15 75 C 60 70, 100 45, 140 35 C 180 25, 220 20, 265 15",
-};
-const PITCH_DOTS = {
-  uncertain: { cx: 130, cy: 65 },
-  confident: { cx: 140, cy: 35 },
 };
 
 const cardMotion = (i) => ({
@@ -153,14 +149,22 @@ const salesItem = {
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
 };
 
-function SalesPanel({ active }) {
+function SalesPanel({ active, spread = false }) {
+  const container = spread
+    ? {
+        hide: { opacity: 0, transition: { duration: 0.25 } },
+        show: { opacity: 1, transition: { duration: 0.5, delay: 0.8, staggerChildren: 0.12, delayChildren: 0.3 } },
+      }
+    : salesContainer;
+
   return (
     <motion.div
-      className={styles.sales}
+      className={`${styles.sales} ${spread ? styles.salesSpread : ""}`}
       aria-hidden={!active}
-      variants={salesContainer}
+      variants={container}
       initial="hide"
       animate={active ? "show" : "hide"}
+      style={spread ? { pointerEvents: active ? "auto" : "none" } : undefined}
     >
       {/* soft golden waves at the bottom */}
       <svg className={styles.salesWaves} viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
@@ -175,49 +179,123 @@ function SalesPanel({ active }) {
             src={COVER_IMG}
             alt="Voice Control book cover"
             className={styles.salesCover}
-            animate={{ y: [0, -7, 0], rotate: [-1.5, 1.5, -1.5] }}
+            animate={{ y: [0, -8, 0], rotate: [-1.2, 1.2, -1.2] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />
         </motion.div>
 
-        <motion.p variants={salesItem} className={styles.salesKicker}>
-          You’ve Heard the Difference.
-        </motion.p>
+        <div className={styles.salesBody}>
+          <motion.p variants={salesItem} className={styles.salesKicker}>
+            You’ve Heard the Difference.
+          </motion.p>
 
-        <motion.span
-          className={styles.salesBrush}
-          variants={{ hide: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } } }}
-        />
+          <motion.span
+            className={styles.salesBrush}
+            variants={{ hide: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } } }}
+          />
 
-        <motion.h3 variants={salesItem} className={styles.salesTitle}>
-          Now Imagine What Your Voice Could Do.
-        </motion.h3>
+          <motion.h3 variants={salesItem} className={styles.salesTitle}>
+            Now Imagine What Your Voice Could Do.
+          </motion.h3>
 
-        <motion.p variants={salesItem} className={styles.salesText}>
-          Learn to make <strong>every word count</strong> — in meetings, interviews, presentations, and everyday conversations.
-        </motion.p>
+          <motion.p variants={salesItem} className={styles.salesText}>
+            Learn to make <strong>every word count</strong> — in meetings, interviews, presentations, and everyday conversations.
+          </motion.p>
 
-        <motion.ul variants={salesItem} className={styles.salesBenefits}>
-          {SALES_BENEFITS.map(({ Icon, label }) => (
-            <li key={label} className={styles.salesBenefit}>
-              <span className={styles.salesBenefitIcon}><Icon /></span>
-              <span className={styles.salesBenefitLabel}>{label}</span>
-            </li>
-          ))}
-        </motion.ul>
+          <motion.ul variants={salesItem} className={styles.salesBenefits}>
+            {SALES_BENEFITS.map(({ Icon, label }) => (
+              <li key={label} className={styles.salesBenefit}>
+                <span className={styles.salesBenefitIcon}><Icon /></span>
+                <span className={styles.salesBenefitLabel}>{label}</span>
+              </li>
+            ))}
+          </motion.ul>
 
-        <motion.a
-          variants={salesItem}
-          href={BUY_URL}
-          className={styles.salesBtn}
-          target="_blank"
-          rel="noopener noreferrer"
-          tabIndex={active ? 0 : -1}
-        >
-          Get Voice Control — $29 <span className={styles.salesBtnArrow}>→</span>
-        </motion.a>
+          <motion.a
+            variants={salesItem}
+            href={BUY_URL}
+            className={styles.salesBtn}
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex={active ? 0 : -1}
+          >
+            Get Voice Control — $29 <span className={styles.salesBtnArrow}>→</span>
+          </motion.a>
+        </div>
       </div>
     </motion.div>
+  );
+}
+
+/* Pitch graph: big dot that travels UP along the curve */
+function PitchGraph({ state }) {
+  const pathRef = useRef(null);
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const glowRef = useRef(null);
+
+  useEffect(() => {
+    const path = pathRef.current;
+    if (!path) return undefined;
+
+    const place = (t) => {
+      const total = path.getTotalLength();
+      const p = path.getPointAtLength(total * t);
+      const fade = Math.max(0, Math.min(1, t * 6, (1 - t) * 6));
+      [dotRef, ringRef, glowRef].forEach((r) => {
+        if (r.current) {
+          r.current.setAttribute("cx", p.x);
+          r.current.setAttribute("cy", p.y);
+          r.current.setAttribute("opacity", fade);
+        }
+      });
+    };
+
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      place(1);
+      return undefined;
+    }
+
+    place(0);
+    const controls = animate(0, 1, {
+      duration: state === "confident" ? 2.4 : 3.6,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatDelay: 0.5,
+      onUpdate: place,
+    });
+    return () => controls.stop();
+  }, [state]);
+
+  return (
+    <svg className={styles.pitchSvg} viewBox="0 0 280 90" fill="none" overflow="visible">
+      <defs>
+        <linearGradient id="pitchGradient" x1="0" y1="0" x2="280" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#133d41" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="#e6b54e" />
+          <stop offset="100%" stopColor="#133d41" />
+        </linearGradient>
+      </defs>
+      <motion.path
+        ref={pathRef}
+        stroke="url(#pitchGradient)"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        initial={{ pathLength: 0, opacity: 0, d: PITCH_PATHS[state] }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        animate={{ d: PITCH_PATHS[state] }}
+        transition={{
+          d: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+          pathLength: { duration: 1.4, ease: "easeOut" },
+          opacity: { duration: 0.5 },
+        }}
+      />
+      <circle ref={glowRef} r="15" fill="rgba(230, 181, 78, 0.28)" />
+      <circle ref={ringRef} className={styles.ringNode} r="10" fill="#e6b54e" />
+      <circle ref={dotRef} r="9" fill="#e6b54e" stroke="#ffffff" strokeWidth="2.5" />
+    </svg>
   );
 }
 
@@ -296,9 +374,7 @@ export default function LookInside() {
                   <div className={styles.leftBase}>
                     <img src={bookPages[0].img} alt={bookPages[0].alt} className={styles.bookPageImg} />
                   </div>
-                  <div className={styles.rightBase}>
-                    <SalesPanel active={!isMobile && atEnd} />
-                  </div>
+                  <div className={styles.rightBase} />
                   <div className={styles.bookSpine} />
                   {leaves.map((leaf, i) => (
                     <Leaf
@@ -312,6 +388,8 @@ export default function LookInside() {
                       salesActive={isMobile && atEnd}
                     />
                   ))}
+                  {/* Desktop: final design covers the WHOLE open book, exactly like the client's banner */}
+                  {!isMobile && <SalesPanel spread active={atEnd} />}
                 </div>
               </div>
               <button type="button" className={styles.arrowBtn} onClick={goNext} disabled={atEnd} aria-label="Next page">›</button>
@@ -375,44 +453,7 @@ export default function LookInside() {
                 <div className={styles.pitchCanvas}>
                   <div className={`${styles.moodBadge} ${pitchState === 'uncertain' ? styles.badgeActiveUncertain : ''}`}>Uncertain</div>
                   <div className={`${styles.moodBadge} ${pitchState === 'confident' ? styles.badgeActiveConfident : ''}`}>Confident</div>
-                  <svg className={styles.pitchSvg} viewBox="0 0 280 90" fill="none">
-                    <defs>
-                      <linearGradient id="pitchGradient" x1="0" y1="0" x2="280" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#133d41" stopOpacity="0.3" />
-                        <stop offset="50%" stopColor="#e6b54e" />
-                        <stop offset="100%" stopColor="#133d41" />
-                      </linearGradient>
-                    </defs>
-                    <motion.path
-                      stroke="url(#pitchGradient)"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0, opacity: 0, d: PITCH_PATHS[pitchState] }}
-                      whileInView={{ pathLength: 1, opacity: 1 }}
-                      viewport={{ once: true }}
-                      animate={{ d: PITCH_PATHS[pitchState] }}
-                      transition={{
-                        d: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-                        pathLength: { duration: 1.4, ease: "easeOut" },
-                        opacity: { duration: 0.5 },
-                      }}
-                    />
-                    <motion.circle
-                      className={styles.ringNode}
-                      r="5"
-                      fill="#e6b54e"
-                      initial={false}
-                      animate={PITCH_DOTS[pitchState]}
-                      transition={{ type: "spring", stiffness: 120, damping: 16 }}
-                    />
-                    <motion.circle
-                      r="5"
-                      fill="#e6b54e"
-                      initial={false}
-                      animate={PITCH_DOTS[pitchState]}
-                      transition={{ type: "spring", stiffness: 120, damping: 16 }}
-                    />
-                  </svg>
+                  <PitchGraph state={pitchState} />
                 </div>
               </div>
 

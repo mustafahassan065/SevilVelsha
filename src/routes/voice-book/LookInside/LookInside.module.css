@@ -213,9 +213,16 @@
   filter: drop-shadow(0 2.4cqw 3cqw rgba(160, 120, 30, 0.35));
 }
 
+.salesBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .salesCover {
   display: block;
-  width: 17cqw;
+  width: 22cqw;
   height: auto;
   border-radius: 0.8cqw;
 }
@@ -394,6 +401,89 @@
   0%, 100% { transform: translateX(0) scaleY(1); }
   50% { transform: translateX(-2%) scaleY(1.25); }
 }
+
+
+/* ===== Desktop: the sales design fills the whole open book (matches client banner) ===== */
+.salesSpread {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  background: #ffffff;
+  border: 1px solid #e2d7c3;
+  border-radius: 12px;
+}
+
+.salesSpread .salesInner {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2.5cqw;
+  padding: 2.5cqw 4cqw 4.5cqw 3.5cqw;
+}
+
+.salesSpread .salesCoverWrap {
+  flex: 0 0 37cqw;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 2.6cqw 3.2cqw rgba(160, 120, 30, 0.38));
+}
+
+.salesSpread .salesCover {
+  width: 34cqw;
+  border-radius: 0.5cqw;
+}
+
+.salesSpread .salesBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.salesSpread .salesKicker { font-size: 3.9cqw; }
+
+.salesSpread .salesBrush {
+  width: 25cqw;
+  height: 0.8cqw;
+  margin: 1.1cqw 0 1.9cqw;
+}
+
+.salesSpread .salesTitle {
+  font-size: 5.3cqw;
+  max-width: 54cqw;
+  margin: 0 0 1.8cqw;
+}
+
+.salesSpread .salesText {
+  font-size: 2.15cqw;
+  max-width: 52cqw;
+  margin: 0 0 2.6cqw;
+}
+
+.salesSpread .salesBenefits { margin: 0 0 3cqw; }
+
+.salesSpread .salesBenefit {
+  gap: 0.8cqw;
+  padding: 0 0.8cqw;
+}
+
+.salesSpread .salesBenefitIcon {
+  width: 5.4cqw;
+  height: 5.4cqw;
+}
+
+.salesSpread .salesBenefitLabel { font-size: 1.95cqw; }
+
+.salesSpread .salesBtn {
+  font-size: 3.2cqw;
+  padding: 2cqw 7cqw;
+  gap: 1.4cqw;
+  box-shadow: 0 1.2cqw 3cqw rgba(191, 145, 57, 0.4);
+}
+
+.salesSpread .salesWaves { height: 15%; }
 
 /* Subtle Interaction Hint */
 .interactionHint {
@@ -1145,13 +1235,12 @@
 .ringNode {
   transform-box: fill-box;
   transform-origin: center;
-  opacity: 0.5;
-  animation: ringPulse 1.8s ease-out infinite;
+  animation: ringPulse 1.4s ease-out infinite;
 }
 
 @keyframes ringPulse {
-  0% { transform: scale(1); opacity: 0.55; }
-  100% { transform: scale(3.2); opacity: 0; }
+  0% { transform: scale(1); }
+  100% { transform: scale(2.1); }
 }
 
 .badgeActiveUncertain,
