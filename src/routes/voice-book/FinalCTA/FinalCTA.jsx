@@ -46,7 +46,7 @@ export default function FinalCTA() {
           {/* Left: photo (transparent, soft-faded edges) */}
           <div className={styles.imageCol}>
             <img
-              src="/images/voice-control-people(main1).png"
+              src="/images/voicebookguys.png"
               alt="Readers holding the Voice Control book"
               className={styles.heroImg}
               loading="lazy"
