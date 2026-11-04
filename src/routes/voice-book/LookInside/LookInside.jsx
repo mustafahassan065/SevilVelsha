@@ -36,6 +36,22 @@ const mobileLeaves = [
   { front: { sales: true }, back: null },
 ];
 
+const PITCH_PATHS = {
+  uncertain: "M15 70 C 60 75, 90 60, 130 65 C 170 70, 200 55, 265 45",
+  confident: "M15 75 C 60 70, 100 45, 140 35 C 180 25, 220 20, 265 15",
+};
+const PITCH_DOTS = {
+  uncertain: { cx: 130, cy: 65 },
+  confident: { cx: 140, cy: 35 },
+};
+
+const cardMotion = (i) => ({
+  initial: { opacity: 0, y: 50 },
+  whileInView: { opacity: 1, y: 0, transition: { duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] } },
+  whileHover: { y: -6, transition: { duration: 0.2 } },
+  viewport: { once: true, amount: 0.2 },
+});
+
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -75,18 +91,133 @@ function EmphasisIcon() {
   );
 }
 
+function SpeakIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4 9v6h4l5 4V5L8 9H4z" />
+      <path d="M16.5 8.5a5 5 0 0 1 0 7" />
+      <path d="M19 6a8.5 8.5 0 0 1 0 12" />
+    </svg>
+  );
+}
+
+function InfluenceIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="6.5" r="2.6" />
+      <circle cx="5" cy="9.5" r="2.1" />
+      <circle cx="19" cy="9.5" r="2.1" />
+      <path d="M7.5 19.5c0-3 2-5 4.5-5s4.5 2 4.5 5" />
+      <path d="M1.8 18c0-2.2 1.3-3.7 3.2-3.7" />
+      <path d="M22.2 18c0-2.2-1.3-3.7-3.2-3.7" />
+    </svg>
+  );
+}
+
+function HeardIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="9" y="3" width="6" height="10" rx="3" />
+      <path d="M6 11a6 6 0 0 0 12 0" />
+      <path d="M12 17v4M8.5 21h7" />
+    </svg>
+  );
+}
+
+function ImpactIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="11" cy="13" r="8" />
+      <circle cx="11" cy="13" r="4.5" />
+      <circle cx="11" cy="13" r="1.4" />
+      <path d="M11 13 20 4" />
+      <path d="M16.5 4H20v3.5" />
+    </svg>
+  );
+}
+
+const SALES_BENEFITS = [
+  { Icon: SpeakIcon, label: "Speak Confidently" },
+  { Icon: InfluenceIcon, label: "Influence Others" },
+  { Icon: HeardIcon, label: "Be Heard" },
+  { Icon: ImpactIcon, label: "Make an Impact" },
+];
+
+const salesContainer = {
+  hide: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.45 } },
+};
+
+const salesItem = {
+  hide: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
+};
+
 function SalesPanel({ active }) {
   return (
-    <div className={styles.sales} aria-hidden={!active}>
-      <img src={COVER_IMG} alt="Voice Control book cover" className={styles.salesCover} />
-      <h3 className={styles.salesTitle}>Your Voice Changes How People Hear You.</h3>
-      <p className={styles.salesText}>
-        Discover how to use pitch, pauses, rhythm, and emphasis to speak with confidence and authority.
-      </p>
-      <a href={BUY_URL} className={styles.salesBtn} target="_blank" rel="noopener noreferrer" tabIndex={active ? 0 : -1}>
-        Get Voice Control — $29
-      </a>
-    </div>
+    <motion.div
+      className={styles.sales}
+      aria-hidden={!active}
+      variants={salesContainer}
+      initial="hide"
+      animate={active ? "show" : "hide"}
+    >
+      {/* soft golden waves at the bottom */}
+      <svg className={styles.salesWaves} viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
+        <path className={styles.waveLine1} d="M0 80 C 100 40, 200 120, 300 80 S 500 40, 600 70" />
+        <path className={styles.waveLine2} d="M0 95 C 120 60, 220 125, 320 92 S 510 62, 600 88" />
+        <path className={styles.waveLine3} d="M0 108 C 130 80, 240 128, 340 104 S 520 84, 600 104" />
+      </svg>
+
+      <div className={styles.salesInner}>
+        <motion.div variants={salesItem} className={styles.salesCoverWrap}>
+          <motion.img
+            src={COVER_IMG}
+            alt="Voice Control book cover"
+            className={styles.salesCover}
+            animate={{ y: [0, -7, 0], rotate: [-1.5, 1.5, -1.5] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
+
+        <motion.p variants={salesItem} className={styles.salesKicker}>
+          You’ve Heard the Difference.
+        </motion.p>
+
+        <motion.span
+          className={styles.salesBrush}
+          variants={{ hide: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } } }}
+        />
+
+        <motion.h3 variants={salesItem} className={styles.salesTitle}>
+          Now Imagine What Your Voice Could Do.
+        </motion.h3>
+
+        <motion.p variants={salesItem} className={styles.salesText}>
+          Learn to make <strong>every word count</strong> — in meetings, interviews, presentations, and everyday conversations.
+        </motion.p>
+
+        <motion.ul variants={salesItem} className={styles.salesBenefits}>
+          {SALES_BENEFITS.map(({ Icon, label }) => (
+            <li key={label} className={styles.salesBenefit}>
+              <span className={styles.salesBenefitIcon}><Icon /></span>
+              <span className={styles.salesBenefitLabel}>{label}</span>
+            </li>
+          ))}
+        </motion.ul>
+
+        <motion.a
+          variants={salesItem}
+          href={BUY_URL}
+          className={styles.salesBtn}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={active ? 0 : -1}
+        >
+          Get Voice Control — $29 <span className={styles.salesBtnArrow}>→</span>
+        </motion.a>
+      </div>
+    </motion.div>
   );
 }
 
@@ -233,25 +364,18 @@ export default function LookInside() {
 
           <div className={styles.wowCardsGrid}>
             {/* 1. PITCH CARD */}
-            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }} className={styles.wowCard}>
+            <motion.div className={styles.wowCard} {...cardMotion(0)}>
               <div className={styles.cardHeader}>
                 <span className={styles.cardIconBox}><PitchIcon /></span>
                 <h3 className={styles.cardTitle}>Pitch</h3>
               </div>
               <p className={styles.cardDesc}>Change the pitch and feel the mood shift.</p>
-              
+
               <div className={styles.cardVisualArea}>
                 <div className={styles.pitchCanvas}>
                   <div className={`${styles.moodBadge} ${pitchState === 'uncertain' ? styles.badgeActiveUncertain : ''}`}>Uncertain</div>
                   <div className={`${styles.moodBadge} ${pitchState === 'confident' ? styles.badgeActiveConfident : ''}`}>Confident</div>
                   <svg className={styles.pitchSvg} viewBox="0 0 280 90" fill="none">
-                    <path
-                      d={pitchState === 'uncertain' ? "M15 70 C 60 75, 90 60, 130 65 C 170 70, 200 55, 265 45" : "M15 75 C 60 70, 100 45, 140 35 C 180 25, 220 20, 265 15"}
-                      stroke="url(#pitchGradient)"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                    />
-                    <circle cx={pitchState === 'uncertain' ? "130" : "140"} cy={pitchState === 'uncertain' ? "65" : "35"} r="5" fill="#e6b54e" className={styles.pulseNode} />
                     <defs>
                       <linearGradient id="pitchGradient" x1="0" y1="0" x2="280" y2="0" gradientUnits="userSpaceOnUse">
                         <stop offset="0%" stopColor="#133d41" stopOpacity="0.3" />
@@ -259,6 +383,35 @@ export default function LookInside() {
                         <stop offset="100%" stopColor="#133d41" />
                       </linearGradient>
                     </defs>
+                    <motion.path
+                      stroke="url(#pitchGradient)"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0, opacity: 0, d: PITCH_PATHS[pitchState] }}
+                      whileInView={{ pathLength: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      animate={{ d: PITCH_PATHS[pitchState] }}
+                      transition={{
+                        d: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+                        pathLength: { duration: 1.4, ease: "easeOut" },
+                        opacity: { duration: 0.5 },
+                      }}
+                    />
+                    <motion.circle
+                      className={styles.ringNode}
+                      r="5"
+                      fill="#e6b54e"
+                      initial={false}
+                      animate={PITCH_DOTS[pitchState]}
+                      transition={{ type: "spring", stiffness: 120, damping: 16 }}
+                    />
+                    <motion.circle
+                      r="5"
+                      fill="#e6b54e"
+                      initial={false}
+                      animate={PITCH_DOTS[pitchState]}
+                      transition={{ type: "spring", stiffness: 120, damping: 16 }}
+                    />
                   </svg>
                 </div>
               </div>
@@ -282,7 +435,7 @@ export default function LookInside() {
             </motion.div>
 
             {/* 2. PAUSES CARD */}
-            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }} className={styles.wowCard}>
+            <motion.div className={styles.wowCard} {...cardMotion(1)}>
               <div className={styles.cardHeader}>
                 <span className={styles.cardIconBox}><PausesIcon /></span>
                 <h3 className={styles.cardTitle}>Pauses</h3>
@@ -291,22 +444,22 @@ export default function LookInside() {
 
               <div className={styles.cardVisualArea}>
                 <div className={styles.sentenceDisplay}>
-                  <i>I believe</i> 
+                  <i>I believe</i>
                   <span className={`${styles.pauseDotsContainer} ${pauseState === 'with' ? styles.pauseActive : ''}`}>
                     <span className={styles.pDot}></span><span className={styles.pDot}></span><span className={styles.pDot}></span>
-                  </span> 
+                  </span>
                   <i>we can do this.</i>
                 </div>
-                <div className={styles.miniWaveformRow}>
-                  <div className={styles.waveGroup}>
+                <div className={`${styles.miniWaveformRow} ${pauseState === 'with' ? styles.pauseCycle : ''}`}>
+                  <div className={`${styles.waveGroup} ${styles.waveLeft}`}>
                     {[12, 18, 24, 16, 22, 14, 20].map((h, i) => (
-                      <span key={i} style={{ height: `${h}px` }} className={styles.wBar}></span>
+                      <span key={i} style={{ height: `${h}px`, '--i': i }} className={styles.wBar}></span>
                     ))}
                   </div>
                   <div className={`${styles.pauseIndicatorBlock} ${pauseState === 'with' ? styles.pauseBlockActive : ''}`}>⏸</div>
-                  <div className={styles.waveGroup}>
+                  <div className={`${styles.waveGroup} ${styles.waveRight}`}>
                     {[14, 22, 18, 26, 20, 16, 22, 15].map((h, i) => (
-                      <span key={i} style={{ height: `${h}px` }} className={styles.wBar}></span>
+                      <span key={i} style={{ height: `${h}px`, '--i': i + 3 }} className={styles.wBar}></span>
                     ))}
                   </div>
                 </div>
@@ -331,7 +484,7 @@ export default function LookInside() {
             </motion.div>
 
             {/* 3. EMPHASIS CARD */}
-            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }} className={styles.wowCard}>
+            <motion.div className={styles.wowCard} {...cardMotion(2)}>
               <div className={styles.cardHeader}>
                 <span className={styles.cardIconBox}><EmphasisIcon /></span>
                 <h3 className={styles.cardTitle}>Emphasis</h3>
@@ -346,9 +499,9 @@ export default function LookInside() {
                 </div>
                 <div className={styles.miniWaveformCenter}>
                   {[10, 14, 18, 24, 32, 44, 58, 44, 32, 24, 18, 14, 10].map((h, i) => (
-                    <span 
-                      key={i} 
-                      style={{ height: `${emphasisState === 'emphasized' && i >= 4 && i <= 8 ? h * 1.3 : h}px` }} 
+                    <span
+                      key={i}
+                      style={{ height: `${emphasisState === 'emphasized' && i >= 4 && i <= 8 ? h * 1.3 : h}px`, '--i': i }}
                       className={`${styles.wBar} ${emphasisState === 'emphasized' && i >= 5 && i <= 7 ? styles.wBarGold : ''}`}
                     ></span>
                   ))}
@@ -376,8 +529,22 @@ export default function LookInside() {
 
           {/* Cinematic Discovery Subtitle replacing Try It Yourself */}
           <div className={styles.cinematicBanner}>
-            <div className={styles.bannerBrushBg}></div>
-            <h3 className={styles.bannerText}>The Same Words. A Completely Different Impact.</h3>
+            <motion.div
+              className={styles.bannerBrushBg}
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+            />
+            <motion.h3
+              className={styles.bannerText}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              The Same Words. A Completely Different Impact.
+            </motion.h3>
           </div>
         </div>
 

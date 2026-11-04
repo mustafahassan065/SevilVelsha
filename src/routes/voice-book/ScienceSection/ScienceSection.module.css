@@ -52,16 +52,33 @@
   align-items: flex-end;
 }
 
-/* 40% Bigger Image Styling - Seamless Integration (No Frame, No Shadow) */
+/* Author photo - bottom fades smoothly into the cream background (no hard cut) */
 .authorImg {
   width: 100%;
-  max-width: 504px; /* 40% larger than 360px */
-  border-radius: 0; /* Frame boundary removed */
-  box-shadow: none; /* Shadow removed completely */
+  max-width: 504px;
+  border-radius: 0;
+  box-shadow: none;
   object-fit: contain;
   background: transparent;
-  mix-blend-mode: multiply; /* Blends photo background with page background */
+  mix-blend-mode: multiply;
   filter: contrast(1.02);
+  /* soft fade at the bottom so the body blends into the page */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.7) 72%,
+    rgba(0, 0, 0, 0.3) 84%,
+    rgba(0, 0, 0, 0) 94%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.7) 72%,
+    rgba(0, 0, 0, 0.3) 84%,
+    rgba(0, 0, 0, 0) 94%
+  );
 }
 
 .bioCol {
