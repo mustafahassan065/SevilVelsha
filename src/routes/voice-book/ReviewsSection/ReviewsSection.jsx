@@ -1,53 +1,86 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./ReviewsSection.module.css";
 
 const BUY_URL = "https://buy.stripe.com/9B67sK95d23n7HM0gogIo04";
 
 /* ------------------------------------------------------------------
-   IMPORTANT: The reviews below are PLACEHOLDER SAMPLES so you can see
-   the design. Replace name / role / text with REAL client reviews
-   (with their permission) before the site goes live.
+   DUMMY DATA: names, roles, reviews and photos below are PLACEHOLDERS
+   (Unsplash stock portraits). Replace them with REAL client reviews and
+   real photos (with their permission) before the site goes live.
 ------------------------------------------------------------------- */
+const unsplash = (id) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&crop=faces&w=200&h=200&q=80`;
+
 const REVIEWS = [
   {
-    name: "Client Name 1",
-    role: "Marketing Manager",
+    name: "Daniel Whitmore",
+    role: "Marketing Manager, London",
+    photo: unsplash("photo-1507003211169-0a1dd7228f2d"),
     text: "I always rushed through presentations without realising it. After applying the pause and pitch exercises, my team noticed the difference in the very next meeting.",
   },
   {
-    name: "Client Name 2",
-    role: "Startup Founder",
+    name: "Sophia Bennett",
+    role: "Startup Founder, New York",
+    photo: unsplash("photo-1494790108377-be9c29b29330"),
     text: "The audio demonstrations make everything click. Hearing the same sentence delivered two ways taught me more than hours of generic speaking advice.",
   },
   {
-    name: "Client Name 3",
-    role: "University Lecturer",
+    name: "Dr. Michael Carter",
+    role: "University Lecturer, Boston",
+    photo: unsplash("photo-1472099645785-5658abf4ff4e"),
     text: "Clear, practical and grounded in real research. I now plan where to pause and which word to stress, and my students are far more engaged.",
   },
   {
-    name: "Client Name 4",
-    role: "Sales Director",
+    name: "Emily Thompson",
+    role: "Sales Director, Toronto",
+    photo: unsplash("photo-1438761681033-6461ffad8d80"),
     text: "The exercises are short and easy to repeat daily. My calls sound calmer and more confident, and clients listen differently.",
   },
   {
-    name: "Client Name 5",
-    role: "Job Seeker",
+    name: "James Anderson",
+    role: "Software Engineer, Sydney",
+    photo: unsplash("photo-1500648767791-00dcc994a43e"),
     text: "I used the method before my interviews. Speaking slower and landing my key points with emphasis made me feel in control for the first time.",
   },
   {
-    name: "Client Name 6",
-    role: "Public Speaker",
+    name: "Olivia Hayes",
+    role: "Public Speaker, Dublin",
+    photo: unsplash("photo-1544005313-94ddf0286df2"),
     text: "Finally a book that explains WHY a voice sounds authoritative, not just 'be confident'. The acoustic diagrams are brilliant.",
   },
 ];
 
 function initials(name) {
   return name
+    .replace(/^Dr\.?\s+/i, "")
     .split(" ")
     .filter(Boolean)
     .slice(0, 2)
     .map((n) => n[0].toUpperCase())
     .join("");
+}
+
+/* Photo avatar - falls back to initials if the image cannot load */
+function Avatar({ name, photo }) {
+  const [failed, setFailed] = useState(false);
+  return (
+    <span className={styles.avatar}>
+      {photo && !failed ? (
+        <img
+          src={photo}
+          alt={`Portrait of ${name}`}
+          className={styles.avatarImg}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <span className={styles.avatarInitials} aria-hidden="true">{initials(name)}</span>
+      )}
+      <VerifiedIcon />
+    </span>
+  );
 }
 
 function Stars() {
@@ -114,10 +147,7 @@ export default function ReviewsSection() {
               <blockquote className={styles.text}>“{r.text}”</blockquote>
 
               <figcaption className={styles.author}>
-                <span className={styles.avatar} aria-hidden="true">
-                  {initials(r.name)}
-                  <VerifiedIcon />
-                </span>
+                <Avatar name={r.name} photo={r.photo} />
                 <span className={styles.authorInfo}>
                   <span className={styles.name}>{r.name}</span>
                   <span className={styles.role}>{r.role}</span>
