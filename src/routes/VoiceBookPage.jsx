@@ -6,6 +6,7 @@ import SameWords from "./voice-book/SameWords/SameWords";
 import ScienceSection from "./voice-book/ScienceSection/ScienceSection";
 import TrainingSystem from "./voice-book/TrainingSystem/TrainingSystem";
 import FinalCTA from "./voice-book/FinalCTA/FinalCTA";
+import ReviewsSection from "./voice-book/ReviewsSection/ReviewsSection";
 
 function VoiceBookPage() {
   return (
@@ -16,6 +17,7 @@ function VoiceBookPage() {
       
       <div id="science"><ScienceSection /></div>
       <div id="system"><TrainingSystem /></div>
+      <div id="reviews"><ReviewsSection/></div>
       <div id="getCopy"><FinalCTA /></div>
     </div>
   );

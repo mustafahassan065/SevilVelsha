@@ -149,22 +149,14 @@ const salesItem = {
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
 };
 
-function SalesPanel({ active, spread = false }) {
-  const container = spread
-    ? {
-        hide: { opacity: 0, transition: { duration: 0.25 } },
-        show: { opacity: 1, transition: { duration: 0.5, delay: 0.8, staggerChildren: 0.12, delayChildren: 0.3 } },
-      }
-    : salesContainer;
-
+function SalesPanel({ active }) {
   return (
     <motion.div
-      className={`${styles.sales} ${spread ? styles.salesSpread : ""}`}
+      className={styles.sales}
       aria-hidden={!active}
-      variants={container}
+      variants={salesContainer}
       initial="hide"
       animate={active ? "show" : "hide"}
-      style={spread ? { pointerEvents: active ? "auto" : "none" } : undefined}
     >
       {/* soft golden waves at the bottom */}
       <svg className={styles.salesWaves} viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
@@ -174,54 +166,62 @@ function SalesPanel({ active, spread = false }) {
       </svg>
 
       <div className={styles.salesInner}>
-        <motion.div variants={salesItem} className={styles.salesCoverWrap}>
-          <motion.img
-            src={COVER_IMG}
-            alt="Voice Control book cover"
-            className={styles.salesCover}
-            animate={{ y: [0, -8, 0], rotate: [-1.2, 1.2, -1.2] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
+        <div className={styles.salesTop}>
+          {/* 3D book */}
+          <motion.div variants={salesItem} className={styles.book3dWrap}>
+            <motion.div
+              className={styles.book3d}
+              animate={{ rotateY: [24, 30, 24], rotateX: [3, 5, 3], y: [0, -6, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img src={COVER_IMG} alt="Voice Control book cover" className={styles.book3dFront} />
+              <span className={styles.book3dSpine} aria-hidden="true">
+                <em>VOICE CONTROL</em>
+              </span>
+              <span className={styles.book3dGloss} aria-hidden="true" />
+            </motion.div>
+            <span className={styles.book3dShadow} aria-hidden="true" />
+          </motion.div>
 
-        <div className={styles.salesBody}>
-          <motion.p variants={salesItem} className={styles.salesKicker}>
-            You’ve Heard the Difference.
-          </motion.p>
+          <div className={styles.salesHead}>
+            <motion.p variants={salesItem} className={styles.salesKicker}>
+              You’ve Heard the Difference.
+            </motion.p>
 
-          <motion.span
-            className={styles.salesBrush}
-            variants={{ hide: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } } }}
-          />
+            <motion.span
+              className={styles.salesBrush}
+              variants={{ hide: { scaleX: 0, opacity: 0 }, show: { scaleX: 1, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } } }}
+            />
 
-          <motion.h3 variants={salesItem} className={styles.salesTitle}>
-            Now Imagine What Your Voice Could Do.
-          </motion.h3>
-
-          <motion.p variants={salesItem} className={styles.salesText}>
-            Learn to make <strong>every word count</strong> — in meetings, interviews, presentations, and everyday conversations.
-          </motion.p>
-
-          <motion.ul variants={salesItem} className={styles.salesBenefits}>
-            {SALES_BENEFITS.map(({ Icon, label }) => (
-              <li key={label} className={styles.salesBenefit}>
-                <span className={styles.salesBenefitIcon}><Icon /></span>
-                <span className={styles.salesBenefitLabel}>{label}</span>
-              </li>
-            ))}
-          </motion.ul>
-
-          <motion.a
-            variants={salesItem}
-            href={BUY_URL}
-            className={styles.salesBtn}
-            target="_blank"
-            rel="noopener noreferrer"
-            tabIndex={active ? 0 : -1}
-          >
-            Get Voice Control — $29 <span className={styles.salesBtnArrow}>→</span>
-          </motion.a>
+            <motion.h3 variants={salesItem} className={styles.salesTitle}>
+              Now Imagine What Your Voice Could Do.
+            </motion.h3>
+          </div>
         </div>
+
+        <motion.p variants={salesItem} className={styles.salesText}>
+          Learn to make <strong>every word count</strong> — in meetings, interviews, presentations, and everyday conversations.
+        </motion.p>
+
+        <motion.ul variants={salesItem} className={styles.salesBenefits}>
+          {SALES_BENEFITS.map(({ Icon, label }) => (
+            <li key={label} className={styles.salesBenefit}>
+              <span className={styles.salesBenefitIcon}><Icon /></span>
+              <span className={styles.salesBenefitLabel}>{label}</span>
+            </li>
+          ))}
+        </motion.ul>
+
+        <motion.a
+          variants={salesItem}
+          href={BUY_URL}
+          className={styles.salesBtn}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={active ? 0 : -1}
+        >
+          Get Voice Control — $29 <span className={styles.salesBtnArrow}>→</span>
+        </motion.a>
       </div>
     </motion.div>
   );
@@ -374,7 +374,9 @@ export default function LookInside() {
                   <div className={styles.leftBase}>
                     <img src={bookPages[0].img} alt={bookPages[0].alt} className={styles.bookPageImg} />
                   </div>
-                  <div className={styles.rightBase} />
+                  <div className={styles.rightBase}>
+                    <SalesPanel active={!isMobile && atEnd} />
+                  </div>
                   <div className={styles.bookSpine} />
                   {leaves.map((leaf, i) => (
                     <Leaf
@@ -388,8 +390,6 @@ export default function LookInside() {
                       salesActive={isMobile && atEnd}
                     />
                   ))}
-                  {/* Desktop: final design covers the WHOLE open book, exactly like the client's banner */}
-                  {!isMobile && <SalesPanel spread active={atEnd} />}
                 </div>
               </div>
               <button type="button" className={styles.arrowBtn} onClick={goNext} disabled={atEnd} aria-label="Next page">›</button>
