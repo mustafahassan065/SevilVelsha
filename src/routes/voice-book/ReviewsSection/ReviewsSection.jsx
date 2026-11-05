@@ -135,7 +135,7 @@ export default function ReviewsSection() {
         <div className={styles.summary}>
           <Stars />
           <span className={styles.summaryText}>
-            <strong>5.0</strong> average · Trusted by readers worldwide
+            <strong>4.9</strong> average · Trusted by readers worldwide
           </span>
         </div>
 
