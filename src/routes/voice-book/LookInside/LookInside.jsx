@@ -158,13 +158,6 @@ function SalesPanel({ active }) {
       initial="hide"
       animate={active ? "show" : "hide"}
     >
-      {/* soft golden waves at the bottom */}
-      <svg className={styles.salesWaves} viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
-        <path className={styles.waveLine1} d="M0 80 C 100 40, 200 120, 300 80 S 500 40, 600 70" />
-        <path className={styles.waveLine2} d="M0 95 C 120 60, 220 125, 320 92 S 510 62, 600 88" />
-        <path className={styles.waveLine3} d="M0 108 C 130 80, 240 128, 340 104 S 520 84, 600 104" />
-      </svg>
-
       <div className={styles.salesInner}>
         <div className={styles.salesTop}>
           {/* 3D book */}

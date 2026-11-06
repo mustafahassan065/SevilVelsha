@@ -397,21 +397,22 @@
   color: #133d41;
 }
 
+/* === BUTTON: SIZE CHOTA KIYA GAYA === */
 .salesBtn {
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 1.6cqw;
+  gap: 1.2cqw;
   background: linear-gradient(180deg, #f0c45a 0%, #d9a63d 100%);
   color: #1c1608;
   font-weight: 700;
-  font-size: 3.8cqw;
-  padding: 3cqw 8cqw;
+  font-size: 2.8cqw;          /* pehle 3.8cqw tha */
+  padding: 1.8cqw 5.5cqw;     /* pehle 3cqw 8cqw tha */
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 1.6cqw 4cqw rgba(191, 145, 57, 0.4);
+  box-shadow: 0 1.1cqw 2.8cqw rgba(191, 145, 57, 0.4);  /* halka shadow */
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
@@ -451,33 +452,7 @@
   outline-offset: 3px;
 }
 
-/* decorative golden waves */
-.salesWaves {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 16%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.salesWaves path {
-  fill: none;
-  stroke: #e6b54e;
-  stroke-width: 1.2;
-  vector-effect: non-scaling-stroke;
-}
-
-.waveLine1 { opacity: 0.55; animation: waveDrift 7s ease-in-out infinite; }
-.waveLine2 { opacity: 0.4; animation: waveDrift 9s ease-in-out infinite reverse; }
-.waveLine3 { opacity: 0.25; animation: waveDrift 11s ease-in-out infinite; }
-
-@keyframes waveDrift {
-  0%, 100% { transform: translateX(0) scaleY(1); }
-  50% { transform: translateX(-2%) scaleY(1.25); }
-}
-
+/* === WAVES ANIMATION REMOVED === */
 
 /* Subtle Interaction Hint */
 .interactionHint {
@@ -739,10 +714,6 @@
   .front {
     border-radius: 12px;
   }
-
-
-
-
 
   .audioBlock {
     margin-top: 64px;
@@ -1299,10 +1270,7 @@
   .ringNode,
   .cardIconBox,
   .listenTitleItalic,
-  .salesBtn::after,
-  .waveLine1,
-  .waveLine2,
-  .waveLine3 {
+  .salesBtn::after {
     animation: none !important;
   }
 }
