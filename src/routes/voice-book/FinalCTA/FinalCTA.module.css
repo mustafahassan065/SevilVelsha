@@ -15,12 +15,17 @@
   background: transparent;
   border: 0;
   box-shadow: none;
+  display: flex;
+  align-items: center;
 }
 
 .heroImg {
   display: block;
   width: 100%;
-  height: auto;
+  /* NEW: make the image visually as tall as the right-side text block */
+  height: clamp(360px, 42vw, 620px);
+  object-fit: cover;
+  object-position: center;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -129,6 +134,9 @@
   .heroImg {
     max-width: 560px;
     margin: 0 auto;
+    /* On mobile let it keep its natural aspect so it doesn't crop awkwardly */
+    height: auto;
+    object-fit: contain;
   }
 
   .content { padding: 0; margin-top: -30px; }

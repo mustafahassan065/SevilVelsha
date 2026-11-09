@@ -416,22 +416,7 @@
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.salesBtn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -60%;
-  width: 40%;
-  height: 100%;
-  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
-  transform: skewX(-20deg);
-  animation: btnShine 3.2s ease-in-out infinite;
-}
-
-@keyframes btnShine {
-  0% { left: -60%; }
-  45%, 100% { left: 130%; }
-}
+/* NOTE: button shine sweep animation (::after + @keyframes btnShine) removed */
 
 .salesBtnArrow {
   display: inline-block;
@@ -1269,8 +1254,7 @@
   .wordActive,
   .ringNode,
   .cardIconBox,
-  .listenTitleItalic,
-  .salesBtn::after {
+  .listenTitleItalic {
     animation: none !important;
   }
 }
