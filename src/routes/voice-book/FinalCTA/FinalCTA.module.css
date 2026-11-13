@@ -1,10 +1,10 @@
-.section { position: relative; padding: 30px 0 30px; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 0 0 30px; text-align: center; overflow: hidden; }
 .bgCream { background: #f6efe6; }
 .container { max-width: 1500px; margin: 0 auto; position: relative; z-index: 1; }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.95fr 1fr; /* image column bara, text column chota */
+  grid-template-columns: 2.2fr 1fr; /* image column bara, text column chota */
   align-items: center;
   gap: 0;
 }
@@ -52,7 +52,7 @@
 }
 
 /* Right side: compact text block */
-.content { position: relative; z-index: 2; padding: 70px 24px 0 0; margin-left: -125px; } /* margin-left: image-text gap, padding-top: text ki vertical position */
+.content { position: relative; z-index: 2; padding: 70px 24px 0 0; margin-left: -140px; } /* margin-left: image-text gap, padding-top: text ki vertical position */
 
 .title {
   font-family: Georgia, "Times New Roman", serif;
