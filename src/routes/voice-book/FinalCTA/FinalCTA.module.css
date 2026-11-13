@@ -1,29 +1,28 @@
-.section { position: relative; padding: 40px 20px 0; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 60px 20px; text-align: center; overflow: hidden; }
 .bgCream { background: #f6efe6; }
-.container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+.container { max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.6fr 1fr; /* image column bara, text column chota */
   align-items: center;
   gap: 0;
 }
 
-/* Left image: natural aspect ratio, koi crop nahi, koi fade nahi */
+/* Left photo: no border, frame or shadow. Bottom edge is faded with a CSS mask. */
 .imageCol {
   width: 100%;
   background: transparent;
   border: 0;
   box-shadow: none;
   display: flex;
-  align-items: flex-end;
-  align-self: end;
+  align-items: center;
 }
 
 .heroImg {
   display: block;
   width: 100%;
-  height: auto;            /* natural height: sides se cut nahi hogi */
+  height: auto;            /* natural ratio: sides se cut nahi hogi */
   object-fit: contain;
   border: 0;
   border-radius: 0;
@@ -31,34 +30,52 @@
   background: transparent;
   outline: none;
   user-select: none;
-  mix-blend-mode: multiply; /* image ka background cream me blend */
+  /* Blend into the cream background (same technique as the author photo) */
+  mix-blend-mode: multiply;
+  /* ORIGINAL bottom fade, bilkul same */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.7) 72%,
+    rgba(0, 0, 0, 0.3) 84%,
+    rgba(0, 0, 0, 0) 95%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 55%,
+    rgba(0, 0, 0, 0.7) 72%,
+    rgba(0, 0, 0, 0.3) 84%,
+    rgba(0, 0, 0, 0) 95%
+  );
 }
 
-/* Right side: compact text block, vertically centered */
-.content { padding: 0 10px 40px 20px; }
+/* Right side: compact text block */
+.content { padding: 0 10px 0 20px; }
 
 .title {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(22px, 2.5vw, 34px);
+  font-size: clamp(20px, 1.9vw, 27px);
   line-height: 1.25;
   color: #133d41;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   font-weight: 700;
 }
 
 .subtitle {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(14px, 1.2vw, 16px);
+  font-size: clamp(13.5px, 1.1vw, 15px);
   color: #4b4a42;
-  line-height: 1.55;
-  max-width: 520px;
-  margin: 0 auto 22px;
+  line-height: 1.5;
+  max-width: 480px;
+  margin: 0 auto 18px;
 }
 
 /* 3 icon features with thin dividers */
 .features {
   list-style: none;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -71,7 +88,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 0 8px;
+  padding: 0 6px;
 }
 .feature + .feature::before {
   content: "";
@@ -84,8 +101,8 @@
 }
 
 .featureIcon {
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #f3e4c4;
   color: #a8802c;
@@ -93,33 +110,33 @@
   align-items: center;
   justify-content: center;
 }
-.featureIcon svg { width: 26px; height: 26px; }
+.featureIcon svg { width: 24px; height: 24px; }
 
 .featureLabel {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 700;
-  font-size: clamp(12.5px, 1.1vw, 15px);
+  font-size: clamp(12px, 1vw, 14px);
   line-height: 1.3;
   color: #4b3b1b;
-  max-width: 150px;
+  max-width: 140px;
 }
 
 .buyButton {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   background: linear-gradient(180deg, #e6b54e 0%, #c99a3a 100%);
-  color: #1c1608; font-weight: 700; font-size: 19px;
-  padding: 14px 44px; border-radius: 999px; text-decoration: none;
+  color: #1c1608; font-weight: 700; font-size: 18px;
+  padding: 12px 40px; border-radius: 999px; text-decoration: none;
   box-shadow: 0 8px 22px rgba(168, 128, 44, 0.45);
   transition: transform .15s ease, filter .15s ease;
-  min-width: min(100%, 380px);
+  min-width: min(100%, 340px);
 }
 .buyButton:hover { transform: translateY(-2px); filter: brightness(1.06); }
 .buyButton:focus-visible { outline: 3px solid #133d41; outline-offset: 3px; }
 
-.miniRow { margin: 14px 0 0; font-style: italic; font-size: 13px; color: #4b4a42; line-height: 1.5; }
+.miniRow { margin: 12px 0 0; font-style: italic; font-size: 12.5px; color: #4b4a42; line-height: 1.5; }
 
 @media (max-width: 900px) {
-  .section { padding: 32px 16px 40px; }
+  .section { padding: 40px 16px 56px; }
 
   .grid {
     grid-template-columns: 1fr;
@@ -137,7 +154,7 @@
     object-fit: contain;
   }
 
-  .content { padding: 20px 0 0; }
+  .content { padding: 0; margin-top: -30px; }
   .title { font-size: clamp(26px, 6vw, 34px); }
   .subtitle { font-size: 16px; }
 }
