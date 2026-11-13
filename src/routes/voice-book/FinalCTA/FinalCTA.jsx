@@ -57,7 +57,9 @@ export default function FinalCTA() {
           {/* Right: content */}
           <div className={styles.content}>
             <h2 className={styles.title}>
-              You Know What to Say. But Does Your Voice Deliver It?
+              You Know What to Say.
+              <br className={styles.titleBr} />
+              But Does Your Voice Deliver It?
             </h2>
             <p className={styles.subtitle}>
               Stop rushing, sounding uncertain, or losing your listener's attention. Learn to use your voice with confidence and authority.

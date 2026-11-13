@@ -1,65 +1,46 @@
-.section { position: relative; padding: 50px 20px; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 40px 20px 0; text-align: center; overflow: hidden; }
 .bgCream { background: #f6efe6; }
-.container { max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
+.container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  align-items: center; /* text block image ke vertical center me rahega */
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
   gap: 0;
 }
 
-/* Left photo: no border, frame or shadow. Bottom edge is faded with a CSS mask. */
+/* Left image: natural aspect ratio, koi crop nahi, koi fade nahi */
 .imageCol {
   width: 100%;
   background: transparent;
   border: 0;
   box-shadow: none;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  align-self: end;
 }
 
 .heroImg {
   display: block;
   width: 100%;
-  /* Image ab right side ke text block se clearly lambi hai */
-  height: clamp(520px, 56vw, 800px);
-  object-fit: cover;
-  object-position: center top;
+  height: auto;            /* natural height: sides se cut nahi hogi */
+  object-fit: contain;
   border: 0;
   border-radius: 0;
   box-shadow: none;
   background: transparent;
   outline: none;
   user-select: none;
-  /* Blend into the cream background (same technique as the author photo) */
-  mix-blend-mode: multiply;
-  /* Fade bottom me thora late shuru hota hai taake image visually lambi lage */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 68%,
-    rgba(0, 0, 0, 0.7) 82%,
-    rgba(0, 0, 0, 0.3) 92%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 68%,
-    rgba(0, 0, 0, 0.7) 82%,
-    rgba(0, 0, 0, 0.3) 92%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  mix-blend-mode: multiply; /* image ka background cream me blend */
 }
 
-/* ---------- Right side: compact text block (kuch remove nahi hua) ---------- */
-.content { padding: 0 10px 0 0; }
+/* Right side: compact text block, vertically centered */
+.content { padding: 0 10px 40px 20px; }
 
 .title {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(26px, 3.4vw, 42px);
-  line-height: 1.15;
+  font-size: clamp(22px, 2.5vw, 34px);
+  line-height: 1.25;
   color: #133d41;
   margin: 0 0 14px;
   font-weight: 700;
@@ -67,28 +48,39 @@
 
 .subtitle {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(15px, 1.4vw, 18px);
+  font-size: clamp(14px, 1.2vw, 16px);
   color: #4b4a42;
-  line-height: 1.5;
+  line-height: 1.55;
   max-width: 520px;
-  margin: 0 auto 20px;
+  margin: 0 auto 22px;
 }
 
-/* 3 icon features */
+/* 3 icon features with thin dividers */
 .features {
   list-style: none;
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 0;
 }
 
 .feature {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  padding: 0 8px;
+}
+.feature + .feature::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22%;
+  height: 56%;
+  width: 1px;
+  background: #e3cf9f;
 }
 
 .featureIcon {
@@ -106,10 +98,10 @@
 .featureLabel {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 700;
-  font-size: clamp(13px, 1.2vw, 15px);
+  font-size: clamp(12.5px, 1.1vw, 15px);
   line-height: 1.3;
   color: #4b3b1b;
-  max-width: 140px;
+  max-width: 150px;
 }
 
 .buyButton {
@@ -124,25 +116,30 @@
 .buyButton:hover { transform: translateY(-2px); filter: brightness(1.06); }
 .buyButton:focus-visible { outline: 3px solid #133d41; outline-offset: 3px; }
 
-.miniRow { margin: 14px 0 0; font-style: italic; font-size: 13.5px; color: #4b4a42; line-height: 1.5; }
+.miniRow { margin: 14px 0 0; font-style: italic; font-size: 13px; color: #4b4a42; line-height: 1.5; }
 
 @media (max-width: 900px) {
-  .section { padding: 40px 16px 56px; }
+  .section { padding: 32px 16px 40px; }
 
   .grid {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
+  .titleBr { display: none; } /* mobile pe title natural wrap */
+
+  .imageCol { align-self: auto; }
+
   .heroImg {
     max-width: 560px;
     margin: 0 auto;
-    /* On mobile let it keep its natural aspect so it doesn't crop awkwardly */
     height: auto;
     object-fit: contain;
   }
 
-  .content { padding: 0; margin-top: -30px; }
+  .content { padding: 20px 0 0; }
+  .title { font-size: clamp(26px, 6vw, 34px); }
+  .subtitle { font-size: 16px; }
 }
 
 @media (max-width: 520px) {
