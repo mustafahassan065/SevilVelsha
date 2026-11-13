@@ -52,7 +52,7 @@
 }
 
 /* Right side: compact text block */
-.content { padding: 0 10px 0 20px; }
+.content { padding: 100px 10px 0 0; margin-left: -60px; } /* image aur text ke beech ka gap kam: -60px ko -30 se -90 tak adjust karein */
 
 .title {
   font-family: Georgia, "Times New Roman", serif;
@@ -154,7 +154,7 @@
     object-fit: contain;
   }
 
-  .content { padding: 0; margin-top: -30px; }
+  .content { padding: 0; margin-left: 0; margin-top: -30px; }
   .title { font-size: clamp(26px, 6vw, 34px); }
   .subtitle { font-size: 16px; }
 }
