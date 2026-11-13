@@ -52,7 +52,7 @@
 }
 
 /* Right side: compact text block */
-.content { position: relative; z-index: 2; padding: 70px 24px 0 0; margin-left: -70px; } /* margin-left: image-text gap, padding-top: text ki vertical position */
+.content { position: relative; z-index: 2; padding: 70px 24px 0 0; margin-left: -125px; } /* margin-left: image-text gap, padding-top: text ki vertical position */
 
 .title {
   font-family: Georgia, "Times New Roman", serif;
