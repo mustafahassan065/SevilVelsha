@@ -1,10 +1,10 @@
-.section { position: relative; padding: 60px 20px; text-align: center; overflow: hidden; }
+.section { position: relative; padding: 30px 0 30px; text-align: center; overflow: hidden; }
 .bgCream { background: #f6efe6; }
-.container { max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
+.container { max-width: 1500px; margin: 0 auto; position: relative; z-index: 1; }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr; /* image column bara, text column chota */
+  grid-template-columns: 1.95fr 1fr; /* image column bara, text column chota */
   align-items: center;
   gap: 0;
 }
@@ -52,7 +52,7 @@
 }
 
 /* Right side: compact text block */
-.content { padding: 100px 10px 0 0; margin-left: -60px; } /* image aur text ke beech ka gap kam: -60px ko -30 se -90 tak adjust karein */
+.content { position: relative; z-index: 2; padding: 70px 24px 0 0; margin-left: -70px; } /* margin-left: image-text gap, padding-top: text ki vertical position */
 
 .title {
   font-family: Georgia, "Times New Roman", serif;
